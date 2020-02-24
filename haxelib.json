@@ -1,0 +1,14 @@
+{
+	"name": "sneaker",
+	"url": "https://github.com/fal-works/sneaker/",
+	"license": "MIT",
+	"tags": [],
+	"description": "Assert, log and test (quite naive). May or may not help you to debug. Not yet very well tested.",
+	"version": "0.0.1",
+	"classPath": "src/",
+	"releasenote": "Initial release, everything may change in future.",
+	"contributors": [
+		"fal-works"
+	],
+	"dependencies": {}
+}
