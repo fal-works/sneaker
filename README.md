@@ -31,7 +31,7 @@ May or may not help you to debug.
 
 |flag|category|description|
 |---|---|---|
-|`sneaker_assertion_disable`|assertion|Disables assertion.|
-|`sneaker_assertion_verbose`|assertion|Prints additional info during the compilation.|
-|`sneaker_log_level`|log|`100` for FATAL, `200` for ERROR, ...|
-|`sneaker_tagged_disable`|tag|No physical field for `Tagged.tag`.|
+|`sneaker_assertion_disable`|Disables assertion.|
+|`sneaker_assertion_verbose`|Prints additional info during the compilation.|
+|`sneaker_log_level`|`100` for FATAL, `200` for ERROR and so on. Defaults to `200`.|
+|`sneaker_tagged_disable`|If set, no physical field for `Tagged.tag`.|
