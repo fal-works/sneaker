@@ -1,0 +1,8 @@
+# Build and Test with HL/JIT
+
+-cp src
+-cp test
+-main Main
+-hl out/main.hl
+-D sneaker_log_level=200
+-cmd hl out/main.hl
