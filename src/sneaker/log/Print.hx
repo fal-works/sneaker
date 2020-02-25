@@ -18,15 +18,6 @@ class Print {
 	}
 
 	/**
-	 * Prints `s` to the standard output, followed with a new line.
-	 *
-	 * Unlike `println()`, this accepts only `String` values (then internally calls `println()`).
-	 */
-	public static function printlnString(s:String):Void {
-		println(s);
-	}
-
-	/**
 	 * Prints `message` and also returns it.
 	 */
 	public static inline function printlnReturn<T>(message:Null<T>):Null<T> {

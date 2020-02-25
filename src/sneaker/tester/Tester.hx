@@ -5,7 +5,7 @@ using sneaker.format.PosInfosExtension;
 import haxe.PosInfos;
 import sneaker.log.LogType;
 import sneaker.log.LogFormats;
-import sneaker.log.Print.printlnString;
+import sneaker.log.Print.println;
 
 /**
  * Set of functions for doing simple unit tests.
@@ -36,7 +36,7 @@ class Tester {
 	 * You can also replace this with any custom function.
 	 */
 	public static dynamic function describe(text:String, ?pos:PosInfos):Void {
-		printlnString(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
+		println(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
@@ -66,7 +66,7 @@ class Tester {
 				runCase(testCases[0]);
 
 				for (i in 1...length) {
-					printlnString("");
+					println("");
 					runCase(testCases[i]);
 				}
 		}
