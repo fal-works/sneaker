@@ -1,7 +1,5 @@
 package sneaker.log;
 
-using sneaker.format.StringExtension;
-
 @:nullSafety(Strict)
 class Print {
 	/**
@@ -30,6 +28,6 @@ class Print {
 	 */
 	public static inline function printlnThrow<T>(message:Null<T>):Void {
 		println(message);
-		throw message.formatNullable();
+		@:nullSafety(Off) throw message;
 	}
 }

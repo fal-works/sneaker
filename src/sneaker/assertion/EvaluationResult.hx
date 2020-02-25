@@ -1,7 +1,5 @@
 package sneaker.assertion;
 
-using sneaker.format.StringExtension;
-
 /**
  * A pair of an expression string and its evaluated value.
  */
@@ -16,6 +14,6 @@ class EvaluationResult {
 	}
 
 	public function toString() {
-		return '(${expressionString}) => ${value.formatNullable()}';
+		return @:nullSafety(Off) '(${expressionString}) => ${value}';
 	}
 }

@@ -8,27 +8,11 @@ class StringExtension {
 	static final slash = "/";
 
 	/**
-	 * Workaround for errors in `@:nullSafety` mode.
-	 * @return `String` representation of `s`.
-	 */
-	@:nullSafety(Off)
-	public static inline function formatNullable<T>(s:Null<T>):String {
-		return Std.string(cast s);
-	}
-
-	/**
-	 * Casts `Null<T>` to `Null<String>`.
-	 */
-	public static inline function toNullableString<T>(s:Null<T>):Null<String> {
-		return cast s;
-	}
-
-	/**
 	 * Converts `Null<T>` to `Option<String>`.
 	 * @return `None` if null, `Some(s)` if not null.
 	 */
 	public static inline function toOptionalString<T>(s:Null<T>):Option<String> {
-		return s != null ? Some(formatNullable(s)) : None;
+		return s != null ? Some(Std.string(s)) : None;
 	}
 
 	/**
