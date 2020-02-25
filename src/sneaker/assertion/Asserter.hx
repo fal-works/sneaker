@@ -100,7 +100,7 @@ class Asserter {
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
 				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
-				sneaker.log.Print.println(__sneakerAssertionResult);
+				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult));
 			}
 			#end
 		};
