@@ -111,8 +111,8 @@ class Asserter {
 				}
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
-				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult), __sneakerTag);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults, __sneakerTag);
+				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
 			}
 			#end
 		};
@@ -150,15 +150,16 @@ class Asserter {
 			final __sneakerUnwrappedValue = $object;
 			if (__sneakerUnwrappedValue == null) {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], __sneakerTag,
-					$message);
+				@:pos(pos) final __sneakerAssertionResult = {
+					sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], __sneakerTag, $message);
+				}
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#if sneaker_assertion_print_success
 			else {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult]);
-				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult), __sneakerTag);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult], __sneakerTag);
+				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
 			}
 			#end
 

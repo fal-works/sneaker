@@ -1,8 +1,6 @@
 package sneaker.assertion;
 
-import haxe.PosInfos;
 import haxe.CallStack;
-import haxe.ds.Option;
 
 /**
  * Exception raised by assertion failures.
@@ -10,16 +8,13 @@ import haxe.ds.Option;
 @:nullSafety(Strict)
 class AssertionException extends sneaker.types.Exception {
 	public final result:AssertionResult;
-	public final posInfos:Option<PosInfos>;
 
-	public function new(result:AssertionResult, ?pos:PosInfos) {
+	public function new(result:AssertionResult) {
 		this.result = result;
-		this.posInfos = if (pos != null) Some(pos) else None;
 
 		final currentCallStack = CallStack.callStack();
 		currentCallStack.shift();
 
-		final logString = Asserter.failureLogType.createLogString(Std.string(result), result.tag, pos);
-		super(logString, currentCallStack);
+		super(result.createLogString(Asserter.failureLogType), currentCallStack, result.positionInformations);
 	}
 }

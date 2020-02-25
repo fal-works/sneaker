@@ -6,6 +6,7 @@ using sneaker.format.StringBufExtension;
 import haxe.PosInfos;
 import haxe.ds.Option;
 import sneaker.tag.Tag;
+import sneaker.log.LogType;
 
 /**
  * Result of assertion, including evaluation results of sub-expressions.
@@ -13,11 +14,11 @@ import sneaker.tag.Tag;
 @:nullSafety(Strict)
 class AssertionResult {
 	public static function createError(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?message:String, ?pos:PosInfos) {
-		return new AssertionResult(type, evaluationResults, tag, Some(message.toOptionalString()), pos);
+		return new AssertionResult(type, evaluationResults, Some(message.toOptionalString()), tag, pos);
 	}
 
 	public static function createOk(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?pos:PosInfos) {
-		return new AssertionResult(type, evaluationResults, tag, None, pos);
+		return new AssertionResult(type, evaluationResults, None, tag, pos);
 	}
 
 	/** Type of assertion, either `Assertion` or `Unwrap`. */
@@ -32,39 +33,45 @@ class AssertionResult {
 	/** Alias for the last element of `evaluationResults`. */
 	public var wholeEvaluationResult(get, never):EvaluationResult;
 
-	/** A `Tag` related with this assertion. */
-	public final tag:Null<Tag>;
-
 	/**
 	 * - If succeeded: `None`.
 	 * - If failed: `Some(message:Option<String>)`.
 	 */
 	public final error:Option<Option<String>>;
 
+	/** Text that includes the content of `this`, excluding the tag and position informaion. */
+	public final contentString:String;
+
+	/** A `Tag` related with this assertion. */
+	public final tag:Null<Tag>;
+
 	/** Code position where this assertion was done. */
 	public final positionInformations:Null<PosInfos>;
-
-	var contentString:String;
 
 	inline function get_wholeEvaluationResult() {
 		return evaluationResults[evaluationResults.length - 1];
 	}
 
-	public function new(assertionType:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, error:Option<Option<String>>, ?pos:PosInfos) {
+	public function new(assertionType:AssertionType, evaluationResults:Array<EvaluationResult>, error:Option<Option<String>>, ?tag:Tag, ?pos:PosInfos) {
 		this.assertionType = assertionType;
 		this.evaluationResults = evaluationResults;
-		this.tag = tag;
 		this.error = error;
-		this.positionInformations = pos;
 
 		this.contentString = generateContentString();
+
+		this.tag = tag;
+		this.positionInformations = pos;
 	}
 
-	public function toString():String {
-		return contentString;
+	public function createLogString(logType:LogType):String {
+		return logType.createLogString(contentString, tag, positionInformations);
 	}
 
-	function addHead(buffer:StringBuf):StringBuf {
+	public function printLog(logType:LogType) {
+		logType.print(contentString, tag, positionInformations);
+	}
+
+	function addSummary(buffer:StringBuf):StringBuf {
 		switch (error) {
 			case None:
 				buffer.add('${assertionType} succeeded.');
@@ -96,7 +103,7 @@ class AssertionResult {
 	function generateContentString():String {
 		final buffer = new StringBuf();
 
-		addHead(buffer);
+		addSummary(buffer);
 		addDetails(buffer);
 
 		return buffer.toString();

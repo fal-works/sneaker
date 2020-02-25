@@ -3,6 +3,7 @@ package sneaker.types;
 import sneaker.format.CallStackItemExtension;
 import haxe.CallStack;
 import haxe.CallStack.StackItem;
+import haxe.PosInfos;
 
 /**
  * Base exception class.
@@ -13,8 +14,9 @@ class Exception {
 
 	public final content:Dynamic;
 	public final callStack:Array<StackItem>;
+	public final positionInformation:Null<PosInfos>;
 
-	public function new(content:Dynamic, ?callStack:Array<StackItem>) {
+	public function new(content:Dynamic, ?callStack:Array<StackItem>, ?pos:PosInfos) {
 		this.content = content;
 
 		if (callStack != null) {
@@ -26,6 +28,8 @@ class Exception {
 		} else {
 			this.callStack = [];
 		}
+
+		this.positionInformation = pos;
 	}
 
 	public function toString():String {
