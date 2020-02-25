@@ -9,7 +9,7 @@ import sneaker.log.Print.printlnString;
 
 class Tester {
 	/**
-	 * Log type used in `describe()`.
+	 * Log type used in `describe()` (unless you replace the `describe` function).
 	 * Replace or edit this type for formatting descriptions.
 	 * The filters have no effect.
 	 */
@@ -27,10 +27,11 @@ class Tester {
 	public static var exceptionLogType = new LogType("[TEST]  ");
 
 	/**
-	 * Prints position info and a description text.
+	 * Prints position info and a given description text.
 	 * Can be used as a heading of each test case.
+	 * You can also replace this with any custom function.
 	 */
-	public static function describe(text:String, ?pos:PosInfos):Void {
+	public static dynamic function describe(text:String, ?pos:PosInfos):Void {
 		printlnString(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
