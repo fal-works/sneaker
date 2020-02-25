@@ -85,7 +85,7 @@ class Asserter {
 	@:noUsing
 	public static macro function assert(boolExpression:ExprOf<Bool>, ?tag:ExprOf<Null<Tag>>, ?message:Expr):ExprOf<Void> {
 		#if sneaker_assertion_disable
-		return macro cast null;
+		return macro $b{[]};
 		#else
 		final evaluations = prepareEvaluations(boolExpression);
 
