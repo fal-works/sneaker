@@ -5,14 +5,14 @@ using sneaker.format.StringExtension;
 @:nullSafety(Strict)
 class EvaluationResult {
 	public final expressionString:String;
-	public final result:Null<Dynamic>;
+	public final value:Null<Dynamic>;
 
-	public function new(expressionString:String, result:Null<Dynamic>) {
+	public function new(expressionString:String, value:Null<Dynamic>) {
 		this.expressionString = expressionString;
-		this.result = result;
+		this.value = value;
 	}
 
 	public function toString() {
-		return '(${expressionString}) => ${result.formatNullable()}';
+		return '(${expressionString}) => ${value.formatNullable()}';
 	}
 }

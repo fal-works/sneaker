@@ -12,36 +12,36 @@ import haxe.ds.Option;
  */
 @:nullSafety(Strict)
 class AssertionResult {
-	public static function createError(evaluationList:Array<EvaluationResult>, ?message:String, ?pos:PosInfos) {
-		return new AssertionResult(evaluationList, Some(message.toOptionalString()), pos);
+	public static function createError(evaluationResults:Array<EvaluationResult>, ?message:String, ?pos:PosInfos) {
+		return new AssertionResult(evaluationResults, Some(message.toOptionalString()), pos);
 	}
 
-	public static function createOk(evaluationList:Array<EvaluationResult>, ?pos:PosInfos) {
-		return new AssertionResult(evaluationList, None, pos);
+	public static function createOk(evaluationResults:Array<EvaluationResult>, ?pos:PosInfos) {
+		return new AssertionResult(evaluationResults, None, pos);
 	}
 
 	/**
 	 * Evaluation list of sub-expressions of which the asserted expression consists.
 	 * The last element is the evaluation of the asserted expression itself.
 	 */
-	public final evaluationList:Array<EvaluationResult>;
+	public final evaluationResults:Array<EvaluationResult>;
 
 	/**
-	 * Alias for the last element of `evaluationList`.
+	 * Alias for the last element of `evaluationResults`.
 	 */
-	public var wholeEvaluation(get, never):EvaluationResult;
+	public var wholeEvaluationResult(get, never):EvaluationResult;
 
 	public final error:Option<Option<String>>;
 	public final positionInformations:Null<PosInfos>;
 
 	var contentString:String;
 
-	inline function get_wholeEvaluation() {
-		return evaluationList[evaluationList.length - 1];
+	inline function get_wholeEvaluationResult() {
+		return evaluationResults[evaluationResults.length - 1];
 	}
 
-	public function new(evaluationList:Array<EvaluationResult>, error:Option<Option<String>>, ?pos:PosInfos) {
-		this.evaluationList = evaluationList;
+	public function new(evaluationResults:Array<EvaluationResult>, error:Option<Option<String>>, ?pos:PosInfos) {
+		this.evaluationResults = evaluationResults;
 		this.error = error;
 		this.positionInformations = pos;
 		this.contentString = generateContentString();
@@ -55,10 +55,10 @@ class AssertionResult {
 		switch (error) {
 			case None:
 				buffer.add('Assertion succeeded.');
-				buffer.add(' (${wholeEvaluation.expressionString}) is ${cast wholeEvaluation.result}.');
+				buffer.add(' (${wholeEvaluationResult.expressionString}) is ${cast wholeEvaluationResult.value}.');
 			case Some(message):
 				buffer.add('Assertion failed.');
-				buffer.add(' (${wholeEvaluation.expressionString}) is ${cast wholeEvaluation.result}.');
+				buffer.add(' (${wholeEvaluationResult.expressionString}) is ${cast wholeEvaluationResult.value}.');
 				switch (message) {
 					case Some(messageValue):
 						buffer.lfAdd('Message: ${messageValue}');
@@ -77,9 +77,9 @@ class AssertionResult {
 	}
 
 	function addDetails(buffer:StringBuf):StringBuf {
-		if (evaluationList.length > 1) {
+		if (evaluationResults.length > 1) {
 			buffer.lfAdd('Details:');
-			buffer.lfIndentAddLines(evaluationList);
+			buffer.lfIndentAddLines(evaluationResults);
 		}
 
 		return buffer;
