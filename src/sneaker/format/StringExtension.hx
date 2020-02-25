@@ -12,23 +12,23 @@ class StringExtension {
 	 * @return `String` representation of `s`.
 	 */
 	@:nullSafety(Off)
-	public static inline function formatNullable(s:Null<Dynamic>):String {
+	public static inline function formatNullable<T>(s:Null<T>):String {
+		return Std.string(cast s);
+	}
+
+	/**
+	 * Casts `Null<T>` to `Null<String>`.
+	 */
+	public static inline function toNullableString<T>(s:Null<T>):Null<String> {
 		return cast s;
 	}
 
 	/**
-	 * Casts `Null<Dynamic>` to `Null<String>`.
-	 */
-	public static inline function toNullableString(s:Null<Dynamic>):Null<String> {
-		return s;
-	}
-
-	/**
-	 * Converts `Null<Dynamic>` to `Option<String>`.
+	 * Converts `Null<T>` to `Option<String>`.
 	 * @return `None` if null, `Some(s)` if not null.
 	 */
-	public static inline function toOptionalString(s:Null<Dynamic>):Option<String> {
-		return s != null ? Some(s) : None;
+	public static inline function toOptionalString<T>(s:Null<T>):Option<String> {
+		return s != null ? Some(formatNullable(s)) : None;
 	}
 
 	/**

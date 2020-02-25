@@ -6,10 +6,8 @@ using sneaker.format.StringExtension;
 class Print {
 	/**
 	 * Prints `s` to the standard output, followed with a new line.
-	 *
-	 * Unlike `Log.logSimple()`, this accepts any `Dynamic` values including `null`.
 	 */
-	public static inline function println(s:Null<Dynamic>):Void {
+	public static inline function println<T>(s:Null<T>):Void {
 		#if (sys && !no_traces)
 		#if (!haxe4 && android)
 		trace(s);
@@ -31,7 +29,7 @@ class Print {
 	/**
 	 * Prints `message` and also returns it.
 	 */
-	public static inline function printlnReturn(message:Null<Dynamic>):Null<Dynamic> {
+	public static inline function printlnReturn<T>(message:Null<T>):Null<T> {
 		println(message);
 		return message;
 	}
@@ -39,7 +37,7 @@ class Print {
 	/**
 	 * Prints `message` and then throw it.
 	 */
-	public static inline function printlnThrow(message:Null<Dynamic>):Void {
+	public static inline function printlnThrow<T>(message:Null<T>):Void {
 		println(message);
 		throw message.formatNullable();
 	}
