@@ -34,7 +34,7 @@ class Asserter {
 	 */
 	public static var failureLogType = new LogType("[ASSERT]");
 
-	 /**
+	/**
 	 * Log type used if the compilation flag `sneaker_assertion_print_success` is set.
 	 * Replace or edit this for filtering/formatting assertion success logs.
 	 */
@@ -100,13 +100,15 @@ class Asserter {
 			final __sneakerTag = $tag;
 			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, $message);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, __sneakerTag, $message);
 				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#else
 			final __sneakerEvaluationResults:Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
 			if ($boolExpression != true) {
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, $message);
+				@:pos(pos) final __sneakerAssertionResult = {
+					sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, __sneakerTag, $message);
+				}
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
 				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
@@ -148,7 +150,8 @@ class Asserter {
 			final __sneakerUnwrappedValue = $object;
 			if (__sneakerUnwrappedValue == null) {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], $message);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], __sneakerTag,
+					$message);
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#if sneaker_assertion_print_success

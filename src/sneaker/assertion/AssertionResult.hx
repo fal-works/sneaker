@@ -2,23 +2,26 @@ package sneaker.assertion;
 
 using sneaker.format.StringExtension;
 using sneaker.format.StringBufExtension;
-using sneaker.format.PosInfosExtension;
 
 import haxe.PosInfos;
 import haxe.ds.Option;
+import sneaker.tag.Tag;
 
 /**
  * Result of assertion, including evaluation results of sub-expressions.
  */
 @:nullSafety(Strict)
 class AssertionResult {
-	public static function createError(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?message:String, ?pos:PosInfos) {
-		return new AssertionResult(type, evaluationResults, Some(message.toOptionalString()), pos);
+	public static function createError(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?message:String, ?pos:PosInfos) {
+		return new AssertionResult(type, evaluationResults, tag, Some(message.toOptionalString()), pos);
 	}
 
-	public static function createOk(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?pos:PosInfos) {
-		return new AssertionResult(type, evaluationResults, None, pos);
+	public static function createOk(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?pos:PosInfos) {
+		return new AssertionResult(type, evaluationResults, tag, None, pos);
 	}
+
+	/** Type of assertion, either `Assertion` or `Unwrap`. */
+	public final assertionType:AssertionType;
 
 	/**
 	 * Evaluation list of sub-expressions of which the asserted expression consists.
@@ -26,13 +29,19 @@ class AssertionResult {
 	 */
 	public final evaluationResults:Array<EvaluationResult>;
 
-	/**
-	 * Alias for the last element of `evaluationResults`.
-	 */
+	/** Alias for the last element of `evaluationResults`. */
 	public var wholeEvaluationResult(get, never):EvaluationResult;
 
-	public final assertionType:AssertionType;
+	/** A `Tag` related with this assertion. */
+	public final tag:Null<Tag>;
+
+	/**
+	 * - If succeeded: `None`.
+	 * - If failed: `Some(message:Option<String>)`.
+	 */
 	public final error:Option<Option<String>>;
+
+	/** Code position where this assertion was done. */
 	public final positionInformations:Null<PosInfos>;
 
 	var contentString:String;
@@ -41,11 +50,13 @@ class AssertionResult {
 		return evaluationResults[evaluationResults.length - 1];
 	}
 
-	public function new(assertionType:AssertionType, evaluationResults:Array<EvaluationResult>, error:Option<Option<String>>, ?pos:PosInfos) {
+	public function new(assertionType:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, error:Option<Option<String>>, ?pos:PosInfos) {
 		this.assertionType = assertionType;
 		this.evaluationResults = evaluationResults;
+		this.tag = tag;
 		this.error = error;
 		this.positionInformations = pos;
+
 		this.contentString = generateContentString();
 	}
 
