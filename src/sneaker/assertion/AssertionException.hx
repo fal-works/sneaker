@@ -11,7 +11,7 @@ import haxe.ds.Option;
  * Exception raised by assertion failures.
  */
 @:nullSafety(Strict)
-class Exception extends sneaker.types.Exception {
+class AssertionException extends sneaker.types.Exception {
 	public final result:AssertionResult;
 	public final posInfos:Option<PosInfos>;
 
