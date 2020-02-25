@@ -3,5 +3,7 @@
 -cp src
 -cp test
 -main Main
--hl out/main.hl
 -D sneaker_log_level=200
+# -D sneaker_assertion_print_success
+# -D sneaker_assertion_disable
+-hl out/main.hl
