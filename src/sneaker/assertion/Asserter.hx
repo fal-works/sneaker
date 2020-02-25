@@ -4,6 +4,7 @@ using haxe.macro.Tools;
 
 import haxe.macro.Expr;
 import sneaker.log.LogType;
+import sneaker.tag.Tag;
 
 @:nullSafety(Strict)
 private class Evaluation {
@@ -82,7 +83,7 @@ class Asserter {
 	 * @param message Expression that generates message for inserting to the exception.
 	 */
 	@:noUsing
-	public static macro function assert(boolExpression:ExprOf<Bool>, ?message:Expr):ExprOf<Void> {
+	public static macro function assert(boolExpression:ExprOf<Bool>, ?tag:ExprOf<Null<Tag>>, ?message:Expr):ExprOf<Void> {
 		#if sneaker_assertion_disable
 		return macro cast null;
 		#else
@@ -96,6 +97,7 @@ class Asserter {
 
 		final pos = boolExpression.pos;
 		final lastMacroOutputExpression = macro {
+			final __sneakerTag = $tag;
 			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
 				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, $message);
@@ -108,7 +110,7 @@ class Asserter {
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
 				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
-				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult));
+				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult), __sneakerTag);
 			}
 			#end
 		};
@@ -134,7 +136,7 @@ class Asserter {
 	 * @return Evaluation result of `object` that has been checked against null.
 	 */
 	@:noUsing
-	public static macro function unwrap<T>(object:ExprOf<Null<T>>, ?message:Expr):ExprOf<T> {
+	public static macro function unwrap<T>(object:ExprOf<Null<T>>, ?tag:ExprOf<Null<Tag>>, ?message:Expr):ExprOf<T> {
 		#if sneaker_assertion_disable
 		return macro $object;
 		#else
@@ -142,6 +144,7 @@ class Asserter {
 		final pos = object.pos;
 
 		return macro {
+			final __sneakerTag = $tag;
 			final __sneakerUnwrappedValue = $object;
 			if (__sneakerUnwrappedValue == null) {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
@@ -152,7 +155,7 @@ class Asserter {
 			else {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
 				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult]);
-				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult));
+				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult), __sneakerTag);
 			}
 			#end
 
