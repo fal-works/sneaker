@@ -11,16 +11,15 @@ import sneaker.format.CallStackItemExtension.format;
 @:nullSafety(Strict)
 class CallStackItemFormat {
 	/**
-	 * Set this `true` for hiding file path in `formatFilePos()`.
+	 * Set this to `true` for hiding file path in `formatFilePos()`.
 	 * Defaults to `false`.
 	 */
 	public static var hideFilePath = false;
 
 	/**
-	 * Set this `true` for hiding module path in `formatClass()`.
-	 * Defaults to `true`.
+	 * Set this to `true` (default) for hiding package path in `formatClass()`.
 	 */
-	public static var hideModulePath = true;
+	public static var hidePackagePath = true;
 
 	/**
 	 * Separator used in `formatFilePos()`.
@@ -55,7 +54,7 @@ class CallStackItemFormat {
 	 * Can be replaced with any custom function.
 	 */
 	public static var formatClass = (?className:String) -> {
-		return className != null ? '${hideModulePath ? className.sliceAfterLastDot() : className}' : "?";
+		return className != null ? '${hidePackagePath ? className.sliceAfterLastDot() : className}' : "?";
 	};
 
 	/**
