@@ -1,6 +1,5 @@
 package sneaker.assertion;
 
-import haxe.macro.Context;
 using haxe.macro.Tools;
 
 import haxe.macro.Expr;
@@ -87,6 +86,7 @@ class Asserter {
 				macro new sneaker.assertion.EvaluationResult($v{evaluations[i].expressionString}, $i{partialEvaluationResultName(i)})
 		];
 
+		final pos = boolExpression.pos;
 		final lastMacroOutputExpression = macro {
 			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
@@ -96,10 +96,10 @@ class Asserter {
 			#else
 			final __sneakerEvaluationResults:Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
 			if ($boolExpression != true) {
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, $message);
-				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, $message);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
 				sneaker.log.Print.println(__sneakerAssertionResult);
 			}
 			#end
@@ -131,19 +131,20 @@ class Asserter {
 		return macro $object;
 		#else
 		final expressionString = object.toString();
+		final pos = object.pos;
 
 		return macro {
 			final __sneakerUnwrappedValue = $object;
 			if (__sneakerUnwrappedValue == null) {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], $message);
-				@:pos(object.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], $message);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#if sneaker_assertion_print_success
 			else {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult]);
-				@:pos(object.pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult));
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult]);
+				@:pos(pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult));
 			}
 			#end
 
