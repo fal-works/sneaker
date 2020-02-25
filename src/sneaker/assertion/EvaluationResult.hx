@@ -16,9 +16,6 @@ class EvaluationResult {
 	}
 
 	public function toString() {
-		final a:Null<Int> = 1;
-		final c = a.formatNullable();
-		final b = value.formatNullable();
 		return '(${expressionString}) => ${value.formatNullable()}';
 	}
 }
