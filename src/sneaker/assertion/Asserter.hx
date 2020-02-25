@@ -105,7 +105,9 @@ class Asserter {
 	}
 
 	/**
-	 * Throws error if `object` is `null`.
+	 * Throws exception if `object` is `null`.
+	 *
+	 * Unlike `assert()`, the exception does not contain information about sub-expressions of `object`.
 	 *
 	 * Compilation flags:
 	 * - If `sneaker_assertion_disable` is set,
