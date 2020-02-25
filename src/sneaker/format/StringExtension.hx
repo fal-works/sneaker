@@ -4,6 +4,9 @@ import haxe.ds.Option;
 
 @:nullSafety(Strict)
 class StringExtension {
+	static final dot = ".";
+	static final slash = "/";
+
 	@:nullSafety(Off)
 	public static inline function formatNullable(s:Null<Dynamic>):String {
 		return cast s;
@@ -18,10 +21,10 @@ class StringExtension {
 	}
 
 	public static inline function sliceAfterLastDot(s:String):String {
-		return s.substr(s.lastIndexOf(".") + 1);
+		return s.substr(s.lastIndexOf(dot) + 1);
 	}
 
 	public static inline function sliceAfterLastSlash(s:String):String {
-		return s.substr(s.lastIndexOf("/") + 1);
+		return s.substr(s.lastIndexOf(slash) + 1);
 	}
 }
