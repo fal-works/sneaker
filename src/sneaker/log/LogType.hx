@@ -17,7 +17,7 @@ class LogTypeDefaults {
 	public static var positionFilter = (?pos:PosInfos) -> true;
 
 	public static var positionFormat = PosInfosCallbacks.formatClassMethodLine;
-	public static var format = (logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> {
+	public static var logFormat = (logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> {
 		'${logType.prefix} ${logType.positionFormat(pos)} | ${tag.formatNullable()} | ${message}';
 	}
 }
@@ -50,16 +50,16 @@ class LogType {
 	/**
 	 * Function that formats `pos` and generates an output `String` value.
 	 *
-	 * Can be replaced with a custom function.
+	 * Can be replaced with any custom function.
 	 */
 	public var positionFormat:(?pos:PosInfos) -> String;
 
 	/**
-	 * Function that formats given values and generates an output `String` value.
+	 * Function used for creating log text.
 	 *
-	 * Can be replaced with a custom function.
+	 * Can be replaced with any custom function.
 	 */
-	public var format:(logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> String;
+	public var logFormat:(logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> String;
 
 	public function new(prefix:String) {
 		this.prefix = prefix;
@@ -67,7 +67,7 @@ class LogType {
 		this.tagFilter = LogTypeDefaults.tagFilter;
 		this.positionFilter = LogTypeDefaults.positionFilter;
 		this.positionFormat = LogTypeDefaults.positionFormat;
-		this.format = LogTypeDefaults.format;
+		this.logFormat = LogTypeDefaults.logFormat;
 	}
 
 	/**
