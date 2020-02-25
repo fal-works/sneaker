@@ -4,12 +4,13 @@ using sneaker.format.PosInfosExtension;
 
 import haxe.PosInfos;
 import sneaker.log.LogType;
+import sneaker.log.LogFormats;
 import sneaker.log.Print.printlnString;
 
 class Tester {
 	public static var descriptionLogType = {
 		final type = new LogType("[TEST]  ");
-		type.logFormat = (logType, message, ?tag, ?pos) -> '${logType.prefix} ${message}';
+		type.logFormat = LogFormats.prefixMessage;
 		type;
 	}
 

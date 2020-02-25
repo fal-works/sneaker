@@ -1,7 +1,5 @@
 package sneaker.log;
 
-using sneaker.format.PosInfosExtension;
-
 import sneaker.format.PosInfosCallbacks;
 import sneaker.log.LogTypeExtension.*;
 import haxe.PosInfos;
@@ -17,9 +15,7 @@ class LogTypeDefaults {
 	public static var positionFilter = (?pos:PosInfos) -> true;
 
 	public static var positionFormat = PosInfosCallbacks.formatClassMethodLine;
-	public static var logFormat = (logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> {
-		'${logType.prefix} ${logType.positionFormat(pos)} | ${tag.formatNullable()} | ${message}';
-	}
+	public static var logFormat = LogFormats.prefixPositionTagMessage;
 }
 
 /**

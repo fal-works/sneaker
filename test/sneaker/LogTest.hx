@@ -64,15 +64,15 @@ class LogTest {
 		logType.print("(log message)");
 	};
 	public static final logTypePositionFormat = () -> {
-		describe("This prints a log message in another position format.");
+		describe("This prints a log message in another position format (file and line).");
 		final logType = new LogType("[log line prefix]");
 		logType.positionFormat = sneaker.format.PosInfosCallbacks.formatFileLineWithoutPath;
 		logType.print("(log message)");
 	};
 	public static final logTypeLogFormat = () -> {
-		describe("This prints a log message in another format.");
+		describe("This prints a log message in another format (only prefix and message).");
 		final logType = new LogType("[log line prefix]");
-		logType.logFormat = (logType, message, ?tag, ?pos) -> '${logType.prefix} ${message} // ${tag.formatNullable()} // ${logType.positionFormat(pos)}';
+		logType.logFormat = sneaker.log.LogFormats.prefixMessage;
 		logType.print("(log message)");
 	};
 	public static final logTypeChangeTests = runCases.bind([
