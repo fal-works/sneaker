@@ -15,8 +15,9 @@ class LogTypeDefaults {
 	public static var tagFilter = (?tag:Tag) -> true;
 	public static var positionFilter = (?pos:PosInfos) -> true;
 
-	public static var format = (prefix:String, message:String, ?tag:Tag, ?pos
-		:PosInfos) -> '${prefix} ${pos.formatClassMethodLine()} | ${tag.formatNullable()} | ${message}';
+	public static var format = (prefix:String, message:String, ?tag:Tag, ?pos:PosInfos) -> {
+		'${prefix} ${pos.formatClassMethodLine()} | ${tag.formatNullable()} | ${message}';
+	}
 }
 
 /**
