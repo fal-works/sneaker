@@ -68,7 +68,7 @@ class LogTest {
 	public static final logTypeFormat = () -> {
 		describe("This prints a log message in another format.");
 		final logType = new LogType("[log line prefix]");
-		logType.format = (prefix, message, ?tag, ?pos) -> '${prefix} ${message} // ${tag.formatNullable()} // ${pos.formatClassMethod()}';
+		logType.logFormat = (logType, message, ?tag, ?pos) -> '${logType.prefix} ${message} // ${tag.formatNullable()} // ${logType.positionFormat(pos)}';
 		logType.print("(log message)");
 	};
 	public static final logTypeChangeTests = runCases.bind([
