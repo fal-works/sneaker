@@ -87,11 +87,14 @@ class Asserter {
 				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
 			}
 			#else
-			final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, $message);
-			if ($boolExpression != true)
+			final __sneakerEvaluationResults:Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
+			if ($boolExpression != true) {
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, $message);
 				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
-			else
+			} else {
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults);
 				sneaker.log.Print.println(__sneakerAssertionResult);
+			}
 			#end
 		};
 
