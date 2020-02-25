@@ -3,7 +3,6 @@ package sneaker.tag;
 /**
  * Base class which has a `tag` for logging.
  */
-@:using(sneaker.tag.TaggedExtension)
 @:nullSafety(Strict)
 class Tagged implements sneaker.tag.interfaces.Tagged {
 	/** Default `Tag` instance that will be attached when a `Tagged` instance is created. */

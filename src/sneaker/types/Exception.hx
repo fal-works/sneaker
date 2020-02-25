@@ -10,6 +10,11 @@ import haxe.PosInfos;
  */
 @:nullSafety(Strict)
 class Exception {
+	/**
+	 * If `true` (default), each `Exception` instance will automatically store
+	 * the call stack info (even if not externally provided) and append it to
+	 * the content when cast to `String`.
+	 */
 	public static var appendCallStack = true;
 
 	public final content:Dynamic;

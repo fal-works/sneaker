@@ -63,10 +63,16 @@ class AssertionResult {
 		this.positionInformations = pos;
 	}
 
+	/**
+	 * @return Log text created from data of `this` using `logType`.
+	 */
 	public function createLogString(logType:LogType):String {
 		return logType.createLogString(contentString, tag, positionInformations);
 	}
 
+	/**
+	 * Prints log text created from data of `this` using `logType`.
+	 */
 	public function printLog(logType:LogType) {
 		logType.print(contentString, tag, positionInformations);
 	}

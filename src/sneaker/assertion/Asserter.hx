@@ -8,6 +8,7 @@ import sneaker.tag.Tag;
 
 @:nullSafety(Strict)
 private class Evaluation {
+	/** Used as callback in `evaluationArray.map()`. */
 	public static final getExecutionExpression = (evaluation:Evaluation) -> evaluation.executionExpression;
 
 	/** String form of the expression to be evaluated. */
@@ -40,6 +41,9 @@ class Asserter {
 	 */
 	public static var successLogType = new LogType("[ASSERT]");
 
+	/**
+	 * Internal function used in `assert()`.
+	 */
 	static function prepareEvaluations(expressionToAssert:ExprOf<Bool>):Array<Evaluation> {
 		final evaluations:Array<Evaluation> = [];
 

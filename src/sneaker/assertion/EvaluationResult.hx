@@ -2,6 +2,9 @@ package sneaker.assertion;
 
 using sneaker.format.StringExtension;
 
+/**
+ * A pair of an expression string and its evaluated value.
+ */
 @:nullSafety(Strict)
 class EvaluationResult {
 	public final expressionString:String;

@@ -7,6 +7,9 @@ import sneaker.log.LogType;
 import sneaker.log.LogFormats;
 import sneaker.log.Print.printlnString;
 
+/**
+ * Set of functions for doing simple unit tests.
+ */
 class Tester {
 	/**
 	 * Log type used in `describe()` (unless you replace the `describe` function).
@@ -37,7 +40,7 @@ class Tester {
 	}
 
 	/**
-	 * Run `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
+	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
 	 */
 	public static function runCase(testCase:() -> Void):Void {
 		try {
