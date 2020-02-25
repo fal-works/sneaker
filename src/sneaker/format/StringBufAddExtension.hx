@@ -40,4 +40,23 @@ class StringBufAddExtension {
 		buf.add('\n${indent}${s}');
 		return buf;
 	}
+
+	/**
+	 * Adds each of `lines` with a preceding Line Feed.
+	 * @return The given `StringBuf`.
+	 */
+	 public static inline function lfAddLines<T>(buf:StringBuf, lines:Array<T>):StringBuf {
+		for (line in lines) lfAdd(buf, line);
+		return buf;
+	}
+
+	/**
+	 * Adds each of `lines` with preceding Line Feed and `indent`.
+	 * @param indent Defaults to 2 spaces.
+	 * @return The given `StringBuf`.
+	 */
+	 public static inline function lfIndentAddLines<T>(buf:StringBuf, lines:Array<T>, indent:String = twoSpaces):StringBuf {
+		for (line in lines) lfIndentAdd(buf, line, indent);
+		return buf;
+	}
 }
