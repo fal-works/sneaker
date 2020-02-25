@@ -1,19 +1,27 @@
 package sneaker.testrunner;
 
+using sneaker.format.PosInfosExtension;
+
 import haxe.PosInfos;
-import sneaker.log.Log;
+import sneaker.log.LogType;
 import sneaker.log.Print.printlnString;
 
 class TestRunner {
+	public static var descriptionLogType = {
+		final type = new LogType("[TEST]  ");
+		type.logFormat = (logType, message, ?tag, ?pos) -> '${logType.prefix} ${message}';
+		type;
+	}
+
+	public static var exceptionLogType = new LogType("[TEST]  ");
+
 	/**
 	 * Prints position info and a description text.
 	 * Can be used as a heading of each test case.
 	 */
 	public static function describe(text:String, ?pos:PosInfos):Void {
-		if (pos != null)
-			printlnString('____ ${pos.className}::${pos.methodName} ________________');
-
-		printlnString('Description: ${text}');
+		printlnString('TestCase____${pos.formatClassMethodWithoutModule()}________________________________________________________');
+		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
 	/**
@@ -23,7 +31,7 @@ class TestRunner {
 		try {
 			testCase();
 		} catch (exception:Dynamic) {
-			Log.error('Exception caught:\n${exception}');
+			exceptionLogType.print('Exception caught:\n${exception}');
 		}
 	}
 
