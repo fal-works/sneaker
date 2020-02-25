@@ -8,12 +8,22 @@ import sneaker.log.LogFormats;
 import sneaker.log.Print.printlnString;
 
 class Tester {
+	/**
+	 * Log type used in `describe()`.
+	 * Replace or edit this type for formatting descriptions.
+	 * The filters have no effect.
+	 */
 	public static var descriptionLogType = {
 		final type = new LogType("[TEST]  ");
 		type.logFormat = LogFormats.prefixMessage;
 		type;
 	}
 
+	/**
+	 * Log type used when an exception is caught in `runCase()`.
+	 * Replace or edit this type for formatting that exception log.
+	 * The filters have no effect.
+	 */
 	public static var exceptionLogType = new LogType("[TEST]  ");
 
 	/**
