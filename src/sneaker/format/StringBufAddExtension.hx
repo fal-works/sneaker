@@ -17,17 +17,17 @@ class StringBufAddExtension {
 	 * Adds Line Feed and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfAdd(buf:StringBuf, s:String):StringBuf {
+	public static inline function lfAdd<T>(buf:StringBuf, s:T):StringBuf {
 		buf.add('\n${s}');
 		return buf;
 	}
 
 	/**
 	 * Adds `indent` and `s`.
-	 * @param indent Defaults 2 spaces.
+	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAdd(buf:StringBuf, s:String, indent:String = twoSpaces):StringBuf {
+	public static inline function indentAdd<T>(buf:StringBuf, s:T, indent:String = twoSpaces):StringBuf {
 		buf.add('${indent}${s}');
 		return buf;
 	}
@@ -36,7 +36,7 @@ class StringBufAddExtension {
 	 * Adds Line Feed, `indent` and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfIndentAdd(buf:StringBuf, s:String, indent:String = twoSpaces):StringBuf {
+	public static inline function lfIndentAdd<T>(buf:StringBuf, s:T, indent:String = twoSpaces):StringBuf {
 		buf.add('\n${indent}${s}');
 		return buf;
 	}
