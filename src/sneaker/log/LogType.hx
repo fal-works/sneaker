@@ -2,6 +2,7 @@ package sneaker.log;
 
 using sneaker.format.PosInfosExtension;
 
+import sneaker.format.PosInfosCallbacks;
 import sneaker.log.LogTypeExtension.*;
 import haxe.PosInfos;
 import sneaker.tag.Tag;
@@ -15,8 +16,9 @@ class LogTypeDefaults {
 	public static var tagFilter = (?tag:Tag) -> true;
 	public static var positionFilter = (?pos:PosInfos) -> true;
 
-	public static var format = (prefix:String, message:String, ?tag:Tag, ?pos:PosInfos) -> {
-		'${prefix} ${pos.formatClassMethodLine()} | ${tag.formatNullable()} | ${message}';
+	public static var positionFormat = PosInfosCallbacks.formatClassMethodLine;
+	public static var format = (logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> {
+		'${logType.prefix} ${logType.positionFormat(pos)} | ${tag.formatNullable()} | ${message}';
 	}
 }
 
@@ -36,26 +38,36 @@ class LogType {
 	 *
 	 * Can be replaced either directly or using `setTagNameFilter()` etc.
 	 */
-	public var tagFilter = LogTypeDefaults.tagFilter;
+	public var tagFilter:(?tag:Tag) -> Bool;
 
 	/**
 	 * Predicate for filtering position information.
 	 *
 	 * Can be replaced either directly or using `setMethodFilter()` etc.
 	 */
-	public var positionFilter = LogTypeDefaults.positionFilter;
+	public var positionFilter:(?pos:PosInfos) -> Bool;
+
+	/**
+	 * Function that formats `pos` and generates an output `String` value.
+	 *
+	 * Can be replaced with a custom function.
+	 */
+	public var positionFormat:(?pos:PosInfos) -> String;
 
 	/**
 	 * Function that formats given values and generates an output `String` value.
 	 *
 	 * Can be replaced with a custom function.
 	 */
-	public var format = LogTypeDefaults.format;
+	public var format:(logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> String;
 
 	public function new(prefix:String) {
 		this.prefix = prefix;
 
-		this.format = LogTypeDefaults.format; // Don't know why but this seems to be necessary
+		this.tagFilter = LogTypeDefaults.tagFilter;
+		this.positionFilter = LogTypeDefaults.positionFilter;
+		this.positionFormat = LogTypeDefaults.positionFormat;
+		this.format = LogTypeDefaults.format;
 	}
 
 	/**

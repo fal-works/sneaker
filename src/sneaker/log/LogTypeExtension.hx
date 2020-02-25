@@ -10,7 +10,7 @@ class LogTypeExtension {
 	 * and the given values (`message`, `tag` and `pos`).
 	 */
 	public static inline function createLogString(thisType:LogType, message:String, ?tag:Tag, ?pos:PosInfos):String {
-		return thisType.format(thisType.prefix, message, tag, pos);
+		return thisType.format(thisType, message, tag, pos);
 	}
 
 	/**
