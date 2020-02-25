@@ -1,4 +1,4 @@
-package sneaker.exception;
+package sneaker.types;
 
 import sneaker.format.CallStackItemExtension;
 import haxe.CallStack;

@@ -74,14 +74,18 @@ class Asserter {
 		final evaluations = prepareEvaluations(boolExpression);
 
 		final macroOutputExpressions = evaluations.map(Evaluation.getExecutionExpression);
-		final codePosition = boolExpression.pos;
 		final evaluationResults:Array<Expr> = [
 			for (i in 0...evaluations.length)
 				macro new sneaker.assertion.EvaluationResult($v{evaluations[i].expressionString}, $i{partialEvaluationResultName(i)})
 		];
-		macroOutputExpressions.push(macro if ($boolExpression != true) {
-			@:pos(codePosition) throw new sneaker.assertion.Exception($a{evaluationResults}, $message);
-		});
+		macroOutputExpressions.push(macro
+			if ($boolExpression != true) {
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError($a{evaluationResults}, $message);
+				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
+			} #if sneaker_assertion_log_success else {
+				sneaker.log.Print.println(a);
+			} #end
+		);
 
 		return macro $b{macroOutputExpressions};
 		#end
@@ -99,21 +103,25 @@ class Asserter {
 	 * @return Evaluation result of `object` that has been checked against null.
 	 */
 	@:noUsing
-	public static macro function unwrap<T:Dynamic>(object:ExprOf<Null<T>>, ?message:Expr):ExprOf<T> {
+	public static macro function unwrap<T>(object:ExprOf<Null<T>>, ?message:Expr):ExprOf<T> {
 		#if sneaker_assertion_disable
 		return macro $object;
 		#else
 		final expressionString = object.toString();
+
 		return macro {
-			final result = $object;
-			if (result == null)
-				@:pos(object.pos) throw new sneaker.assertion.Exception([new sneaker.assertion.EvaluationResult($v{expressionString}, result)], $message);
-			result;
+			final __sneakerUnwrappedValue = $object;
+			if (__sneakerUnwrappedValue == null) {
+				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError([__sneakerEvaluationResult], $message);
+				@:pos(object.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
+			}
+			__sneakerUnwrappedValue;
 		}
 		#end
 	}
 
 	static inline function partialEvaluationResultName(index:Int) {
-		return '_assertionPartialEvaluationResult${index}';
+		return '__sneakerPartialEvaluationResult${index}';
 	}
 }
