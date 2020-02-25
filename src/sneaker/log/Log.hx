@@ -2,7 +2,7 @@ package sneaker.log;
 
 import haxe.PosInfos;
 import sneaker.tag.Tag;
-import sneaker.log.LogTypes.*;
+import sneaker.log.LogTypes;
 
 @:nullSafety(Strict)
 class Log {
@@ -22,7 +22,7 @@ class Log {
 	 */
 	public static inline function fatal(message:String, ?tag:Tag, ?pos:PosInfos) {
 		#if (sneaker_log_level >= 100)
-		Fatal.print(message, tag, pos);
+		LogTypes.fatal.print(message, tag, pos);
 		#end
 	}
 
@@ -35,7 +35,7 @@ class Log {
 	 */
 	public static inline function error(message:String, ?tag:Tag, ?pos:PosInfos) {
 		#if (sneaker_log_level >= 200)
-		Error.print(message, tag, pos);
+		LogTypes.error.print(message, tag, pos);
 		#end
 	}
 
@@ -49,7 +49,7 @@ class Log {
 	 */
 	public static inline function warn(message:String, ?tag:Tag, ?pos:PosInfos) {
 		#if (sneaker_log_level >= 300)
-		Warn.print(message, tag, pos);
+		LogTypes.warn.print(message, tag, pos);
 		#end
 	}
 
@@ -63,7 +63,7 @@ class Log {
 	 */
 	public static inline function info(message:String, ?tag:Tag, ?pos:PosInfos) {
 		#if (sneaker_log_level >= 400)
-		Info.print(message, tag, pos);
+		LogTypes.info.print(message, tag, pos);
 		#end
 	}
 
@@ -76,7 +76,7 @@ class Log {
 	 */
 	public static inline function debug(message:String, ?tag:Tag, ?pos:PosInfos) {
 		#if (sneaker_log_level >= 500)
-		Debug.print(message, tag, pos);
+		LogTypes.debug.print(message, tag, pos);
 		#end
 	}
 }

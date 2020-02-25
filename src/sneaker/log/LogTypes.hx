@@ -5,11 +5,11 @@ package sneaker.log;
  */
 @:nullSafety(Strict)
 class LogTypes {
-	public static var Fatal = new LogType("[FATAL] ");
-	public static var Error = new LogType("[ERROR] ");
-	public static var Warn = new LogType("[WARN]  ");
-	public static var Info = new LogType("[INFO]  ");
-	public static var Debug = new LogType("[DEBUG] ");
+	public static var fatal = new LogType("[FATAL] ");
+	public static var error = new LogType("[ERROR] ");
+	public static var warn = new LogType("[WARN]  ");
+	public static var info = new LogType("[INFO]  ");
+	public static var debug = new LogType("[DEBUG] ");
 
 	/**
 	 * Recreate all types in `LogTypes`.
@@ -17,10 +17,10 @@ class LogTypes {
 	 * This can be used e.g. for reflecting changes of static variables in `LogType`.
 	 */
 	public static function reset() {
-		Fatal = new LogType("[FATAL] ");
-		Error = new LogType("[ERROR] ");
-		Warn = new LogType("[WARN]  ");
-		Info = new LogType("[INFO]  ");
-		Debug = new LogType("[DEBUG] ");
+		fatal = new LogType("[FATAL] ");
+		error = new LogType("[ERROR] ");
+		warn = new LogType("[WARN]  ");
+		info = new LogType("[INFO]  ");
+		debug = new LogType("[DEBUG] ");
 	}
 }

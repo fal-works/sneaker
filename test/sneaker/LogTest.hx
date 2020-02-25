@@ -96,8 +96,8 @@ class LogTest {
 	// standard logType
 	public static final logTypeError = () -> {
 		// -D sneaker_log_level=200
-		describe("This prints a Error message.");
-		sneaker.log.LogTypes.Error.print("(message)");
+		describe("This prints an error message.");
+		sneaker.log.LogTypes.error.print("(message)");
 	};
 
 	// log directly
@@ -108,7 +108,7 @@ class LogTest {
 	};
 	public static final directlyErrorTagged = () -> {
 		// -D sneaker_log_level=200
-		describe("This prints a error message with a tag name.");
+		describe("This prints an error message with a tag name.");
 		final instance = new sneaker.tag.Tagged();
 		instance.tag.name = "(tag name)";
 		instance.error("(message)");
