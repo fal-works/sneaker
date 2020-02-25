@@ -1,8 +1,5 @@
 package sneaker.assertion;
 
-using sneaker.format.StringBufExtension;
-using sneaker.format.PosInfosExtension;
-
 import haxe.PosInfos;
 import haxe.CallStack;
 import haxe.ds.Option;
@@ -21,6 +18,8 @@ class AssertionException extends sneaker.types.Exception {
 
 		final currentCallStack = CallStack.callStack();
 		currentCallStack.shift();
-		super(Std.string(result), currentCallStack);
+
+		final logString = Asserter.failureLogType.createLogString(Std.string(result), null, pos);
+		super(logString, currentCallStack);
 	}
 }

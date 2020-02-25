@@ -68,8 +68,6 @@ class AssertionResult {
 						buffer.lfAdd('Message: ${messageValue}');
 					default:
 				}
-				if (positionInformations != null)
-					buffer.lfAdd('Position: ${positionInformations.formatClassMethodLine()}');
 		}
 
 		return buffer;
