@@ -10,6 +10,7 @@ import sneaker.log.Print.printlnString;
 /**
  * Set of functions for doing simple unit tests.
  */
+@:nullSafety(Strict)
 class Tester {
 	/**
 	 * Log type used in `describe()` (unless you replace the `describe` function).
