@@ -1,7 +1,5 @@
 package sneaker;
 
-using sneaker.format.PosInfosExtension;
-
 import sneaker.log.*;
 
 @:nullSafety(Strict)
@@ -65,7 +63,13 @@ class LogTest {
 		// logType.positionFilter = (?pos:haxe.PosInfos) -> pos != null && pos.methodName == "dummy method name";
 		logType.print("(log message)");
 	};
-	public static final logTypeFormat = () -> {
+	public static final logTypePositionFormat = () -> {
+		describe("This prints a log message in another position format.");
+		final logType = new LogType("[log line prefix]");
+		logType.positionFormat = sneaker.format.PosInfosCallbacks.formatFileLineWithoutPath;
+		logType.print("(log message)");
+	};
+	public static final logTypeLogFormat = () -> {
 		describe("This prints a log message in another format.");
 		final logType = new LogType("[log line prefix]");
 		logType.logFormat = (logType, message, ?tag, ?pos) -> '${logType.prefix} ${message} // ${tag.formatNullable()} // ${logType.positionFormat(pos)}';
@@ -76,7 +80,8 @@ class LogTest {
 		logTypeFilterTagFalse,
 		logTypeFilterPositionTrue,
 		logTypeFilterPositionFalse,
-		logTypeFormat
+		logTypePositionFormat,
+		logTypeLogFormat
 	]);
 
 	// log tagged
