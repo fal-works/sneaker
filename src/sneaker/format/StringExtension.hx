@@ -20,4 +20,8 @@ class StringExtension {
 	public static inline function sliceAfterLastDot(s:String):String {
 		return s.substr(s.lastIndexOf(".") + 1);
 	}
+
+	public static inline function sliceAfterLastSlash(s:String):String {
+		return s.substr(s.lastIndexOf("/") + 1);
+	}
 }
