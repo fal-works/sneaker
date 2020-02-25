@@ -21,7 +21,7 @@ class Tester {
 	 * Can be used as a heading of each test case.
 	 */
 	public static function describe(text:String, ?pos:PosInfos):Void {
-		printlnString('TestCase____${pos.formatClassMethodWithoutModule()}________________________________________________________');
+		printlnString(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
