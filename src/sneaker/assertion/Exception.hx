@@ -1,6 +1,6 @@
 package sneaker.assertion;
 
-using sneaker.format.StringBufAddExtension;
+using sneaker.format.StringBufExtension;
 using sneaker.format.PosInfosExtension;
 
 import haxe.PosInfos;
