@@ -62,6 +62,7 @@ class Asserter {
 	 * Compilation flags:
 	 * - If `sneaker_assertion_disable` is set, `assert()` has no effect.
 	 * - If `sneaker_assertion_verbose` is set, prints additional info during the compilation.
+	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
 	 *
 	 * @param boolExpression Expression that should not be `false`.
 	 * @param message Expression that generates message for inserting to the exception.
@@ -78,14 +79,23 @@ class Asserter {
 			for (i in 0...evaluations.length)
 				macro new sneaker.assertion.EvaluationResult($v{evaluations[i].expressionString}, $i{partialEvaluationResultName(i)})
 		];
-		macroOutputExpressions.push(macro
+
+		final lastMacroOutputExpression = macro {
+			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
 				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError($a{evaluationResults}, $message);
 				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
-			} #if sneaker_assertion_log_success else {
-				sneaker.log.Print.println(a);
-			} #end
-		);
+			}
+			#else
+			final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError($a{evaluationResults}, $message);
+			if ($boolExpression != true)
+				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
+			else
+				sneaker.log.Print.println(__sneakerAssertionResult);
+			#end
+		};
+
+		macroOutputExpressions.push(lastMacroOutputExpression);
 
 		return macro $b{macroOutputExpressions};
 		#end
@@ -94,9 +104,10 @@ class Asserter {
 	/**
 	 * Throws error if `object` is `null`.
 	 *
-	 * Compilation flag:
+	 * Compilation flags:
 	 * - If `sneaker_assertion_disable` is set,
-	 *   `unwrap()` returns `object` without checking against null.
+	 *   `unwrap()` directly returns `object` without checking against null.
+	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
 	 *
 	 * @param object Expression that should not be `null`.
 	 * @param message Expression that generates message for inserting to the exception.
@@ -116,6 +127,14 @@ class Asserter {
 				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError([__sneakerEvaluationResult], $message);
 				@:pos(object.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
 			}
+			#if sneaker_assertion_print_success
+			else {
+				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk([__sneakerEvaluationResult]);
+				sneaker.log.Print.println(__sneakerAssertionResult);
+			}
+			#end
+
 			__sneakerUnwrappedValue;
 		}
 		#end

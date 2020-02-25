@@ -16,6 +16,10 @@ class AssertionResult {
 		return new AssertionResult(evaluationList, Some(message.toOptionalString()), pos);
 	}
 
+	public static function createOk(evaluationList:Array<EvaluationResult>, ?pos:PosInfos) {
+		return new AssertionResult(evaluationList, None, pos);
+	}
+
 	/**
 	 * Evaluation list of sub-expressions of which the asserted expression consists.
 	 * The last element is the evaluation of the asserted expression itself.
@@ -48,22 +52,18 @@ class AssertionResult {
 	}
 
 	function addHead(buffer:StringBuf):StringBuf {
-		buffer.add('Assertion failed. (${wholeEvaluation.expressionString}) is ${cast wholeEvaluation.result}.');
-
-		return buffer;
-	}
-
-	function addMessage(buffer:StringBuf):StringBuf {
 		switch (error) {
 			case None:
+				buffer.add('Assertion succeeded.');
+				buffer.add(' (${wholeEvaluation.expressionString}) is ${cast wholeEvaluation.result}.');
 			case Some(message):
-				switch(message) {
+				buffer.add('Assertion failed.');
+				buffer.add(' (${wholeEvaluation.expressionString}) is ${cast wholeEvaluation.result}.');
+				switch (message) {
 					case Some(messageValue):
 						buffer.lfAdd('Message: ${messageValue}');
 					default:
 				}
-
-			default:
 		}
 
 		return buffer;
@@ -89,7 +89,6 @@ class AssertionResult {
 		final buffer = new StringBuf();
 
 		addHead(buffer);
-		addMessage(buffer);
 		addPosition(buffer);
 		addDetails(buffer);
 
