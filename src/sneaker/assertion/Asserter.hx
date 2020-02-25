@@ -83,11 +83,11 @@ class Asserter {
 		final lastMacroOutputExpression = macro {
 			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError($a{evaluationResults}, $message);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, $message);
 				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
 			}
 			#else
-			final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError($a{evaluationResults}, $message);
+			final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, $message);
 			if ($boolExpression != true)
 				@:pos(boolExpression.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
 			else
@@ -124,13 +124,13 @@ class Asserter {
 			final __sneakerUnwrappedValue = $object;
 			if (__sneakerUnwrappedValue == null) {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError([__sneakerEvaluationResult], $message);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], $message);
 				@:pos(object.pos) throw new sneaker.assertion.Exception(__sneakerAssertionResult);
 			}
 			#if sneaker_assertion_print_success
 			else {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk([__sneakerEvaluationResult]);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult]);
 				sneaker.log.Print.println(__sneakerAssertionResult);
 			}
 			#end

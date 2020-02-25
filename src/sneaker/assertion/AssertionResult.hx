@@ -12,12 +12,12 @@ import haxe.ds.Option;
  */
 @:nullSafety(Strict)
 class AssertionResult {
-	public static function createError(evaluationResults:Array<EvaluationResult>, ?message:String, ?pos:PosInfos) {
-		return new AssertionResult(evaluationResults, Some(message.toOptionalString()), pos);
+	public static function createError(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?message:String, ?pos:PosInfos) {
+		return new AssertionResult(type, evaluationResults, Some(message.toOptionalString()), pos);
 	}
 
-	public static function createOk(evaluationResults:Array<EvaluationResult>, ?pos:PosInfos) {
-		return new AssertionResult(evaluationResults, None, pos);
+	public static function createOk(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?pos:PosInfos) {
+		return new AssertionResult(type, evaluationResults, None, pos);
 	}
 
 	/**
@@ -31,6 +31,7 @@ class AssertionResult {
 	 */
 	public var wholeEvaluationResult(get, never):EvaluationResult;
 
+	public final assertionType:AssertionType;
 	public final error:Option<Option<String>>;
 	public final positionInformations:Null<PosInfos>;
 
@@ -40,7 +41,8 @@ class AssertionResult {
 		return evaluationResults[evaluationResults.length - 1];
 	}
 
-	public function new(evaluationResults:Array<EvaluationResult>, error:Option<Option<String>>, ?pos:PosInfos) {
+	public function new(assertionType:AssertionType, evaluationResults:Array<EvaluationResult>, error:Option<Option<String>>, ?pos:PosInfos) {
+		this.assertionType = assertionType;
 		this.evaluationResults = evaluationResults;
 		this.error = error;
 		this.positionInformations = pos;
@@ -54,11 +56,13 @@ class AssertionResult {
 	function addHead(buffer:StringBuf):StringBuf {
 		switch (error) {
 			case None:
-				buffer.add('Assertion succeeded.');
-				buffer.add(' (${wholeEvaluationResult.expressionString}) is ${cast wholeEvaluationResult.value}.');
+				buffer.add('${assertionType} succeeded.');
+				final result = wholeEvaluationResult;
+				buffer.add(' (${result.expressionString})');
 			case Some(message):
-				buffer.add('Assertion failed.');
-				buffer.add(' (${wholeEvaluationResult.expressionString}) is ${cast wholeEvaluationResult.value}.');
+				buffer.add('${assertionType} failed.');
+				final result = wholeEvaluationResult;
+				buffer.add(' (${result.expressionString}) is ${cast result.value}.');
 				switch (message) {
 					case Some(messageValue):
 						buffer.lfAdd('Message: ${messageValue}');
