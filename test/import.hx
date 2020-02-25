@@ -1,1 +1,1 @@
-import sneaker.testrunner.TestRunner.*;
+import sneaker.tester.Tester.*;

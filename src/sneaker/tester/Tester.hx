@@ -1,4 +1,4 @@
-package sneaker.testrunner;
+package sneaker.tester;
 
 using sneaker.format.PosInfosExtension;
 
@@ -6,7 +6,7 @@ import haxe.PosInfos;
 import sneaker.log.LogType;
 import sneaker.log.Print.printlnString;
 
-class TestRunner {
+class Tester {
 	public static var descriptionLogType = {
 		final type = new LogType("[TEST]  ");
 		type.logFormat = (logType, message, ?tag, ?pos) -> '${logType.prefix} ${message}';
