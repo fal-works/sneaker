@@ -68,14 +68,9 @@ class AssertionResult {
 						buffer.lfAdd('Message: ${messageValue}');
 					default:
 				}
+				if (positionInformations != null)
+					buffer.lfAdd('Position: ${positionInformations.formatClassMethodLine()}');
 		}
-
-		return buffer;
-	}
-
-	function addPosition(buffer:StringBuf):StringBuf {
-		if (positionInformations != null)
-			buffer.lfAdd('Position: ${positionInformations.formatClassMethodLine()}');
 
 		return buffer;
 	}
@@ -93,7 +88,6 @@ class AssertionResult {
 		final buffer = new StringBuf();
 
 		addHead(buffer);
-		addPosition(buffer);
 		addDetails(buffer);
 
 		return buffer.toString();

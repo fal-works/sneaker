@@ -1,8 +1,10 @@
 package sneaker.assertion;
 
+import haxe.macro.Context;
 using haxe.macro.Tools;
 
 import haxe.macro.Expr;
+import sneaker.log.LogType;
 
 @:nullSafety(Strict)
 private class Evaluation {
@@ -25,6 +27,11 @@ private class Evaluation {
  */
 @:nullSafety(Strict)
 class Asserter {
+	public static var successLogType = {
+		final type = new LogType("[ASSERT]");
+		type;
+	}
+
 	static function prepareEvaluations(expressionToAssert:ExprOf<Bool>):Array<Evaluation> {
 		final evaluations:Array<Evaluation> = [];
 
@@ -136,7 +143,7 @@ class Asserter {
 			else {
 				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
 				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult]);
-				sneaker.log.Print.println(__sneakerAssertionResult);
+				@:pos(object.pos) sneaker.assertion.Asserter.successLogType.print(Std.string(__sneakerAssertionResult));
 			}
 			#end
 
