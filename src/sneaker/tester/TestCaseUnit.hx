@@ -19,7 +19,7 @@ class TestCaseUnit {
 	 * Runs `this.run()` in `try/catch`.
 	 * If anything caught, prints it and goes on without throwing again.
 	 */
-	public function runAndCheck():Void {
+	public function runAndCheck(record:TestRecord):Void {
 		#if sneaker_print_buffer
 		final useBufferPreviousValue = Print.useBuffer;
 		Print.useBuffer = true;
@@ -32,7 +32,7 @@ class TestCaseUnit {
 		} catch (exception:Dynamic) {
 			Tester.exceptionLogType.print('Exception caught:\n${exception}');
 			exceptionCaught = true;
-			++TestResult.exceptionCount;
+			++record.exceptionCount;
 		}
 
 		#if sneaker_print_buffer

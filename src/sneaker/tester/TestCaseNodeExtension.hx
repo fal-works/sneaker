@@ -4,14 +4,16 @@ class TestCaseNodeExtension {
 	/**
 	 * Recursively runs each test case beginning at `node, separating with a new line.
 	 */
-	public static function run(node:TestCaseNode):Void {
+	public static function run(node:TestCaseNode, record:TestRecord):TestRecord {
 		switch (node) {
 			case Branch(children):
 				for (child in children) {
-					run(child);
+					run(child, record);
 				}
 			case Leaf(unit):
-				unit.runAndCheck();
+				unit.runAndCheck(record);
 		}
+
+		return record;
 	}
 }

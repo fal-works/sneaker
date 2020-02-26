@@ -51,10 +51,9 @@ class Tester {
 	}
 
 	public static function test(testCasesRoot:TestCaseNode):Void {
-		TestResult.reset();
-		testCasesRoot.run();
+		final result = testCasesRoot.run(new TestRecord());
 
-		println('\n${TestResult.exceptionCount} exceptions.');
+		println(result);
 	}
 
 	static final emptyTestCase:TestCaseNode = Leaf(TestCaseUnit.empty);
