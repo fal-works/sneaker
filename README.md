@@ -37,3 +37,4 @@ May or may not help you to debug.
 |`sneaker_assertion_verbose`|Prints additional info during the compilation.|
 |`sneaker_tagged_disable`|If set, no physical field for `Tagged.tag`.|
 |`sneaker_print_disable`|Disables all printing/logging features.|
+|`sneaker_string_buffer_length_check_disable`|Disables max length check of `StringBuffer`.|
