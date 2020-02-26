@@ -1,0 +1,8 @@
+-cp src
+-cp test
+-main Main
+-D sneaker_log_level=200
+# -D sneaker_assertion_print_success
+# -D sneaker_assertion_disable
+# -D sneaker_assertion_verbose
+# -D sneaker_tagged_disable
