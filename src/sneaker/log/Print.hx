@@ -3,14 +3,16 @@ package sneaker.log;
 class Print {
 	/**
 	 * Prints `s` to the standard output, followed with a new line.
+	 * - On `sys` targets: Calls `Sys.println()`.
+	 * - Otherwise: Calls `trace()`.
 	 */
 	@:generic
 	public static function println<T>(s:Null<T>):Void {
-		#if (sys && !no_traces)
-		#if (!haxe4 && android)
-		trace(s);
-		#else
+		#if !no_traces
+		#if sys
 		@:nullSafety(Off) Sys.println(s);
+		#else
+		trace(s);
 		#end
 		#end
 	}
