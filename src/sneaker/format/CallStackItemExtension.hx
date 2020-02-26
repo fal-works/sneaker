@@ -9,7 +9,7 @@ class CallStackItemExtension {
 	 *
 	 * The formatting can be customized by changing values of static variables in `CallStackItemExtension`.
 	 */
-	public static function format(?item:StackItem):String {
+	public static function format(?item: StackItem): String {
 		return switch (item) {
 			case null:
 				"null";

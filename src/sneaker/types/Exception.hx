@@ -16,11 +16,11 @@ class Exception {
 	 */
 	public static var appendCallStack = true;
 
-	public final content:Dynamic;
-	public final callStack:Array<StackItem>;
-	public final positionInformation:Null<PosInfos>;
+	public final content: Dynamic;
+	public final callStack: Array<StackItem>;
+	public final positionInformation: Null<PosInfos>;
 
-	public function new(content:Dynamic, ?callStack:Array<StackItem>, ?pos:PosInfos) {
+	public function new(content: Dynamic, ?callStack: Array<StackItem>, ?pos: PosInfos) {
 		this.content = content;
 
 		if (callStack != null) {
@@ -36,7 +36,7 @@ class Exception {
 		this.positionInformation = pos;
 	}
 
-	public function toString():String {
+	public function toString(): String {
 		if (appendCallStack)
 			return '${content}\n\nCall Stack:\n${callStack.map(CallStackItemExtension.format).join("\n")}';
 		else

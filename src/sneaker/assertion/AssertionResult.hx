@@ -12,46 +12,46 @@ import sneaker.format.StringBuffer;
  * Result of assertion, including evaluation results of sub-expressions.
  */
 class AssertionResult {
-	public static function createError(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?message:String, ?pos:PosInfos) {
+	public static function createError(type: AssertionType, evaluationResults: Array<EvaluationResult>, ?tag: Tag, ?message: String, ?pos: PosInfos) {
 		return new AssertionResult(type, evaluationResults, Some(message.toOptionalString()), tag, pos);
 	}
 
-	public static function createOk(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?pos:PosInfos) {
+	public static function createOk(type: AssertionType, evaluationResults: Array<EvaluationResult>, ?tag: Tag, ?pos: PosInfos) {
 		return new AssertionResult(type, evaluationResults, None, tag, pos);
 	}
 
 	/** Type of assertion, either `Assertion` or `Unwrap`. */
-	public final assertionType:AssertionType;
+	public final assertionType: AssertionType;
 
 	/**
 	 * Evaluation list of sub-expressions of which the asserted expression consists.
 	 * The last element is the evaluation of the asserted expression itself.
 	 */
-	public final evaluationResults:Array<EvaluationResult>;
+	public final evaluationResults: Array<EvaluationResult>;
 
 	/** Alias for the last element of `evaluationResults`. */
-	public var wholeEvaluationResult(get, never):EvaluationResult;
+	public var wholeEvaluationResult(get, never): EvaluationResult;
 
 	/**
 	 * - If succeeded: `None`.
 	 * - If failed: `Some(message:Option<String>)`.
 	 */
-	public final error:Option<Option<String>>;
+	public final error: Option<Option<String>>;
 
 	/** Text that includes the content of `this`, excluding the tag and position informaion. */
-	public final contentString:String;
+	public final contentString: String;
 
 	/** A `Tag` related with this assertion. */
-	public final tag:Null<Tag>;
+	public final tag: Null<Tag>;
 
 	/** Code position where this assertion was done. */
-	public final positionInformations:Null<PosInfos>;
+	public final positionInformations: Null<PosInfos>;
 
 	inline function get_wholeEvaluationResult() {
 		return evaluationResults[evaluationResults.length - 1];
 	}
 
-	public function new(assertionType:AssertionType, evaluationResults:Array<EvaluationResult>, error:Option<Option<String>>, ?tag:Tag, ?pos:PosInfos) {
+	public function new(assertionType: AssertionType, evaluationResults: Array<EvaluationResult>, error: Option<Option<String>>, ?tag: Tag, ?pos: PosInfos) {
 		this.assertionType = assertionType;
 		this.evaluationResults = evaluationResults;
 		this.error = error;
@@ -65,18 +65,18 @@ class AssertionResult {
 	/**
 	 * @return Log text created from data of `this` using `logType`.
 	 */
-	public function createLogString(logType:LogType):String {
+	public function createLogString(logType: LogType): String {
 		return logType.createLogString(contentString, tag, positionInformations);
 	}
 
 	/**
 	 * Prints log text created from data of `this` using `logType`.
 	 */
-	public function printLog(logType:LogType) {
+	public function printLog(logType: LogType) {
 		logType.print(contentString, tag, positionInformations);
 	}
 
-	function addSummary(buffer:StringBuffer):StringBuffer {
+	function addSummary(buffer: StringBuffer): StringBuffer {
 		switch (error) {
 			case None:
 				buffer.add('${assertionType} succeeded.');
@@ -87,8 +87,7 @@ class AssertionResult {
 				final result = wholeEvaluationResult;
 				buffer.add(' (${result.expressionString}) is ${cast result.value}.');
 				switch (message) {
-					case Some(messageValue):
-						buffer.lfAdd('Message: ${messageValue}');
+					case Some(messageValue): buffer.lfAdd('Message: ${messageValue}');
 					default:
 				}
 		}
@@ -96,7 +95,7 @@ class AssertionResult {
 		return buffer;
 	}
 
-	function addDetails(buffer:StringBuffer):StringBuffer {
+	function addDetails(buffer: StringBuffer): StringBuffer {
 		if (evaluationResults.length > 1) {
 			buffer.lfAdd('Details:');
 			buffer.lfIndentAddLines(evaluationResults);
@@ -105,7 +104,7 @@ class AssertionResult {
 		return buffer;
 	}
 
-	function generateContentString():String {
+	function generateContentString(): String {
 		final buffer = new StringBuffer();
 
 		addSummary(buffer);

@@ -1,0 +1,14 @@
+{
+	"sameLine": {
+		"anonFunctionBody": "keep",
+		"caseBody": "keep",
+		"elseBody": "keep",
+		"elseIf": "keep",
+		"forBody": "keep",
+		"ifBody": "keep",
+		"whileBody": "keep"
+	},
+	"whitespace": {
+		"typeHintColonPolicy": "onlyAfter"
+	}
+}

@@ -8,7 +8,7 @@ class Log {
 	/**
 	 * Prints log of any `logType`.
 	 */
-	public static inline function log(logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) {
+	public static inline function log(logType: LogType, message: String, ?tag: Tag, ?pos: PosInfos) {
 		logType.print(message, tag, pos);
 	}
 
@@ -19,7 +19,7 @@ class Log {
 	 *
 	 * Default log types: [ FATAL ] - ERROR - WARN - INFO - DEBUG
 	 */
-	public static inline function fatal(message:String, ?tag:Tag, ?pos:PosInfos) {
+	public static inline function fatal(message: String, ?tag: Tag, ?pos: PosInfos) {
 		#if (!sneaker_print_disable && sneaker_log_level >= 100)
 		LogTypes.fatal.print(message, tag, pos);
 		#end
@@ -32,7 +32,7 @@ class Log {
 	 *
 	 * Default log types: FATAL - [ ERROR]  - WARN - INFO - DEBUG
 	 */
-	public static inline function error(message:String, ?tag:Tag, ?pos:PosInfos) {
+	public static inline function error(message: String, ?tag: Tag, ?pos: PosInfos) {
 		#if (!sneaker_print_disable && sneaker_log_level >= 200)
 		LogTypes.error.print(message, tag, pos);
 		#end
@@ -46,7 +46,7 @@ class Log {
 	 *
 	 * Default log types: FATAL - ERROR - [ WARN ] - INFO - DEBUG
 	 */
-	public static inline function warn(message:String, ?tag:Tag, ?pos:PosInfos) {
+	public static inline function warn(message: String, ?tag: Tag, ?pos: PosInfos) {
 		#if (!sneaker_print_disable && sneaker_log_level >= 300)
 		LogTypes.warn.print(message, tag, pos);
 		#end
@@ -60,7 +60,7 @@ class Log {
 	 *
 	 * Default log types: FATAL - ERROR - WARN - [ INFO ] - DEBUG
 	 */
-	public static inline function info(message:String, ?tag:Tag, ?pos:PosInfos) {
+	public static inline function info(message: String, ?tag: Tag, ?pos: PosInfos) {
 		#if (!sneaker_print_disable && sneaker_log_level >= 400)
 		LogTypes.info.print(message, tag, pos);
 		#end
@@ -73,7 +73,7 @@ class Log {
 	 *
 	 * Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]
 	 */
-	public static inline function debug(message:String, ?tag:Tag, ?pos:PosInfos) {
+	public static inline function debug(message: String, ?tag: Tag, ?pos: PosInfos) {
 		#if (!sneaker_print_disable && sneaker_log_level >= 500)
 		LogTypes.debug.print(message, tag, pos);
 		#end

@@ -11,15 +11,16 @@ class PrintBuffer {
 	/**
 	 * The top element of the buffer stack.
 	 */
-	public static var current(get, never):StringBuffer;
-	static inline function get_current():StringBuffer {
+	public static var current(get, never): StringBuffer;
+
+	static inline function get_current(): StringBuffer {
 		return stack[topIndex];
 	}
 
 	/**
 	 * Pushes `buffer` to the buffer stack.
 	 */
-	public static function push(buffer:StringBuffer):Void {
+	public static function push(buffer: StringBuffer): Void {
 		stack.push(buffer);
 		++topIndex;
 	}
@@ -39,7 +40,7 @@ class PrintBuffer {
 	 * Pops the top element of the buffer stack.
 	 * If this operation empties the stack, a new buffer element is automatically added.
 	 */
-	public static function pop():StringBuffer {
+	public static function pop(): StringBuffer {
 		final popped = unwrap(stack.pop());
 
 		if (topIndex > 0)
@@ -53,7 +54,7 @@ class PrintBuffer {
 	/**
 	 * Drops the current buffer by `pop()` and prints its content by `Print.printDirect()`.
 	 */
-	public static function flush():Void {
+	public static function flush(): Void {
 		Print.printDirect(pop().toString());
 	}
 
@@ -61,19 +62,19 @@ class PrintBuffer {
 	 * Drops the current buffer by `pop()` and prints its content by `Print.printlnDirect()`
 	 * with a succeeding Line Feed.
 	 */
-	 public static function flushln():Void {
+	public static function flushln(): Void {
 		Print.printlnDirect(pop().toString());
 	}
 
 	/**
 	 * Clears the buffer stack.
 	 */
-	public static function clear():Void {
+	public static function clear(): Void {
 		stack.resize(0);
 		stack.push(new StringBuffer());
 		topIndex = 0;
 	}
 
-	static final stack:Array<StringBuffer> = [new StringBuffer()];
+	static final stack: Array<StringBuffer> = [new StringBuffer()];
 	static var topIndex = 0;
 }

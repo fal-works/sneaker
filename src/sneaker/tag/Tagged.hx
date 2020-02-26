@@ -5,7 +5,7 @@ package sneaker.tag;
  */
 class Tagged implements sneaker.tag.interfaces.Tagged {
 	/** Default `Tag` instance that will be attached when a `Tagged` instance is created. */
-	public static var defaultTag:Tag = new Tag("dummy");
+	public static var defaultTag: Tag = new Tag("dummy");
 
 	#if sneaker_tagged_disable
 	/**
@@ -13,7 +13,7 @@ class Tagged implements sneaker.tag.interfaces.Tagged {
 	 * The getter returns always `Tagged.defaultTag` and the setter has no effect
 	 * as the compilation flag `sneaker_tagged_disable` is on.
 	 */
-	public var tag(get, set):Tag;
+	public var tag(get, set): Tag;
 
 	public inline function get_tag()
 		return defaultTag;

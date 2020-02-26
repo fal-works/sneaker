@@ -18,7 +18,7 @@ class Print {
 	 *   it adds `s` to the buffer (`PrintBuffer.current`) instead of outputting directly.
 	 */
 	@:generic
-	public static function println<T>(s:Null<T>):Void {
+	public static function println<T>(s: Null<T>): Void {
 		#if sneaker_print_buffer
 		if (useBuffer) {
 			PrintBuffer.current.addLf(s);
@@ -40,7 +40,7 @@ class Print {
 	 * @see `println()` about the compilation flags.
 	 */
 	@:generic
-	public static function print<T>(s:Null<T>):Void {
+	public static function print<T>(s: Null<T>): Void {
 		#if sneaker_print_buffer
 		if (useBuffer) {
 			PrintBuffer.current.addNullable(s);
@@ -59,7 +59,7 @@ class Print {
 	 * - `sneaker_print_buffer` is ignored (hence "Direct").
 	 */
 	@:generic
-	public static inline function printlnDirect<T>(s:Null<T>):Void {
+	public static inline function printlnDirect<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 		printlnForced(s);
 		#end
@@ -70,7 +70,7 @@ class Print {
 	 * @see `printlnDirect()` about the compilation flags.
 	 */
 	@:generic
-	public static inline function printDirect<T>(s:Null<T>):Void {
+	public static inline function printDirect<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 		printForced(s);
 		#end
@@ -82,7 +82,7 @@ class Print {
 	 * - `sneaker_print_buffer`
 	 */
 	@:generic
-	public static inline function printlnForced<T>(s:Null<T>):Void {
+	public static inline function printlnForced<T>(s: Null<T>): Void {
 		#if sys
 		@:nullSafety(Off) Sys.println(s);
 		#else
@@ -95,7 +95,7 @@ class Print {
 	 * @see `printlnForced()`
 	 */
 	@:generic
-	public static inline function printForced<T>(s:Null<T>):Void {
+	public static inline function printForced<T>(s: Null<T>): Void {
 		#if sys
 		@:nullSafety(Off) Sys.print(s);
 		#else
@@ -107,7 +107,7 @@ class Print {
 	 * Prints `s` by `println()` and also returns it.
 	 */
 	@:generic
-	public static inline function printlnReturn<T>(s:Null<T>):Null<T> {
+	public static inline function printlnReturn<T>(s: Null<T>): Null<T> {
 		println(s);
 		return s;
 	}
@@ -115,7 +115,7 @@ class Print {
 	/**
 	 * Prints `s` by `println()` and then throw it.
 	 */
-	public static inline function printlnThrow<T>(s:Null<T>):Void {
+	public static inline function printlnThrow<T>(s: Null<T>): Void {
 		println(s);
 		@:nullSafety(Off) throw s;
 	}
@@ -124,7 +124,7 @@ class Print {
 	 * Calls `PrintBuffer.flushln()`, but only if the compilation flag `sneaker_print_buffer` is set
 	 * and the variable `useBuffer` is `true`.
 	 */
-	 public static inline function flushlnBuffer():Void {
+	public static inline function flushlnBuffer(): Void {
 		#if sneaker_print_buffer
 		if (useBuffer)
 			PrintBuffer.flushln();
@@ -135,7 +135,7 @@ class Print {
 	 * Calls `PrintBuffer.flush()`, but only if the compilation flag `sneaker_print_buffer` is set
 	 * and the variable `useBuffer` is `true`.
 	 */
-	public static inline function flushBuffer():Void {
+	public static inline function flushBuffer(): Void {
 		#if sneaker_print_buffer
 		if (useBuffer)
 			PrintBuffer.flush();

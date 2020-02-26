@@ -10,8 +10,8 @@ import sneaker.tag.Tag;
  * Can also be replaced with custom functions.
  */
 class LogTypeDefaults {
-	public static var tagFilter = (?tag:Tag) -> true;
-	public static var positionFilter = (?pos:PosInfos) -> true;
+	public static var tagFilter = (?tag: Tag) -> true;
+	public static var positionFilter = (?pos: PosInfos) -> true;
 
 	public static var positionFormat = PosInfosCallbacks.formatClassMethodLine;
 	public static var logFormat = LogFormats.prefixPositionTagMessage;
@@ -22,40 +22,40 @@ class LogTypeDefaults {
  */
 @:using(sneaker.log.LogTypeExtension, sneaker.log.LogTypeFilterExtension)
 class LogType {
-	static final doNotPrint = (message:String, ?tag:Tag, ?pos:PosInfos) -> {};
+	static final doNotPrint = (message: String, ?tag: Tag, ?pos: PosInfos) -> {};
 
 	/** Prefix for appending to the output text. */
-	public var prefix:String;
+	public var prefix: String;
 
 	/**
 	 * Predicate for filtering tags.
 	 *
 	 * Can be replaced either directly or using `setTagNameFilter()` etc.
 	 */
-	public var tagFilter:(?tag:Tag) -> Bool;
+	public var tagFilter: (?tag: Tag) -> Bool;
 
 	/**
 	 * Predicate for filtering position information.
 	 *
 	 * Can be replaced either directly or using `setMethodFilter()` etc.
 	 */
-	public var positionFilter:(?pos:PosInfos) -> Bool;
+	public var positionFilter: (?pos: PosInfos) -> Bool;
 
 	/**
 	 * Function that formats `pos` and generates an output `String` value.
 	 *
 	 * Can be replaced with any custom function.
 	 */
-	public var positionFormat:(?pos:PosInfos) -> String;
+	public var positionFormat: (?pos: PosInfos) -> String;
 
 	/**
 	 * Function used for creating log text.
 	 *
 	 * Can be replaced with any custom function.
 	 */
-	public var logFormat:(logType:LogType, message:String, ?tag:Tag, ?pos:PosInfos) -> String;
+	public var logFormat: (logType: LogType, message: String, ?tag: Tag, ?pos: PosInfos) -> String;
 
-	public function new(prefix:String) {
+	public function new(prefix: String) {
 		this.prefix = prefix;
 
 		this.tagFilter = LogTypeDefaults.tagFilter;
@@ -69,7 +69,7 @@ class LogType {
 	 *
 	 * `print()` can be disabled by `this.disablePrint()`, or even replaced with a custom function.
 	 */
-	public dynamic function print(message:String, ?tag:Tag, ?pos:PosInfos):Void {
+	public dynamic function print(message: String, ?tag: Tag, ?pos: PosInfos): Void {
 		#if !sneaker_print_disable
 		printIfMatch(this, message, tag, pos);
 		#end
@@ -80,7 +80,7 @@ class LogType {
 	 *
 	 * For enabling again, you have to rebind any function and assign it to `this.print`.
 	 */
-	public inline function disablePrint():Void {
+	public inline function disablePrint(): Void {
 		this.print = doNotPrint;
 	}
 }

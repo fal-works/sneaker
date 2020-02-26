@@ -6,5 +6,5 @@ package sneaker.tag.interfaces;
 @:using(sneaker.tag.TaggedExtension)
 interface Tagged {
 	/** Tag for logging. */
-	public var tag(get, set):Tag;
+	public var tag(get, set): Tag;
 }

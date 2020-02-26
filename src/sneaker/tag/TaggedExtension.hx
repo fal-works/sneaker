@@ -10,7 +10,7 @@ class TaggedExtension {
 	 *
 	 * No effect if compilation flag `sneaker_tagged_disable` is set.
 	 */
-	public static inline function newTag(thisObj:Tagged, name:String, ?bits:Int) {
+	public static inline function newTag(thisObj: Tagged, name: String, ?bits: Int) {
 		#if !sneaker_tagged_disable
 		thisObj.tag = new Tag(name, bits);
 		#end
@@ -19,7 +19,7 @@ class TaggedExtension {
 	/**
 	 * Output `message` as a log of any `logType`.
 	 */
-	public static inline function log(thisObj:Tagged, logType:LogType, message:String, ?pos:PosInfos) {
+	public static inline function log(thisObj: Tagged, logType: LogType, message: String, ?pos: PosInfos) {
 		Log.log(logType, message, thisObj.tag, pos);
 	}
 
@@ -30,7 +30,7 @@ class TaggedExtension {
 	 *
 	 * Default log types: [ FATAL ] - ERROR - WARN - INFO - DEBUG
 	 */
-	public static inline function fatal(thisObj:Tagged, message:String, ?pos:PosInfos) {
+	public static inline function fatal(thisObj: Tagged, message: String, ?pos: PosInfos) {
 		Log.fatal(message, thisObj.tag, pos);
 	}
 
@@ -41,7 +41,7 @@ class TaggedExtension {
 	 *
 	 * Default log types: FATAL - [ ERROR ]  - WARN - INFO - DEBUG
 	 */
-	public static inline function error(thisObj:Tagged, message:String, ?pos:PosInfos) {
+	public static inline function error(thisObj: Tagged, message: String, ?pos: PosInfos) {
 		Log.error(message, thisObj.tag, pos);
 	}
 
@@ -53,7 +53,7 @@ class TaggedExtension {
 	 *
 	 * Default log types: FATAL - ERROR - [ WARN ] - INFO - DEBUG
 	 */
-	public static inline function warn(thisObj:Tagged, message:String, ?pos:PosInfos) {
+	public static inline function warn(thisObj: Tagged, message: String, ?pos: PosInfos) {
 		Log.warn(message, thisObj.tag, pos);
 	}
 
@@ -65,7 +65,7 @@ class TaggedExtension {
 	 *
 	 * Default log types: FATAL - ERROR - WARN - [ INFO ] - DEBUG
 	 */
-	public static inline function info(thisObj:Tagged, message:String, ?pos:PosInfos) {
+	public static inline function info(thisObj: Tagged, message: String, ?pos: PosInfos) {
 		Log.info(message, thisObj.tag, pos);
 	}
 
@@ -76,7 +76,7 @@ class TaggedExtension {
 	 *
 	 * Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]a
 	 */
-	public static inline function debug(thisObj:Tagged, message:String, ?pos:PosInfos) {
+	public static inline function debug(thisObj: Tagged, message: String, ?pos: PosInfos) {
 		Log.debug(message, thisObj.tag, pos);
 	}
 }

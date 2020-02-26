@@ -10,7 +10,7 @@ package sneaker.format;
  */
 @:using(sneaker.format.StringBufExtension)
 class StringBuffer extends StringBuf {
-	public var dataMaxLength:Int;
+	public var dataMaxLength: Int;
 
 	/**
 	 * @param maxLength The max length of string that this buffer can contain.
@@ -28,7 +28,7 @@ class StringBuffer extends StringBuf {
 	 * - Set `sneaker_string_buffer_length_check_disable` to true
 	 *   for disabling the max length check.
 	 */
-	override public function add<T>(x:T) {
+	override public function add<T>(x: T) {
 		final s = Std.string(x);
 
 		if (this.length + s.length < this.dataMaxLength)

@@ -8,15 +8,15 @@ import sneaker.tag.Tag;
 
 private class Evaluation {
 	/** Used as callback in `evaluationArray.map()`. */
-	public static final getExecutionExpression = (evaluation:Evaluation) -> evaluation.executionExpression;
+	public static final getExecutionExpression = (evaluation: Evaluation) -> evaluation.executionExpression;
 
 	/** String form of the expression to be evaluated. */
-	public final expressionString:String;
+	public final expressionString: String;
 
 	/** Expression that assigns the evaluation result to a local variable. */
-	public final executionExpression:Expr;
+	public final executionExpression: Expr;
 
-	public function new(expression:Expr, expressionString:String, variableName:String) {
+	public function new(expression: Expr, expressionString: String, variableName: String) {
 		this.expressionString = expressionString;
 		this.executionExpression = macro final $variableName = $expression;
 	}
@@ -42,17 +42,17 @@ class Asserter {
 	/**
 	 * Internal function used in `assert()`.
 	 */
-	static function prepareEvaluations(expressionToAssert:ExprOf<Bool>):Array<Evaluation> {
-		final evaluations:Array<Evaluation> = [];
+	static function prepareEvaluations(expressionToAssert: ExprOf<Bool>): Array<Evaluation> {
+		final evaluations: Array<Evaluation> = [];
 
-		function preparePart(subExpression:Expr, subExpressionString:String):String {
+		function preparePart(subExpression: Expr, subExpressionString: String): String {
 			final variableName = partialEvaluationResultName(evaluations.length);
 			evaluations.push(new Evaluation(subExpression, subExpressionString, variableName));
 
 			return variableName;
 		}
 
-		function preparePartRecursive(inputExpression:Expr) {
+		function preparePartRecursive(inputExpression: Expr) {
 			return switch (inputExpression.expr) {
 				case EConst((CInt(_) | CFloat(_) | CString(_) | CRegexp(_) | CIdent("true" | "false" | "null"))):
 					inputExpression;
@@ -85,14 +85,14 @@ class Asserter {
 	 * @param message Expression that generates message for inserting to the exception.
 	 */
 	@:noUsing
-	public static macro function assert(boolExpression:ExprOf<Bool>, ?tag:ExprOf<Null<Tag>>, ?message:Expr):ExprOf<Void> {
+	public static macro function assert(boolExpression: ExprOf<Bool>, ?tag: ExprOf<Null<Tag>>, ?message: Expr): ExprOf<Void> {
 		#if sneaker_assertion_disable
 		return macro $b{[]};
 		#else
 		final evaluations = prepareEvaluations(boolExpression);
 
 		final macroOutputExpressions = evaluations.map(Evaluation.getExecutionExpression);
-		final evaluationResults:Array<Expr> = [
+		final evaluationResults: Array<Expr> = [
 			for (i in 0...evaluations.length)
 				macro new sneaker.assertion.EvaluationResult($v{evaluations[i].expressionString}, $i{partialEvaluationResultName(i)})
 		];
@@ -106,7 +106,7 @@ class Asserter {
 				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#else
-			final __sneakerEvaluationResults:Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
+			final __sneakerEvaluationResults: Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
 			if ($boolExpression != true) {
 				@:pos(pos) final __sneakerAssertionResult = {
 					sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, __sneakerTag, $message);
@@ -140,7 +140,7 @@ class Asserter {
 	 * @return Evaluation result of `object` that has been checked against null.
 	 */
 	@:noUsing
-	public static macro function unwrap<T>(object:ExprOf<Null<T>>, ?tag:ExprOf<Null<Tag>>, ?message:Expr):ExprOf<T> {
+	public static macro function unwrap<T>(object: ExprOf<Null<T>>, ?tag: ExprOf<Null<Tag>>, ?message: Expr): ExprOf<T> {
 		#if sneaker_assertion_disable
 		return macro $object;
 		#else
@@ -170,7 +170,7 @@ class Asserter {
 		#end
 	}
 
-	static inline function partialEvaluationResultName(index:Int) {
+	static inline function partialEvaluationResultName(index: Int) {
 		return '__sneakerPartialEvaluationResult${index}';
 	}
 }

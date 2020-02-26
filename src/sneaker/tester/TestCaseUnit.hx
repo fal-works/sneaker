@@ -7,10 +7,10 @@ import sneaker.print.PrintBuffer;
  * Class for each test case, internally used by `Tester` class.
  */
 class TestCaseUnit {
-	public final run:() -> Void;
-	public final type:TestCaseType;
+	public final run: () -> Void;
+	public final type: TestCaseType;
 
-	public function new(run:() -> Void, type:TestCaseType) {
+	public function new(run: () -> Void, type: TestCaseType) {
 		this.run = run;
 		this.type = type;
 	}
@@ -19,7 +19,7 @@ class TestCaseUnit {
 	 * Runs `this.run()` in `try/catch`.
 	 * If anything caught, prints it and goes on without throwing again.
 	 */
-	public function runAndCheck(record:TestRecord):Void {
+	public function runAndCheck(record: TestRecord): Void {
 		#if sneaker_print_buffer
 		final useBufferPreviousValue = Print.useBuffer;
 		Print.useBuffer = true;

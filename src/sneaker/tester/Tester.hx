@@ -46,7 +46,7 @@ class Tester {
 	 *
 	 * `describe` can also be replaced with any custom function.
 	 */
-	public static dynamic function describe(text:String, ?pos:PosInfos):Void {
+	public static dynamic function describe(text: String, ?pos: PosInfos): Void {
 		println(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
@@ -59,15 +59,15 @@ class Tester {
 	 * @param runFunction
 	 * @return -> Void, expectedType:TestCaseType):TestCaseNode
 	 */
-	public static function testCase(runFunction:() -> Void, expectedType:TestCaseType):TestCaseNode {
+	public static function testCase(runFunction: () -> Void, expectedType: TestCaseType): TestCaseNode {
 		return Leaf(new TestCaseUnit(runFunction, expectedType));
 	}
 
-	public static function testCaseGroup(testCases:Array<TestCaseNode>):TestCaseNode {
+	public static function testCaseGroup(testCases: Array<TestCaseNode>): TestCaseNode {
 		return testCases.length > 0 ? Branch(testCases) : None;
 	}
 
-	public static function test(testCasesRoot:TestCaseNode):Void {
+	public static function test(testCasesRoot: TestCaseNode): Void {
 		final result = testCasesRoot.run(new TestRecord());
 
 		println(result);
