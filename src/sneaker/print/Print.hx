@@ -1,4 +1,4 @@
-package sneaker.log;
+package sneaker.print;
 
 class Print {
 	/**

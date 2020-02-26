@@ -2,6 +2,7 @@ package sneaker.log;
 
 import haxe.PosInfos;
 import sneaker.tag.Tag;
+import sneaker.print.Print;
 
 class LogTypeExtension {
 	/**

@@ -1,4 +1,4 @@
-package sneaker.log;
+package sneaker.print;
 
 import sneaker.format.StringBuffer;
 import sneaker.assertion.Asserter.unwrap;
