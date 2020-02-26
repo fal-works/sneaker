@@ -12,6 +12,16 @@ import sneaker.print.Print.println;
  */
 class Tester {
 	/**
+	 * If set to `true`, results of passed test cases are not displayed individually.
+	 *
+	 * This helps you to check only the unexpected results or the cases that should confirmed visually
+	 * (and you can still see the aggregate results).
+	 *
+	 * Required: Compilation flag `sneaker_print_buffer` (if not set, this variable has no effect).
+	 */
+	public static var hidePassedResult = false;
+
+	/**
 	 * Log type used in `describe()` (unless you replace the `describe` function).
 	 * Replace or edit this type for formatting descriptions.
 	 * The filters have no effect.

@@ -34,31 +34,33 @@ class TestCaseUnit {
 			exceptionCaught = true;
 		}
 
+		var passed = true;
+
 		switch (type) {
 			case Ok:
-				Print.flushlnBuffer();
-				if (exceptionCaught)
+				if (exceptionCaught) {
 					++record.unExpectedExceptionCount;
+					passed = false;
+				}
 			case Exception:
-				Print.flushlnBuffer();
-				if (!exceptionCaught)
+				if (!exceptionCaught) {
 					++record.unExpectedOkCount;
+					passed = false;
+				}
 			case Visual:
-				Print.flushlnBuffer();
-				++record.visualCount;
+				passed = false;
 				if (exceptionCaught)
 					++record.unExpectedExceptionCount;
+				else
+					++record.visualCount;
 		}
 
+		if (passed)
+			++record.passedCount;
+
 		#if sneaker_print_buffer
-		switch (type) {
-			case Ok:
-				Print.flushlnBuffer();
-			case Exception:
-				Print.flushlnBuffer();
-			case Visual:
-				Print.flushlnBuffer();
-		}
+		if (!passed || !Tester.hidePassedResult)
+			Print.flushlnBuffer();
 
 		Print.useBuffer = useBufferPreviousValue;
 		#end

@@ -9,6 +9,7 @@ import sneaker.format.StringBuffer;
  */
 class TestRecord {
 	public var caseCount = 0;
+	public var passedCount = 0;
 	public var unExpectedExceptionCount = 0;
 	public var unExpectedOkCount = 0;
 	public var visualCount = 0;
@@ -17,7 +18,6 @@ class TestRecord {
 
 	public function toString() {
 		final buffer = new StringBuffer();
-		final passedCount = caseCount - visualCount - unExpectedExceptionCount - unExpectedOkCount;
 
 		// ---- super dirty implementation ----------------------------------------
 
