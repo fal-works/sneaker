@@ -51,6 +51,14 @@ class Tester {
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
+	/**
+	 * Creates a test case node.
+	 * Wrap each of your test case functions with this.
+	 *
+	 * @param runFunction
+	 * @param runFunction
+	 * @return -> Void, expectedType:TestCaseType):TestCaseNode
+	 */
 	public static function testCase(runFunction:() -> Void, expectedType:TestCaseType):TestCaseNode {
 		return Leaf(new TestCaseUnit(runFunction, expectedType));
 	}

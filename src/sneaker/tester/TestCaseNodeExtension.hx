@@ -2,7 +2,7 @@ package sneaker.tester;
 
 class TestCaseNodeExtension {
 	/**
-	 * Recursively runs each test case beginning at `node, separating with a new line.
+	 * Recursively runs each test case beginning at `node`.
 	 */
 	public static function run(node:TestCaseNode, record:TestRecord):TestRecord {
 		switch (node) {

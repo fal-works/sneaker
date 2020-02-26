@@ -3,7 +3,9 @@ package sneaker.tester;
 import sneaker.print.Print;
 import sneaker.print.PrintBuffer;
 
-@:structInit
+/**
+ * Class for each test case, internally used by `Tester` class.
+ */
 class TestCaseUnit {
 	public final run:() -> Void;
 	public final type:TestCaseType;
