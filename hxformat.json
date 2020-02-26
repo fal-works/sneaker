@@ -11,7 +11,38 @@
 		"typeHintColonPolicy": "onlyAfter"
 	},
 	"wrapping": {
-
+		"arrayWrap": {
+			"defaultWrap": "onePerLine",
+			"rules": [
+				{
+					"conditions": [
+						{
+							"cond": "totalItemLength >= n",
+							"value": 60
+						}
+					],
+					"type": "onePerLine"
+				},
+				{
+					"conditions": [
+						{
+							"cond": "itemCount <= n",
+							"value": 1
+						}
+					],
+					"type": "noWrap"
+				},
+				{
+					"conditions": [
+						{
+							"cond": "itemCount >= n",
+							"value": 10
+						}
+					],
+					"type": "fillLineWithLeadingBreak"
+				}
+			]
+		},
 		"callParameter": {
 			"defaultWrap": "noWrap",
 			"rules": [

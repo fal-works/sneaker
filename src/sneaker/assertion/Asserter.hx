@@ -113,11 +113,10 @@ class Asserter {
 			Evaluation.getExecutionExpression
 		);
 		final evaluationResults: Array<Expr> = [
-			for (i in 0...evaluations.length)
-				macro new sneaker.assertion.EvaluationResult(
-					$v{evaluations[i].expressionString},
-					$i{partialEvaluationResultName(i)}
-				)
+			for (i in 0...evaluations.length) macro new sneaker.assertion.EvaluationResult(
+				$v{evaluations[i].expressionString},
+				$i{partialEvaluationResultName(i)}
+			)
 		];
 
 		final pos = boolExpression.pos;
