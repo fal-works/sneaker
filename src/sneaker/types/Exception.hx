@@ -10,11 +10,10 @@ import haxe.PosInfos;
  */
 class Exception {
 	/**
-	 * If `true` (default), each `Exception` instance will automatically store
-	 * the call stack info (even if not externally provided) and append it to
-	 * the content when cast to `String`.
+	 * If `true` (default), call stack information is appended to the content
+	 * when cast to `String`.
 	 */
-	public static var appendCallStack = true;
+	public var appendCallStack = true;
 
 	public final content: Dynamic;
 	public final callStack: Array<StackItem>;
@@ -25,21 +24,19 @@ class Exception {
 
 		if (callStack != null) {
 			this.callStack = callStack;
-		} else if (appendCallStack) {
+		} else {
 			final currentCallStack = CallStack.callStack();
 			currentCallStack.shift();
 			this.callStack = currentCallStack;
-		} else {
-			this.callStack = [];
 		}
 
 		this.positionInformation = pos;
 	}
 
 	public function toString(): String {
-		if (appendCallStack)
-			return '${content}\n\nCall Stack:\n${callStack.map(CallStackItemExtension.format).join("\n")}';
+		return if (appendCallStack)
+			'${content}\n\nCall Stack:\n${callStack.map(CallStackItemExtension.format).join("\n")}';
 		else
-			return content;
+			content;
 	}
 }
