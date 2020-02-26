@@ -5,8 +5,6 @@ import sneaker.print.PrintBuffer;
 
 @:structInit
 class TestCaseUnit {
-	public static final empty = new TestCaseUnit(() -> {}, Empty);
-
 	public final run:() -> Void;
 	public final type:TestCaseType;
 
@@ -43,7 +41,6 @@ class TestCaseUnit {
 				Print.flushlnBuffer();
 			case Visual:
 				Print.flushlnBuffer();
-			case Empty:
 		}
 
 		Print.useBuffer = useBufferPreviousValue;

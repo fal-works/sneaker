@@ -12,6 +12,7 @@ class TestCaseNodeExtension {
 				}
 			case Leaf(unit):
 				unit.runAndCheck(record);
+			case None:
 		}
 
 		return record;

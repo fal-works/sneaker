@@ -4,5 +4,4 @@ enum TestCaseType {
 	Ok;
 	Exception;
 	Visual;
-	Empty;
 }

@@ -47,7 +47,7 @@ class Tester {
 	}
 
 	public static function testCaseGroup(testCases:Array<TestCaseNode>):TestCaseNode {
-		return testCases.length == 0 ? emptyTestCase : Branch(testCases);
+		return testCases.length > 0 ? Branch(testCases) : None;
 	}
 
 	public static function test(testCasesRoot:TestCaseNode):Void {
@@ -55,6 +55,4 @@ class Tester {
 
 		println(result);
 	}
-
-	static final emptyTestCase:TestCaseNode = Leaf(TestCaseUnit.empty);
 }
