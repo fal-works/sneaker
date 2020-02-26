@@ -5,7 +5,7 @@ class Print {
 	 * Prints `s` to the standard output, followed with a new line.
 	 */
 	@:generic
-	public static inline function println<T>(s:Null<T>):Void {
+	public static function println<T>(s:Null<T>):Void {
 		#if (sys && !no_traces)
 		#if (!haxe4 && android)
 		trace(s);
