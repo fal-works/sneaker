@@ -1,12 +1,12 @@
 package sneaker.assertion;
 
 using sneaker.format.StringExtension;
-using sneaker.format.StringBufExtension;
 
 import haxe.PosInfos;
 import haxe.ds.Option;
 import sneaker.tag.Tag;
 import sneaker.log.LogType;
+import sneaker.format.StringBuffer;
 
 /**
  * Result of assertion, including evaluation results of sub-expressions.
@@ -76,7 +76,7 @@ class AssertionResult {
 		logType.print(contentString, tag, positionInformations);
 	}
 
-	function addSummary(buffer:StringBuf):StringBuf {
+	function addSummary(buffer:StringBuffer):StringBuffer {
 		switch (error) {
 			case None:
 				buffer.add('${assertionType} succeeded.');
@@ -96,7 +96,7 @@ class AssertionResult {
 		return buffer;
 	}
 
-	function addDetails(buffer:StringBuf):StringBuf {
+	function addDetails(buffer:StringBuffer):StringBuffer {
 		if (evaluationResults.length > 1) {
 			buffer.lfAdd('Details:');
 			buffer.lfIndentAddLines(evaluationResults);
@@ -106,7 +106,7 @@ class AssertionResult {
 	}
 
 	function generateContentString():String {
-		final buffer = new StringBuf();
+		final buffer = new StringBuffer();
 
 		addSummary(buffer);
 		addDetails(buffer);
