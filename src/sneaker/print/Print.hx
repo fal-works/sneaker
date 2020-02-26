@@ -31,6 +31,27 @@ class Print {
 
 	/**
 	 * Outputs `s` followed with a new line.
+	 * - On `sys` targets: Uses `Sys.print()`.
+	 * - Otherwise: Uses `trace()`.
+	 *   Note that `println()` also uses `trace()` so there is no difference between
+	 *   `print()` and `println()` on non-sys targets.
+	 *
+	 * @see `println()` about the compilation flags.
+	 */
+	@:generic
+	public static function print<T>(s:Null<T>):Void {
+		#if sneaker_print_buffer
+		if (useBuffer) {
+			PrintBuffer.current.addNullable(s);
+			return;
+		}
+		#end
+
+		printDirect(s);
+	}
+
+	/**
+	 * Outputs `s` followed with a new line.
 	 *
 	 * Compilation flags:
 	 * - Disabled if `sneaker_print_disable` is set.
@@ -44,6 +65,17 @@ class Print {
 	}
 
 	/**
+	 * Outputs `s`.
+	 * @see `printlnDirect()` about the compilation flags.
+	 */
+	@:generic
+	public static inline function printDirect<T>(s:Null<T>):Void {
+		#if !sneaker_print_disable
+		printForced(s);
+		#end
+	}
+
+	/**
 	 * Outputs `s` followed with a new line, ignoring the compilation flags below:
 	 * - `sneaker_print_disable`
 	 * - `sneaker_print_buffer`
@@ -52,6 +84,19 @@ class Print {
 	public static inline function printlnForced<T>(s:Null<T>):Void {
 		#if sys
 		@:nullSafety(Off) Sys.println(s);
+		#else
+		trace(s);
+		#end
+	}
+
+	/**
+	 * Outputs `s`, ignoring the compilation flags.
+	 * @see `printlnForced()`
+	 */
+	@:generic
+	public static inline function printForced<T>(s:Null<T>):Void {
+		#if sys
+		@:nullSafety(Off) Sys.print(s);
 		#else
 		trace(s);
 		#end
