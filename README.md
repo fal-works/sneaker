@@ -29,8 +29,8 @@ May or may not help you to debug.
 
 ## Compilation flags
 
-|flag|category|description|
-|---|---|---|
+|flag|description|
+|---|---|
 |`sneaker_log_level`|`100` for FATAL, `200` for ERROR and so on. Defaults to `200`.|
 |`sneaker_assertion_disable`|Disables assertion.|
 |`sneaker_assertion_print_success`|Prints successful results.|
