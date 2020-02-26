@@ -7,18 +7,6 @@ import sneaker.log.LogType;
 import sneaker.log.LogFormats;
 import sneaker.print.Print;
 import sneaker.print.Print.println;
-import sneaker.print.PrintBuffer;
-
-/**
- * Class for storing test result.
- * Will be reset everytime when `Tester.test()` is called.
- */
-class TestResult {
-	public static var exceptionCount = 0;
-
-	public static function reset()
-		exceptionCount = 0;
-}
 
 /**
  * Set of functions for doing simple unit tests.
@@ -43,17 +31,19 @@ class Tester {
 	public static var exceptionLogType = new LogType("[TEST]  ");
 
 	/**
-	 * Prints position info and a given description text.
-	 * Can be used as a heading of each test case.
-	 * You can also replace this with any custom function.
+	 * Prints a heading including position info, and the given description text on the next line.
+	 *
+	 * Call this at first in each test case function.
+	 *
+	 * `describe` can also be replaced with any custom function.
 	 */
 	public static dynamic function describe(text:String, ?pos:PosInfos):Void {
 		println(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
-	public static function testCase(unit:TestCaseUnit):TestCaseNode {
-		return Leaf(unit);
+	public static function testCase(runFunction:() -> Void, expectedType:TestCaseType):TestCaseNode {
+		return Leaf(new TestCaseUnit(runFunction, expectedType));
 	}
 
 	public static function testCaseGroup(testCases:Array<TestCaseNode>):TestCaseNode {
@@ -65,61 +55,12 @@ class Tester {
 		Print.useBuffer = true;
 
 		TestResult.reset();
-		runCases(testCasesRoot);
-		println('\n${TestResult.exceptionCount} exception.');
+		testCasesRoot.run();
 
 		Print.useBuffer = useBufferPreviousValue;
+
+		println('\n${TestResult.exceptionCount} exceptions.');
 	}
 
 	static final emptyTestCase:TestCaseNode = Leaf(TestCaseUnit.empty);
-
-	/**
-	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
-	 */
-	static function runCaseUnit(unit:TestCaseUnit):Void {
-		var exceptionCaught = false;
-		try {
-			unit.run();
-		} catch (exception:Dynamic) {
-			exceptionLogType.print('Exception caught:\n${exception}');
-			exceptionCaught = true;
-			++TestResult.exceptionCount;
-		}
-
-		switch (unit.type) {
-			case Ok:
-				PrintBuffer.flush();
-			case Exception:
-				PrintBuffer.flush();
-			case Visual:
-				PrintBuffer.flush();
-			case Empty:
-		}
-	}
-
-	/**
-	 * Runs each element of `testCases`, separating with a new line.
-	 */
-	static function runCases(testCases:TestCaseNode):Void {
-		switch(testCases) {
-			case Branch(children):
-				final length = children.length;
-
-				switch (length) {
-					case 0:
-						return;
-					case 1:
-						runCases(children[0]);
-					default:
-						runCases(children[0]);
-
-						for (i in 1...length) {
-							println("");
-							runCases(children[i]);
-						}
-				}
-			case Leaf(unit):
-				runCaseUnit(unit);
-		}
-	}
 }
