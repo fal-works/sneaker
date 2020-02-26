@@ -14,6 +14,10 @@ class AssertionException extends sneaker.types.Exception {
 		final currentCallStack = CallStack.callStack();
 		currentCallStack.shift();
 
-		super(result.createLogString(Asserter.failureLogType), currentCallStack, result.positionInformations);
+		super(
+			result.createLogString(Asserter.failureLogType),
+			currentCallStack,
+			result.positionInformations
+		);
 	}
 }

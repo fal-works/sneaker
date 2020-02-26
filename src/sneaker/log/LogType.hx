@@ -5,6 +5,8 @@ import sneaker.log.LogTypeExtension.*;
 import haxe.PosInfos;
 import sneaker.tag.Tag;
 
+// @formatter:off
+
 /**
  * Values that will be assigned when creating a new `LogType` instance.
  * Can also be replaced with custom functions.
@@ -53,8 +55,12 @@ class LogType {
 	 *
 	 * Can be replaced with any custom function.
 	 */
-	public var logFormat: (logType: LogType, message: String, ?tag: Tag, ?pos: PosInfos) -> String;
-
+	public var logFormat: (
+		logType: LogType,
+		message: String,
+		?tag: Tag,
+		?pos: PosInfos
+	) -> String;
 	public function new(prefix: String) {
 		this.prefix = prefix;
 
@@ -69,7 +75,11 @@ class LogType {
 	 *
 	 * `print()` can be disabled by `this.disablePrint()`, or even replaced with a custom function.
 	 */
-	public dynamic function print(message: String, ?tag: Tag, ?pos: PosInfos): Void {
+	public dynamic function print(
+		message: String,
+		?tag: Tag,
+		?pos: PosInfos
+	): Void {
 		#if !sneaker_print_disable
 		printIfMatch(this, message, tag, pos);
 		#end

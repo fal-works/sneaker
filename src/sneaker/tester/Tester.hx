@@ -47,7 +47,13 @@ class Tester {
 	 * `describe` can also be replaced with any custom function.
 	 */
 	public static dynamic function describe(text: String, ?pos: PosInfos): Void {
-		println(StringTools.rpad('TestCase____${pos.formatClassMethodWithoutModule()}', "_", 100));
+		println(
+			StringTools.rpad(
+				'TestCase____${pos.formatClassMethodWithoutModule()}',
+				"_",
+				100
+			)
+		);
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
@@ -59,7 +65,10 @@ class Tester {
 	 * @param runFunction
 	 * @return -> Void, expectedType:TestCaseType):TestCaseNode
 	 */
-	public static function testCase(runFunction: () -> Void, expectedType: TestCaseType): TestCaseNode {
+	public static function testCase(
+		runFunction: () -> Void,
+		expectedType: TestCaseType
+	): TestCaseNode {
 		return Leaf(new TestCaseUnit(runFunction, expectedType));
 	}
 

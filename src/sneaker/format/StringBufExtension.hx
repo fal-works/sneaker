@@ -55,7 +55,11 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAdd<T>(buf: StringBuf, s: Null<T>, indent: String = twoSpaces): StringBuf {
+	public static inline function indentAdd<T>(
+		buf: StringBuf,
+		s: Null<T>,
+		indent: String = twoSpaces
+	): StringBuf {
 		@:nullSafety(Off) buf.add('${indent}${s}');
 		return buf;
 	}
@@ -64,7 +68,11 @@ class StringBufExtension {
 	 * Adds Line Feed, `indent` and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfIndentAdd<T>(buf: StringBuf, s: Null<T>, indent: String = twoSpaces): StringBuf {
+	public static inline function lfIndentAdd<T>(
+		buf: StringBuf,
+		s: Null<T>,
+		indent: String = twoSpaces
+	): StringBuf {
 		@:nullSafety(Off) buf.add('\n${indent}${s}');
 		return buf;
 	}
@@ -74,7 +82,11 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAddLf<T>(buf: StringBuf, s: Null<T>, indent: String = twoSpaces): StringBuf {
+	public static inline function indentAddLf<T>(
+		buf: StringBuf,
+		s: Null<T>,
+		indent: String = twoSpaces
+	): StringBuf {
 		@:nullSafety(Off) buf.add('${indent}${s}\n');
 		return buf;
 	}
@@ -83,7 +95,10 @@ class StringBufExtension {
 	 * Adds each of `lines` with a preceding Line Feed.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfAddLines<T>(buf: StringBuf, lines: Array<Null<T>>): StringBuf {
+	public static inline function lfAddLines<T>(
+		buf: StringBuf,
+		lines: Array<Null<T>>
+	): StringBuf {
 		for (line in lines) lfAdd(buf, line);
 		return buf;
 	}
@@ -92,7 +107,10 @@ class StringBufExtension {
 	 * Adds each of `lines` with a succeeding Line Feed.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function addLfLines<T>(buf: StringBuf, lines: Array<Null<T>>): StringBuf {
+	public static inline function addLfLines<T>(
+		buf: StringBuf,
+		lines: Array<Null<T>>
+	): StringBuf {
 		for (line in lines) addLf(buf, line);
 		return buf;
 	}
@@ -102,7 +120,11 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfIndentAddLines<T>(buf: StringBuf, lines: Array<Null<T>>, indent: String = twoSpaces): StringBuf {
+	public static inline function lfIndentAddLines<T>(
+		buf: StringBuf,
+		lines: Array<Null<T>>,
+		indent: String = twoSpaces
+	): StringBuf {
 		for (line in lines) lfIndentAdd(buf, line, indent);
 		return buf;
 	}
@@ -112,7 +134,11 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentLfAddLines<T>(buf: StringBuf, lines: Array<Null<T>>, indent: String = twoSpaces): StringBuf {
+	public static inline function indentLfAddLines<T>(
+		buf: StringBuf,
+		lines: Array<Null<T>>,
+		indent: String = twoSpaces
+	): StringBuf {
 		for (line in lines) indentAddLf(buf, line, indent);
 		return buf;
 	}

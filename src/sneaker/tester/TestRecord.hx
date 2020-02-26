@@ -4,6 +4,8 @@ using sneaker.format.IntExtension;
 
 import sneaker.format.StringBuffer;
 
+// @formatter:off
+
 /**
  * Class for storing test result.
  */

@@ -33,7 +33,11 @@ class LogTypeFilterExtension {
 	/**
 	 * Overwrite `thisType.positionFilter` with a new filter that only accepts `className` && `methodName`.
 	 */
-	public static function setClassMethodFilter(thisType: LogType, className: String, methodName: String): Void {
+	public static function setClassMethodFilter(
+		thisType: LogType,
+		className: String,
+		methodName: String
+	): Void {
 		thisType.positionFilter = (?pos) -> pos != null && pos.className == className && pos.methodName == methodName;
 	}
 }

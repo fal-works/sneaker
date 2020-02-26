@@ -5,6 +5,8 @@ using sneaker.format.StringExtension;
 import haxe.CallStack.StackItem;
 import sneaker.format.CallStackItemExtension.format;
 
+// @formatter:off
+
 /**
  * Customizable variables and functions used in `CallStackItemExtension.format()`.
  */

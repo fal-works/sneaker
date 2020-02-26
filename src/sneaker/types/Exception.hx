@@ -19,7 +19,11 @@ class Exception {
 	public final callStack: Array<StackItem>;
 	public final positionInformation: Null<PosInfos>;
 
-	public function new(content: Dynamic, ?callStack: Array<StackItem>, ?pos: PosInfos) {
+	public function new(
+		content: Dynamic,
+		?callStack: Array<StackItem>,
+		?pos: PosInfos
+	) {
 		this.content = content;
 
 		if (callStack != null) {

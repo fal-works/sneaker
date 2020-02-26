@@ -11,7 +11,9 @@ class AssertionTest {
 		assert(1 < 2);
 	}, Ok);
 	public static final assertFalse = testCase(() -> {
-		describe("This raises an exception because (thisIsLess < thisIsGreater) is false.");
+		describe(
+			"This raises an exception because (thisIsLess < thisIsGreater) is false."
+		);
 		final thisIsLess = 2;
 		final thisIsGreater = 1;
 		assert(thisIsLess < thisIsGreater);
@@ -22,7 +24,11 @@ class AssertionTest {
 		tag.name = "someTagName";
 		assert(tag.name == "otherTagName", tag);
 	}, Exception);
-	public static final assertTests = testCaseGroup([assertTrue, assertFalse, assertTagFalse]);
+	public static final assertTests = testCaseGroup([
+		assertTrue,
+		assertFalse,
+		assertTagFalse
+	]);
 
 	// unwrap
 	public static final unwrapOk = testCase(() -> {
@@ -36,13 +42,22 @@ class AssertionTest {
 		println(unwrap(obj));
 	}, Exception);
 	public static final unwrapTagError = testCase(() -> {
-		describe('This raises an exception with a tag name, because (obj) is null.');
+		describe(
+			'This raises an exception with a tag name, because (obj) is null.'
+		);
 		final obj: Null<Any> = null;
 		final relatedTag = new Tag("someTagName");
 		println(unwrap(obj, relatedTag));
 	}, Exception);
-	public static final unwrapTests = testCaseGroup([unwrapOk, unwrapError, unwrapTagError]);
+	public static final unwrapTests = testCaseGroup([
+		unwrapOk,
+		unwrapError,
+		unwrapTagError
+	]);
 
 	// all
-	public static final all = testCaseGroup([assertTests, unwrapTests]);
+	public static final all = testCaseGroup([
+		assertTests,
+		unwrapTests
+	]);
 }

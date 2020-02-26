@@ -12,11 +12,28 @@ import sneaker.format.StringBuffer;
  * Result of assertion, including evaluation results of sub-expressions.
  */
 class AssertionResult {
-	public static function createError(type: AssertionType, evaluationResults: Array<EvaluationResult>, ?tag: Tag, ?message: String, ?pos: PosInfos) {
-		return new AssertionResult(type, evaluationResults, Some(message.toOptionalString()), tag, pos);
+	public static function createError(
+		type: AssertionType,
+		evaluationResults: Array<EvaluationResult>,
+		?tag: Tag,
+		?message: String,
+		?pos: PosInfos
+	) {
+		return new AssertionResult(
+			type,
+			evaluationResults,
+			Some(message.toOptionalString()),
+			tag,
+			pos
+		);
 	}
 
-	public static function createOk(type: AssertionType, evaluationResults: Array<EvaluationResult>, ?tag: Tag, ?pos: PosInfos) {
+	public static function createOk(
+		type: AssertionType,
+		evaluationResults: Array<EvaluationResult>,
+		?tag: Tag,
+		?pos: PosInfos
+	) {
 		return new AssertionResult(type, evaluationResults, None, tag, pos);
 	}
 
@@ -51,7 +68,13 @@ class AssertionResult {
 		return evaluationResults[evaluationResults.length - 1];
 	}
 
-	public function new(assertionType: AssertionType, evaluationResults: Array<EvaluationResult>, error: Option<Option<String>>, ?tag: Tag, ?pos: PosInfos) {
+	public function new(
+		assertionType: AssertionType,
+		evaluationResults: Array<EvaluationResult>,
+		error: Option<Option<String>>,
+		?tag: Tag,
+		?pos: PosInfos
+	) {
 		this.assertionType = assertionType;
 		this.evaluationResults = evaluationResults;
 		this.error = error;
@@ -66,7 +89,11 @@ class AssertionResult {
 	 * @return Log text created from data of `this` using `logType`.
 	 */
 	public function createLogString(logType: LogType): String {
-		return logType.createLogString(contentString, tag, positionInformations);
+		return logType.createLogString(
+			contentString,
+			tag,
+			positionInformations
+		);
 	}
 
 	/**
@@ -88,7 +115,9 @@ class AssertionResult {
 				@:nullSafety(Off)
 				buffer.add(' (${result.expressionString}) is ${result.value}.');
 				switch (message) {
-					case Some(messageValue): buffer.lfAdd('Message: ${messageValue}');
+					case Some(
+						messageValue
+					): buffer.lfAdd('Message: ${messageValue}');
 					default:
 				}
 		}

@@ -8,7 +8,9 @@ import sneaker.tag.Tag;
 
 private class Evaluation {
 	/** Used as callback in `evaluationArray.map()`. */
-	public static final getExecutionExpression = (evaluation: Evaluation) -> evaluation.executionExpression;
+	public static final getExecutionExpression = (
+		evaluation: Evaluation
+	) -> evaluation.executionExpression;
 
 	/** String form of the expression to be evaluated. */
 	public final expressionString: String;
@@ -16,7 +18,11 @@ private class Evaluation {
 	/** Expression that assigns the evaluation result to a local variable. */
 	public final executionExpression: Expr;
 
-	public function new(expression: Expr, expressionString: String, variableName: String) {
+	public function new(
+		expression: Expr,
+		expressionString: String,
+		variableName: String
+	) {
 		this.expressionString = expressionString;
 		this.executionExpression = macro final $variableName = $expression;
 	}
@@ -42,17 +48,24 @@ class Asserter {
 	/**
 	 * Internal function used in `assert()`.
 	 */
-	static function prepareEvaluations(expressionToAssert: ExprOf<Bool>): Array<Evaluation> {
+	static function prepareEvaluations(
+		expressionToAssert: ExprOf<Bool>
+	): Array<Evaluation> {
 		final evaluations: Array<Evaluation> = [];
 
 		function preparePart(subExpression: Expr, subExpressionString: String): String {
-			final variableName = partialEvaluationResultName(evaluations.length);
-			evaluations.push(new Evaluation(subExpression, subExpressionString, variableName));
+			final variableName = partialEvaluationResultName(
+				evaluations.length
+			);
+			evaluations.push(
+				new Evaluation(subExpression, subExpressionString, variableName)
+			);
 
 			return variableName;
 		}
 
 		function preparePartRecursive(inputExpression: Expr) {
+			// @formatter:off
 			return switch (inputExpression.expr) {
 				case EConst((CInt(_) | CFloat(_) | CString(_) | CRegexp(_) | CIdent("true" | "false" | "null"))):
 					inputExpression;
@@ -61,6 +74,7 @@ class Asserter {
 					final expression = inputExpression.map(preparePartRecursive); // call for each sub-expressions
 					macro $i{preparePart(expression, expressionString)};
 			}
+			// @formatter:on
 		}
 
 		preparePartRecursive(expressionToAssert);
@@ -85,16 +99,25 @@ class Asserter {
 	 * @param message Expression that generates message for inserting to the exception.
 	 */
 	@:noUsing
-	public static macro function assert(boolExpression: ExprOf<Bool>, ?tag: ExprOf<Null<Tag>>, ?message: Expr): ExprOf<Void> {
+	public static macro function assert(
+		boolExpression: ExprOf<Bool>,
+		?tag: ExprOf<Null<Tag>>,
+		?message: Expr
+	): ExprOf<Void> {
 		#if sneaker_assertion_disable
 		return macro $b{[]};
 		#else
 		final evaluations = prepareEvaluations(boolExpression);
 
-		final macroOutputExpressions = evaluations.map(Evaluation.getExecutionExpression);
+		final macroOutputExpressions = evaluations.map(
+			Evaluation.getExecutionExpression
+		);
 		final evaluationResults: Array<Expr> = [
 			for (i in 0...evaluations.length)
-				macro new sneaker.assertion.EvaluationResult($v{evaluations[i].expressionString}, $i{partialEvaluationResultName(i)})
+				macro new sneaker.assertion.EvaluationResult(
+					$v{evaluations[i].expressionString},
+					$i{partialEvaluationResultName(i)}
+				)
 		];
 
 		final pos = boolExpression.pos;
@@ -102,19 +125,39 @@ class Asserter {
 			final __sneakerTag = $tag;
 			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(Assertion, $a{evaluationResults}, __sneakerTag, $message);
-				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
+				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(
+					Assertion,
+					$a{evaluationResults},
+					__sneakerTag,
+					$message
+				);
+				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(
+					__sneakerAssertionResult
+				);
 			}
 			#else
 			final __sneakerEvaluationResults: Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
 			if ($boolExpression != true) {
 				@:pos(pos) final __sneakerAssertionResult = {
-					sneaker.assertion.AssertionResult.createError(Assertion, __sneakerEvaluationResults, __sneakerTag, $message);
+					sneaker.assertion.AssertionResult.createError(
+						Assertion,
+						__sneakerEvaluationResults,
+						__sneakerTag,
+						$message
+					);
 				}
-				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(
+					__sneakerAssertionResult
+				);
 			} else {
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Assertion, __sneakerEvaluationResults, __sneakerTag);
-				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(
+					Assertion,
+					__sneakerEvaluationResults,
+					__sneakerTag
+				);
+				__sneakerAssertionResult.printLog(
+					sneaker.assertion.Asserter.successLogType
+				);
 			}
 			#end
 		};
@@ -140,7 +183,11 @@ class Asserter {
 	 * @return Evaluation result of `object` that has been checked against null.
 	 */
 	@:noUsing
-	public static macro function unwrap<T>(object: ExprOf<Null<T>>, ?tag: ExprOf<Null<Tag>>, ?message: Expr): ExprOf<T> {
+	public static macro function unwrap<T>(
+		object: ExprOf<Null<T>>,
+		?tag: ExprOf<Null<Tag>>,
+		?message: Expr
+	): ExprOf<T> {
 		#if sneaker_assertion_disable
 		return macro $object;
 		#else
@@ -151,17 +198,36 @@ class Asserter {
 			final __sneakerTag = $tag;
 			final __sneakerUnwrappedValue = $object;
 			if (__sneakerUnwrappedValue == null) {
-				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
+				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult(
+					$v{expressionString},
+					__sneakerUnwrappedValue
+				);
 				@:pos(pos) final __sneakerAssertionResult = {
-					sneaker.assertion.AssertionResult.createError(Unwrap, [__sneakerEvaluationResult], __sneakerTag, $message);
+					sneaker.assertion.AssertionResult.createError(
+						Unwrap,
+						[__sneakerEvaluationResult],
+						__sneakerTag,
+						$message
+					);
 				}
-				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(
+					__sneakerAssertionResult
+				);
 			}
 			#if sneaker_assertion_print_success
 			else {
-				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult($v{expressionString}, __sneakerUnwrappedValue);
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(Unwrap, [__sneakerEvaluationResult], __sneakerTag);
-				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
+				final __sneakerEvaluationResult = new sneaker.assertion.EvaluationResult(
+					$v{expressionString},
+					__sneakerUnwrappedValue
+				);
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(
+					Unwrap,
+					[__sneakerEvaluationResult],
+					__sneakerTag
+				);
+				__sneakerAssertionResult.printLog(
+					sneaker.assertion.Asserter.successLogType
+				);
 			}
 			#end
 
