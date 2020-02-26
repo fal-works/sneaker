@@ -16,7 +16,8 @@ class TestCaseUnit {
 	}
 
 	/**
-	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
+	 * Runs `this.run()` in `try/catch`.
+	 * If anything caught, prints it and goes on without throwing again.
 	 */
 	public function runAndCheck():Void {
 		#if sneaker_print_buffer
