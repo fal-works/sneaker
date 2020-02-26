@@ -33,8 +33,9 @@ class Print {
 	 * Outputs `s` followed with a new line.
 	 * - On `sys` targets: Uses `Sys.print()`.
 	 * - Otherwise: Uses `trace()`.
-	 *   Note that `println()` also uses `trace()` so there is no difference between
-	 *   `print()` and `println()` on non-sys targets.
+	 *
+	 * Note that `Print.println()` also uses `trace()` on non-sys targets, so it works
+	 * inconsistently among targets and depending on whether you use buffers.
 	 *
 	 * @see `println()` about the compilation flags.
 	 */
