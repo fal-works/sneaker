@@ -48,12 +48,13 @@ class StringBufExtension {
 		buf.add('\n${indent}${s}');
 		return buf;
 	}
+
 	/**
 	 * Adds `indent`, `s` and Line Feed.
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	 public static inline function indentAddLf<T>(buf:StringBuf, s:T, indent:String = twoSpaces):StringBuf {
+	public static inline function indentAddLf<T>(buf:StringBuf, s:T, indent:String = twoSpaces):StringBuf {
 		buf.add('${indent}${s}\n');
 		return buf;
 	}
@@ -72,7 +73,7 @@ class StringBufExtension {
 	 * Adds each of `lines` with a succeeding Line Feed.
 	 * @return The given `StringBuf`.
 	 */
-	 public static inline function addLfLines<T>(buf:StringBuf, lines:Array<T>):StringBuf {
+	public static inline function addLfLines<T>(buf:StringBuf, lines:Array<T>):StringBuf {
 		for (line in lines)
 			addLf(buf, line);
 		return buf;
@@ -94,7 +95,7 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	 public static inline function indentLfAddLines<T>(buf:StringBuf, lines:Array<T>, indent:String = twoSpaces):StringBuf {
+	public static inline function indentLfAddLines<T>(buf:StringBuf, lines:Array<T>, indent:String = twoSpaces):StringBuf {
 		for (line in lines)
 			indentAddLf(buf, line, indent);
 		return buf;
