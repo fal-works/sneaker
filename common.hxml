@@ -9,3 +9,4 @@
 # -D sneaker_assertion_disable
 # -D sneaker_assertion_verbose
 # -D sneaker_tagged_disable
+# -D sneaker_print_disable

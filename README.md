@@ -36,3 +36,4 @@ May or may not help you to debug.
 |`sneaker_assertion_print_success`|Prints successful results.|
 |`sneaker_assertion_verbose`|Prints additional info during the compilation.|
 |`sneaker_tagged_disable`|If set, no physical field for `Tagged.tag`.|
+|`sneaker_print_disable`|Disables all printing/logging features.|

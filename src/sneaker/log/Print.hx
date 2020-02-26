@@ -5,10 +5,13 @@ class Print {
 	 * Prints `s` to the standard output, followed with a new line.
 	 * - On `sys` targets: Calls `Sys.println()`.
 	 * - Otherwise: Calls `trace()`.
+	 *
+	 * Compilation flag:
+	 * - Disabled if `sneaker_print_disable` is set.
 	 */
 	@:generic
 	public static function println<T>(s:Null<T>):Void {
-		#if !no_traces
+		#if !sneaker_print_disable
 		#if sys
 		@:nullSafety(Off) Sys.println(s);
 		#else
