@@ -20,7 +20,7 @@ class Log {
 	 * Default log types: [ FATAL ] - ERROR - WARN - INFO - DEBUG
 	 */
 	public static inline function fatal(message:String, ?tag:Tag, ?pos:PosInfos) {
-		#if (sneaker_log_level >= 100)
+		#if (!sneaker_print_disable && sneaker_log_level >= 100)
 		LogTypes.fatal.print(message, tag, pos);
 		#end
 	}
@@ -33,7 +33,7 @@ class Log {
 	 * Default log types: FATAL - [ ERROR]  - WARN - INFO - DEBUG
 	 */
 	public static inline function error(message:String, ?tag:Tag, ?pos:PosInfos) {
-		#if (sneaker_log_level >= 200)
+		#if (!sneaker_print_disable && sneaker_log_level >= 200)
 		LogTypes.error.print(message, tag, pos);
 		#end
 	}
@@ -47,7 +47,7 @@ class Log {
 	 * Default log types: FATAL - ERROR - [ WARN ] - INFO - DEBUG
 	 */
 	public static inline function warn(message:String, ?tag:Tag, ?pos:PosInfos) {
-		#if (sneaker_log_level >= 300)
+		#if (!sneaker_print_disable && sneaker_log_level >= 300)
 		LogTypes.warn.print(message, tag, pos);
 		#end
 	}
@@ -61,7 +61,7 @@ class Log {
 	 * Default log types: FATAL - ERROR - WARN - [ INFO ] - DEBUG
 	 */
 	public static inline function info(message:String, ?tag:Tag, ?pos:PosInfos) {
-		#if (sneaker_log_level >= 400)
+		#if (!sneaker_print_disable && sneaker_log_level >= 400)
 		LogTypes.info.print(message, tag, pos);
 		#end
 	}
@@ -74,7 +74,7 @@ class Log {
 	 * Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]
 	 */
 	public static inline function debug(message:String, ?tag:Tag, ?pos:PosInfos) {
-		#if (sneaker_log_level >= 500)
+		#if (!sneaker_print_disable && sneaker_log_level >= 500)
 		LogTypes.debug.print(message, tag, pos);
 		#end
 	}

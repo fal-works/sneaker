@@ -70,7 +70,9 @@ class LogType {
 	 * `print()` can be disabled by `this.disablePrint()`, or even replaced with a custom function.
 	 */
 	public dynamic function print(message:String, ?tag:Tag, ?pos:PosInfos):Void {
+		#if !sneaker_print_disable
 		printIfMatch(this, message, tag, pos);
+		#end
 	}
 
 	/**
