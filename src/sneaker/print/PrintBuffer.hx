@@ -58,6 +58,14 @@ class PrintBuffer {
 	}
 
 	/**
+	 * Drops the current buffer by `pop()` and prints its content by `Print.printlnDirect()`
+	 * with a succeeding Line Feed.
+	 */
+	 public static function flushln():Void {
+		Print.printlnDirect(pop().toString());
+	}
+
+	/**
 	 * Clears the buffer stack.
 	 */
 	public static function clear():Void {

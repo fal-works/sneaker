@@ -120,6 +120,17 @@ class Print {
 	}
 
 	/**
+	 * Calls `PrintBuffer.flushln()`, but only if the compilation flag `sneaker_print_buffer` is set
+	 * and the variable `useBuffer` is `true`.
+	 */
+	 public static inline function flushlnBuffer():Void {
+		#if sneaker_print_buffer
+		if (useBuffer)
+			PrintBuffer.flushln();
+		#end
+	}
+
+	/**
 	 * Calls `PrintBuffer.flush()`, but only if the compilation flag `sneaker_print_buffer` is set
 	 * and the variable `useBuffer` is `true`.
 	 */
