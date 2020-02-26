@@ -3,6 +3,10 @@ package sneaker.print;
 import sneaker.format.StringBuffer;
 import sneaker.assertion.Asserter.unwrap;
 
+/**
+ * Static class that stores a stack of string buffers.
+ * Mainly used by `Print` class if the compilation flag `sneaker_print_buffer` is set.
+ */
 class PrintBuffer {
 	/**
 	 * The top element of the buffer stack.
