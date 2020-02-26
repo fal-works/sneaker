@@ -2,7 +2,7 @@ package sneaker.log;
 
 class Print {
 	/**
-	 * Prints `s` to the standard output, followed with a new line.
+	 * Outputs `s`, followed with a new line.
 	 * - On `sys` targets: Calls `Sys.println()`.
 	 * - Otherwise: Calls `trace()`.
 	 *
