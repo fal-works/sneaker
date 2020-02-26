@@ -1,6 +1,5 @@
 package sneaker.format;
 
-@:nullSafety(Strict)
 class StringBufExtension {
 	static inline final twoSpaces = "  ";
 

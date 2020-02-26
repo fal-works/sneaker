@@ -4,7 +4,6 @@ import sneaker.assertion.Asserter.*;
 import sneaker.tag.Tag;
 import sneaker.log.Print.println;
 
-@:nullSafety(Strict)
 class AssertionTest {
 	// assert
 	public static final assertTrue = () -> {

@@ -3,7 +3,6 @@ package sneaker.log;
 /**
  * Collection of standard log types.
  */
-@:nullSafety(Strict)
 class LogTypes {
 	public static var fatal = new LogType("[FATAL] ");
 	public static var error = new LogType("[ERROR] ");

@@ -4,7 +4,6 @@ import haxe.PosInfos;
 import sneaker.log.LogType;
 import sneaker.log.Log;
 
-@:nullSafety(Strict)
 class TaggedExtension {
 	/**
 	 * A shortcut for `thisObj.tag = new Tag(name, bits)`.

@@ -1,6 +1,5 @@
 package sneaker.log;
 
-@:nullSafety(Strict)
 class Print {
 	/**
 	 * Prints `s` to the standard output, followed with a new line.

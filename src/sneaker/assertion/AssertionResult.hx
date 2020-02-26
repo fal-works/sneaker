@@ -11,7 +11,6 @@ import sneaker.log.LogType;
 /**
  * Result of assertion, including evaluation results of sub-expressions.
  */
-@:nullSafety(Strict)
 class AssertionResult {
 	public static function createError(type:AssertionType, evaluationResults:Array<EvaluationResult>, ?tag:Tag, ?message:String, ?pos:PosInfos) {
 		return new AssertionResult(type, evaluationResults, Some(message.toOptionalString()), tag, pos);

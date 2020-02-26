@@ -6,7 +6,6 @@ import haxe.macro.Expr;
 import sneaker.log.LogType;
 import sneaker.tag.Tag;
 
-@:nullSafety(Strict)
 private class Evaluation {
 	/** Used as callback in `evaluationArray.map()`. */
 	public static final getExecutionExpression = (evaluation:Evaluation) -> evaluation.executionExpression;
@@ -26,7 +25,6 @@ private class Evaluation {
 /**
  * Collection of assertion functions.
  */
-@:nullSafety(Strict)
 class Asserter {
 	/**
 	 * Log type used for generating exception message.

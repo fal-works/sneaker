@@ -8,7 +8,6 @@ import haxe.PosInfos;
 /**
  * Base exception class.
  */
-@:nullSafety(Strict)
 class Exception {
 	/**
 	 * If `true` (default), each `Exception` instance will automatically store

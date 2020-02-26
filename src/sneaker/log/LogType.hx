@@ -9,7 +9,6 @@ import sneaker.tag.Tag;
  * Values that will be assigned when creating a new `LogType` instance.
  * Can also be replaced with custom functions.
  */
-@:nullSafety(Strict)
 class LogTypeDefaults {
 	public static var tagFilter = (?tag:Tag) -> true;
 	public static var positionFilter = (?pos:PosInfos) -> true;
@@ -22,7 +21,6 @@ class LogTypeDefaults {
  * Type of log data, e.g. WARNING, INFO etc.
  */
 @:using(sneaker.log.LogTypeExtension, sneaker.log.LogTypeFilterExtension)
-@:nullSafety(Strict)
 class LogType {
 	static final doNotPrint = (message:String, ?tag:Tag, ?pos:PosInfos) -> {};
 

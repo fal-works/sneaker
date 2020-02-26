@@ -2,7 +2,6 @@ package sneaker.format;
 
 import haxe.ds.Option;
 
-@:nullSafety(Strict)
 class StringExtension {
 	static final dot = ".";
 	static final slash = "/";

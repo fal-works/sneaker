@@ -3,7 +3,6 @@ package sneaker.assertion;
 /**
  * A pair of an expression string and its evaluated value.
  */
-@:nullSafety(Strict)
 class EvaluationResult {
 	public final expressionString:String;
 	public final value:Null<Any>;

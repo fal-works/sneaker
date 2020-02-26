@@ -1,6 +1,5 @@
 package sneaker.format;
 
-@:nullSafety(Strict)
 class IntExtension {
 	static final zero = "0";
 

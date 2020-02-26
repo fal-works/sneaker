@@ -1,6 +1,5 @@
 package sneaker.format;
 
-@:nullSafety(Strict)
 class PosInfosCallbacks {
 	public static final formatFile = PosInfosExtension.formatFile;
 	public static final formatClass = PosInfosExtension.formatClass;

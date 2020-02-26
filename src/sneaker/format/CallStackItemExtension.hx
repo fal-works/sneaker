@@ -3,7 +3,6 @@ package sneaker.format;
 import haxe.CallStack.StackItem;
 import sneaker.format.CallStackItemFormat.*;
 
-@:nullSafety(Strict)
 class CallStackItemExtension {
 	/**
 	 * Formats `item` and returns a `String` representation.

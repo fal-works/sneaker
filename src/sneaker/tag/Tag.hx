@@ -1,7 +1,6 @@
 package sneaker.tag;
 
 @:using(sneaker.tag.TagExtension)
-@:nullSafety(Strict)
 class Tag {
 	/** Name for inserting to log messages. */
 	public var name:String;

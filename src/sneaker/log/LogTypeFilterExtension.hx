@@ -1,6 +1,5 @@
 package sneaker.log;
 
-@:nullSafety(Strict)
 class LogTypeFilterExtension {
 	/**
 	 * Overwrite `thisType.tagFilter` with a new filter that checks the tag with `bitMask`.

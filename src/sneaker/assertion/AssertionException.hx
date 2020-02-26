@@ -5,7 +5,6 @@ import haxe.CallStack;
 /**
  * Exception raised by assertion failures.
  */
-@:nullSafety(Strict)
 class AssertionException extends sneaker.types.Exception {
 	public final result:AssertionResult;
 

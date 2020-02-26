@@ -8,7 +8,6 @@ import sneaker.format.CallStackItemExtension.format;
 /**
  * Customizable variables and functions used in `CallStackItemExtension.format()`.
  */
-@:nullSafety(Strict)
 class CallStackItemFormat {
 	/**
 	 * Set this to `true` for hiding file path in `formatFilePos()`.

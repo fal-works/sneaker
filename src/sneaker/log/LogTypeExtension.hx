@@ -3,7 +3,6 @@ package sneaker.log;
 import haxe.PosInfos;
 import sneaker.tag.Tag;
 
-@:nullSafety(Strict)
 class LogTypeExtension {
 	/**
 	 * Creates log as a `String` value using `thisType.format`, `thisType.prefix`

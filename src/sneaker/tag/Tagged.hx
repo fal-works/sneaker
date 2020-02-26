@@ -3,7 +3,6 @@ package sneaker.tag;
 /**
  * Base class which has a `tag` for logging.
  */
-@:nullSafety(Strict)
 class Tagged implements sneaker.tag.interfaces.Tagged {
 	/** Default `Tag` instance that will be attached when a `Tagged` instance is created. */
 	public static var defaultTag:Tag = new Tag("dummy");

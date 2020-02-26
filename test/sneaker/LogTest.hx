@@ -2,7 +2,6 @@ package sneaker;
 
 import sneaker.log.*;
 
-@:nullSafety(Strict)
 class LogTest {
 	// println
 	public static final println = () -> {

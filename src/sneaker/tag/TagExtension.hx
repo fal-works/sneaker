@@ -2,7 +2,6 @@ package sneaker.tag;
 
 import haxe.ds.Option;
 
-@:nullSafety(Strict)
 class TagExtencion {
 	/**
 	 * `String` value for indicating the absense of a tag.

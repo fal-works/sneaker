@@ -4,7 +4,6 @@ using sneaker.format.StringExtension;
 
 import haxe.PosInfos;
 
-@:nullSafety(Strict)
 class PosInfosExtension {
 	static final noPositionInfo = "(No position info)";
 
