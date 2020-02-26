@@ -5,7 +5,20 @@ using sneaker.format.PosInfosExtension;
 import haxe.PosInfos;
 import sneaker.log.LogType;
 import sneaker.log.LogFormats;
+import sneaker.print.Print;
 import sneaker.print.Print.println;
+import sneaker.print.PrintBuffer;
+
+/**
+ * Class for storing test result.
+ * Will be reset everytime when `Tester.test()` is called.
+ */
+class TestResult {
+	public static var exceptionCount = 0;
+
+	public static function reset()
+		exceptionCount = 0;
+}
 
 /**
  * Set of functions for doing simple unit tests.
@@ -39,35 +52,74 @@ class Tester {
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
+	public static function testCase(unit:TestCaseUnit):TestCaseNode {
+		return Leaf(unit);
+	}
+
+	public static function testCaseGroup(testCases:Array<TestCaseNode>):TestCaseNode {
+		return testCases.length == 0 ? emptyTestCase : Branch(testCases);
+	}
+
+	public static function test(testCasesRoot:TestCaseNode):Void {
+		final useBufferPreviousValue = Print.useBuffer;
+		Print.useBuffer = true;
+
+		TestResult.reset();
+		runCases(testCasesRoot);
+		println('\n${TestResult.exceptionCount} exception.');
+
+		Print.useBuffer = useBufferPreviousValue;
+	}
+
+	static final emptyTestCase:TestCaseNode = Leaf(TestCaseUnit.empty);
+
 	/**
 	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
 	 */
-	public static function runCase(testCase:() -> Void):Void {
+	static function runCaseUnit(unit:TestCaseUnit):Void {
+		var exceptionCaught = false;
 		try {
-			testCase();
+			unit.run();
 		} catch (exception:Dynamic) {
 			exceptionLogType.print('Exception caught:\n${exception}');
+			exceptionCaught = true;
+			++TestResult.exceptionCount;
+		}
+
+		switch (unit.type) {
+			case Ok:
+				PrintBuffer.flush();
+			case Exception:
+				PrintBuffer.flush();
+			case Visual:
+				PrintBuffer.flush();
+			case Empty:
 		}
 	}
 
 	/**
 	 * Runs each element of `testCases`, separating with a new line.
 	 */
-	public static function runCases(testCases:Array<() -> Void>):Void {
-		final length = testCases.length;
+	static function runCases(testCases:TestCaseNode):Void {
+		switch(testCases) {
+			case Branch(children):
+				final length = children.length;
 
-		switch (length) {
-			case 0:
-				return;
-			case 1:
-				runCase(testCases[0]);
-			default:
-				runCase(testCases[0]);
+				switch (length) {
+					case 0:
+						return;
+					case 1:
+						runCases(children[0]);
+					default:
+						runCases(children[0]);
 
-				for (i in 1...length) {
-					println("");
-					runCase(testCases[i]);
+						for (i in 1...length) {
+							println("");
+							runCases(children[i]);
+						}
 				}
+			case Leaf(unit):
+				runCaseUnit(unit);
 		}
 	}
 }

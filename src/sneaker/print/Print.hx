@@ -73,4 +73,15 @@ class Print {
 		println(s);
 		@:nullSafety(Off) throw s;
 	}
+
+	/**
+	 * Calls `PrintBuffer.flush()`, but only if the compilation flag `sneaker_print_buffer` is set
+	 * and the variable `useBuffer` is `true`.
+	 */
+	public static inline function flushBuffer():Void {
+		#if sneaker_print_buffer
+		if (useBuffer)
+			PrintBuffer.flush();
+		#end
+	}
 }
