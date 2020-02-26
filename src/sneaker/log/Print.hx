@@ -21,19 +21,19 @@ class Print {
 	}
 
 	/**
-	 * Prints `message` and also returns it.
+	 * Prints `s` and also returns it.
 	 */
 	@:generic
-	public static inline function printlnReturn<T>(message:Null<T>):Null<T> {
-		println(message);
-		return message;
+	public static inline function printlnReturn<T>(s:Null<T>):Null<T> {
+		println(s);
+		return s;
 	}
 
 	/**
-	 * Prints `message` and then throw it.
+	 * Prints `s` and then throw it.
 	 */
-	public static inline function printlnThrow<T>(message:Null<T>):Void {
-		println(message);
-		@:nullSafety(Off) throw message;
+	public static inline function printlnThrow<T>(s:Null<T>):Void {
+		println(s);
+		@:nullSafety(Off) throw s;
 	}
 }
