@@ -24,13 +24,30 @@ class TestCaseUnit {
 		PrintBuffer.pushNew();
 		#end
 
+		++record.caseCount;
+
 		var exceptionCaught = false;
 		try {
 			run();
 		} catch (exception:Dynamic) {
 			Tester.exceptionLogType.print('Exception caught:\n${exception}');
 			exceptionCaught = true;
-			++record.exceptionCount;
+		}
+
+		switch (type) {
+			case Ok:
+				Print.flushlnBuffer();
+				if (exceptionCaught)
+					++record.unExpectedExceptionCount;
+			case Exception:
+				Print.flushlnBuffer();
+				if (!exceptionCaught)
+					++record.unExpectedOkCount;
+			case Visual:
+				Print.flushlnBuffer();
+				++record.visualCount;
+				if (exceptionCaught)
+					++record.unExpectedExceptionCount;
 		}
 
 		#if sneaker_print_buffer
