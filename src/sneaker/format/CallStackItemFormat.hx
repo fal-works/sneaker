@@ -52,7 +52,7 @@ class CallStackItemFormat {
 	 * Formatting function used in `formatMethod()`.
 	 * Can be replaced with any custom function.
 	 */
-	public static var formatClass = (?className: String) -> {
+	public static var formatClass = (className: Null<String>) -> {
 		return className != null ? '${hidePackagePath ? className.sliceAfterLastDot() : className}' : "?";
 	};
 
@@ -60,7 +60,7 @@ class CallStackItemFormat {
 	 * Formatting function used for enum instance `Method(className, methodName)`.
 	 * Can be replaced with any custom function.
 	 */
-	public static var formatMethod = (?className: String, methodName: String) -> {
+	public static var formatMethod = (className: Null<String>, methodName: String) -> {
 		return '${formatClass(className)}::${methodName}';
 	};
 
