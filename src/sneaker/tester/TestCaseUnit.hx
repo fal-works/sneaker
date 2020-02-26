@@ -1,6 +1,7 @@
 package sneaker.tester;
 
 import sneaker.print.Print;
+import sneaker.print.PrintBuffer;
 
 @:structInit
 class TestCaseUnit {
@@ -18,6 +19,8 @@ class TestCaseUnit {
 	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
 	 */
 	public function runTestCaseUnit():Void {
+		PrintBuffer.pushNew();
+
 		var exceptionCaught = false;
 		try {
 			run();
@@ -29,14 +32,11 @@ class TestCaseUnit {
 
 		switch (type) {
 			case Ok:
-				Print.flushBuffer();
-				Print.println("");
+				Print.flushlnBuffer();
 			case Exception:
-				Print.flushBuffer();
-				Print.println("");
+				Print.flushlnBuffer();
 			case Visual:
-				Print.flushBuffer();
-				Print.println("");
+				Print.flushlnBuffer();
 			case Empty:
 		}
 	}
