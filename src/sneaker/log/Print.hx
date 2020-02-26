@@ -3,19 +3,19 @@ package sneaker.log;
 class Print {
 	/**
 	 * Used only if the compilation flag `sneaker_print_buffer` is set.
-	 *
-	 * If set to `true`, `println()` adds the string to the buffer (`PrintBuffer.current`)
-	 * instead of outputting directly.
+	 * @see `Print.println()`
 	 */
 	public static var useBuffer = false;
 
 	/**
-	 * Outputs `s`, followed with a new line.
-	 * - On `sys` targets: Calls `Sys.println()`.
-	 * - Otherwise: Calls `trace()`.
+	 * Outputs `s` followed with a new line.
+	 * - On `sys` targets: Uses `Sys.println()`.
+	 * - Otherwise: Uses `trace()`.
 	 *
-	 * Compilation flag:
-	 * - Disabled if `sneaker_print_disable` is set.
+	 * Compilation flags:
+	 * - If `sneaker_print_disable` is set, `println()` has no effect.
+	 * - If `sneaker_print_buffer` is set and the variable `Print.useBuffer` is `true`,
+	 *   it adds `s` to the buffer (`PrintBuffer.current`) instead of outputting directly.
 	 */
 	@:generic
 	public static function println<T>(s:Null<T>):Void {
@@ -30,8 +30,11 @@ class Print {
 	}
 
 	/**
-	 * Outputs `s` followed with a new line,
-	 * ignoring the compilation flag `sneaker_print_disable`.
+	 * Outputs `s` followed with a new line.
+	 *
+	 * Compilation flags:
+	 * - Disabled if `sneaker_print_disable` is set.
+	 * - `sneaker_print_buffer` is ignored (hence "Direct").
 	 */
 	@:generic
 	public static inline function printlnDirect<T>(s:Null<T>):Void {
@@ -41,8 +44,9 @@ class Print {
 	}
 
 	/**
-	 * Outputs `s` followed with a new line,
-	 * ignoring the compilation flag `sneaker_print_disable`.
+	 * Outputs `s` followed with a new line, ignoring the compilation flags below:
+	 * - `sneaker_print_disable`
+	 * - `sneaker_print_buffer`
 	 */
 	@:generic
 	public static inline function printlnForced<T>(s:Null<T>):Void {
@@ -54,7 +58,7 @@ class Print {
 	}
 
 	/**
-	 * Prints `s` and also returns it.
+	 * Prints `s` by `println()` and also returns it.
 	 */
 	@:generic
 	public static inline function printlnReturn<T>(s:Null<T>):Null<T> {
@@ -63,7 +67,7 @@ class Print {
 	}
 
 	/**
-	 * Prints `s` and then throw it.
+	 * Prints `s` by `println()` and then throw it.
 	 */
 	public static inline function printlnThrow<T>(s:Null<T>):Void {
 		println(s);
