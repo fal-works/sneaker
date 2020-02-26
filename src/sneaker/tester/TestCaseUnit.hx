@@ -63,8 +63,12 @@ class TestCaseUnit {
 		#if sneaker_print_buffer
 		if (!passed || !Tester.hidePassedResult)
 			Print.flushlnBuffer();
+		else
+			Print.println("");
 
 		Print.useBuffer = useBufferPreviousValue;
+		#else
+		Print.println("");
 		#end
 	}
 }
