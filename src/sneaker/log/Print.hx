@@ -12,11 +12,35 @@ class Print {
 	@:generic
 	public static function println<T>(s:Null<T>):Void {
 		#if !sneaker_print_disable
+		#if !sneaker_print_buffer
+		printlnForced(s);
+		#else
+		PrintBuffer.current.addLf(s);
+		#end
+		#end
+	}
+
+	/**
+	 * Outputs `s` followed with a new line,
+	 * ignoring the compilation flag `sneaker_print_disable`.
+	 */
+	@:generic
+	public static inline function printlnDirect<T>(s:Null<T>):Void {
+		#if !sneaker_print_disable
+		printlnForced(s);
+		#end
+	}
+
+	/**
+	 * Outputs `s` followed with a new line,
+	 * ignoring the compilation flag `sneaker_print_disable`.
+	 */
+	@:generic
+	public static inline function printlnForced<T>(s:Null<T>):Void {
 		#if sys
 		@:nullSafety(Off) Sys.println(s);
 		#else
 		trace(s);
-		#end
 		#end
 	}
 
