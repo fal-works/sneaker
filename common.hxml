@@ -10,4 +10,5 @@
 # -D sneaker_assertion_verbose
 # -D sneaker_tagged_disable
 # -D sneaker_print_disable
-# -D sneaker_print_buffer
+# -D sneaker_string_buffer_length_check_disable
+-D sneaker_print_buffer
