@@ -1,5 +1,7 @@
 package sneaker.tester;
 
+using sneaker.format.IntExtension;
+
 import sneaker.format.StringBuffer;
 
 /**
@@ -14,27 +16,28 @@ class TestRecord {
 	public function new() {}
 
 	public function toString() {
-		// super dirty implementation
+		final buffer = new StringBuffer();
 		final passedCount = caseCount - visualCount - unExpectedExceptionCount - unExpectedOkCount;
-		final onePassed = passedCount == 1;
+
+		// ---- super dirty implementation ----------------------------------------
 
 		final oneCase = caseCount == 1;
+		final onePassed = passedCount == 1;
 		final oneExeption = unExpectedExceptionCount == 1;
 		final oneOk = unExpectedOkCount == 1;
 		final oneVisual = visualCount == 1;
 
-		final buffer = new StringBuffer();
-		buffer.addLf('${caseCount} case${oneCase ? "" : "s"} tested.');
-		buffer.addLf('${passedCount} case${onePassed ? "" : "s"} passed.');
+		buffer.addLf('${caseCount.addLeadingSpaces(3)} case${oneCase ? "" : "s"} tested.');
+		buffer.addLf('${passedCount.addLeadingSpaces(3)} case${onePassed ? "" : "s"} passed.');
 
 		if (unExpectedExceptionCount > 0)
-			buffer.addLf('${unExpectedExceptionCount} unexpected exception${oneExeption ? "" : "s"} caught.');
+			buffer.addLf('${unExpectedExceptionCount.addLeadingSpaces(3)} unexpected exception${oneExeption ? "" : "s"} caught.');
 
 		if (unExpectedOkCount > 0)
-			buffer.addLf('${unExpectedOkCount} case${oneOk ? "" : "s"} did not raise any exception even though ${oneOk ? "it" : "they"} should.');
+			buffer.addLf('${unExpectedOkCount.addLeadingSpaces(3)} case${oneOk ? "" : "s"} did not raise any exception even though ${oneOk ? "it" : "they"} should.');
 
 		if (visualCount > 0)
-			buffer.addLf('${visualCount} case${oneVisual ? "" : "s"} need${oneVisual ? "s" : ""} to be confirmed visually.');
+			buffer.addLf('${visualCount.addLeadingSpaces(3)} case${oneVisual ? "" : "s"} need${oneVisual ? "s" : ""} to be confirmed visually.');
 
 		return buffer.toString();
 	}
