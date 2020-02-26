@@ -1,3 +1,5 @@
+# Common Build arguments
+
 -cp src
 -cp test
 -main Main
