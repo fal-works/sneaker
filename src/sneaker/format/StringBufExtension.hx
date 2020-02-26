@@ -1,6 +1,7 @@
 package sneaker.format;
 
 class StringBufExtension {
+	static inline final lineFeedCode = 10;
 	static inline final twoSpaces = "  ";
 
 	/**
@@ -17,7 +18,7 @@ class StringBufExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function lf(buf:StringBuf):StringBuf {
-		buf.add('\n');
+		buf.addChar(lineFeedCode);
 		return buf;
 	}
 
@@ -26,7 +27,12 @@ class StringBufExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function lfAdd<T>(buf:StringBuf, s:Null<T>):StringBuf {
+		#if sys
+		lf(buf);
+		addNullable(buf, s);
+		#else
 		@:nullSafety(Off) buf.add('\n${s}');
+		#end
 		return buf;
 	}
 
@@ -35,7 +41,12 @@ class StringBufExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function addLf<T>(buf:StringBuf, s:Null<T>):StringBuf {
+		#if sys
+		addNullable(buf, s);
+		lf(buf);
+		#else
 		@:nullSafety(Off) buf.add('${s}\n');
+		#end
 		return buf;
 	}
 
