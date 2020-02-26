@@ -32,12 +32,12 @@ class AssertionTest {
 	};
 	public static final unwrapError = () -> {
 		describe('This raises an exception because (obj) is null.');
-		final obj:Null<Dynamic> = null;
+		final obj:Null<Any> = null;
 		println(unwrap(obj));
 	};
 	public static final unwrapTagError = () -> {
 		describe('This raises an exception with a tag name, because (obj) is null.');
-		final obj:Null<Dynamic> = null;
+		final obj:Null<Any> = null;
 		final relatedTag = new Tag("someTagName");
 		println(unwrap(obj, relatedTag));
 	};
