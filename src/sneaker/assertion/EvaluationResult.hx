@@ -5,9 +5,9 @@ package sneaker.assertion;
  */
 class EvaluationResult {
 	public final expressionString:String;
-	public final value:Null<Any>;
+	public final value:Null<Dynamic>;
 
-	public function new(expressionString:String, value:Null<Any>) {
+	public function new(expressionString:String, value:Null<Dynamic>) {
 		this.expressionString = expressionString;
 		this.value = value;
 	}
