@@ -85,7 +85,8 @@ class AssertionResult {
 			case Some(message):
 				buffer.add('${assertionType} failed.');
 				final result = wholeEvaluationResult;
-				buffer.add(' (${result.expressionString}) is ${cast result.value}.');
+				@:nullSafety(Off)
+				buffer.add(' (${result.expressionString}) is ${result.value}.');
 				switch (message) {
 					case Some(messageValue): buffer.lfAdd('Message: ${messageValue}');
 					default:
