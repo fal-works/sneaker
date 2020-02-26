@@ -11,7 +11,7 @@ class TestCaseNodeExtension {
 					run(child);
 				}
 			case Leaf(unit):
-				unit.runTestCaseUnit();
+				unit.runAndCheck();
 		}
 	}
 }

@@ -18,7 +18,7 @@ class TestCaseUnit {
 	/**
 	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
 	 */
-	public function runTestCaseUnit():Void {
+	public function runAndCheck():Void {
 		#if sneaker_print_buffer
 		final useBufferPreviousValue = Print.useBuffer;
 		Print.useBuffer = true;
