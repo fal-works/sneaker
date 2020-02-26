@@ -51,10 +51,10 @@ class PrintBuffer {
 	}
 
 	/**
-	 * Drops the current buffer by `pop()` and prints its content by `Print.printlnDirect()`.
+	 * Drops the current buffer by `pop()` and prints its content by `Print.printDirect()`.
 	 */
 	public static function flush():Void {
-		Print.printlnDirect(pop().toString());
+		Print.printDirect(pop().toString());
 	}
 
 	/**
