@@ -5,7 +5,6 @@ using sneaker.format.PosInfosExtension;
 import haxe.PosInfos;
 import sneaker.log.LogType;
 import sneaker.log.LogFormats;
-import sneaker.print.Print;
 import sneaker.print.Print.println;
 
 /**
