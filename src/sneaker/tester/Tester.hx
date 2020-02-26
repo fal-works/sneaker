@@ -51,13 +51,8 @@ class Tester {
 	}
 
 	public static function test(testCasesRoot:TestCaseNode):Void {
-		final useBufferPreviousValue = Print.useBuffer;
-		Print.useBuffer = true;
-
 		TestResult.reset();
 		testCasesRoot.run();
-
-		Print.useBuffer = useBufferPreviousValue;
 
 		println('\n${TestResult.exceptionCount} exceptions.');
 	}

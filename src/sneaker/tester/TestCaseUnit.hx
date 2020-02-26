@@ -19,7 +19,11 @@ class TestCaseUnit {
 	 * Runs `testCase()` in `try/catch`. If anything caught, prints an ERROR log.
 	 */
 	public function runTestCaseUnit():Void {
+		#if sneaker_print_buffer
+		final useBufferPreviousValue = Print.useBuffer;
+		Print.useBuffer = true;
 		PrintBuffer.pushNew();
+		#end
 
 		var exceptionCaught = false;
 		try {
@@ -30,6 +34,7 @@ class TestCaseUnit {
 			++TestResult.exceptionCount;
 		}
 
+		#if sneaker_print_buffer
 		switch (type) {
 			case Ok:
 				Print.flushlnBuffer();
@@ -39,5 +44,8 @@ class TestCaseUnit {
 				Print.flushlnBuffer();
 			case Empty:
 		}
+
+		Print.useBuffer = useBufferPreviousValue;
+		#end
 	}
 }
