@@ -10,8 +10,8 @@ import haxe.PosInfos;
  */
 class Exception {
 	/**
-	 * If `true` (default), call stack information is appended to the content
-	 * when cast to `String`.
+	 * If `true` (default), call stack information (saved at the instanciation)
+	 * is appended to the content when cast to `String`.
 	 */
 	public var appendCallStack = true;
 
