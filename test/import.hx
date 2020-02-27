@@ -1,1 +1,1 @@
-import sneaker.tester.Tester.*;
+import sneaker.unit_test.Tester.*;

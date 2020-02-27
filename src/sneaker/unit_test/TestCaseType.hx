@@ -1,4 +1,4 @@
-package sneaker.tester;
+package sneaker.unit_test;
 
 /**
  * Type of test cases, which indicates what kind of results is expected.

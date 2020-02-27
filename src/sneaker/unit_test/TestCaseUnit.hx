@@ -1,4 +1,4 @@
-package sneaker.tester;
+package sneaker.unit_test;
 
 import sneaker.print.Print;
 

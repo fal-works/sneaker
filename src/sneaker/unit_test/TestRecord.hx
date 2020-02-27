@@ -1,4 +1,4 @@
-package sneaker.tester;
+package sneaker.unit_test;
 
 using sneaker.format.IntExtension;
 using sneaker.format.StringLanguageExtension;
