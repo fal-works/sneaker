@@ -12,6 +12,8 @@ class Exception {
 	/**
 	 * If `true`, call stack information (saved at the instanciation)
 	 * is appended to the content when casting an exception to `String`.
+	 *
+	 * The format can be customized in `sneaker.format.CallStackItemFormat`.
 	 */
 	public var appendCallStack: Bool;
 
