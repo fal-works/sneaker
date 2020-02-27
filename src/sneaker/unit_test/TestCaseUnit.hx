@@ -31,7 +31,7 @@ class TestCaseUnit {
 		try {
 			run();
 		} catch (exception:Dynamic) {
-			Tester.exceptionLogType.print('Exception caught:\n${exception}');
+			Tester.exceptionLogType.print('Exception caught: ${exception}');
 			exceptionCaught = true;
 		}
 
