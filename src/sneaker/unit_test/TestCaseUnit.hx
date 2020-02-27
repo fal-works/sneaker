@@ -5,6 +5,7 @@ import sneaker.print.Printer;
 /**
  * Class for each test case, internally used by `Tester` class.
  */
+@:structInit
 class TestCaseUnit {
 	public final run: () -> Void;
 	public final type: TestCaseType;
