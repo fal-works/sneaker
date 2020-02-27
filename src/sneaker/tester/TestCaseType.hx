@@ -8,7 +8,7 @@ enum TestCaseType {
 	Ok;
 
 	/** The test case should fail and throw anything. */
-	Exception;
+	Fail;
 
 	/** The result cannot be judged automatically and needs to be confirmed visually. */
 	Visual;

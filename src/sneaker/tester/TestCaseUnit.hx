@@ -42,7 +42,7 @@ class TestCaseUnit {
 					++record.unExpectedExceptionCount;
 					passed = false;
 				}
-			case Exception:
+			case Fail:
 				if (!exceptionCaught) {
 					++record.unExpectedOkCount;
 					passed = false;

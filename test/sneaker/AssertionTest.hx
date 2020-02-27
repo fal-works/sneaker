@@ -15,13 +15,13 @@ class AssertionTest {
 		final thisIsLess = 2;
 		final thisIsGreater = 1;
 		assert(thisIsLess < thisIsGreater);
-	}, Exception);
+	}, Fail);
 	public static final assertTagFalse = testCase(() -> {
 		describe("This raises an exception because the tag has wrong name.");
 		final tag = new Tag("someTagName");
 		tag.name = "someTagName";
 		assert(tag.name == "otherTagName", tag);
-	}, Exception);
+	}, Fail);
 	public static final assertTests = testCaseGroup([
 		assertTrue,
 		assertFalse,
@@ -38,13 +38,13 @@ class AssertionTest {
 		describe('This raises an exception because (obj) is null.');
 		final obj: Null<Any> = null;
 		println(unwrap(obj));
-	}, Exception);
+	}, Fail);
 	public static final unwrapTagError = testCase(() -> {
 		describe('This raises an exception with a tag name, because (obj) is null.');
 		final obj: Null<Any> = null;
 		final relatedTag = new Tag("someTagName");
 		println(unwrap(obj, relatedTag));
-	}, Exception);
+	}, Fail);
 	public static final unwrapTests = testCaseGroup([
 		unwrapOk,
 		unwrapError,
