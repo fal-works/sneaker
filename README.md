@@ -10,8 +10,27 @@ May or may not help you to debug.
 ## Features
 
 - Assertion
+	- Assert any expression that should result to `true` (e.g. `length > 0`)
+	- Check against `null`, or unwrap nullable values
 - Logging
-- Testing (quite naive)
+  - Filter by log levels (Fatal, Error, Warn, Info, Debug, other custom types)
+  - Filter by code position (class, method etc.)
+  - Filter by "tag"s (name & category bits) attached to any entity/instance
+  - Customize formats of log messages (including code position info)
+- Testing
+	- Categorize test cases (should be OK / should fail / need visual review)
+	- Group/manage/run test cases in a naive tree structure
+	- Hide results of test cases that successfully passed
+	- Print summary of results
+- Overall
+	- Disable assertion/logging by compiler flags
+	- Almost zero runtime cost when disabled
+
+## Downsides
+
+- All of this is nothing but reinventing the wheel
+- Don't know much about other libraries/frameworks
+- Not yet very well tested
 
 ## Usage
 
