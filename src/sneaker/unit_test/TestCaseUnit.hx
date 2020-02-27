@@ -62,7 +62,7 @@ class TestCaseUnit {
 		Printer.println("");
 
 		#if !sneaker_print_buffer_disable
-		if (passed && Tester.hidePassedResult)
+		if (passed && Tester.hidePassedResults)
 			Printer.buffer.clear();
 		else
 			Printer.buffer.flush();

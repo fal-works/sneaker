@@ -20,7 +20,7 @@ class Tester {
 	 * Compilation flag:
 	 * - If `sneaker_print_buffer_disable` is set, this variable has no effect.
 	 */
-	public static var hidePassedResult = false;
+	public static var hidePassedResults = false;
 
 	/**
 	 * Log type used in `Tester.describe()` (unless you replace the
