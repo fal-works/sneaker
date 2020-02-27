@@ -42,9 +42,11 @@ class Exception {
 	}
 
 	public function toString(): String {
+		final name = Type.getClassName(Type.getClass(this));
+
 		return if (appendCallStack)
-			'${content}\n\nCall Stack:\n${callStack.map(CallStackItemExtension.format).join("\n")}';
+			'${name}\n${content}\n\nCall Stack:\n${callStack.map(CallStackItemExtension.format).join("\n")}';
 		else
-			content;
+			'${name}\n${content}';
 	}
 }
