@@ -1,7 +1,9 @@
 package sneaker.assertion;
 
 using haxe.macro.Tools;
+#if sneaker_assertion_show_compilation
 using sneaker.format.StringLanguageExtension;
+#end
 
 import haxe.macro.Expr;
 import sneaker.log.LogType;
