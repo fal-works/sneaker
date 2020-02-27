@@ -1,6 +1,7 @@
 package sneaker.assertion;
 
 using haxe.macro.Tools;
+using sneaker.format.StringLanguageExtension;
 
 import haxe.macro.Expr;
 import sneaker.log.LogType;
@@ -82,7 +83,7 @@ class Asserter {
 		#if sneaker_assertion_verbose
 		final assertedString = expressionToAssert.toString();
 		inline function print(s: String) #if sys Sys.println #else trace #end (s);
-		print('[ASSERT] Found: ${assertedString}\t// ${evaluations.length} parts');
+		print('[ASSERT] Found: ${assertedString}\t// ${"part".formatNounCountPluralS(evaluations.length)}');
 		#end
 
 		return evaluations;

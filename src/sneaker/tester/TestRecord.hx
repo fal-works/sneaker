@@ -1,6 +1,7 @@
 package sneaker.tester;
 
 using sneaker.format.IntExtension;
+using sneaker.format.StringLanguageExtension;
 
 import sneaker.format.StringBuffer;
 
@@ -23,23 +24,20 @@ class TestRecord {
 
 		// ---- super dirty implementation ----------------------------------------
 
-		final oneCase = caseCount == 1;
-		final onePassed = passedCount == 1;
-		final oneExeption = unExpectedExceptionCount == 1;
-		final oneOk = unExpectedOkCount == 1;
-		final oneVisual = visualCount == 1;
+		inline function cases(count:Int) return "case".formatNounPluralS(count);
 
-		buffer.addLf('${caseCount.addLeadingSpaces(3)} case${oneCase ? "" : "s"} tested.');
-		buffer.addLf('${passedCount.addLeadingSpaces(3)} case${onePassed ? "" : "s"} passed.');
+		buffer.addLf('${caseCount.addLeadingSpaces(3)} ${cases(caseCount)} tested.');
+		buffer.addLf('${passedCount.addLeadingSpaces(3)} ${cases(passedCount)} passed.');
 
 		if (unExpectedExceptionCount > 0)
-			buffer.addLf('${unExpectedExceptionCount.addLeadingSpaces(3)} unexpected exception${oneExeption ? "" : "s"} caught.');
+			buffer.addLf('${unExpectedExceptionCount.addLeadingSpaces(3)} unexpected ${"exception".formatNounPluralS(unExpectedExceptionCount)} caught.');
 
+		final oneOk = unExpectedOkCount == 1;
 		if (unExpectedOkCount > 0)
-			buffer.addLf('${unExpectedOkCount.addLeadingSpaces(3)} case${oneOk ? "" : "s"} did not raise any exception even though ${oneOk ? "it" : "they"} should.');
+			buffer.addLf('${unExpectedOkCount.addLeadingSpaces(3)} ${cases(unExpectedOkCount)} did not raise any exception even though ${oneOk ? "it" : "they"} should.');
 
 		if (visualCount > 0)
-			buffer.addLf('${visualCount.addLeadingSpaces(3)} case${oneVisual ? "" : "s"} need${oneVisual ? "s" : ""} to be confirmed visually.');
+			buffer.addLf('${visualCount.addLeadingSpaces(3)} ${cases(visualCount)} ${"need".formatVerbSingularS(visualCount)} to be confirmed visually.');
 
 		return buffer.toString();
 	}
