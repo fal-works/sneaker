@@ -80,7 +80,7 @@ class Asserter {
 
 		preparePartRecursive(expressionToAssert);
 
-		#if sneaker_assertion_verbose
+		#if sneaker_assertion_show_compilation
 		final assertedString = expressionToAssert.toString();
 		inline function print(s: String) #if sys Sys.println #else trace #end (s);
 		print('[ASSERT] Found: ${assertedString}\t// ${"part".formatNounCountPluralS(evaluations.length)}');
@@ -94,7 +94,7 @@ class Asserter {
 	 *
 	 * Compilation flags:
 	 * - If `sneaker_assertion_disable` is set, `assert()` has no effect.
-	 * - If `sneaker_assertion_verbose` is set, prints additional info during the compilation.
+	 * - If `sneaker_assertion_show_compilation` is set, prints additional info during the compilation.
 	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
 	 *
 	 * @param boolExpression Expression that should not be `false`.

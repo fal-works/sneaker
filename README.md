@@ -34,7 +34,7 @@ May or may not help you to debug.
 |`sneaker_log_level`|`100` for FATAL, `200` for ERROR and so on. Defaults to `200`.|
 |`sneaker_assertion_disable`|Disables assertion.|
 |`sneaker_assertion_print_success`|Prints successful results.|
-|`sneaker_assertion_verbose`|Prints additional info during the compilation.|
+|`sneaker_assertion_show_compilation`|Prints additional info during the compilation.|
 |`sneaker_tagged_disable`|If set, no physical field for `Tagged.tag`.|
 |`sneaker_print_disable`|Disables all printing/logging features.|
 |`sneaker_print_buffer_disable`|Disables using buffer in `Print.println()`.|
