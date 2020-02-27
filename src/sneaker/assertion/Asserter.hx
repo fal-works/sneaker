@@ -100,6 +100,7 @@ class Asserter {
 	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
 	 *
 	 * @param boolExpression Expression that should not be `false`.
+	 * @param tag Any `Tag` of which name should be included in the exception text.
 	 * @param message Expression that generates message for inserting to the exception.
 	 */
 	@:noUsing
@@ -174,6 +175,7 @@ class Asserter {
 	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
 	 *
 	 * @param object Expression that should not be `null`.
+	 * @param tag Any `Tag` of which name should be included in the exception text.
 	 * @param message Expression that generates message for inserting to the exception.
 	 * @return Evaluation result of `object` that has been checked against null.
 	 */
