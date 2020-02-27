@@ -2,13 +2,12 @@ package sneaker.string_buffer;
 
 /**
  * Extended from `std.StringBuf`.
+ * Each time you try to add a value, it is processed and checked if it should really be added.
  *
- * Differences:
- * - Using `sneaker.string_buffer.StringBufExtension`
- * - Runs `this.onAdd()` every time a value is added
+ * Also using `sneaker.string_buffer.StringBufExtension`.
  */
 @:using(sneaker.string_buffer.StringBufExtension)
-class StringBuffer extends StringBuf {
+class CensoredStringBuffer extends StringBuf {
 	static final defaultOnAdd = (_s: String) -> true;
 
 	/**

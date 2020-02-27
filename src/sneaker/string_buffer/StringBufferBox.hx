@@ -1,10 +1,10 @@
 package sneaker.string_buffer;
 
 /**
- * Wrapper of `StringBuffer` that can limit the number of additions and the maximum total length.
+ * Wrapper of `CensoredStringBuffer` that can limit the number of additions and the maximum total length.
  */
 class StringBufferBox {
-	public var buffer(default, null): StringBuffer;
+	public var buffer(default, null): CensoredStringBuffer;
 	public var onFull: (bufferedString: String) -> Void;
 	public var maxLength: Int;
 	public var maxCount: Int;
@@ -25,7 +25,7 @@ class StringBufferBox {
 		maxLength = 8192,
 		maxCount = 1024
 	) {
-		this.buffer = new StringBuffer();
+		this.buffer = new CensoredStringBuffer();
 		this.onFull = onFull;
 		this.maxLength = maxLength;
 		this.maxCount = maxCount;
@@ -98,7 +98,7 @@ class StringBufferBox {
 		}
 	}
 
-	function createNewBuffer(): StringBuffer {
-		return new StringBuffer(onAddBuffer);
+	function createNewBuffer(): CensoredStringBuffer {
+		return new CensoredStringBuffer(onAddBuffer);
 	}
 }

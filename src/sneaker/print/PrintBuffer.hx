@@ -1,6 +1,6 @@
 package sneaker.print;
 
-import sneaker.string_buffer.StringBuffer;
+import sneaker.string_buffer.CensoredStringBuffer;
 import sneaker.string_buffer.StringBufferBox;
 
 /**
@@ -23,11 +23,12 @@ abstract PrintBuffer(StringBufferBox) to StringBufferBox {
 	}
 
 	/**
-	 * The underlying `StringBuffer`.
-	 * Note that this does not always refer to the same instance.
+	 * Current buffer data (`CensoredStringBuffer` class, which extends `std.StringBuf`).
+	 *
+	 * Can also be used to add values directly, however note that this does not always refer to the same instance.
 	 * @see `sneaker.string_buffer.StringBufferBox`
 	 */
-	public var current(get, never): StringBuffer;
+	public var current(get, never): CensoredStringBuffer;
 
 	inline function get_current()
 		return this.buffer;
