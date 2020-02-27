@@ -1,7 +1,7 @@
 package sneaker.format;
 
 /**
- * Extended from `StringBuf` in the standard library.
+ * Extended from `std.StringBuf`.
  *
  * Differences:
  * - Does a max length check in `add()`, unless the compilation flag
