@@ -1,4 +1,4 @@
-package sneaker.format;
+package sneaker.string_buffer;
 
 class StringBufExtension {
 	static inline final lineFeedCode = 10;

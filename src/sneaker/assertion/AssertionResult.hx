@@ -6,7 +6,7 @@ import haxe.PosInfos;
 import haxe.ds.Option;
 import sneaker.tag.Tag;
 import sneaker.log.LogType;
-import sneaker.format.StringBuffer;
+import sneaker.string_buffer.StringBuffer;
 
 /**
  * Result of assertion, including evaluation results of sub-expressions.

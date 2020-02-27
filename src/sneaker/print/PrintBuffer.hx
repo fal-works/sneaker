@@ -1,10 +1,10 @@
 package sneaker.print;
 
-import sneaker.format.StringBuffer;
-import sneaker.format.StringBufferBox;
+import sneaker.string_buffer.StringBuffer;
+import sneaker.string_buffer.StringBufferBox;
 
 /**
- * Thin wrapper of `sneaker.format.StringBufferBox`.
+ * Thin wrapper of `sneaker.string_buffer.StringBufferBox`.
  * It prints its data when you call `flush()`, or automatically if it is getting full.
  * Mainly used by the `Printer` class (`Printer.buffer`).
  *
@@ -25,7 +25,7 @@ abstract PrintBuffer(StringBufferBox) to StringBufferBox {
 	/**
 	 * The underlying `StringBuffer`.
 	 * Note that this does not always refer to the same instance.
-	 * @see `sneaker.format.StringBufferBox`
+	 * @see `sneaker.string_buffer.StringBufferBox`
 	 */
 	public var current(get, never): StringBuffer;
 

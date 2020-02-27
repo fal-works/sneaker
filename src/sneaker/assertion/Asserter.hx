@@ -2,7 +2,7 @@ package sneaker.assertion;
 
 using haxe.macro.Tools;
 #if sneaker_assertion_show_compilation
-using sneaker.format.StringLanguageExtension;
+using sneaker.string_buffer.StringLanguageExtension;
 #end
 
 import haxe.macro.Expr;

@@ -3,7 +3,7 @@ package sneaker.unit_test;
 using sneaker.format.IntExtension;
 using sneaker.format.StringLanguageExtension;
 
-import sneaker.format.StringBuffer;
+import sneaker.string_buffer.StringBuffer;
 
 // @formatter:off
 

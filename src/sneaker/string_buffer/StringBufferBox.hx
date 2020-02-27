@@ -1,4 +1,4 @@
-package sneaker.format;
+package sneaker.string_buffer;
 
 /**
  * Wrapper of `StringBuffer` that can limit the number of additions and the maximum total length.

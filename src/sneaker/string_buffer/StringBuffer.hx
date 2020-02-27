@@ -1,13 +1,13 @@
-package sneaker.format;
+package sneaker.string_buffer;
 
 /**
  * Extended from `std.StringBuf`.
  *
  * Differences:
- * - Using `sneaker.format.StringBufExtension`
+ * - Using `sneaker.string_buffer.StringBufExtension`
  * - Runs `this.onAdd()` every time a value is added
  */
-@:using(sneaker.format.StringBufExtension)
+@:using(sneaker.string_buffer.StringBufExtension)
 class StringBuffer extends StringBuf {
 	static final defaultOnAdd = (_s: String) -> true;
 
