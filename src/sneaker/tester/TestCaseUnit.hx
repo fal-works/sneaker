@@ -19,7 +19,7 @@ class TestCaseUnit {
 	 * If anything caught, prints it and goes on without throwing again.
 	 */
 	public function runAndCheck(record: TestRecord): Void {
-		#if sneaker_print_buffer
+		#if !sneaker_print_buffer_disable
 		final useBufferPreviousValue = Print.useBuffer;
 		Print.useBuffer = true;
 		#end
@@ -60,7 +60,7 @@ class TestCaseUnit {
 
 		Print.println("");
 
-		#if sneaker_print_buffer
+		#if !sneaker_print_buffer_disable
 		if (!passed || !Tester.hidePassedResult)
 			Print.buffer.flush();
 		else

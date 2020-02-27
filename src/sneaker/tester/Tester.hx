@@ -17,7 +17,8 @@ class Tester {
 	 * This helps you to check only the unexpected results or the cases that should confirmed visually
 	 * (and you can still see the aggregate results).
 	 *
-	 * Required: Compilation flag `sneaker_print_buffer` (if not set, this variable has no effect).
+	 * Compilation flag:
+	 * - If `sneaker_print_buffer_disable` is set, this variable has no effect.
 	 */
 	public static var hidePassedResult = false;
 

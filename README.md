@@ -37,4 +37,4 @@ May or may not help you to debug.
 |`sneaker_assertion_verbose`|Prints additional info during the compilation.|
 |`sneaker_tagged_disable`|If set, no physical field for `Tagged.tag`.|
 |`sneaker_print_disable`|Disables all printing/logging features.|
-|`sneaker_print_buffer`|Enables to use buffer in `Print.println()`.|
+|`sneaker_print_buffer_disable`|Disables using buffer in `Print.println()`.|
