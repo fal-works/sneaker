@@ -75,7 +75,7 @@ class LogTest {
 	public static final logTypeLogFormat = testCase(() -> {
 		describe("This prints a log message in another format (only prefix and message).");
 		final logType = new LogType("[log line prefix]");
-		logType.logFormat = sneaker.log.LogFormats.prefixMessage;
+		logType.logFormat = LogFormats.prefixMessage;
 		logType.print("(log message)");
 	}, Visual);
 	public static final logTypeChangeTests = testCaseGroup([
@@ -100,14 +100,14 @@ class LogTest {
 	public static final logTypeError = testCase(() -> {
 		// -D sneaker_log_level=200
 		describe("This prints an error message.");
-		sneaker.log.LogTypes.error.print("(message)");
+		LogTypes.error.print("(message)");
 	}, Visual);
 
 	// log directly
 	public static final directlyError = testCase(() -> {
 		// -D sneaker_log_level=200
 		describe("This prints an error message.");
-		sneaker.log.Log.error("(message)");
+		Logger.error("(message)");
 	}, Visual);
 	public static final directlyErrorTagged = testCase(() -> {
 		// -D sneaker_log_level=200
@@ -119,7 +119,7 @@ class LogTest {
 	public static final directlyWarn = testCase(() -> {
 		// -D sneaker_log_level=200
 		describe("This has no effect if sneaker_log_level < 300.");
-		sneaker.log.Log.warn("(message)");
+		Logger.warn("(message)");
 	}, Visual);
 	public static final logdirectTests = testCaseGroup([
 		directlyError,

@@ -2,7 +2,7 @@ package sneaker.tag;
 
 import haxe.PosInfos;
 import sneaker.log.LogType;
-import sneaker.log.Log;
+import sneaker.log.Logger;
 
 // @formatter:off
 
@@ -22,7 +22,7 @@ class TaggedExtension {
 	 * Output `message` as a log of any `logType`.
 	 */
 	public static inline function log(thisObj: Tagged, logType: LogType, message: String, ?pos: PosInfos) {
-		Log.log(logType, message, thisObj.tag, pos);
+		Logger.log(logType, message, thisObj.tag, pos);
 	}
 
 	/**
@@ -33,7 +33,7 @@ class TaggedExtension {
 	 * Default log types: [ FATAL ] - ERROR - WARN - INFO - DEBUG
 	 */
 	public static inline function fatal(thisObj: Tagged, message: String, ?pos: PosInfos) {
-		Log.fatal(message, thisObj.tag, pos);
+		Logger.fatal(message, thisObj.tag, pos);
 	}
 
 	/**
@@ -44,7 +44,7 @@ class TaggedExtension {
 	 * Default log types: FATAL - [ ERROR ]  - WARN - INFO - DEBUG
 	 */
 	public static inline function error(thisObj: Tagged, message: String, ?pos: PosInfos) {
-		Log.error(message, thisObj.tag, pos);
+		Logger.error(message, thisObj.tag, pos);
 	}
 
 	/**
@@ -56,7 +56,7 @@ class TaggedExtension {
 	 * Default log types: FATAL - ERROR - [ WARN ] - INFO - DEBUG
 	 */
 	public static inline function warn(thisObj: Tagged, message: String, ?pos: PosInfos) {
-		Log.warn(message, thisObj.tag, pos);
+		Logger.warn(message, thisObj.tag, pos);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class TaggedExtension {
 	 * Default log types: FATAL - ERROR - WARN - [ INFO ] - DEBUG
 	 */
 	public static inline function info(thisObj: Tagged, message: String, ?pos: PosInfos) {
-		Log.info(message, thisObj.tag, pos);
+		Logger.info(message, thisObj.tag, pos);
 	}
 
 	/**
@@ -79,6 +79,6 @@ class TaggedExtension {
 	 * Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]a
 	 */
 	public static inline function debug(thisObj: Tagged, message: String, ?pos: PosInfos) {
-		Log.debug(message, thisObj.tag, pos);
+		Logger.debug(message, thisObj.tag, pos);
 	}
 }

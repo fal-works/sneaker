@@ -4,7 +4,7 @@ import haxe.PosInfos;
 import sneaker.tag.Tag;
 import sneaker.log.LogTypes;
 
-class Log {
+class Logger {
 	/**
 	 * Prints log of any `logType`.
 	 */
