@@ -15,7 +15,11 @@ import sneaker.format.StringBufferBox;
 @:forward(flush, clear)
 abstract PrintBuffer(StringBufferBox) to StringBufferBox {
 	public inline function new(?maxLength: Int, ?maxCount: Int) {
-		this = new StringBufferBox(PrintCallbacks.printDirect, maxLength, maxCount);
+		this = new StringBufferBox(
+			PrintCallbacks.printDirect,
+			maxLength,
+			maxCount
+		);
 	}
 
 	/**

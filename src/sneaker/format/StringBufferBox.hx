@@ -20,7 +20,11 @@ class StringBufferBox {
 	 * @param maxCount (optional) If the number of additions to the buffer exceeds `maxCount`,
 	 * `onFull()` is called automatically.
 	 */
-	public function new(onFull: (bufferedString: String) -> Void, maxLength = 8192, maxCount = 1024) {
+	public function new(
+		onFull: (bufferedString: String) -> Void,
+		maxLength = 8192,
+		maxCount = 1024
+	) {
 		this.buffer = new StringBuffer();
 		this.onFull = onFull;
 		this.maxLength = maxLength;
@@ -64,7 +68,7 @@ class StringBufferBox {
 	 * 2. Clears the buffer.
 	 * 3. Adds `s` to the cleared buffer without invoking its `onAdd()`.
 	 */
-	 public inline function flushAdd(s: String): Void {
+	public inline function flushAdd(s: String): Void {
 		runOnFull();
 		clearAdd(s);
 	}
