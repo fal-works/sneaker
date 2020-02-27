@@ -1,24 +1,12 @@
 package sneaker.format;
 
-import haxe.ds.Option;
-
 class StringCallbacks {
-	static final dot = ".";
-	static final slash = "/";
-
-	/**
-	 * Converts `Null<T>` to `Option<String>`.
-	 * @return `None` if null, `Some(s)` if not null.
-	 */
+	/** @see `StringExtension.toOptionalString` */
 	public static final toOptionalString = StringExtension.toOptionalString;
 
-	/**
-	 * @return Sub-string after the last occurrence of dot (`.`).
-	 */
+	/** @see `StringExtension.sliceAfterLastDot` */
 	public static final sliceAfterLastDot = StringExtension.sliceAfterLastDot;
 
-	/**
-	 * @return Sub-string after the last occurrence of slash (`/`).
-	 */
+	/** @see `StringExtension.sliceAfterLastSlash` */
 	public static final sliceAfterLastSlash = StringExtension.sliceAfterLastSlash;
 }
