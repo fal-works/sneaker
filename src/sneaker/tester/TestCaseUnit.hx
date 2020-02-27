@@ -61,10 +61,10 @@ class TestCaseUnit {
 		Print.println("");
 
 		#if !sneaker_print_buffer_disable
-		if (!passed || !Tester.hidePassedResult)
-			Print.buffer.flush();
-		else
+		if (passed && Tester.hidePassedResult)
 			Print.buffer.clear();
+		else
+			Print.buffer.flush();
 
 		Print.useBuffer = useBufferPreviousValue;
 		#end
