@@ -2,7 +2,7 @@ package sneaker;
 
 import sneaker.assertion.Asserter.*;
 import sneaker.tag.Tag;
-import sneaker.print.Print.println;
+import sneaker.print.Printer.println;
 
 class AssertionTest {
 	// assert

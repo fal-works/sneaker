@@ -1,15 +1,15 @@
 package sneaker.print;
 
-class Print {
+class Printer {
 	/**
-	 * The buffer used when `Print.useBuffer` is `true`.
-	 * @see `Print.println()`
+	 * The buffer used when `Printer.useBuffer` is `true`.
+	 * @see `Printer.println()`
 	 */
 	public static final buffer = new PrintBuffer();
 
 	/**
-	 * If `true`, `Print.println()` and `Print.print()` use `Print.buffer`.
-	 * @see `Print.println()`
+	 * If `true`, `Printer.println()` and `Printer.print()` use `Printer.buffer`.
+	 * @see `Printer.println()`
 	 */
 	public static var useBuffer = false;
 
@@ -26,8 +26,8 @@ class Print {
 	#end
 
 	/**
-	 * The value that was most recently buffered via `Print.println()` or `Print.print()`.
-	 * It does not reflect values that are added directly to `Print.buffer`.
+	 * The value that was most recently buffered via `Printer.println()` or `Printer.print()`.
+	 * It does not reflect values that are added directly to `Printer.buffer`.
 	 *
 	 * Compilation flag:
 	 * - If `sneaker_print_last_disable` is set, it is always `null`.
@@ -43,13 +43,13 @@ class Print {
 	 * - On `sys` targets: Uses `Sys.println()`.
 	 * - Otherwise: Uses `trace()`.
 	 *
-	 * If `Print.useBuffer` is `true`, it adds the given `s` to the buffer (`Print.buffer.current`)
+	 * If `Printer.useBuffer` is `true`, it adds the given `s` to the buffer (`Printer.buffer.current`)
 	 * instead of outputting directly, and the result is printed if the buffer is full
-	 * or when you call `Print.buffer.flush()`.
+	 * or when you call `Printer.buffer.flush()`.
 	 *
 	 * Compilation flags:
 	 * - If `sneaker_print_disable` is set, `println()` has no effect.
-	 * - If `sneaker_print_buffer_disable` is set, `Print.useBuffer` is ignored.
+	 * - If `sneaker_print_buffer_disable` is set, `Printer.useBuffer` is ignored.
 	 */
 	@:generic
 	public static function println<T>(s: Null<T>): Void {
@@ -72,7 +72,7 @@ class Print {
 	/**
 	 * Outputs `s` without a new line.
 	 *
-	 * On non-sys targets, this uses `trace()` as well as `Print.println()` does, so
+	 * On non-sys targets, this uses `trace()` as well as `Printer.println()` does, so
 	 * note that it works inconsistently among targets and also depending on whether
 	 * you use the buffer.
 	 *
@@ -98,7 +98,7 @@ class Print {
 
 	/**
 	 * Outputs `s` followed with a new line,
-	 * ignoring the variable `Print.useBuffer` (hence "Direct").
+	 * ignoring the variable `Printer.useBuffer` (hence "Direct").
 	 *
 	 * Compilation flag:
 	 * - Disabled if `sneaker_print_disable` is set.
@@ -123,7 +123,7 @@ class Print {
 
 	/**
 	 * Outputs `s` followed with a new line, ignoring the compilation flag `sneaker_print_disable`
-	 * and the variable `Print.useBuffer`.
+	 * and the variable `Printer.useBuffer`.
 	 */
 	@:generic
 	public static inline function printlnForced<T>(s: Null<T>): Void {
@@ -140,7 +140,7 @@ class Print {
 
 	/**
 	 * Outputs `s` without a new line, ignoring the compilation flag `sneaker_print_disable`
-	 * and the variable `Print.useBuffer`.
+	 * and the variable `Printer.useBuffer`.
 	 */
 	@:generic
 	public static inline function printForced<T>(s: Null<T>): Void {

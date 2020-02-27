@@ -7,7 +7,7 @@ class LogTest {
 	// println
 	public static final println = testCase(() -> {
 		describe("This prints \"AAA\".");
-		Print.println("AAA");
+		Printer.println("AAA");
 	}, Visual);
 
 	// logType

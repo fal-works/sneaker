@@ -2,7 +2,7 @@ package sneaker.log;
 
 import haxe.PosInfos;
 import sneaker.tag.Tag;
-import sneaker.print.Print;
+import sneaker.print.Printer;
 
 class LogTypeExtension {
 	/**
@@ -27,7 +27,7 @@ class LogTypeExtension {
 		?tag: Tag,
 		?pos: PosInfos
 	): Void {
-		Print.println(createLogString(thisType, message, tag, pos));
+		Printer.println(createLogString(thisType, message, tag, pos));
 	}
 
 	/**
