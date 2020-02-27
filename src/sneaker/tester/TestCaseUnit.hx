@@ -1,7 +1,6 @@
 package sneaker.tester;
 
 import sneaker.print.Print;
-import sneaker.print.PrintBuffer;
 
 /**
  * Class for each test case, internally used by `Tester` class.
@@ -23,7 +22,6 @@ class TestCaseUnit {
 		#if sneaker_print_buffer
 		final useBufferPreviousValue = Print.useBuffer;
 		Print.useBuffer = true;
-		PrintBuffer.pushNew();
 		#end
 
 		++record.caseCount;
@@ -60,15 +58,15 @@ class TestCaseUnit {
 		if (passed)
 			++record.passedCount;
 
+		Print.println("");
+
 		#if sneaker_print_buffer
 		if (!passed || !Tester.hidePassedResult)
-			Print.flushlnBuffer();
+			Print.buffer.flush();
 		else
-			Print.println("");
+			Print.buffer.clear();
 
 		Print.useBuffer = useBufferPreviousValue;
-		#else
-		Print.println("");
 		#end
 	}
 }

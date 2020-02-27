@@ -1,6 +1,10 @@
 package sneaker.print;
 
+import sneaker.format.StringBufferBox;
+
 class Print {
+	public static final buffer = new PrintBuffer();
+
 	/**
 	 * Used only if the compilation flag `sneaker_print_buffer` is set.
 	 * @see `Print.println()`
@@ -15,13 +19,13 @@ class Print {
 	 * Compilation flags:
 	 * - If `sneaker_print_disable` is set, `println()` has no effect.
 	 * - If `sneaker_print_buffer` is set and the variable `Print.useBuffer` is `true`,
-	 *   it adds `s` to the buffer (`PrintBuffer.current`) instead of outputting directly.
+	 *   it adds `s` to the buffer (`Print.buffer.current`) instead of outputting directly.
 	 */
 	@:generic
 	public static function println<T>(s: Null<T>): Void {
 		#if sneaker_print_buffer
 		if (useBuffer) {
-			PrintBuffer.current.addLf(s);
+			buffer.current.addLf(s);
 			return;
 		}
 		#end
@@ -43,7 +47,7 @@ class Print {
 	public static function print<T>(s: Null<T>): Void {
 		#if sneaker_print_buffer
 		if (useBuffer) {
-			PrintBuffer.current.addNullable(s);
+			buffer.current.addNullable(s);
 			return;
 		}
 		#end
@@ -118,27 +122,5 @@ class Print {
 	public static inline function printlnThrow<T>(s: Null<T>): Void {
 		println(s);
 		@:nullSafety(Off) throw s;
-	}
-
-	/**
-	 * Calls `PrintBuffer.flushln()`, but only if the compilation flag `sneaker_print_buffer` is set
-	 * and the variable `useBuffer` is `true`.
-	 */
-	public static inline function flushlnBuffer(): Void {
-		#if sneaker_print_buffer
-		if (useBuffer)
-			PrintBuffer.flushln();
-		#end
-	}
-
-	/**
-	 * Calls `PrintBuffer.flush()`, but only if the compilation flag `sneaker_print_buffer` is set
-	 * and the variable `useBuffer` is `true`.
-	 */
-	public static inline function flushBuffer(): Void {
-		#if sneaker_print_buffer
-		if (useBuffer)
-			PrintBuffer.flush();
-		#end
 	}
 }

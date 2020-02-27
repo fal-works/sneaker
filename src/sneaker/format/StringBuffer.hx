@@ -4,35 +4,44 @@ package sneaker.format;
  * Extended from `std.StringBuf`.
  *
  * Differences:
- * - Does a max length check in `add()`, unless the compilation flag
- *   `sneaker_string_buffer_length_check_disable` is set
  * - Using `sneaker.format.StringBufExtension`
+ * - Runs `this.onAdd()` every time a value is added
  */
 @:using(sneaker.format.StringBufExtension)
 class StringBuffer extends StringBuf {
-	public var dataMaxLength: Int;
+	static final defaultOnAdd = (_s: String) -> true;
 
 	/**
-	 * @param maxLength The max length of string that this buffer can contain.
+	 * Function that receives any value being added and
+	 * checks if it should eventually be added to `this`.
 	 */
-	public function new(maxLength = 16384) {
+	public var onAdd: (addedString: String) -> Bool;
+
+	/**
+	 * @param onAdd (optional) Every time you try to add a value to `this`,
+	 * `onAdd()` will receive and process that value.
+	 * `onAdd()` should return `false` if the value should not eventually be added to `this`.
+	 */
+	public function new(?onAdd: (addedString: String) -> Bool) {
 		super();
-		this.dataMaxLength = maxLength;
+		this.onAdd = if (onAdd != null) onAdd else defaultOnAdd;
 	}
 
-	#if !sneaker_string_buffer_length_check_disable
 	/**
-	 * Adds `x` to `this` unless the total length will not exceed `this.dataMaxLength`.
-	 *
-	 * Compilation flag:
-	 * - Set `sneaker_string_buffer_length_check_disable` to true
-	 *   for disabling the max length check.
+	 * Adds `x` by the following procedure:
+	 * 1. Converts `x` to a `String` value.
+	 * 2. Runs `this.onAdd()` passing that string value.
+	 * 3. Only if `this.onAdd()` returns `true`, adds the string value to `this`.
 	 */
 	override public function add<T>(x: T) {
 		final s = Std.string(x);
-
-		if (this.length + s.length < this.dataMaxLength)
-			super.add(s);
+		if (onAdd(s)) super.add(s);
 	}
-	#end
+
+	/**
+	 * Adds `x` to `this` ignoring `this.onAdd`. Same as `StringBuf.add()`.
+	 */
+	public function addDirect<T>(x: T) {
+		super.add(x);
+	}
 }

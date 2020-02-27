@@ -1,80 +1,21 @@
 package sneaker.print;
 
 import sneaker.format.StringBuffer;
-import sneaker.assertion.Asserter.unwrap;
+import sneaker.format.StringBufferBox;
 
-/**
- * Static class that stores a stack of string buffers.
- * Mainly used by `Print` class if the compilation flag `sneaker_print_buffer` is set.
- */
-class PrintBuffer {
-	/**
-	 * The top element of the buffer stack.
-	 */
-	public static var current(get, never): StringBuffer;
-
-	static inline function get_current(): StringBuffer {
-		return stack[topIndex];
+@:forward(flush, clear)
+abstract PrintBuffer(StringBufferBox) to StringBufferBox {
+	public inline function new() {
+		this = new StringBufferBox(PrintCallbacks.printDirect);
 	}
 
 	/**
-	 * Pushes `buffer` to the buffer stack.
+	 * The underlying `StringBuffer`.
+	 * Note that this does not always refer to the same instance.
+	 * @see `sneaker.format.StringBufferBox`
 	 */
-	public static function push(buffer: StringBuffer): Void {
-		stack.push(buffer);
-		++topIndex;
-	}
+	public var current(get, never): StringBuffer;
 
-	/**
-	 * Creates a new `StringBuffer` and pushes it to the buffer stack.
-	 * @return The newly created buffer.
-	 */
-	public static function pushNew() {
-		final newBuffer = new StringBuffer();
-		push(newBuffer);
-
-		return newBuffer;
-	}
-
-	/**
-	 * Pops the top element of the buffer stack.
-	 * If this operation empties the stack, a new buffer element is automatically added.
-	 */
-	public static function pop(): StringBuffer {
-		final popped = unwrap(stack.pop());
-
-		if (topIndex > 0)
-			--topIndex;
-		else
-			stack.push(new StringBuffer());
-
-		return popped;
-	}
-
-	/**
-	 * Drops the current buffer by `pop()` and prints its content by `Print.printDirect()`.
-	 */
-	public static function flush(): Void {
-		Print.printDirect(pop().toString());
-	}
-
-	/**
-	 * Drops the current buffer by `pop()` and prints its content by `Print.printlnDirect()`
-	 * with a succeeding Line Feed.
-	 */
-	public static function flushln(): Void {
-		Print.printlnDirect(pop().toString());
-	}
-
-	/**
-	 * Clears the buffer stack.
-	 */
-	public static function clear(): Void {
-		stack.resize(0);
-		stack.push(new StringBuffer());
-		topIndex = 0;
-	}
-
-	static final stack: Array<StringBuffer> = [new StringBuffer()];
-	static var topIndex = 0;
+	inline function get_current()
+		return this.buffer;
 }
