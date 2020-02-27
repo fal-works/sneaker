@@ -14,14 +14,14 @@ class CensoredStringBuffer extends StringBuf {
 	 * Function that receives any value being added and
 	 * checks if it should eventually be added to `this`.
 	 */
-	public var onAdd: (addedString: String) -> Bool;
+	public var onAdd: (addingString: String) -> Bool;
 
 	/**
 	 * @param onAdd (optional) Every time you try to add a value to `this`,
 	 * `onAdd()` will receive and process that value.
 	 * `onAdd()` should return `false` if the value should not eventually be added to `this`.
 	 */
-	public function new(?onAdd: (addedString: String) -> Bool) {
+	public function new(?onAdd: (addingString: String) -> Bool) {
 		super();
 		this.onAdd = if (onAdd != null) onAdd else defaultOnAdd;
 	}
