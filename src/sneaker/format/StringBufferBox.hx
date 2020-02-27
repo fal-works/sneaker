@@ -15,6 +15,10 @@ class StringBufferBox {
 	 * If a value `s` is added to `this.buffer` and the operation results in exceeding the threshold
 	 * (`maxLength` and `maxCount`), the string that the current buffer contains is passed to `onFull`
 	 * and `s` is added to a new buffer, dropping the old one.
+	 * @param maxLength (optional) If the total length of the buffer is exceeding `maxLength`,
+	 * `onFull()` is called automatically.
+	 * @param maxCount (optional) If the number of additions to the buffer exceeds `maxCount`,
+	 * `onFull()` is called automatically.
 	 */
 	public function new(onFull: (bufferedString: String) -> Void, maxLength = 8192, maxCount = 1024) {
 		this.buffer = new StringBuffer();
@@ -46,7 +50,7 @@ class StringBufferBox {
 
 	/**
 	 * Flushes the current buffer with the following procedure:
-	 * 1. Runs `this.onFull()` with the current buffer data whether or not full.
+	 * 1. Runs `this.onFull()` with the current buffer data whether or not actually full.
 	 * 2. Clears the buffer.
 	 */
 	public inline function flush(): Void {
@@ -56,7 +60,7 @@ class StringBufferBox {
 
 	/**
 	 * Flushes the current buffer and adds `s` with the following procedure:
-	 * 1. Runs `this.onFull()` with the current buffer data whether or not full.
+	 * 1. Runs `this.onFull()` with the current buffer data whether or not actually full.
 	 * 2. Clears the buffer.
 	 * 3. Adds `s` to the cleared buffer without invoking its `onAdd()`.
 	 */
