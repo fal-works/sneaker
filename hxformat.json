@@ -1,4 +1,7 @@
 {
+	"indentation": {
+		"conditionalPolicy": "alignedNestedIncrease"
+	},
 	"sameLine": {
 		"caseBody": "keep",
 		"elseBody": "keep",
@@ -46,6 +49,15 @@
 		"callParameter": {
 			"defaultWrap": "noWrap",
 			"rules": [
+				{
+					"conditions": [
+						{
+							"cond": "itemCount <= n",
+							"value": 1
+						}
+					],
+					"type": "noWrap"
+				},
 				{
 					"conditions": [
 						{

@@ -47,13 +47,11 @@ class Tester {
 	 * `describe` can also be replaced with any custom function.
 	 */
 	public static dynamic function describe(text: String, ?pos: PosInfos): Void {
-		println(
-			StringTools.rpad(
-				'TestCase____${pos.formatClassMethodWithoutModule()}',
-				"_",
-				100
-			)
-		);
+		println(StringTools.rpad(
+			'TestCase____${pos.formatClassMethodWithoutModule()}',
+			"_",
+			100
+		));
 		descriptionLogType.print('Description: ${text}', null, pos);
 	}
 

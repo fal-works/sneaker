@@ -54,12 +54,12 @@ class Asserter {
 		final evaluations: Array<Evaluation> = [];
 
 		function preparePart(subExpression: Expr, subExpressionString: String): String {
-			final variableName = partialEvaluationResultName(
-				evaluations.length
-			);
-			evaluations.push(
-				new Evaluation(subExpression, subExpressionString, variableName)
-			);
+			final variableName = partialEvaluationResultName(evaluations.length);
+			evaluations.push(new Evaluation(
+				subExpression,
+				subExpressionString,
+				variableName
+			));
 
 			return variableName;
 		}
@@ -81,7 +81,8 @@ class Asserter {
 
 		#if sneaker_assertion_verbose
 		final assertedString = expressionToAssert.toString();
-		#if sys Sys.println #else trace #end ('[ASSERT] Found: ${assertedString}\t// ${evaluations.length} parts');
+		inline function print(s: String) #if sys Sys.println #else trace #end (s);
+		print('[ASSERT] Found: ${assertedString}\t// ${evaluations.length} parts');
 		#end
 
 		return evaluations;
@@ -109,9 +110,7 @@ class Asserter {
 		#else
 		final evaluations = prepareEvaluations(boolExpression);
 
-		final macroOutputExpressions = evaluations.map(
-			Evaluation.getExecutionExpression
-		);
+		final macroOutputExpressions = evaluations.map(Evaluation.getExecutionExpression);
 		final evaluationResults: Array<Expr> = [
 			for (i in 0...evaluations.length) macro new sneaker.assertion.EvaluationResult(
 				$v{evaluations[i].expressionString},
@@ -130,9 +129,7 @@ class Asserter {
 					__sneakerTag,
 					$message
 				);
-				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(
-					__sneakerAssertionResult
-				);
+				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#else
 			final __sneakerEvaluationResults: Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
@@ -145,18 +142,14 @@ class Asserter {
 						$message
 					);
 				}
-				@:pos(pos) throw new sneaker.assertion.AssertionException(
-					__sneakerAssertionResult
-				);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
 				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(
 					Assertion,
 					__sneakerEvaluationResults,
 					__sneakerTag
 				);
-				__sneakerAssertionResult.printLog(
-					sneaker.assertion.Asserter.successLogType
-				);
+				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
 			}
 			#end
 		};
@@ -209,9 +202,7 @@ class Asserter {
 						$message
 					);
 				}
-				@:pos(pos) throw new sneaker.assertion.AssertionException(
-					__sneakerAssertionResult
-				);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#if sneaker_assertion_print_success
 			else {
@@ -224,9 +215,7 @@ class Asserter {
 					[__sneakerEvaluationResult],
 					__sneakerTag
 				);
-				__sneakerAssertionResult.printLog(
-					sneaker.assertion.Asserter.successLogType
-				);
+				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
 			}
 			#end
 

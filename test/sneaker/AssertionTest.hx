@@ -11,9 +11,7 @@ class AssertionTest {
 		assert(1 < 2);
 	}, Ok);
 	public static final assertFalse = testCase(() -> {
-		describe(
-			"This raises an exception because (thisIsLess < thisIsGreater) is false."
-		);
+		describe("This raises an exception because (thisIsLess < thisIsGreater) is false.");
 		final thisIsLess = 2;
 		final thisIsGreater = 1;
 		assert(thisIsLess < thisIsGreater);
@@ -42,9 +40,7 @@ class AssertionTest {
 		println(unwrap(obj));
 	}, Exception);
 	public static final unwrapTagError = testCase(() -> {
-		describe(
-			'This raises an exception with a tag name, because (obj) is null.'
-		);
+		describe('This raises an exception with a tag name, because (obj) is null.');
 		final obj: Null<Any> = null;
 		final relatedTag = new Tag("someTagName");
 		println(unwrap(obj, relatedTag));

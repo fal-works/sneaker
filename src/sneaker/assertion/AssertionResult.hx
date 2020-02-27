@@ -115,9 +115,7 @@ class AssertionResult {
 				@:nullSafety(Off)
 				buffer.add(' (${result.expressionString}) is ${result.value}.');
 				switch (message) {
-					case Some(
-						messageValue
-					): buffer.lfAdd('Message: ${messageValue}');
+					case Some(messageValue): buffer.lfAdd('Message: ${messageValue}');
 					default:
 				}
 		}

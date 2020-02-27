@@ -59,9 +59,7 @@ class LogTest {
 		logType.print("(log message)");
 	}, Visual);
 	public static final logTypeFilterPositionFalse = testCase(() -> {
-		describe(
-			"This has no effect because the filter predicate does not match."
-		);
+		describe("This has no effect because the filter predicate does not match.");
 		final logType = new LogType("[log line prefix]");
 		logType.setMethodFilter("dummy method name");
 		// This is same as:
@@ -69,17 +67,13 @@ class LogTest {
 		logType.print("(This should not be printed)");
 	}, Visual);
 	public static final logTypePositionFormat = testCase(() -> {
-		describe(
-			"This prints a log message in another position format (file and line)."
-		);
+		describe("This prints a log message in another position format (file and line).");
 		final logType = new LogType("[log line prefix]");
 		logType.positionFormat = sneaker.format.PosInfosCallbacks.formatFileLineWithoutPath;
 		logType.print("(log message)");
 	}, Visual);
 	public static final logTypeLogFormat = testCase(() -> {
-		describe(
-			"This prints a log message in another format (only prefix and message)."
-		);
+		describe("This prints a log message in another format (only prefix and message).");
 		final logType = new LogType("[log line prefix]");
 		logType.logFormat = sneaker.log.LogFormats.prefixMessage;
 		logType.print("(log message)");
