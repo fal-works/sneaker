@@ -4,13 +4,13 @@ import sneaker.format.StringBuffer;
 import sneaker.format.StringBufferBox;
 
 /**
- * Thin wrapper of `sneaker.format.StringBox`.
+ * Thin wrapper of `sneaker.format.StringBufferBox`.
  * It prints its data when you call `flush()`, or automatically if it is getting full.
- * Mainly used by the `Print` class.
+ * Mainly used by the `Print` class (`Print.buffer`).
  *
  * Compilation flag:
- * - If `sneaker_print_buffer_disable` is set, it is not used by the `Print` class but
- *   you can still make another `PrintBuffer` instance and use it for your own purpose.
+ * - If `sneaker_print_buffer_disable` is set, `Print.buffer` is not used or referred from anywhere
+ *   but you can still use it manually or even make another `PrintBuffer` instance for your own purpose.
  */
 @:forward(flush, clear)
 abstract PrintBuffer(StringBufferBox) to StringBufferBox {

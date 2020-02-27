@@ -1,16 +1,14 @@
 package sneaker.print;
 
 class Print {
+	/**
+	 * The buffer used when `Print.useBuffer` is `true`.
+	 * @see `Print.println()`
+	 */
 	public static final buffer = new PrintBuffer();
 
 	/**
-	 * If `true`, `Print` class functions use a buffer instead of outputting directly, and the
-	 * printing result is not output immediately unless you explicitly call `Print.buffer.flush()`
-	 * or the buffer is full.
-	 *
-	 * Compilation flag:
-	 * - Has no effect if `sneaker_print_buffer_disable` is set.
-	 *
+	 * If `true`, `Print.println()` and `Print.print()` use `Print.buffer`.
 	 * @see `Print.println()`
 	 */
 	public static var useBuffer = false;
@@ -45,8 +43,9 @@ class Print {
 	 * - On `sys` targets: Uses `Sys.println()`.
 	 * - Otherwise: Uses `trace()`.
 	 *
-	 * If the variable `Print.useBuffer` is `true`,
-	 * it adds `s` to the buffer (`Print.buffer.current`) instead of outputting directly.
+	 * If `Print.useBuffer` is `true`, it adds the given `s` to the buffer (`Print.buffer.current`)
+	 * instead of outputting directly, and the result is printed if the buffer is full
+	 * or when you call `Print.buffer.flush()`.
 	 *
 	 * Compilation flags:
 	 * - If `sneaker_print_disable` is set, `println()` has no effect.
@@ -72,13 +71,12 @@ class Print {
 
 	/**
 	 * Outputs `s` without a new line.
-	 * - On `sys` targets: Uses `Sys.print()`.
-	 * - Otherwise: Uses `trace()`.
 	 *
-	 * Note that `Print.println()` also uses `trace()` on non-sys targets, so it works
-	 * inconsistently among targets and depending on whether you use the buffer.
+	 * On non-sys targets, this uses `trace()` as well as `Print.println()` does, so
+	 * note that it works inconsistently among targets and also depending on whether
+	 * you use the buffer.
 	 *
-	 * @see `println()` about the compilation flags.
+	 * @see `println()` for other details.
 	 */
 	@:generic
 	public static function print<T>(s: Null<T>): Void {
