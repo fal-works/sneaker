@@ -253,96 +253,107 @@ import sneaker.unit_test.TesterSettings;
 import sneaker.assertion.Asserter.assert;
 import sneaker.print.Printer.println;
 
+class GroupA {
+  // Each test case should be wrapped with testCase(),
+  // specifying a type of expected result (Ok/Fail/Visual)
+  static final case1 = testCase(
+    () -> {
+      describe("This goes without error.");
+      assert(1 < 2);
+    },
+    Ok // Ok means this case passes if it completes without error
+  );
+
+  static final case2 = testCase(
+    () -> {
+      describe("This should go without error...");
+      final a = 9999;
+      final b = 1;
+      assert(a < b);
+    },
+    Ok // Although declared as Ok, this case fails (not expected)
+	);
+
+  // This groups multiples test cases
+  public static final all = testCaseGroup([
+    case1,
+    case2
+  ]);
+}
+
+class GroupB {
+  static final case1 = testCase(
+    () -> {
+      describe("This should fail.");
+      assert(9999 < 1);
+    },
+    Fail // Fail means this case passes if it raises an exception
+  );
+
+  static final case2 = testCase(
+    () -> {
+      describe("This should fail and raise an exception.");
+      final a = 1;
+      final b = 9999;
+      assert(a < b);
+    },
+    Fail // Although declared as Fail, this case succeeds (not expected)
+	);
+
+  public static final all = testCaseGroup([
+    case1,
+    case2
+  ]);
+}
+
+class GroupC {
+  static final case1 = testCase(
+    () -> {
+      describe("This prints AAA.");
+      println("AAA");
+    },
+    Visual // Visual means this case needs to be judged visually
+	);
+
+	public static final all = case1; // No difference whether grouped or not
+}
+
 class Main {
-	static var caseA1 = testCase(
-		() -> {
-			describe("This goes without error.");
-			assert(1 < 2);
-		},
-		Ok // Ok means this case passes if it completes without error
-	);
+  // Nested groups, if needed
+  static final allCases = testCaseGroup([
+    GroupA.all,
+    GroupB.all,
+    GroupC.all
+  ]);
 
-	static var caseA2 = testCase(
-		() -> {
-			describe("This should go without error...");
-			final a = 9999;
-			final b = 1;
-			assert(a < b);
-		},
-		Ok // Although declared as Ok, this case actually fails
-	);
+  static function main() {
+    TesterSettings.hidePassedResults = true; // Just as the name says
 
-	static var caseB1 = testCase(
-		() -> {
-			describe("This should fail.");
-			assert(9999 < 1);
-		},
-		Fail // Fail means this case passes if it raises an exception (unexpected)
-	);
-
-	static var caseB2 = testCase(
-		() -> {
-			describe("This should fail and raise an exception.");
-			final a = 1;
-			final b = 9999;
-			assert(a < b);
-		},
-		Fail // Although declared as Fail, this case actually succeeds (unexpected)
-	);
-
-	static var caseC1 = testCase(
-		() -> {
-			describe("This prints AAA.");
-			println("AAA");
-		},
-		Visual // Visual means this case needs to be judged visually
-	);
-
-	// Groups multiple test cases
-	static var caseGroupA = testCaseGroup([
-		caseA1,
-		caseA2
-	]);
-	static var caseGroupB = testCaseGroup([
-		caseB1,
-		caseB2
-	]);
-
-	// Nested groups, if needed
-	static var allCases = testCaseGroup([
-		caseGroupA,
-		caseGroupB,
-		caseC1
-	]);
-
-	static function main() {
-		TesterSettings.hidePassedResults = true; // Just as the name says
-
-		test(allCases); // This is where the test actually starts
-	}
+    test(allCases); // This is where the test actually starts
+  }
 }
 ```
 
 ```
-TestCase____Main::caseA2____________________________________________________________________________
+TestCase____GroupA::case2___________________________________________________________________________
 [TEST]   Description: This should go without error...
 [TEST]   Exception caught: sneaker.assertion.AssertionException
-[ASSERT] Main::caseA2 line 22 | - | Assertion failed. (a < b) is false.
+[ASSERT] GroupA::case2 line 22 | - | Assertion failed. (a < b) is false.
 Breakdown:
-  (a) => 10000
-  (b) => 2
+  (a) => 9999
+  (b) => 1
   (a < b) => false
 
-TestCase____Main::caseB2____________________________________________________________________________
+TestCase____GroupB::case2___________________________________________________________________________
 [TEST]   Description: This should fail and raise an exception.
 
-TestCase____Main::caseC1____________________________________________________________________________
-[TEST]   Description: This prints "AAA".
+TestCase____GroupC::case1___________________________________________________________________________
+[TEST]   Description: This prints AAA.
 AAA
 
   5 cases tested.
   2 cases passed.
-  1 unexpected exception caught.
+  1 case raised unexpected exception.
   1 case did not raise any exception even though it should.
   1 case needs to be confirmed visually.
 ```
