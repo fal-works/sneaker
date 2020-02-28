@@ -143,6 +143,76 @@ Just import:
 import sneaker.log.Logger.*;
 ```
 
+### Basics
+
+```haxe
+import sneaker.log.Logger.*;
+
+class Main {
+	static function main() {
+		debug("This is a debug message."); // level: 500
+		info("This is an info message!"); // level: 400
+		warn("This is a warning message!"); // level: 300
+		error("This is an error message!"); // level: 200
+		fatal("This is a fatal message! It's all over!"); // level: 100
+	}
+}
+```
+
+If `-D sneaker_log_level=200` (default), only the logs on the level 200 or lower are printed.
+
+```
+[ERROR]  Main::main line 8 | - | This is an error message!
+[FATAL]  Main::main line 9 | - | This is a fatal message! It's all over!
+```
+
+### Using "Tag"s
+
+A `Tag` instance is something that is attached to identify any instance or entity.
+
+A quick way is to extend the `Tagged` class and create your own objects.
+
+```haxe
+class GameObject extends sneaker.tag.Tagged {
+	public function new() {
+		super();
+	}
+}
+
+class Main {
+	static function main() {
+		final object = new GameObject();
+		object.newTag("player character"); // Attach a new Tag with a name
+
+		object.error("Oh it's broken"); // This prints an ERROR log
+		// This is the same as:
+		// sneaker.log.Logger.error("Oh it's broken", object.tag);
+	}
+}
+```
+
+```
+[ERROR]  Main::main line 12 | player character | Oh it's broken
+```
+
+In addition to its `name`, a `Tag` also has `bits`.  
+This is a bit array (actually `Int`) which specifies to which category the tag belongs.
+
+Both `name` and `bits` can be used for filtering log messages.
+
+### Customization
+
+Each `Logger` function has an underlying `LogType` instance (see `sneaker.log.LogTypes`),
+which can be edited or even replaced with new ones.
+
+Each `LogType` instance has following contents (which can be changed individually):
+- `prefix`: String value for appending to log texts
+- `tagFilter`: Filtering predicate for `Tag`s
+- `positionFilter`: Filtering predicate for code position information (class, method, ...)
+- `positionFormat`: Formatter function for position information
+- `logFormat`: Formatter function for the entire log text
+
+
 ## Usage > Testing
 
 Just import:
