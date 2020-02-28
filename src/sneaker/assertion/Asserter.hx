@@ -35,18 +35,6 @@ private class Evaluation {
  * Collection of assertion functions.
  */
 class Asserter {
-	/**
-	 * Log type used for generating exception message.
-	 * Replace or edit this for formatting assertion failure logs.
-	 * The filters have no effect.
-	 */
-	public static var failureLogType = new LogType("[ASSERT]");
-
-	/**
-	 * Log type used if the compilation flag `sneaker_assertion_print_success` is set.
-	 * Replace or edit this for filtering/formatting assertion success logs.
-	 */
-	public static var successLogType = new LogType("[ASSERT]");
 
 	/**
 	 * Internal function used in `assert()`.
@@ -151,7 +139,7 @@ class Asserter {
 					__sneakerEvaluationResults,
 					__sneakerTag
 				);
-				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
+				__sneakerAssertionResult.printLog(sneaker.assertion.AsserterSettings.successLogType);
 			}
 			#end
 		};
@@ -216,7 +204,7 @@ class Asserter {
 					[__sneakerEvaluationResult],
 					__sneakerTag
 				);
-				__sneakerAssertionResult.printLog(sneaker.assertion.Asserter.successLogType);
+				__sneakerAssertionResult.printLog(sneaker.assertion.AsserterSettings.successLogType);
 			}
 			#end
 

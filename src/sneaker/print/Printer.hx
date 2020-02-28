@@ -2,16 +2,10 @@ package sneaker.print;
 
 class Printer {
 	/**
-	 * The buffer used when `Printer.useBuffer` is `true`.
+	 * The buffer used when `PrinterSettings.useBuffer` is `true`.
 	 * @see `Printer.println()`
 	 */
 	public static final buffer = new PrintBuffer();
-
-	/**
-	 * If `true`, `Printer.println()` and `Printer.print()` use `Printer.buffer`.
-	 * @see `Printer.println()`
-	 */
-	public static var useBuffer = false;
 
 	/**
 	 * The value that was most recently printed.
@@ -43,13 +37,13 @@ class Printer {
 	 * - On `sys` targets: Uses `Sys.println()`.
 	 * - Otherwise: Uses `trace()`.
 	 *
-	 * If `Printer.useBuffer` is `true`, it adds the given `s` to the buffer (`Printer.buffer.current`)
+	 * If `PrinterSettings.useBuffer` is `true`, it adds the given `s` to the buffer (`Printer.buffer.current`)
 	 * instead of outputting directly, and the result is printed if the buffer is full
 	 * or when you call `Printer.buffer.flush()`.
 	 *
 	 * Compilation flags:
 	 * - If `sneaker_print_disable` is set, `println()` has no effect.
-	 * - If `sneaker_print_buffer_disable` is set, `Printer.useBuffer` is ignored.
+	 * - If `sneaker_print_buffer_disable` is set, `PrinterSettings.useBuffer` is ignored.
 	 */
 	#if !sneaker_print_generic_disable
 	@:generic
@@ -57,7 +51,7 @@ class Printer {
 	public static function println<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 			#if !sneaker_print_buffer_disable
-			if (useBuffer) {
+			if (PrinterSettings.useBuffer) {
 				#if !sneaker_print_last_disable
 				lastBuffered = s;
 				#end
@@ -86,7 +80,7 @@ class Printer {
 	public static function print<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 			#if !sneaker_print_buffer_disable
-			if (useBuffer) {
+			if (PrinterSettings.useBuffer) {
 				#if !sneaker_print_last_disable
 				lastBuffered = s;
 				#end
@@ -102,7 +96,7 @@ class Printer {
 
 	/**
 	 * Outputs `s` followed with a new line,
-	 * ignoring the variable `Printer.useBuffer` (hence "Direct").
+	 * ignoring the variable `PrinterSettings.useBuffer` (hence "Direct").
 	 *
 	 * Compilation flag:
 	 * - Disabled if `sneaker_print_disable` is set.
@@ -131,7 +125,7 @@ class Printer {
 
 	/**
 	 * Outputs `s` followed with a new line, ignoring the compilation flag `sneaker_print_disable`
-	 * and the variable `Printer.useBuffer`.
+	 * and the variable `PrinterSettings.useBuffer`.
 	 */
 	#if !sneaker_print_generic_disable
 	@:generic
@@ -150,7 +144,7 @@ class Printer {
 
 	/**
 	 * Outputs `s` without a new line, ignoring the compilation flag `sneaker_print_disable`
-	 * and the variable `Printer.useBuffer`.
+	 * and the variable `PrinterSettings.useBuffer`.
 	 */
 	#if !sneaker_print_generic_disable
 	@:generic

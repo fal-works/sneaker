@@ -1,6 +1,7 @@
 package sneaker.unit_test;
 
 import sneaker.print.Printer;
+import sneaker.print.PrinterSettings;
 import sneaker.common.Exception;
 
 /**
@@ -22,8 +23,8 @@ class TestCaseUnit {
 	 */
 	public function runAndCheck(record: TestRecord): Void {
 		#if !sneaker_print_buffer_disable
-		final useBufferPreviousValue = Printer.useBuffer;
-		Printer.useBuffer = true;
+		final useBufferPreviousValue = PrinterSettings.useBuffer;
+		PrinterSettings.useBuffer = true;
 		#end
 
 		++record.caseCount;
@@ -77,7 +78,7 @@ class TestCaseUnit {
 		else
 			Printer.buffer.flush();
 
-		Printer.useBuffer = useBufferPreviousValue;
+		PrinterSettings.useBuffer = useBufferPreviousValue;
 		#end
 	}
 }

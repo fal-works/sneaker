@@ -3,23 +3,11 @@ package sneaker.common;
 import haxe.CallStack;
 import haxe.CallStack.StackItem;
 import haxe.PosInfos;
-import sneaker.format.CallStackItemCallbacks;
 
 /**
  * Base exception class.
  */
 class Exception {
-	/**
-	 * Default value for `appendCallStack` of each instance.
-	 */
-	public static var appendCallStackDefault = false;
-
-	/**
-	 * Formatting function used when casting an exception to `String`.
-	 * Can be replaced with any custom function.
-	 */
-	public static var callStackFormat = CallStackItemCallbacks.formatStackIndent.bind(_);
-
 	/**
 	 * If `true`, call stack information (saved at the instanciation)
 	 * is appended to the content in `toString()`.
@@ -49,7 +37,10 @@ class Exception {
 		?pos: PosInfos
 	) {
 		this.content = content;
-		this.appendCallStack = if (appendCallStack != null) appendCallStack else appendCallStackDefault;
+		this.appendCallStack = if (appendCallStack != null)
+			appendCallStack
+		else
+			ExceptionSettings.appendCallStackDefault;
 
 		if (callStack != null) {
 			this.callStack = callStack;
@@ -66,7 +57,7 @@ class Exception {
 		final name = Type.getClassName(Type.getClass(this));
 
 		return if (appendCallStack)
-			'${name}\n${content}\nCall Stack:\n${callStackFormat(callStack)}';
+			'${name}\n${content}\nCall Stack:\n${ExceptionSettings.callStackFormat(callStack)}';
 		else
 			'${name}\n${content}';
 	}

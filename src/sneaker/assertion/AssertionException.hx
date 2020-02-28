@@ -19,7 +19,7 @@ class AssertionException extends Exception {
 		currentCallStack.shift();
 
 		super(
-			result.createLogString(Asserter.failureLogType),
+			result.createLogString(AsserterSettings.failureLogType),
 			currentCallStack,
 			null,
 			result.positionInformations
