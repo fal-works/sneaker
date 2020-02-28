@@ -40,7 +40,10 @@ class CallStackItemExtension {
 	 * Formats Call Stack with indent.
 	 * @return `String` representation of `stack`.
 	 */
-	public static function formatStackIndent(stack: Array<StackItem>, indent = twoSpaces): String {
+	public static function formatStackIndent(
+		stack: Array<StackItem>,
+		indent = twoSpaces
+	): String {
 		final separator = '\n${indent}';
 
 		final buffer = new StringBuf();
