@@ -259,7 +259,7 @@ class Main {
 			describe("This goes without error.");
 			assert(1 < 2);
 		},
-		Ok // "Ok" means this case passes if it completes without error
+		Ok // Ok means this case passes if it completes without error
 	);
 
 	static var caseA2 = testCase(
@@ -269,7 +269,7 @@ class Main {
 			final b = 1;
 			assert(a < b);
 		},
-		Ok // Although declared as "Ok", this case actually fails
+		Ok // Although declared as Ok, this case actually fails
 	);
 
 	static var caseB1 = testCase(
@@ -277,7 +277,7 @@ class Main {
 			describe("This should fail.");
 			assert(9999 < 1);
 		},
-		Fail // "Fail" means this case passes if it raises an exception"
+		Fail // Fail means this case passes if it raises an exception"
 	);
 
 	static var caseB2 = testCase(
@@ -287,7 +287,7 @@ class Main {
 			final b = 9999;
 			assert(a < b);
 		},
-		Fail // Although declared as "Fail", this case actually succeeds
+		Fail // Although declared as Fail, this case actually succeeds
 	);
 
 	static var caseC1 = testCase(
@@ -295,10 +295,10 @@ class Main {
 			describe("This prints \"AAA\".");
 			println("AAA");
 		},
-		Visual // "Visual" means this case needs to be judged visually
+		Visual // Visual means this case needs to be judged visually
 	);
 
-	// This groups multiples test cases
+	// Groups multiple test cases
 	static var caseGroupA = testCaseGroup([
 		caseA1,
 		caseA2
