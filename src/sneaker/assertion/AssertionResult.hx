@@ -125,7 +125,7 @@ class AssertionResult {
 
 	function addDetails(buffer: StringBuf): StringBuf {
 		if (evaluationResults.length > 1) {
-			buffer.lfAdd('Details:');
+			buffer.lfAdd('Breakdown:');
 			buffer.lfIndentAddLines(evaluationResults);
 		}
 
