@@ -3,7 +3,6 @@ package sneaker.log;
 class LogTypeFilterExtension {
 	/**
 	 * Overwrite `thisType.tagFilter` with a new filter that checks the tag with `bitMask`.
-	 *
 	 */
 	public static function setTagNameFilter(thisType: LogType, tagName: String): Void {
 		thisType.tagFilter = (?tag) -> tag != null && tag.name == tagName;

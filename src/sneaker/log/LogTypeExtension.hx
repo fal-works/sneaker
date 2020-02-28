@@ -5,6 +5,16 @@ import sneaker.tag.Tag;
 import sneaker.print.Printer;
 
 class LogTypeExtension {
+	// @formatter:off
+	static final doNotPrint = (
+		message: String,
+		?tag: Tag,
+		?pos
+		: PosInfos
+	) -> {};
+	// @formatter:on
+	//
+
 	/**
 	 * Creates log as a `String` value using `thisType.format`, `thisType.prefix`
 	 * and the given values (`message`, `tag` and `pos`).
@@ -43,5 +53,14 @@ class LogTypeExtension {
 		if (!thisType.positionFilter(pos)) return;
 
 		forcePrint(thisType, message, tag, pos);
+	}
+
+	/**
+	 * Disables `thisType.print()` so that it has no effect.
+	 *
+	 * For enabling again, you have to rebind any function and assign it to `thisType.print`.
+	 */
+	public static inline function disablePrint(thisType: LogType): Void {
+		thisType.print = doNotPrint;
 	}
 }
