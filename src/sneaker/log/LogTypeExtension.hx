@@ -50,8 +50,14 @@ class LogTypeExtension {
 	): Void {
 		final notNullTag = tag.notNull();
 
-		if (thisType.tagFilter(notNullTag) && thisType.positionFilter(pos))
-			Printer.println(thisType.logFormat(thisType, message, notNullTag, pos));
+		if (thisType.tagFilter(notNullTag) && thisType.positionFilter(pos)) {
+			Printer.println(thisType.logFormat(
+				thisType,
+				message,
+				notNullTag,
+				pos
+			));
+		}
 	}
 
 	/**

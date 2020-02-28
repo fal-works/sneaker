@@ -1,5 +1,7 @@
 package sneaker.log;
 
+// @formatter:off
+
 @:nullSafety
 class LogFormats {
 	/** Separator charactor used in standard log formats. Defaults to the vertical bar `|`. */
