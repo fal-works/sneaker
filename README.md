@@ -32,21 +32,72 @@ May or may not help you to debug.
 - Don't know much about other libraries/frameworks
 - Not yet very well tested
 
-## Usage
+## Install
+<!-- 
+```
+haxelib install sneaker
+```
+ -->
+## Usage > Assertion
 
-### Assertion
+Just import:
+
+```Haxe
+import sneaker.assertion.Asserter.*;
+```
+
+Now you can use `assert()` and `unwrap()` to check values and find bugs.
+
+In your release build these are removed from your code as if they didn't exist.  
+See: [Compiler flags](#Compiler-flags)
+
+### `assert()`
+
+Checks any boolean expression.
+
+- If `true`, it has no effect.
+- If `false`, recursively checks each sub-expression (same algorithm as [this](https://code.haxe.org/category/macros/assert-with-values.html)) and throws an exception which tells you what was wrong.
+
+```Haxe
+import sneaker.assertion.Asserter.*;
+
+class Main {
+	static function main() {
+		final thisIsLess = 100;
+		final thisIsGreater = -1;
+
+		trace("Asserting. Should fail...");
+		assert(thisIsLess < thisIsGreater);
+		trace("Succeeded!?"); // This will not be reached
+	}
+}
+```
+
+```
+Main.hx:8: Asserting. Should fail...
+Uncaught exception: sneaker.assertion.AssertionException
+[ASSERT] Main::main line 9 | - | Assertion failed. (thisIsLess < thisIsGreater) is false.
+Breakdown:
+  (thisIsLess) => 100
+  (thisIsGreater) => -1
+  (thisIsLess < thisIsGreater) => false
+Called from $Main.main(Main.hx:9)
+Called from fun$492(?:1)
+```
+
+### `unwrap()`
+
+
+
+## Usage > Logging
 
 ...
 
-### Logging
+## Usage > Testing
 
 ...
 
-### Testing
-
-...
-
-## Compilation flags
+## Compiler flags
 
 |flag|description|
 |---|---|
