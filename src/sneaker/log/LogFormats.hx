@@ -12,26 +12,26 @@ class LogFormats {
 	 *
 	 * Example: "[ERROR]  my_module.MyClass::myMethod line 1 | myTag | myMessage"
 	 */
-	public static final prefixPositionTagMessage: LogFormat = (logType, message, ?tag, ?pos) ->
-		'${logType.prefix} ${logType.positionFormat(pos)} ${separator} ${tag.formatNullable()} ${separator} ${message}';
+	public static final prefixPositionTagMessage: LogFormat = (logType, message, tag, ?pos) ->
+		'${logType.prefix} ${logType.positionFormat(pos)} ${separator} ${tag} ${separator} ${message}';
 
-	public static final prefixPositionTagLineFeedMessage: LogFormat = (logType, message, ?tag, ?pos) ->
-		'${logType.prefix} ${logType.positionFormat(pos)} ${separator} ${tag.formatNullable()}\n${message}';
+	public static final prefixPositionTagLineFeedMessage: LogFormat = (logType, message, tag, ?pos) ->
+		'${logType.prefix} ${logType.positionFormat(pos)} ${separator} ${tag}\n${message}';
 
-	public static final prefixPositionLineFeedTagMessage: LogFormat = (logType, message, ?tag, ?pos) ->
-		'${logType.prefix} ${logType.positionFormat(pos)}\n${tag.formatNullable()} ${separator} ${message}';
+	public static final prefixPositionLineFeedTagMessage: LogFormat = (logType, message, tag, ?pos) ->
+		'${logType.prefix} ${logType.positionFormat(pos)}\n${tag} ${separator} ${message}';
 
-	public static final lineFeedForEach: LogFormat = (logType, message, ?tag, ?pos) ->
-		'${logType.prefix}\nPosition: ${logType.positionFormat(pos)}\nTag name: ${tag.formatNullable()}\nMessage : ${message}';
+	public static final lineFeedForEach: LogFormat = (logType, message, tag, ?pos) ->
+		'${logType.prefix}\nPosition: ${logType.positionFormat(pos)}\nTag name: ${tag}\nMessage : ${message}';
 
 	// partial use of arguments
 
 	/** Example: "[ERROR]  myMessage" */
-	public static final prefixMessage: LogFormat = (logType, message, ?tag, ?pos) ->
+	public static final prefixMessage: LogFormat = (logType, message, tag, ?pos) ->
 		'${logType.prefix} ${message}';
 
 	/** Example: "myMessage" */
-	public static final messageOnly: LogFormat = (logType, message, ?tag, ?pos) ->
+	public static final messageOnly: LogFormat = (logType, message, tag, ?pos) ->
 		'${message}';
 
 	// aliases

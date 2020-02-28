@@ -59,7 +59,7 @@ class AssertionResult {
 	public final contentString: String;
 
 	/** A `Tag` related with this assertion. */
-	public final tag: Null<Tag>;
+	public final tag: Tag;
 
 	/** Code position where this assertion was done. */
 	public final positionInformations: Null<PosInfos>;
@@ -79,10 +79,10 @@ class AssertionResult {
 		this.evaluationResults = evaluationResults;
 		this.error = error;
 
-		this.contentString = generateContentString();
-
-		this.tag = tag;
+		this.tag = tag.notNull();
 		this.positionInformations = pos;
+
+		this.contentString = generateContentString();
 	}
 
 	/**

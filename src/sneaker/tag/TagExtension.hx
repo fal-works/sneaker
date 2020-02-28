@@ -3,11 +3,9 @@ package sneaker.tag;
 import haxe.ds.Option;
 
 class TagExtencion {
-	/**
-	 * `String` value for indicating the absense of a tag.
-	 * Used in `formatNullable()` and `formatOptional()`.
-	 */
-	public static final noTagString = "-";
+	public static inline function notNull(thisTag: Null<Tag>): Tag {
+		return if (thisTag != null) thisTag else Tags.none;
+	}
 
 	/**
 	 * Checks if this tag mathces the given condition.
@@ -18,27 +16,12 @@ class TagExtencion {
 	}
 
 	/**
-	 * Checks if this tag is not null and also mathces the given condition.
-	 * @return `true` if not null and any bit of `thisTag.bits` matches `bitMask` (logical AND).
-	 */
-	public static inline function checkNullable(thisTag: Null<Tag>, bitMask: Int): Bool {
-		return thisTag != null && check(thisTag, bitMask);
-	}
-
-	/**
-	 * @return `String` form of this tag, or a hyphen (`-`) if null.
-	 */
-	public static inline function formatNullable(thisTag: Null<Tag>) {
-		return thisTag != null ? thisTag.toString() : noTagString;
-	}
-
-	/**
 	 * @return `String` form of this tag, or a hyphen (`-`) if `None`.
 	 */
 	public static inline function formatOptional(thisTag: Option<Tag>) {
 		return switch (thisTag) {
 			case Some(value): value.toString();
-			case None: noTagString;
+			case None: "-";
 		}
 	}
 }

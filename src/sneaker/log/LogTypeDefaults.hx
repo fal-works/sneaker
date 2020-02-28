@@ -9,7 +9,7 @@ import sneaker.format.PosInfosCallbacks;
  * Can also be replaced with custom functions.
  */
 class LogTypeDefaults {
-	public static var tagFilter = (?tag: Tag) -> true;
+	public static var tagFilter = (tag: Tag) -> true;
 	public static var positionFilter = (?pos: PosInfos) -> true;
 
 	public static var positionFormat = PosInfosCallbacks.formatClassMethodLine;

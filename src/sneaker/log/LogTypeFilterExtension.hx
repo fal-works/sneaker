@@ -5,14 +5,14 @@ class LogTypeFilterExtension {
 	 * Overwrite `thisType.tagFilter` with a new filter that checks the tag with `bitMask`.
 	 */
 	public static function setTagNameFilter(thisType: LogType, tagName: String): Void {
-		thisType.tagFilter = (?tag) -> tag != null && tag.name == tagName;
+		thisType.tagFilter = tag -> tag.name == tagName;
 	}
 
 	/**
 	 * Overwrite `thisType.tagFilter` with a new filter that checks the tag with `bitMask`.
 	 */
 	public static function setTagBitsFilter(thisType: LogType, bitMask: Int): Void {
-		thisType.tagFilter = (?tag) -> tag.checkNullable(bitMask);
+		thisType.tagFilter = tag -> tag.check(bitMask);
 	}
 
 	/**

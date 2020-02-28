@@ -8,6 +8,6 @@ import sneaker.tag.Tag;
 typedef LogFormat = (
 	logType: LogType,
 	message: String,
-	?tag: Tag,
+	tag: Tag,
 	?pos: PosInfos
 ) -> String;

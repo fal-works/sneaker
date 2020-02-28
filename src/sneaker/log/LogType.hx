@@ -22,7 +22,7 @@ class LogType {
 	 *
 	 * Can be replaced either directly or using `setTagNameFilter()` etc.
 	 */
-	public var tagFilter: (?tag: Tag) -> Bool;
+	public var tagFilter: (tag: Tag) -> Bool;
 
 	/**
 	 * Predicate for filtering position information.

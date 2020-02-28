@@ -9,8 +9,7 @@ class LogTypeExtension {
 	static final doNotPrint = (
 		message: String,
 		?tag: Tag,
-		?pos
-		: PosInfos
+		?pos: PosInfos
 	) -> {};
 	// @formatter:on
 	//
@@ -25,7 +24,7 @@ class LogTypeExtension {
 		?tag: Tag,
 		?pos: PosInfos
 	): String {
-		return thisType.logFormat(thisType, message, tag, pos);
+		return thisType.logFormat(thisType, message, tag.notNull(), pos);
 	}
 
 	/**
@@ -49,10 +48,10 @@ class LogTypeExtension {
 		?tag: Tag,
 		?pos: PosInfos
 	): Void {
-		if (!thisType.tagFilter(tag)) return;
-		if (!thisType.positionFilter(pos)) return;
+		final notNullTag = tag.notNull();
 
-		forcePrint(thisType, message, tag, pos);
+		if (thisType.tagFilter(notNullTag) && thisType.positionFilter(pos))
+			Printer.println(thisType.logFormat(thisType, message, notNullTag, pos));
 	}
 
 	/**
