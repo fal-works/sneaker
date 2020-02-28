@@ -2,9 +2,7 @@
 
 May or may not help you to debug.
 
-## Compatibility
-
-- Haxe v4.0.5
+**Requires Haxe 4** (tested with v4.0.5).
 
 ## Features
 
@@ -28,7 +26,7 @@ May or may not help you to debug.
 
 ## Downsides
 
-- All of this is nothing but reinventing the wheel
+- All of this is nothing but reinventing the wheel!
 - Don't know much about other libraries/frameworks
 - Developed within a week and not yet very well tested
 
@@ -42,7 +40,7 @@ haxelib install sneaker
 
 Just import:
 
-```Haxe
+```haxe
 import sneaker.assertion.Asserter.*;
 ```
 
@@ -58,7 +56,7 @@ Checks any boolean expression.
 - If `true`, it has no effect.
 - If `false`, recursively checks each sub-expression (same algorithm as [this](https://code.haxe.org/category/macros/assert-with-values.html)) and throws an exception which tells you what was wrong.
 
-```Haxe
+```haxe
 import sneaker.assertion.Asserter.*;
 
 class Main {
@@ -67,7 +65,7 @@ class Main {
 		final thisIsGreater = -1;
 
 		trace("Asserting. Should fail...");
-		assert(thisIsLess < thisIsGreater);
+		assert(thisIsLess < thisIsGreater); // Throws exception
 		trace("Succeeded!?"); // This will not be reached
 	}
 }
@@ -87,15 +85,62 @@ Called from fun$492(?:1)
 
 ### `unwrap()`
 
+Checks any nullable expression.
 
+- If not null, it has no effect.
+- If null, throws an exception.
+- Differences from `assert()`:
+    - Does not recursive checks for sub-expressions
+    - Returns the value that is checked against null (i.e. `Null<T> -> T`).
+
+```haxe
+import sneaker.assertion.Asserter.*;
+
+class Main {
+	static function main() {
+		// Actually not null
+		final nullableA: Null<String> = "Succeeded!\n";
+
+		trace("Unwrapping. Should succeed...");
+		final notNullA: String = unwrap(nullableA); // Works fine
+		trace(notNullA);
+
+		// Actually not null
+		final nullableB: Null<String> = null;
+
+		trace("Unwrapping. Should fail...");
+		final notNullB: String = unwrap(nullableB); // Throws exception
+		trace(notNullB); // This will not be reached
+	}
+}
+```
+
+```
+Main.hx:9: Unwrapping. Should succeed...
+Main.hx:11: Succeeded!
+
+Main.hx:16: Unwrapping. Should fail...
+Uncaught exception: sneaker.assertion.AssertionException
+[ASSERT] Main::main line 17 | - | Unwrap failed. (nullableB) is null.
+Called from $Main.main(Main.hx:17)
+Called from fun$502(?:1)
+```
 
 ## Usage > Logging
 
-...
+Just import:
+
+```haxe
+import sneaker.log.Logger.*;
+```
 
 ## Usage > Testing
 
-...
+Just import:
+
+```haxe
+import sneaker.unit_test.Tester.*;
+```
 
 ## Compiler flags
 
