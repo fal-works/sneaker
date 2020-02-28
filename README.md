@@ -7,25 +7,32 @@ May or may not help you to debug.
 
 ## Features
 
-- Assertion
-  - Assert any expression that should result to `true` (e.g. `length > 0`)
-  - Check against `null`, or unwrap nullable values
-- Logging
-  - Filter by log levels (Fatal, Error, Warn, Info, Debug, other custom types)
-  - Filter by code position (class, method etc.)
-  - Filter by "tag"s (name & category bits) attached to any entity/instance
-  - Customize formats of log messages (including code position info)
-- Testing
-  - Categorize test cases (should be OK / should fail / need visual review)
-  - Group/manage/run test cases in a naive tree structure
-  - Hide results of test cases that successfully passed
-  - Print summary of results
-- Overall
-  - Basically platform-independent (however HashLink is the main target)
-  - Disable assertion/logging by compiler flags
-  - Almost zero runtime cost when disabled
-  - Almost fully commented source code
-	- Does not depend on any other library (except for `std`)
+### Assertion
+
+- Assert any expression that should result to `true` (e.g. `length > 0`)
+- Check against `null`, or unwrap nullable values
+
+### Logging
+
+- Filter by log levels (Fatal, Error, Warn, Info, Debug, other custom types)
+- Filter by code position (class, method etc.)
+- Filter by "tag"s (name & category bits) attached to any entity/instance
+- Customize formats of log messages (including code position info)
+
+### Testing
+
+- Categorize test cases (should be OK / should fail / need visual review)
+- Group/manage/run test cases in a naive tree structure
+- Hide results of test cases that successfully passed
+- Print summary of results
+
+### Overall
+
+- Basically platform-independent (however HashLink is the main target)
+- Disable assertion/logging by compiler flags
+- Almost zero runtime cost when disabled
+- Almost fully commented source code
+- Does not depend on any other library (except for `std`)
 
 
 ## Downsides
@@ -41,6 +48,7 @@ May or may not help you to debug.
 haxelib install sneaker
 ```
 
+---
 
 ## Usage > Assertion
 
@@ -53,9 +61,9 @@ import sneaker.assertion.Asserter.*;
 Now you can use `assert()` and `unwrap()` to check values and find bugs.
 
 In your release build these are removed from your code as if they didn't exist.  
-See: [Compiler flags](#Compiler-flags)
+See also: "Compiler Flags" (below)
 
-### `assert()`
+### assert()
 
 Checks any boolean expression.
 
@@ -89,15 +97,17 @@ Called from $Main.main(Main.hx:9)
 Called from fun$492(?:1)
 ```
 
-### `unwrap()`
+### unwrap()
 
 Checks any nullable expression.
 
 - If not null, it has no effect.
 - If null, throws an exception.
-- Differences from `assert()`:
-    - Does not recursive checks for sub-expressions
-    - Returns the value that is checked against null (i.e. `Null<T> -> T`).
+
+Differences from `assert()`:
+
+- Does not recursive checks for sub-expressions
+- Returns the value that is checked against null (i.e. `Null<T> -> T`).
 
 ```haxe
 import sneaker.assertion.Asserter.*;
@@ -212,6 +222,7 @@ Each `Logger` function has an underlying `LogType` instance (see `sneaker.log.Lo
 which can be edited or even replaced with new ones.
 
 Each `LogType` instance has following contents (which can be changed individually):
+
 - `prefix`: String value for appending to log texts
 - `tagFilter`: Filtering predicate for `Tag`s
 - `positionFilter`: Filtering predicate for code position information (class, method, ...)
@@ -228,6 +239,7 @@ import sneaker.unit_test.Tester.*;
 ```
 
 Now you can use following functions:
+
 - `describe()` for printing heading of each test case
 - `testCase()` for wrapping any function and create a test case
 - `testCaseGroup()` for grouping multiple test cases
@@ -345,6 +357,7 @@ import sneaker.unit_test.TesterSettings;
 
 And assign your custom values following the comments.
 
+---
 
 ## Miscellaneous
 
@@ -357,14 +370,22 @@ And assign your custom values following the comments.
 
 ### Class naming convention
 
-- `XxxExtension` is a set of:
-  - Functions for static extension on the `Xxx` class
-  - Functions that return `Xxx` instance and can be used for static extension on other classes
-- `XxxCallbacks` is a set of:
-  - Functions that take `Xxx` instance as argument and should be passed to other functions  
-(often copied from `XxxExtension`)
-- `XxxTools` is something other than above, but related to `Xxx`
+`SthExtension` is a set of
 
+- Functions for static extension on the `Sth` class
+- Functions that return `Sth` instance and can be used for static extension on other classes
+
+`SthCallbacks` is a set of
+
+- Functions that take `Sth` instance as argument and should be passed to other functions  
+(often copied from `SthExtension`)
+
+`SthTools` is
+
+- something other than above, but related to `Sth`
+
+
+---
 
 ## Compiler flags
 
