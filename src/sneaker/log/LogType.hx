@@ -10,9 +10,9 @@ import sneaker.tag.Tag;
  * Type of log data, e.g. WARNING, INFO etc.
  *
  * Each variable/function can be replaced by any custom value or
- * using methods that come from the `LogTypeFilterExtension` class.
+ * using methods that come from the `LogTypeSetterExtension` class.
  */
-@:using(sneaker.log.LogTypeExtension, sneaker.log.LogTypeFilterExtension)
+@:using(sneaker.log.LogTypeExtension, sneaker.log.LogTypeSetterExtension)
 class LogType {
 	/** Prefix for appending to the output text. */
 	public var prefix: String;

@@ -38,11 +38,7 @@ class TesterSettings {
 	 * Replace or edit this type for changing the format of descriptions.
 	 * The filters have no effect.
 	 */
-	public static var descriptionLogType = {
-		final type = new LogType("[TEST]  ");
-		type.logFormat = LogFormats.prefixMessage;
-		type;
-	}
+	public static var descriptionLogType = new LogType("[TEST]  ").setLogFormat(LogFormats.prefixMessage);
 
 	/**
 	 * Function used in `Tester.describe()`.
