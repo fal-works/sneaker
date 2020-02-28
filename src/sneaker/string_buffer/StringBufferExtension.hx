@@ -1,5 +1,7 @@
 package sneaker.string_buffer;
 
+import sneaker.string_buffer.interfaces.StringBuffer;
+
 class StringBufferExtension {
 	static inline final lineFeedCode = 10;
 	static inline final twoSpaces = "  ";
@@ -8,46 +10,42 @@ class StringBufferExtension {
 	 * Adds `s`. Workaround for errors in `@:nullSafety` mode.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function addNullable<B:StringBuffer, T>(buf: B, s: Null<T>): B {
+	public static inline function addNullable<T>(buf: StringBuffer, s: Null<T>): Void {
 		@:nullSafety(Off) buf.add(s);
-		return buf;
 	}
 
 	/**
 	 * Adds Line Feed (i.e. "\n").
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lf<B:StringBuffer>(buf: B): B {
+	public static inline function lf(buf: StringBuffer): Void {
 		buf.addChar(lineFeedCode);
-		return buf;
 	}
 
 	/**
 	 * Adds Line Feed and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfAdd<B:StringBuffer, T>(buf: B, s: Null<T>): B {
+	public static inline function lfAdd<T>(buf: StringBuffer, s: Null<T>): Void {
 		#if sys
 		lf(buf);
 		addNullable(buf, s);
 		#else
 		@:nullSafety(Off) buf.add('\n${s}');
 		#end
-		return buf;
 	}
 
 	/**
 	 * Adds `s` and Line Feed.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function addLf<B:StringBuffer, T>(buf: B, s: Null<T>): B {
+	public static inline function addLf<T>(buf: StringBuffer, s: Null<T>): Void {
 		#if sys
 		addNullable(buf, s);
 		lf(buf);
 		#else
 		@:nullSafety(Off) buf.add('${s}\n');
 		#end
-		return buf;
 	}
 
 	/**
@@ -55,26 +53,24 @@ class StringBufferExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAdd<B:StringBuffer, T>(
-		buf: B,
+	public static inline function indentAdd<T>(
+		buf: StringBuffer,
 		s: Null<T>,
 		indent: String = twoSpaces
-	): B {
+	): Void {
 		@:nullSafety(Off) buf.add('${indent}${s}');
-		return buf;
 	}
 
 	/**
 	 * Adds Line Feed, `indent` and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfIndentAdd<B:StringBuffer, T>(
-		buf: B,
+	public static inline function lfIndentAdd<T>(
+		buf: StringBuffer,
 		s: Null<T>,
 		indent: String = twoSpaces
-	): B {
+	): Void {
 		@:nullSafety(Off) buf.add('\n${indent}${s}');
-		return buf;
 	}
 
 	/**
@@ -82,13 +78,12 @@ class StringBufferExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAddLf<B:StringBuffer, T>(
-		buf: B,
+	public static inline function indentAddLf<T>(
+		buf: StringBuffer,
 		s: Null<T>,
 		indent: String = twoSpaces
-	): B {
+	): Void {
 		@:nullSafety(Off) buf.add('${indent}${s}\n');
-		return buf;
 	}
 
 	/**
@@ -96,11 +91,10 @@ class StringBufferExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function lfAddLines<T>(
-		buf: StringBuf,
+		buf: StringBuffer,
 		lines: Array<Null<T>>
-	): StringBuf {
+	): Void {
 		for (line in lines) lfAdd(buf, line);
-		return buf;
 	}
 
 	/**
@@ -108,11 +102,10 @@ class StringBufferExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function addLfLines<T>(
-		buf: StringBuf,
+		buf: StringBuffer,
 		lines: Array<Null<T>>
-	): StringBuf {
+	): Void {
 		for (line in lines) addLf(buf, line);
-		return buf;
 	}
 
 	/**
@@ -121,12 +114,11 @@ class StringBufferExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function lfIndentAddLines<T>(
-		buf: StringBuf,
+		buf: StringBuffer,
 		lines: Array<Null<T>>,
 		indent: String = twoSpaces
-	): StringBuf {
+	): Void {
 		for (line in lines) lfIndentAdd(buf, line, indent);
-		return buf;
 	}
 
 	/**
@@ -135,11 +127,10 @@ class StringBufferExtension {
 	 * @return The given `StringBuf`.
 	 */
 	public static inline function indentLfAddLines<T>(
-		buf: StringBuf,
+		buf: StringBuffer,
 		lines: Array<Null<T>>,
 		indent: String = twoSpaces
-	): StringBuf {
+	): Void {
 		for (line in lines) indentAddLf(buf, line, indent);
-		return buf;
 	}
 }

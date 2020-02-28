@@ -1,12 +1,12 @@
 package sneaker.assertion;
 
 using sneaker.format.StringExtension;
-using sneaker.string_buffer.StringBufferExtension;
 
 import haxe.PosInfos;
 import haxe.ds.Option;
 import sneaker.tag.Tag;
 import sneaker.log.LogType;
+import sneaker.string_buffer.StringBuffer;
 
 /**
  * Result of assertion, including evaluation results of sub-expressions.
@@ -99,11 +99,11 @@ class AssertionResult {
 	/**
 	 * Prints log text created from data of `this` using `logType`.
 	 */
-	public function printLog(logType: LogType) {
+	public function printLog(logType: LogType): Void {
 		logType.print(contentString, tag, positionInformations);
 	}
 
-	function addSummary(buffer: StringBuf): StringBuf {
+	function addSummary(buffer: StringBuffer): Void {
 		switch (error) {
 			case None:
 				buffer.add('${assertionType} succeeded.');
@@ -119,21 +119,17 @@ class AssertionResult {
 					default:
 				}
 		}
-
-		return buffer;
 	}
 
-	function addDetails(buffer: StringBuf): StringBuf {
+	function addDetails(buffer: StringBuffer): Void {
 		if (evaluationResults.length > 1) {
 			buffer.lfAdd('Breakdown:');
 			buffer.lfIndentAddLines(evaluationResults);
 		}
-
-		return buffer;
 	}
 
 	function generateContentString(): String {
-		final buffer = new StringBuf();
+		final buffer = new StringBuffer();
 
 		addSummary(buffer);
 		addDetails(buffer);

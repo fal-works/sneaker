@@ -1,13 +1,14 @@
 package sneaker.string_buffer;
 
-typedef StringBuffer = {
-	var length(get, never): Int;
-	function add<T>(x: T): Void;
-	function addChar(c: Int): Void;
-	function addSub(
-		s: String,
-		pos: Int,
-		?len: Int
-	): Void;
-	function toString(): String;
+/**
+ * Extended from `std.StringBuf`,
+ * declared as an implementation of `StringBuffer` interface.
+ *
+ * This enables you to use `StringBufferExtension` functions.
+ */
+@:using(sneaker.string_buffer.StringBufferExtension)
+class StringBuffer extends StringBuf implements sneaker.string_buffer.interfaces.StringBuffer {
+	public function new() {
+		super();
+	}
 }

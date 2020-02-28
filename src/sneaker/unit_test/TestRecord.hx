@@ -2,7 +2,8 @@ package sneaker.unit_test;
 
 using sneaker.format.IntExtension;
 using sneaker.format.StringLanguageExtension;
-using sneaker.string_buffer.StringBufferExtension;
+
+import sneaker.string_buffer.StringBuffer;
 
 // @formatter:off
 
@@ -19,7 +20,7 @@ class TestRecord {
 	public function new() {}
 
 	public function toString() {
-		final buffer = new StringBuf();
+		final buffer = new StringBuffer();
 
 		// ---- super dirty implementation ----------------------------------------
 

@@ -1,11 +1,13 @@
 package sneaker.string_buffer;
 
+import sneaker.string_buffer.interfaces.StringBuffer;
+
 /**
  * Special wrapper of `std.StringBuf`.
  * Each time you try to add, the value is processed and checked if it should really be added.
  */
 @:using(sneaker.string_buffer.StringBufferExtension)
-class CensoredStringBuffer {
+class CensoredStringBuffer implements StringBuffer {
 	static final defaultOnAdd = (_s: String) -> true;
 
 	/**
