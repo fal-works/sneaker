@@ -10,7 +10,6 @@ class StringExtension {
 	 * Converts `Null<T>` to `Option<String>`.
 	 * @return `None` if null, `Some(s)` if not null.
 	 */
-	@:generic
 	public static inline function toOptionalString<T>(s: Null<T>): Option<String> {
 		return s != null ? Some(Std.string(s)) : None;
 	}
