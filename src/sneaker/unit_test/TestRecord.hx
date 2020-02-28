@@ -30,7 +30,7 @@ class TestRecord {
 		buffer.addLf('${passedCount.addLeadingSpaces(3)} ${cases(passedCount)} passed.');
 
 		if (unExpectedExceptionCount > 0)
-			buffer.addLf('${unExpectedExceptionCount.addLeadingSpaces(3)} unexpected ${"exception".formatNounPluralS(unExpectedExceptionCount)} caught.');
+			buffer.addLf('${unExpectedExceptionCount.addLeadingSpaces(3)} ${cases(unExpectedExceptionCount)} raised unexpected ${"exception".formatNounPluralS(unExpectedExceptionCount)}.');
 
 		final oneOk = unExpectedOkCount == 1;
 		if (unExpectedOkCount > 0)
