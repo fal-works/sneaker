@@ -35,7 +35,6 @@ private class Evaluation {
  * Collection of assertion functions.
  */
 class Asserter {
-
 	/**
 	 * Internal function used in `assert()`.
 	 */

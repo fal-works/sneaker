@@ -6,5 +6,5 @@ class PrinterSettings {
 	 * instead of outputting directly.
 	 * @see `Printer.println()`
 	 */
-	 public static var useBuffer = false;
+	public static var useBuffer = false;
 }
