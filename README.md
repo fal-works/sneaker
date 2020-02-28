@@ -121,7 +121,7 @@ class Main {
 		final notNullA: String = unwrap(nullableA); // Works fine
 		trace(notNullA);
 
-		// Actually not null
+		// Actually null
 		final nullableB: Null<String> = null;
 
 		trace("Unwrapping. Should fail...");
@@ -170,7 +170,7 @@ class Main {
 		info("This is an info message!"); // level: 400
 		warn("This is a warning message!"); // level: 300
 		error("This is an error message!"); // level: 200
-		fatal("This is a fatal message! It's all over!"); // level: 100
+		fatal("This is a fatal message! It is all over!"); // level: 100
 	}
 }
 ```
@@ -200,9 +200,9 @@ class Main {
 		final object = new GameObject();
 		object.newTag("player character"); // Attach a new Tag with a name
 
-		object.error("Oh it's broken"); // This prints an ERROR log
+		object.error("Oh it is broken"); // This prints an ERROR log
 		// This is the same as:
-		// sneaker.log.Logger.error("Oh it's broken", object.tag);
+		// sneaker.log.Logger.error("Oh it is broken", object.tag);
 	}
 }
 ```
@@ -277,22 +277,22 @@ class Main {
 			describe("This should fail.");
 			assert(9999 < 1);
 		},
-		Fail // Fail means this case passes if it raises an exception"
+		Fail // Fail means this case passes if it raises an exception (unexpected)
 	);
 
 	static var caseB2 = testCase(
 		() -> {
-			describe("This should fail and throw anything.");
+			describe("This should fail and raise an exception.");
 			final a = 1;
 			final b = 9999;
 			assert(a < b);
 		},
-		Fail // Although declared as Fail, this case actually succeeds
+		Fail // Although declared as Fail, this case actually succeeds (unexpected)
 	);
 
 	static var caseC1 = testCase(
 		() -> {
-			describe("This prints \"AAA\".");
+			describe("This prints AAA.");
 			println("AAA");
 		},
 		Visual // Visual means this case needs to be judged visually
@@ -334,7 +334,7 @@ Breakdown:
   (a < b) => false
 
 TestCase____Main::caseB2____________________________________________________________________________
-[TEST]   Description: This should fail and throw anything.
+[TEST]   Description: This should fail and raise an exception.
 
 TestCase____Main::caseC1____________________________________________________________________________
 [TEST]   Description: This prints "AAA".
@@ -366,23 +366,23 @@ And assign your custom values following the comments.
 - `sneaker.print` package (which also underlies `sneaker.log`) for printing
 - `sneaker.format` package for formatting system data (position, call stack etc.)
 - `sneaker.string_buffer` package for extended string buffer classes
-- `sneaker.common.Exception` for extending exception objects
+- `sneaker.common.Exception` for extending and making own exception objects
 
-### Class naming convention
+### Class naming principles
 
-`SthExtension` is a set of
+`SomethingExtension` is a set of
 
-- Functions for static extension on the `Sth` class
-- Functions that return `Sth` instance and can be used for static extension on other classes
+- Functions for static extension on the `Something` class
+- Functions that return `Something` instance and can be used for static extension on other classes
 
-`SthCallbacks` is a set of
+`SomethingCallbacks` is a set of
 
-- Functions that take `Sth` instance as argument and should be passed to other functions  
-(often copied from `SthExtension`)
+- Functions that take `Something` value as argument and should be passed to other functions  
+(often copied from `SomethingExtension`)
 
-`SthTools` is
+`SomethingTools` is
 
-- something other than above, but related to `Sth`
+- Other than above, but related to `Something`
 
 
 ---
