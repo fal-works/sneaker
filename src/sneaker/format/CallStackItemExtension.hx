@@ -45,11 +45,11 @@ class CallStackItemExtension {
 
 		final buffer = new StringBuf();
 		buffer.add(indent);
-		buffer.add(stack[0]);
+		buffer.add(format(stack[0]));
 
 		for (i in 1...stack.length) {
 			buffer.add(separator);
-			buffer.add(stack[i]);
+			buffer.add(format(stack[i]));
 		}
 
 		return buffer.toString();
