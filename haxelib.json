@@ -3,7 +3,7 @@
 	"url": "https://github.com/fal-works/sneaker/",
 	"license": "MIT",
 	"tags": [],
-	"description": "Assert, log and test (quite naive). May or may not help you to debug. Not yet very well tested.",
+	"description": "Assertion (true/false check and null check), Logging (with filtering/formatting features) and Testing (relatively naive). May or may not help you to debug.",
 	"version": "0.0.1",
 	"classPath": "src/",
 	"releasenote": "Initial release, everything may change in future.",
