@@ -23,6 +23,19 @@ class Tester {
 	public static var hidePassedResults = false;
 
 	/**
+	 * If `true`, any caught exception (extending `sneaker.types.Exception`) is displayed
+	 * with succeding call stack information.
+	 * May not be that useful for simple test cases.
+	 */
+	public static var showCallStack = false;
+
+	/**
+	 * If `true`, any value that is caught in the `try/catch` and does not extend `sneaker.types.Exception`
+	 * will be thrown again instead of printing it and moving on next test cases.
+	 */
+	public static var rethrowUnknownExceptions = false;
+
+	/**
 	 * Log type used in `Tester.describe()` (unless you replace the
 	 * `Tester.describe` function and stop using `Tester.descriptionLogType`).
 	 * Replace or edit this type for changing the format of descriptions.

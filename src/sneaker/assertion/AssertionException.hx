@@ -8,12 +8,6 @@ import sneaker.types.Exception;
  */
 class AssertionException extends Exception {
 	/**
-	 * If `true`, call stack information is not appended
-	 * when casting an `AssertionException` instance to `String`.
-	 */
-	public static var hideCallstack = false;
-
-	/**
 	 * Detailed information about the assertion that raised `this` exception.
 	 */
 	public final result: AssertionResult;
@@ -26,8 +20,8 @@ class AssertionException extends Exception {
 
 		super(
 			result.createLogString(Asserter.failureLogType),
-			!hideCallstack,
 			currentCallStack,
+			null,
 			result.positionInformations
 		);
 	}

@@ -1,6 +1,7 @@
 package sneaker.unit_test;
 
 import sneaker.print.Printer;
+import sneaker.types.Exception;
 
 /**
  * Class for each test case, internally used by `Tester` class.
@@ -30,8 +31,17 @@ class TestCaseUnit {
 		var exceptionCaught = false;
 		try {
 			run();
-		} catch (exception:Dynamic) {
+		} catch (exception:Exception) {
+			exception.appendCallStack = Tester.showCallStack;
 			Tester.exceptionLogType.print('Exception caught: ${exception}');
+			exceptionCaught = true;
+		} catch (caught:Null<Dynamic>) {
+			@:nullSafety(Off)
+			final value: Dynamic = if (caught != null) caught else "null";
+
+			if (Tester.rethrowUnknownExceptions) throw value;
+
+			Tester.exceptionLogType.print('Unknown exception caught: ${value}');
 			exceptionCaught = true;
 		}
 
