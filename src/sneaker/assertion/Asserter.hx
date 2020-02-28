@@ -127,28 +127,26 @@ class Asserter {
 			final __sneakerTag = $tag;
 			#if !sneaker_assertion_print_success
 			if ($boolExpression != true) {
-				final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(
 					Assertion,
 					$a{evaluationResults},
 					__sneakerTag,
 					$message
 				);
-				@:pos(boolExpression.pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
+				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#else
 			final __sneakerEvaluationResults: Array<sneaker.assertion.EvaluationResult> = $a{evaluationResults};
 			if ($boolExpression != true) {
-				@:pos(pos) final __sneakerAssertionResult = {
-					sneaker.assertion.AssertionResult.createError(
-						Assertion,
-						__sneakerEvaluationResults,
-						__sneakerTag,
-						$message
-					);
-				}
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(
+					Assertion,
+					__sneakerEvaluationResults,
+					__sneakerTag,
+					$message
+				);
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			} else {
-				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(
+				@:pos(boolExpression.pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createOk(
 					Assertion,
 					__sneakerEvaluationResults,
 					__sneakerTag
@@ -199,14 +197,12 @@ class Asserter {
 					$v{expressionString},
 					__sneakerUnwrappedValue
 				);
-				@:pos(pos) final __sneakerAssertionResult = {
-					sneaker.assertion.AssertionResult.createError(
-						Unwrap,
-						[__sneakerEvaluationResult],
-						__sneakerTag,
-						$message
-					);
-				}
+				@:pos(pos) final __sneakerAssertionResult = sneaker.assertion.AssertionResult.createError(
+					Unwrap,
+					[__sneakerEvaluationResult],
+					__sneakerTag,
+					$message
+				);
 				@:pos(pos) throw new sneaker.assertion.AssertionException(__sneakerAssertionResult);
 			}
 			#if sneaker_assertion_print_success
