@@ -62,5 +62,5 @@ class TesterSettings {
 	 * Replace or edit this type for changing the format of that exception log.
 	 * The filters have no effect.
 	 */
-	public static var exceptionLogType = new LogType("[TEST]  ");
+	public static var exceptionLogType = new LogType("[TEST]  ").setLogFormat(LogFormats.prefixMessage);
 }
