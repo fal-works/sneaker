@@ -1,4 +1,4 @@
-package sneaker.types;
+package sneaker.common;
 
 import haxe.CallStack;
 import haxe.CallStack.StackItem;

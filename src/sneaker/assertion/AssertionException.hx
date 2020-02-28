@@ -1,7 +1,7 @@
 package sneaker.assertion;
 
 import haxe.CallStack;
-import sneaker.types.Exception;
+import sneaker.common.Exception;
 
 /**
  * Exception raised by assertion failures.

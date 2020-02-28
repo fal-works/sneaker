@@ -1,7 +1,7 @@
 package sneaker.unit_test;
 
 import sneaker.print.Printer;
-import sneaker.types.Exception;
+import sneaker.common.Exception;
 
 /**
  * Class for each test case, internally used by `Tester` class.
