@@ -5,7 +5,6 @@ May or may not help you to debug.
 ## Compatibility
 
 - Haxe v4.0.5
-- HashLink v1.10
 
 ## Features
 
@@ -25,12 +24,13 @@ May or may not help you to debug.
 - Overall
 	- Disable assertion/logging by compiler flags
 	- Almost zero runtime cost when disabled
+	- Trying to keep platform-independent (howerver HashLink is the main target).
 
 ## Downsides
 
 - All of this is nothing but reinventing the wheel
 - Don't know much about other libraries/frameworks
-- Not yet very well tested
+- Developed within a week and not yet very well tested
 
 ## Install
 <!-- 

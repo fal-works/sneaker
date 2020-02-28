@@ -1,4 +1,5 @@
 # Build with HL/JIT
+# HashLink v1.10
 
 common.hxml
 -hl out/main.hl
