@@ -221,13 +221,119 @@ Just import:
 import sneaker.unit_test.Tester.*;
 ```
 
-### Runtime settings
+Now you can use following functions:
+- `describe()` for printing heading of each test case
+- `testCase()` for wrapping any function and create a test case
+- `testCaseGroup()` for grouping multiple test cases
+- `test()` for execute the entire test
+
+Also, import below and change its values for customize several settings.
 
 ```haxe
 import sneaker.unit_test.TesterSettings;
 ```
 
-And assign your custom values following the comments.
+### Sample
+
+```haxe
+import sneaker.unit_test.Tester.*;
+import sneaker.unit_test.TesterSettings;
+import sneaker.assertion.Asserter.assert;
+import sneaker.print.Printer.println;
+
+class Main {
+	static var caseA1 = testCase(
+		() -> {
+			describe("This goes without error.");
+			assert(1 < 2);
+		},
+		Ok // "Ok" means this case passes if it completes without error
+	);
+
+	static var caseA2 = testCase(
+		() -> {
+			describe("This should go without error...");
+			final a = 9999;
+			final b = 1;
+			assert(a < b);
+		},
+		Ok // Although declared as "Ok", this case actually fails
+	);
+
+	static var caseB1 = testCase(
+		() -> {
+			describe("This should fail.");
+			assert(9999 < 1);
+		},
+		Fail // "Fail" means this case passes if it raises an exception"
+	);
+
+	static var caseB2 = testCase(
+		() -> {
+			describe("This should fail and throw anything.");
+			final a = 1;
+			final b = 9999;
+			assert(a < b);
+		},
+		Fail // Although declared as "Fail", this case actually succeeds
+	);
+
+	static var caseC1 = testCase(
+		() -> {
+			describe("This prints \"AAA\".");
+			println("AAA");
+		},
+		Visual // "Visual" means this case needs to be judged visually
+	);
+
+	// This groups multiples test cases
+	static var caseGroupA = testCaseGroup([
+		caseA1,
+		caseA2
+	]);
+	static var caseGroupB = testCaseGroup([
+		caseB1,
+		caseB2
+	]);
+
+	// Nested groups, if needed
+	static var allCases = testCaseGroup([
+		caseGroupA,
+		caseGroupB,
+		caseC1
+	]);
+
+	static function main() {
+		TesterSettings.hidePassedResults = true; // Just as the name says
+
+		test(allCases); // This is where the test actually starts
+	}
+}
+```
+
+```
+TestCase____Main::caseA2____________________________________________________________________________
+[TEST]   Description: This should go without error...
+[TEST]   Exception caught: sneaker.assertion.AssertionException
+[ASSERT] Main::caseA2 line 22 | - | Assertion failed. (a < b) is false.
+Breakdown:
+  (a) => 10000
+  (b) => 2
+  (a < b) => false
+
+TestCase____Main::caseB2____________________________________________________________________________
+[TEST]   Description: This should fail and throw anything.
+
+TestCase____Main::caseC1____________________________________________________________________________
+[TEST]   Description: This prints "AAA".
+AAA
+
+  5 cases tested.
+  2 cases passed.
+  1 unexpected exception caught.
+  1 case did not raise any exception even though it should.
+  1 case needs to be confirmed visually.
+```
 
 
 ## Compiler flags
