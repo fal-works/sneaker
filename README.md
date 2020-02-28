@@ -4,25 +4,28 @@ May or may not help you to debug.
 
 **Requires Haxe 4** (tested with v4.0.5).
 
+
 ## Features
 
 - Assertion
-	- Assert any expression that should result to `true` (e.g. `length > 0`)
-	- Check against `null`, or unwrap nullable values
+  - Assert any expression that should result to `true` (e.g. `length > 0`)
+  - Check against `null`, or unwrap nullable values
 - Logging
   - Filter by log levels (Fatal, Error, Warn, Info, Debug, other custom types)
   - Filter by code position (class, method etc.)
   - Filter by "tag"s (name & category bits) attached to any entity/instance
   - Customize formats of log messages (including code position info)
 - Testing
-	- Categorize test cases (should be OK / should fail / need visual review)
-	- Group/manage/run test cases in a naive tree structure
-	- Hide results of test cases that successfully passed
-	- Print summary of results
+  - Categorize test cases (should be OK / should fail / need visual review)
+  - Group/manage/run test cases in a naive tree structure
+  - Hide results of test cases that successfully passed
+  - Print summary of results
 - Overall
-	- Disable assertion/logging by compiler flags
-	- Almost zero runtime cost when disabled
-	- Basically platform-independent (howerver HashLink is the main target)
+  - Basically platform-independent (however HashLink is the main target)
+  - Disable assertion/logging by compiler flags
+  - Almost zero runtime cost when disabled
+  - Almost fully commented source code
+
 
 ## Downsides
 
@@ -30,12 +33,14 @@ May or may not help you to debug.
 - Don't know much about other libraries/frameworks
 - Developed within a week and not yet very well tested
 
+
 ## Install
-<!-- 
+
 ```
 haxelib install sneaker
 ```
- -->
+
+
 ## Usage > Assertion
 
 Just import:
@@ -227,12 +232,6 @@ Now you can use following functions:
 - `testCaseGroup()` for grouping multiple test cases
 - `test()` for execute the entire test
 
-Also, import below and change its values for customize several settings.
-
-```haxe
-import sneaker.unit_test.TesterSettings;
-```
-
 ### Sample
 
 ```haxe
@@ -334,6 +333,24 @@ AAA
   1 case did not raise any exception even though it should.
   1 case needs to be confirmed visually.
 ```
+
+### Runtime settings
+
+As the sample above does,
+
+```haxe
+import sneaker.unit_test.TesterSettings;
+```
+
+And assign your custom values following the comments.
+
+
+## Miscellaneous
+
+- `sneaker.print` package (which also underlies `sneaker.log`) for printing
+- `sneaker.format` package for formatting system data (position, call stack etc.)
+- `sneaker.string_buffer` package for extended string buffer classes
+- `sneaker.common.Exception` for extending exception objects
 
 
 ## Compiler flags
