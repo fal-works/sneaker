@@ -5,7 +5,8 @@ using sneaker.format.StringExtension;
 import haxe.PosInfos;
 
 class PosInfosExtension {
-	static final noPositionInfo = "(No position info)";
+	/** Display name used instead of null `PosInfos`. */
+	public static var noPositionInfo = "(No position info)";
 
 	/** Example: "mydirectory/MyFile.hx" */
 	public static function formatFile(?pos: Null<PosInfos>) {
