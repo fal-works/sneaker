@@ -17,7 +17,7 @@ class Exception {
 
 	/**
 	 * If `true`, call stack information (saved at the instanciation)
-	 * is appended to the content when casting an exception to `String`.
+	 * is appended to the content in `toString()`.
 	 *
 	 * The format can be customized in `sneaker.format.CallStackItemFormat`.
 	 */
@@ -27,6 +27,13 @@ class Exception {
 	public final callStack: Array<StackItem>;
 	public final positionInformation: Null<PosInfos>;
 
+	/**
+	 * Creates an exception instance.
+	 * @param content Value to be appended after the exception class name in `toString()`.
+	 * @param appendCallStack If `true` (default), call stack is appended after `content` in `toString()`.
+	 * @param callStack If not provided, the call stack is saved automatically in `Exception.new()`.
+	 * @param pos No effect, but you can pass any position info for your own purpose.
+	 */
 	public function new(
 		content: Dynamic,
 		appendCallStack = true,
