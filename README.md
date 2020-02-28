@@ -22,7 +22,7 @@ May or may not help you to debug.
 - Overall
 	- Disable assertion/logging by compiler flags
 	- Almost zero runtime cost when disabled
-	- Trying to keep platform-independent (howerver HashLink is the main target).
+	- Basically platform-independent (howerver HashLink is the main target)
 
 ## Downsides
 
@@ -126,6 +126,15 @@ Called from $Main.main(Main.hx:17)
 Called from fun$502(?:1)
 ```
 
+### Runtime settings
+
+```haxe
+import sneaker.assertion.AsserterSettings;
+```
+
+And assign your custom values following the comments.
+
+
 ## Usage > Logging
 
 Just import:
@@ -141,6 +150,15 @@ Just import:
 ```haxe
 import sneaker.unit_test.Tester.*;
 ```
+
+### Runtime settings
+
+```haxe
+import sneaker.unit_test.TesterSettings;
+```
+
+And assign your custom values following the comments.
+
 
 ## Compiler flags
 
