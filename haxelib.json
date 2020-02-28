@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"tags": [],
 	"description": "Assertion (true/false check and null check), Logging (with filtering/formatting features) and Testing (relatively naive). May or may not help you to debug.",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"classPath": "src/",
 	"releasenote": "Initial release, everything may change in future.",
 	"contributors": [
