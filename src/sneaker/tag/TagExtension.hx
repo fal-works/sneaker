@@ -1,27 +1,25 @@
 package sneaker.tag;
 
-import haxe.ds.Option;
-
-class TagExtencion {
+class TagExtension {
+	/**
+	 * @return If not null, `thisTag`. If null, `Tags.none`.
+	 */
 	public static inline function notNull(thisTag: Null<Tag>): Tag {
 		return if (thisTag != null) thisTag else Tags.none;
 	}
 
 	/**
-	 * Checks if this tag mathces the given condition.
-	 * @return `true` if any bit of `(tag).bits` matches `bitMask` (logical AND).
+	 * @return `true` if `thisTag` has the same name as the given `name`.
 	 */
-	public static inline function check(thisTag: Tag, bitMask: Int): Bool {
-		return thisTag.bits & bitMask != 0;
+	public static inline function checkName(thisTag: Tag, name: String): Bool {
+		return thisTag.name == name;
 	}
 
 	/**
-	 * @return `String` form of this tag, or a hyphen (`-`) if `None`.
+	 * Checks if this tag mathces the given condition.
+	 * @return `true` if any bit of `thisTag.bits` matches `bitMask` (logical AND).
 	 */
-	public static inline function formatOptional(thisTag: Option<Tag>) {
-		return switch (thisTag) {
-			case Some(value): value.toString();
-			case None: "-";
-		}
+	public static inline function checkBits(thisTag: Tag, bitMask: Int): Bool {
+		return thisTag.bits & bitMask != 0;
 	}
 }
