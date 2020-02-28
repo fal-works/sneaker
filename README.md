@@ -274,7 +274,7 @@ class GroupA {
     Ok // Although declared as Ok, this case fails (not expected)
 	);
 
-  // This groups multiples test cases
+  // testCaseGroup() wraps multiple test cases
   public static final all = testCaseGroup([
     case1,
     case2
