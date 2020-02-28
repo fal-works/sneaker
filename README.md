@@ -408,6 +408,6 @@ And assign your custom values following the comments.
 |`sneaker_assertion_show_compilation`|Prints additional info during the compilation.|
 |`sneaker_tagged_disable`|If set, no physical field for `Tagged.tag`.|
 |`sneaker_print_disable`|Disables all printing/logging features.|
-|`sneaker_print_buffer_disable`|Disables using buffer in `Printer.println()`.|
+|`sneaker_print_buffer_disable`|Disables using buffer in `Printer`.|
 |`sneaker_print_last_disable`|Disables saving last buffered/printed string.|
 |`sneaker_print_generic_disable`|Disables `@:generic` meta in the `Printer` class.|
