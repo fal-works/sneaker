@@ -1,6 +1,6 @@
 package sneaker.string_buffer;
 
-class StringBufExtension {
+class StringBufferExtension {
 	static inline final lineFeedCode = 10;
 	static inline final twoSpaces = "  ";
 
@@ -8,7 +8,7 @@ class StringBufExtension {
 	 * Adds `s`. Workaround for errors in `@:nullSafety` mode.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function addNullable<T>(buf: StringBuf, s: Null<T>): StringBuf {
+	public static inline function addNullable<B:StringBuffer, T>(buf: B, s: Null<T>): B {
 		@:nullSafety(Off) buf.add(s);
 		return buf;
 	}
@@ -17,7 +17,7 @@ class StringBufExtension {
 	 * Adds Line Feed (i.e. "\n").
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lf(buf: StringBuf): StringBuf {
+	public static inline function lf<B:StringBuffer>(buf: B): B {
 		buf.addChar(lineFeedCode);
 		return buf;
 	}
@@ -26,7 +26,7 @@ class StringBufExtension {
 	 * Adds Line Feed and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfAdd<T>(buf: StringBuf, s: Null<T>): StringBuf {
+	public static inline function lfAdd<B:StringBuffer, T>(buf: B, s: Null<T>): B {
 		#if sys
 		lf(buf);
 		addNullable(buf, s);
@@ -40,7 +40,7 @@ class StringBufExtension {
 	 * Adds `s` and Line Feed.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function addLf<T>(buf: StringBuf, s: Null<T>): StringBuf {
+	public static inline function addLf<B:StringBuffer, T>(buf: B, s: Null<T>): B {
 		#if sys
 		addNullable(buf, s);
 		lf(buf);
@@ -55,11 +55,11 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAdd<T>(
-		buf: StringBuf,
+	public static inline function indentAdd<B:StringBuffer, T>(
+		buf: B,
 		s: Null<T>,
 		indent: String = twoSpaces
-	): StringBuf {
+	): B {
 		@:nullSafety(Off) buf.add('${indent}${s}');
 		return buf;
 	}
@@ -68,11 +68,11 @@ class StringBufExtension {
 	 * Adds Line Feed, `indent` and `s`.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function lfIndentAdd<T>(
-		buf: StringBuf,
+	public static inline function lfIndentAdd<B:StringBuffer, T>(
+		buf: B,
 		s: Null<T>,
 		indent: String = twoSpaces
-	): StringBuf {
+	): B {
 		@:nullSafety(Off) buf.add('\n${indent}${s}');
 		return buf;
 	}
@@ -82,11 +82,11 @@ class StringBufExtension {
 	 * @param indent Defaults to 2 spaces.
 	 * @return The given `StringBuf`.
 	 */
-	public static inline function indentAddLf<T>(
-		buf: StringBuf,
+	public static inline function indentAddLf<B:StringBuffer, T>(
+		buf: B,
 		s: Null<T>,
 		indent: String = twoSpaces
-	): StringBuf {
+	): B {
 		@:nullSafety(Off) buf.add('${indent}${s}\n');
 		return buf;
 	}

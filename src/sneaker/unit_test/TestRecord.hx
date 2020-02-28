@@ -2,7 +2,7 @@ package sneaker.unit_test;
 
 using sneaker.format.IntExtension;
 using sneaker.format.StringLanguageExtension;
-using sneaker.string_buffer.StringBufExtension;
+using sneaker.string_buffer.StringBufferExtension;
 
 // @formatter:off
 

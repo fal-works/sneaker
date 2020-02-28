@@ -1,7 +1,7 @@
 package sneaker.assertion;
 
 using sneaker.format.StringExtension;
-using sneaker.string_buffer.StringBufExtension;
+using sneaker.string_buffer.StringBufferExtension;
 
 import haxe.PosInfos;
 import haxe.ds.Option;
