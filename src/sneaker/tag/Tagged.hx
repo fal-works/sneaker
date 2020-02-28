@@ -4,9 +4,6 @@ package sneaker.tag;
  * Base class which has a `tag` for logging.
  */
 class Tagged implements sneaker.tag.interfaces.Tagged {
-	/** Default `Tag` instance that will be attached when a `Tagged` instance is created. */
-	public static var defaultTag: Tag = new Tag("dummy");
-
 	#if sneaker_tagged_disable
 	/**
 	 * Tag for logging.
@@ -25,10 +22,10 @@ class Tagged implements sneaker.tag.interfaces.Tagged {
 	/**
 	 * Tag for logging.
 	 *
-	 * Note that the default value is a shared instance (`Tagged.defaultTag`)
-	 * and you should create and assign a new one if you want to use logging feature.
+	 * Note that the default value is a shared instance (`Tags.defaultTag`)
+	 * and you should create and assign a new one if you want to use tags for logging feature.
 	 */
-	@:isVar public var tag(get, set) = defaultTag;
+	@:isVar public var tag(get, set) = Tags.defaultTag;
 
 	public inline function get_tag()
 		return tag;

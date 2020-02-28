@@ -1,15 +1,16 @@
 package sneaker.tag;
 
+@:structInit
 @:using(sneaker.tag.TagExtension)
 class Tag {
 	/** Name for inserting to log messages. */
-	public var name: String;
+	public final name: String;
 
 	/**
 	 * Bit array for specifying to which category this tag belongs.
 	 * Can be used when filtering tags using a bit mask.
 	 */
-	public var bits: Int;
+	public final bits: Int;
 
 	/**
 	 * @param name

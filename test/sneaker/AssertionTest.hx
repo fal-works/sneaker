@@ -19,7 +19,6 @@ class AssertionTest {
 	public static final assertTagFalse = testCase(() -> {
 		describe("This raises an exception because the tag has wrong name.");
 		final tag = new Tag("someTagName");
-		tag.name = "someTagName";
 		assert(tag.name == "otherTagName", tag);
 	}, Fail);
 	public static final assertTests = testCaseGroup([

@@ -33,10 +33,10 @@ class LogTest {
 		final bitMask = 0x00000001;
 		final logType = new LogType("[log line prefix]");
 		logType.setTagBitsFilter(bitMask);
-		// This is same as:
-		// logType.tagFilter = (?tag:sneaker.tag.Tag) -> tag.checkNullable(bitMask);
-		final tag = new sneaker.tag.Tag("(tag name)");
-		tag.bits = 0x00000001;
+		final tag: sneaker.tag.Tag = {
+			name: "(tag name)",
+			bits: 0x00000001
+		};
 		logType.print("(log message)", tag);
 	}, Visual);
 	public static final logTypeFilterTagFalse = testCase(() -> {
@@ -44,26 +44,22 @@ class LogTest {
 		final bitMask = 0x00001111;
 		final logType = new LogType("[log line prefix]");
 		logType.setTagBitsFilter(bitMask);
-		// This is same as:
-		// logType.tagFilter = (?tag:sneaker.tag.Tag) -> tag.checkNullable(bitMask);
-		final tag = new sneaker.tag.Tag("(tag name)");
-		tag.bits = 0x11110000;
+		final tag: sneaker.tag.Tag = {
+			name: "(tag name)",
+			bits: 0x11110000
+		};
 		logType.print("(This should not be printed)", tag);
 	}, Visual);
 	public static final logTypeFilterPositionTrue = testCase(() -> {
 		describe("This prints a log message without a tag.");
 		final logType = new LogType("[log line prefix]");
 		logType.setMethodFilter("logTypeFilterPositionTrue");
-		// This is same as:
-		// logType.positionFilter = (?pos:haxe.PosInfos) -> pos != null && pos.methodName == "logTypeFilterPositionTrue";
 		logType.print("(log message)");
 	}, Visual);
 	public static final logTypeFilterPositionFalse = testCase(() -> {
 		describe("This has no effect because the filter predicate does not match.");
 		final logType = new LogType("[log line prefix]");
 		logType.setMethodFilter("dummy method name");
-		// This is same as:
-		// logType.positionFilter = (?pos:haxe.PosInfos) -> pos != null && pos.methodName == "dummy method name";
 		logType.print("(This should not be printed)");
 	}, Visual);
 	public static final logTypePositionFormat = testCase(() -> {
@@ -92,7 +88,7 @@ class LogTest {
 		describe("This prints a log message with a tag name.");
 		final logType = new LogType("[log line prefix]");
 		final instance = new sneaker.tag.Tagged();
-		instance.tag.name = "(tag name)";
+		instance.tag = new sneaker.tag.Tag("(tag name)");
 		instance.log(logType, "(log message)");
 	}, Visual);
 
@@ -113,7 +109,7 @@ class LogTest {
 		// -D sneaker_log_level=200
 		describe("This prints an error message with a tag name.");
 		final instance = new sneaker.tag.Tagged();
-		instance.tag.name = "(tag name)";
+		instance.tag = new sneaker.tag.Tag("(tag name)");
 		instance.error("(message)");
 	}, Visual);
 	public static final directlyWarn = testCase(() -> {
