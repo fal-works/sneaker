@@ -33,16 +33,16 @@ class TestCaseUnit {
 		try {
 			run();
 		} catch (exception:Exception) {
-			exception.appendCallStack = Tester.showCallStack;
-			Tester.exceptionLogType.print('Exception caught: ${exception}');
+			exception.appendCallStack = TesterSettings.showCallStack;
+			TesterSettings.exceptionLogType.print('Exception caught: ${exception}');
 			exceptionCaught = true;
 		} catch (caught:Null<Dynamic>) {
 			@:nullSafety(Off)
 			final value: Dynamic = if (caught != null) caught else "null";
 
-			if (Tester.rethrowUnknownExceptions) throw value;
+			if (TesterSettings.rethrowUnknownExceptions) throw value;
 
-			Tester.exceptionLogType.print('Unknown exception caught: ${value}');
+			TesterSettings.exceptionLogType.print('Unknown exception caught: ${value}');
 			exceptionCaught = true;
 		}
 
@@ -73,7 +73,7 @@ class TestCaseUnit {
 		Printer.println("");
 
 		#if !sneaker_print_buffer_disable
-		if (passed && Tester.hidePassedResults)
+		if (passed && TesterSettings.hidePassedResults)
 			Printer.buffer.clear();
 		else
 			Printer.buffer.flush();
