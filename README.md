@@ -348,10 +348,22 @@ And assign your custom values following the comments.
 
 ## Miscellaneous
 
+### Other small features
+
 - `sneaker.print` package (which also underlies `sneaker.log`) for printing
 - `sneaker.format` package for formatting system data (position, call stack etc.)
 - `sneaker.string_buffer` package for extended string buffer classes
 - `sneaker.common.Exception` for extending exception objects
+
+### Class naming convention
+
+- `XxxExtension` is a set of:
+  - Functions for static extension on the `Xxx` class
+  - Functions that return `Xxx` instance and can be used for static extension on other classes
+- `XxxCallbacks` is a set of:
+  - Functions that take `Xxx` instance as argument and should be passed to other functions  
+(often copied from `XxxExtension`)
+- `XxxTools` is something other than above, but related to `Xxx`
 
 
 ## Compiler flags
