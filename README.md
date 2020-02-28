@@ -109,3 +109,4 @@ Called from fun$492(?:1)
 |`sneaker_print_disable`|Disables all printing/logging features.|
 |`sneaker_print_buffer_disable`|Disables using buffer in `Printer.println()`.|
 |`sneaker_print_last_disable`|Disables saving last buffered/printed string.|
+|`sneaker_print_generic_disable`|Disables `@:generic` meta in the `Printer` class.|

@@ -51,7 +51,9 @@ class Printer {
 	 * - If `sneaker_print_disable` is set, `println()` has no effect.
 	 * - If `sneaker_print_buffer_disable` is set, `Printer.useBuffer` is ignored.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static function println<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 			#if !sneaker_print_buffer_disable
@@ -78,7 +80,9 @@ class Printer {
 	 *
 	 * @see `println()` for other details.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static function print<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 			#if !sneaker_print_buffer_disable
@@ -103,7 +107,9 @@ class Printer {
 	 * Compilation flag:
 	 * - Disabled if `sneaker_print_disable` is set.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static inline function printlnDirect<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 		printlnForced(s);
@@ -114,7 +120,9 @@ class Printer {
 	 * Outputs `s` without a new line.
 	 * @see `printlnDirect()`.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static inline function printDirect<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 		printForced(s);
@@ -125,7 +133,9 @@ class Printer {
 	 * Outputs `s` followed with a new line, ignoring the compilation flag `sneaker_print_disable`
 	 * and the variable `Printer.useBuffer`.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static inline function printlnForced<T>(s: Null<T>): Void {
 		#if !sneaker_print_last_disable
 		lastPrinted = s;
@@ -142,7 +152,9 @@ class Printer {
 	 * Outputs `s` without a new line, ignoring the compilation flag `sneaker_print_disable`
 	 * and the variable `Printer.useBuffer`.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static inline function printForced<T>(s: Null<T>): Void {
 		#if !sneaker_print_last_disable
 		lastPrinted = s;
@@ -158,7 +170,9 @@ class Printer {
 	/**
 	 * Prints `s` by `println()` and also returns it.
 	 */
+	#if !sneaker_print_generic_disable
 	@:generic
+	#end
 	public static inline function printlnReturn<T>(s: Null<T>): Null<T> {
 		println(s);
 		return s;

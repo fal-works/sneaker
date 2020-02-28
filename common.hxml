@@ -12,3 +12,4 @@
 # -D sneaker_print_disable
 # -D sneaker_string_buffer_length_check_disable
 # -D sneaker_print_buffer_disable
+# -D sneaker_print_generic_disable
