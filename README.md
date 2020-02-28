@@ -25,6 +25,7 @@ May or may not help you to debug.
   - Disable assertion/logging by compiler flags
   - Almost zero runtime cost when disabled
   - Almost fully commented source code
+	- Does not depend on any other library (except for `std`)
 
 
 ## Downsides
