@@ -35,6 +35,8 @@ class Printer {
 	/**
 	 * Outputs `s` followed with a new line.
 	 * - On `sys` targets: Uses `Sys.println()`.
+	 * - On JavaScript target: Uses `console.log()`
+	 *   (in case it is not available, use compiler flag `sneaker_print_disable` to avoid errors)
 	 * - Otherwise: Uses `trace()`.
 	 *
 	 * If `PrinterSettings.useBuffer` is `true`, it adds the given `s` to the buffer (`Printer.buffer.current`)
@@ -68,7 +70,7 @@ class Printer {
 	/**
 	 * Outputs `s` without a new line.
 	 *
-	 * On non-sys targets, this uses `trace()` as well as `Printer.println()` does, so
+	 * On non-sys targets, this has the same effect as `Printer.println()`, so
 	 * note that it works inconsistently among targets and also depending on whether
 	 * you use the buffer.
 	 *
@@ -137,6 +139,8 @@ class Printer {
 
 		#if sys
 		@:nullSafety(Off) Sys.println(s);
+		#elseif js
+		consoleLogJS(s);
 		#else
 		trace(s);
 		#end
@@ -156,6 +160,8 @@ class Printer {
 
 		#if sys
 		@:nullSafety(Off) Sys.print(s);
+		#elseif js
+		consoleLogJS(s);
 		#else
 		trace(s);
 		#end
@@ -179,4 +185,12 @@ class Printer {
 		println(s);
 		@:nullSafety(Off) throw s;
 	}
+
+	#if js
+	static inline function consoleLogJS(s: Null<Dynamic>): Void {
+		#if !sneaker_print_disable
+		(untyped console).log(s);
+		#end
+	}
+	#end
 }
