@@ -50,11 +50,7 @@ class TesterSettings {
 			"_",
 			100
 		));
-		TesterSettings.descriptionLogType.print(
-			'Description: ${text}',
-			null,
-			pos
-		);
+		TesterSettings.descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
 	/**

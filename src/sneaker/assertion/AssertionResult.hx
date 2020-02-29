@@ -89,11 +89,7 @@ class AssertionResult {
 	 * @return Log text created from data of `this` using `logType`.
 	 */
 	public function createLogString(logType: LogType): String {
-		return logType.createLogString(
-			contentString,
-			tag,
-			positionInformations
-		);
+		return logType.createLogString(contentString, tag, positionInformations);
 	}
 
 	/**

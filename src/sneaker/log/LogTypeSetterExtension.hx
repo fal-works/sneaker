@@ -7,10 +7,7 @@ class LogTypeSetterExtension {
 	/**
 	 * Overwrites `thisType.tagFilter` with a new filter that checks the tag with `bitMask`.
 	 */
-	public static function setTagNameFilter(
-		thisType: LogType,
-		tagName: String
-	): LogType {
+	public static function setTagNameFilter(thisType: LogType, tagName: String): LogType {
 		thisType.tagFilter = TagFilterTools.createNameFilter(tagName);
 		return thisType;
 	}

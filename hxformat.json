@@ -1,5 +1,7 @@
 {
 	"indentation": {
+		"character": "tab",
+		"tabWidth": 2,
 		"conditionalPolicy": "alignedNestedIncrease"
 	},
 	"sameLine": {

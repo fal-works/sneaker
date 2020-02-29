@@ -45,10 +45,7 @@ class StringLanguageExtension {
 	/**
 	 * Adds -es only if singular (`count == 1`).
 	 */
-	public static inline function formatVerbSingularEs(
-		verb: String,
-		count: Int
-	): String {
+	public static inline function formatVerbSingularEs(verb: String, count: Int): String {
 		return if (count == 1) '${verb}es' else verb;
 	}
 }
