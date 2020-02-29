@@ -4,12 +4,12 @@ import haxe.CallStack;
 import sneaker.common.Exception;
 
 /**
- * Exception raised by assertion failures.
- */
+	Exception raised by assertion failures.
+**/
 class AssertionException extends Exception {
 	/**
-	 * Detailed information about the assertion that raised `this` exception.
-	 */
+		Detailed information about the assertion that raised `this` exception.
+	**/
 	public final result: AssertionResult;
 
 	public function new(result: AssertionResult) {

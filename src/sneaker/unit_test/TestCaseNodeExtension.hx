@@ -2,8 +2,8 @@ package sneaker.unit_test;
 
 class TestCaseNodeExtension {
 	/**
-	 * Recursively runs each test case beginning at `node`.
-	 */
+		Recursively runs each test case beginning at `node`.
+	**/
 	public static function run(node: TestCaseNode, record: TestRecord): TestRecord {
 		switch (node) {
 			case Branch(children):

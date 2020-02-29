@@ -3,53 +3,53 @@ package sneaker.string_buffer;
 import sneaker.string_buffer.interfaces.StringBuffer;
 
 /**
- * Special wrapper of `std.StringBuf`.
- * Each time you try to add, the value is processed and checked if it should really be added.
- */
+	Special wrapper of `std.StringBuf`.
+	Each time you try to add, the value is processed and checked if it should really be added.
+**/
 @:using(sneaker.string_buffer.StringBufferExtension)
 class CensoredStringBuffer implements StringBuffer {
 	static final defaultOnAdd = (_s: String) -> true;
 
 	/**
-	 * Function that receives any value being added and
-	 * checks if it should eventually be added to `this`.
-	 */
+		Function that receives any value being added and
+		checks if it should eventually be added to `this`.
+	**/
 	public var onAdd: (addingString: String) -> Bool;
 
-	/** The length of stored string in characters. */
+	/** The length of stored string in characters. **/
 	public var length(get, never): Int;
 
 	inline function get_length()
 		return data.length;
 
 	/**
-	 * Internal `std.StringBuf` instance that actually stores the string.
-	 */
+		Internal `std.StringBuf` instance that actually stores the string.
+	**/
 	var data = new StringBuf();
 
 	/**
-	 * @param onAdd (optional) Every time you try to add a value to `this`,
-	 * `onAdd()` will receive and process that value.
-	 * `onAdd()` should return `false` if the value should not eventually be added to `this`.
-	 */
+		@param onAdd (optional) Every time you try to add a value to `this`,
+		`onAdd()` will receive and process that value.
+		`onAdd()` should return `false` if the value should not eventually be added to `this`.
+	**/
 	public function new(?onAdd: (addingString: String) -> Bool) {
 		this.onAdd = if (onAdd != null) onAdd else defaultOnAdd;
 	}
 
 	/**
-	 * Adds `x` by the following procedure:
-	 * 1. Converts `x` to a `String` value.
-	 * 2. Runs `this.onAdd()` passing that string value.
-	 * 3. Only if `this.onAdd()` returns `true`, adds the string value to `this`.
-	 */
+		Adds `x` by the following procedure:
+		1. Converts `x` to a `String` value.
+		2. Runs `this.onAdd()` passing that string value.
+		3. Only if `this.onAdd()` returns `true`, adds the string value to `this`.
+	**/
 	public function add<T>(x: T) {
 		final s = Std.string(x);
 		if (onAdd(s)) data.add(s);
 	}
 
 	/**
-	 * Adds `x` to `this` ignoring `this.onAdd`. Same as `StringBuf.add()`.
-	 */
+		Adds `x` to `this` ignoring `this.onAdd`. Same as `StringBuf.add()`.
+	**/
 	public inline function addDirect<T>(x: T) {
 		data.add(x);
 	}
@@ -60,8 +60,8 @@ class CensoredStringBuffer implements StringBuffer {
 	}
 
 	/**
-	 * Adds `x` to `this` ignoring `this.onAdd`. Same as `StringBuf.add()`.
-	 */
+		Adds `x` to `this` ignoring `this.onAdd`. Same as `StringBuf.add()`.
+	**/
 	public inline function addCharDirect<T>(c: Int): Void {
 		data.addChar(c);
 	}

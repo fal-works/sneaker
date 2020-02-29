@@ -8,8 +8,8 @@ import sneaker.string_buffer.StringBuffer;
 // @formatter:off
 
 /**
- * Class for storing test result.
- */
+	Class for storing test result.
+ **/
 class TestRecord {
 	public var caseCount = 0;
 	public var passedCount = 0;

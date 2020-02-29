@@ -1,12 +1,12 @@
 package sneaker.assertion;
 
 /**
- * Either `Assertion` or `Unwrap`.
- */
+	Either `Assertion` or `Unwrap`.
+**/
 enum AssertionType {
-	/** Called by `Asserter.assert()`. */
+	/** Called by `Asserter.assert()`. **/
 	Assertion;
 
-	/** Called by `Asserter.unwrap()`. */
+	/** Called by `Asserter.unwrap()`. **/
 	Unwrap;
 }

@@ -9,8 +9,8 @@ import sneaker.log.LogType;
 import sneaker.string_buffer.StringBuffer;
 
 /**
- * Result of assertion, including evaluation results of sub-expressions.
- */
+	Result of assertion, including evaluation results of sub-expressions.
+**/
 class AssertionResult {
 	public static function createError(
 		type: AssertionType,
@@ -37,31 +37,31 @@ class AssertionResult {
 		return new AssertionResult(type, evaluationResults, None, tag, pos);
 	}
 
-	/** Type of assertion, either `Assertion` or `Unwrap`. */
+	/** Type of assertion, either `Assertion` or `Unwrap`. **/
 	public final assertionType: AssertionType;
 
 	/**
-	 * Evaluation list of sub-expressions of which the asserted expression consists.
-	 * The last element is the evaluation of the asserted expression itself.
-	 */
+		Evaluation list of sub-expressions of which the asserted expression consists.
+		The last element is the evaluation of the asserted expression itself.
+	**/
 	public final evaluationResults: Array<EvaluationResult>;
 
-	/** Alias for the last element of `evaluationResults`. */
+	/** Alias for the last element of `evaluationResults`. **/
 	public var wholeEvaluationResult(get, never): EvaluationResult;
 
 	/**
-	 * - If succeeded: `None`.
-	 * - If failed: `Some(message:Option<String>)`.
-	 */
+		- If succeeded: `None`.
+		- If failed: `Some(message:Option<String>)`.
+	**/
 	public final error: Option<Option<String>>;
 
-	/** Text that includes the content of `this`, excluding the tag and position informaion. */
+	/** Text that includes the content of `this`, excluding the tag and position informaion. **/
 	public final contentString: String;
 
-	/** A `Tag` related with this assertion. */
+	/** A `Tag` related with this assertion. **/
 	public final tag: Tag;
 
-	/** Code position where this assertion was done. */
+	/** Code position where this assertion was done. **/
 	public final positionInformations: Null<PosInfos>;
 
 	inline function get_wholeEvaluationResult() {
@@ -86,15 +86,15 @@ class AssertionResult {
 	}
 
 	/**
-	 * @return Log text created from data of `this` using `logType`.
-	 */
+		@return Log text created from data of `this` using `logType`.
+	**/
 	public function createLogString(logType: LogType): String {
 		return logType.createLogString(contentString, tag, positionInformations);
 	}
 
 	/**
-	 * Prints log text created from data of `this` using `logType`.
-	 */
+		Prints log text created from data of `this` using `logType`.
+	**/
 	public function printLog(logType: LogType): Void {
 		logType.print(contentString, tag, positionInformations);
 	}

@@ -7,10 +7,10 @@ class CallStackItemExtension {
 	static inline final twoSpaces = "  ";
 
 	/**
-	 * Formats `item` and returns a `String` representation.
-	 *
-	 * The formatting can be customized by changing values of static variables in `CallStackItemExtension`.
-	 */
+		Formats `item` and returns a `String` representation.
+
+		The formatting can be customized by changing values of static variables in `CallStackItemExtension`.
+	**/
 	public static function format(?item: StackItem): String {
 		return switch (item) {
 			case null:
@@ -29,17 +29,17 @@ class CallStackItemExtension {
 	}
 
 	/**
-	 * Formats Call Stack.
-	 * @return `String` representation of `stack`.
-	 */
+		Formats Call Stack.
+		@return `String` representation of `stack`.
+	**/
 	public static function formatStack(stack: Array<StackItem>): String {
 		return stack.map(format).join("\n");
 	}
 
 	/**
-	 * Formats Call Stack with indent.
-	 * @return `String` representation of `stack`.
-	 */
+		Formats Call Stack with indent.
+		@return `String` representation of `stack`.
+	**/
 	public static function formatStackIndent(
 		stack: Array<StackItem>,
 		indent = twoSpaces

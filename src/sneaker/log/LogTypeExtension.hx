@@ -15,9 +15,9 @@ class LogTypeExtension {
 	//
 
 	/**
-	 * Creates log as a `String` value using `thisType.format`, `thisType.prefix`
-	 * and the given values (`message`, `tag` and `pos`).
-	 */
+		Creates log as a `String` value using `thisType.format`, `thisType.prefix`
+		and the given values (`message`, `tag` and `pos`).
+	**/
 	public static inline function createLogString(
 		thisType: LogType,
 		message: String,
@@ -28,8 +28,8 @@ class LogTypeExtension {
 	}
 
 	/**
-	 * Prints log ignoring all filters, whether or not `thisType.print()` is disabled.
-	 */
+		Prints log ignoring all filters, whether or not `thisType.print()` is disabled.
+	**/
 	public static inline function forcePrint(
 		thisType: LogType,
 		message: String,
@@ -40,8 +40,8 @@ class LogTypeExtension {
 	}
 
 	/**
-	 * Prints log if `tag` matches `thisType.tagFilter` and `pos` matches `thisType.positionFilter`.
-	 */
+		Prints log if `tag` matches `thisType.tagFilter` and `pos` matches `thisType.positionFilter`.
+	**/
 	public static inline function printIfMatch(
 		thisType: LogType,
 		message: String,
@@ -56,10 +56,10 @@ class LogTypeExtension {
 	}
 
 	/**
-	 * Disables `thisType.print()` so that it has no effect.
-	 *
-	 * For enabling again, you have to rebind any function and assign it to `thisType.print`.
-	 */
+		Disables `thisType.print()` so that it has no effect.
+
+		For enabling again, you have to rebind any function and assign it to `thisType.print`.
+	**/
 	public static inline function disablePrint(thisType: LogType): Void {
 		thisType.print = doNotPrint;
 	}

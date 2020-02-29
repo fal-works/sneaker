@@ -5,9 +5,9 @@ import sneaker.tag.Tag;
 import sneaker.format.PosInfosCallbacks;
 
 /**
- * Values that will be assigned when creating a new `LogType` instance.
- * Can also be replaced with custom functions.
- */
+	Values that will be assigned when creating a new `LogType` instance.
+	Can also be replaced with custom functions.
+**/
 class LogTypeDefaults {
 	public static var tagFilter = (tag: Tag) -> true;
 	public static var positionFilter = (?pos: PosInfos) -> true;

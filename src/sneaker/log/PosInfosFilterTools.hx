@@ -4,8 +4,8 @@ import haxe.PosInfos;
 
 class PosInfosFilterTools {
 	/**
-	 * @return Filter function that returns `true` if a given position matches `className`.
-	 */
+		@return Filter function that returns `true` if a given position matches `className`.
+	**/
 	public static function createClassFilter(
 		className: String,
 		passIfNull = false
@@ -14,8 +14,8 @@ class PosInfosFilterTools {
 	}
 
 	/**
-	 * @return Filter function that returns `true` if a given position matches `methodName`.
-	 */
+		@return Filter function that returns `true` if a given position matches `methodName`.
+	**/
 	public static function createMethodFilter(
 		methodName: String,
 		passIfNull = false
@@ -24,8 +24,8 @@ class PosInfosFilterTools {
 	}
 
 	/**
-	 * @return Filter function that returns `true` if a given position matches `className` and `methodName`.
-	 */
+		@return Filter function that returns `true` if a given position matches `className` and `methodName`.
+	**/
 	public static function createClassMethodFilter(
 		className: String,
 		methodName: String,

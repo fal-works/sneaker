@@ -5,8 +5,8 @@ import sneaker.print.PrinterSettings;
 import sneaker.common.Exception;
 
 /**
- * Class for each test case, internally used by `Tester` class.
- */
+	Class for each test case, internally used by `Tester` class.
+**/
 @:structInit
 class TestCaseUnit {
 	public final run: () -> Void;
@@ -18,9 +18,9 @@ class TestCaseUnit {
 	}
 
 	/**
-	 * Runs `this.run()` in `try/catch`.
-	 * If anything caught, prints it and goes on without throwing again.
-	 */
+		Runs `this.run()` in `try/catch`.
+		If anything caught, prints it and goes on without throwing again.
+	**/
 	public function runAndCheck(record: TestRecord): Void {
 		#if !sneaker_print_buffer_disable
 		final useBufferPreviousValue = PrinterSettings.useBuffer;

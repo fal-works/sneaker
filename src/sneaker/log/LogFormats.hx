@@ -4,16 +4,16 @@ package sneaker.log;
 
 @:nullSafety
 class LogFormats {
-	/** Separator charactor used in standard log formats. Defaults to the vertical bar `|`. */
+	/** Separator charactor used in standard log formats. Defaults to the vertical bar `|`. **/
 	public static var separator = "|";
 
 	// full use of all arguments
 
 	/**
-	 * The default, normal format.
-	 *
-	 * Example: "[ERROR]  my_module.MyClass::myMethod line 1 | myTag | myMessage"
-	 */
+		The default, normal format.
+
+		Example: "[ERROR]  my_module.MyClass::myMethod line 1 | myTag | myMessage"
+	 **/
 	public static final prefixPositionTagMessage: LogFormat = (logType, message, tag, ?pos) ->
 		'${logType.prefix} ${logType.positionFormat(pos)} ${separator} ${tag} ${separator} ${message}';
 
@@ -28,11 +28,11 @@ class LogFormats {
 
 	// partial use of arguments
 
-	/** Example: "[ERROR]  myMessage" */
+	/** Example: "[ERROR]  myMessage" **/
 	public static final prefixMessage: LogFormat = (logType, message, tag, ?pos) ->
 		'${logType.prefix} ${message}';
 
-	/** Example: "myMessage" */
+	/** Example: "myMessage" **/
 	public static final messageOnly: LogFormat = (logType, message, tag, ?pos) ->
 		'${message}';
 

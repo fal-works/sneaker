@@ -5,17 +5,17 @@ import haxe.CallStack.StackItem;
 import haxe.PosInfos;
 
 /**
- * Base exception class.
- */
+	Base exception class.
+**/
 class Exception {
 	/**
-	 * If `true`, call stack information (saved at the instanciation)
-	 * is appended to the content in `toString()`.
-	 *
-	 * Turn on/off depending on your situation, e.g. set to `true` in a `catch {}` block.
-	 *
-	 * The format can be customized in `sneaker.format.CallStackItemFormat`.
-	 */
+		If `true`, call stack information (saved at the instanciation)
+		is appended to the content in `toString()`.
+
+		Turn on/off depending on your situation, e.g. set to `true` in a `catch {}` block.
+
+		The format can be customized in `sneaker.format.CallStackItemFormat`.
+	**/
 	public var appendCallStack: Bool;
 
 	public final content: Dynamic;
@@ -24,12 +24,12 @@ class Exception {
 	public final positionInformation: Null<PosInfos>;
 
 	/**
-	 * Creates an exception instance.
-	 * @param content Value to be appended after the exception class name in `toString()`.
-	 * @param callStack If not provided, the call stack is saved automatically in `Exception.new()`.
-	 * @param appendCallStack If `true`, call stack is appended after `content` in `toString()`.
-	 * @param pos No effect, but you can pass any position info for your own purpose.
-	 */
+		Creates an exception instance.
+		@param content Value to be appended after the exception class name in `toString()`.
+		@param callStack If not provided, the call stack is saved automatically in `Exception.new()`.
+		@param appendCallStack If `true`, call stack is appended after `content` in `toString()`.
+		@param pos No effect, but you can pass any position info for your own purpose.
+	**/
 	public function new(
 		content: Dynamic,
 		?callStack: Array<StackItem>,

@@ -9,15 +9,15 @@ import haxe.macro.Expr;
 import sneaker.tag.Tag;
 
 private class Evaluation {
-	/** Used as callback in `evaluationArray.map()`. */
+	/** Used as callback in `evaluationArray.map()`. **/
 	public static final getExecutionExpression = (
 		evaluation: Evaluation
 	) -> evaluation.executionExpression;
 
-	/** String form of the expression to be evaluated. */
+	/** String form of the expression to be evaluated. **/
 	public final expressionString: String;
 
-	/** Expression that assigns the evaluation result to a local variable. */
+	/** Expression that assigns the evaluation result to a local variable. **/
 	public final executionExpression: Expr;
 
 	public function new(
@@ -31,12 +31,12 @@ private class Evaluation {
 }
 
 /**
- * Collection of assertion functions.
- */
+	Collection of assertion functions.
+**/
 class Asserter {
 	/**
-	 * Internal function used in `assert()`.
-	 */
+		Internal function used in `assert()`.
+	**/
 	static function prepareEvaluations(
 		expressionToAssert: ExprOf<Bool>
 	): Array<Evaluation> {
@@ -78,17 +78,17 @@ class Asserter {
 	}
 
 	/**
-	 * Throws error if `boolExpression` is `false`.
-	 *
-	 * Compilation flags:
-	 * - If `sneaker_assertion_disable` is set, `assert()` has no effect.
-	 * - If `sneaker_assertion_show_compilation` is set, prints additional info during the compilation.
-	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
-	 *
-	 * @param boolExpression Expression that should not be `false`.
-	 * @param tag Any `Tag` of which name should be included in the exception text.
-	 * @param message Expression that generates message for inserting to the exception.
-	 */
+		Throws error if `boolExpression` is `false`.
+
+		Compilation flags:
+		- If `sneaker_assertion_disable` is set, `assert()` has no effect.
+		- If `sneaker_assertion_show_compilation` is set, prints additional info during the compilation.
+		- If `sneaker_assertion_print_success` is set, prints result if successful.
+
+		@param boolExpression Expression that should not be `false`.
+		@param tag Any `Tag` of which name should be included in the exception text.
+		@param message Expression that generates message for inserting to the exception.
+	**/
 	@:noUsing
 	public static macro function assert(
 		boolExpression: ExprOf<Bool>,
@@ -149,20 +149,20 @@ class Asserter {
 	}
 
 	/**
-	 * Checks `object` against null, and throws exception if `object` is `null`.
-	 *
-	 * Unlike `assert()`, the exception does not contain information about sub-expressions of `object`.
-	 *
-	 * Compilation flags:
-	 * - If `sneaker_assertion_disable` is set,
-	 *   `unwrap()` directly returns `object` without checking.
-	 * - If `sneaker_assertion_print_success` is set, prints result if successful.
-	 *
-	 * @param object Expression that should not be `null`.
-	 * @param tag Any `Tag` of which name should be included in the exception text.
-	 * @param message Expression that generates message for inserting to the exception.
-	 * @return Evaluation result of `object` that has been checked against null.
-	 */
+		Checks `object` against null, and throws exception if `object` is `null`.
+
+		Unlike `assert()`, the exception does not contain information about sub-expressions of `object`.
+
+		Compilation flags:
+		- If `sneaker_assertion_disable` is set,
+			`unwrap()` directly returns `object` without checking.
+		- If `sneaker_assertion_print_success` is set, prints result if successful.
+
+		@param object Expression that should not be `null`.
+		@param tag Any `Tag` of which name should be included in the exception text.
+		@param message Expression that generates message for inserting to the exception.
+		@return Evaluation result of `object` that has been checked against null.
+	**/
 	@:noUsing
 	public static macro function unwrap<T>(
 		object: ExprOf<Null<T>>,

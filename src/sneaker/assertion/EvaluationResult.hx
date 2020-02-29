@@ -1,8 +1,8 @@
 package sneaker.assertion;
 
 /**
- * A pair of an expression string and its evaluated value.
- */
+	A pair of an expression string and its evaluated value.
+**/
 class EvaluationResult {
 	public static final stringify = (result: EvaluationResult) -> result.toString();
 
