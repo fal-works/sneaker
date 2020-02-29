@@ -388,8 +388,8 @@ Which also underlie the features above.
 
 `SomethingExtension` is a set of
 
-- Functions for static extension on the `Something` class
-- Functions that return `Something` instance and can be used for static extension on other classes
+- Functions for static extension on the `Something` type
+- Functions that return `Something` values and can be used for static extension on other types
 
 `SomethingCallbacks` is a set of
 
@@ -398,7 +398,7 @@ Which also underlie the features above.
 
 `SomethingTools` is
 
-- Other than above, but related to `Something` class
+- Other than above, but related to `Something` type
 
 
 ---
