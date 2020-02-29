@@ -46,6 +46,6 @@ class Tester {
 	public static function test(testCaseRoot: TestCaseNode): Void {
 		final result = testCaseRoot.run(new TestRecord());
 
-		println(result);
+		println(result.toString());
 	}
 }

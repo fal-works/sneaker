@@ -4,6 +4,8 @@ package sneaker.assertion;
  * A pair of an expression string and its evaluated value.
  */
 class EvaluationResult {
+	public static final stringify = (result: EvaluationResult) -> result.toString();
+
 	public final expressionString: String;
 	public final value: Null<Dynamic>;
 

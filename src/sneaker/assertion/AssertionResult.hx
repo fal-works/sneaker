@@ -124,7 +124,7 @@ class AssertionResult {
 	function addDetails(buffer: StringBuffer): Void {
 		if (evaluationResults.length > 1) {
 			buffer.lfAdd('Breakdown:');
-			buffer.lfIndentAddLines(evaluationResults);
+			buffer.lfIndentAddLines(evaluationResults.map(EvaluationResult.stringify));
 		}
 	}
 
