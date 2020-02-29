@@ -18,7 +18,7 @@ class Exception {
 	**/
 	public var appendCallStack: Bool;
 
-	public final content: Dynamic;
+	public final content: String;
 	public final callStack: Array<StackItem>;
 
 	public final positionInformation: Null<PosInfos>;
@@ -31,7 +31,7 @@ class Exception {
 		@param pos No effect, but you can pass any position info for your own purpose.
 	**/
 	public function new(
-		content: Dynamic,
+		content: String,
 		?callStack: Array<StackItem>,
 		?appendCallStack,
 		?pos: PosInfos
