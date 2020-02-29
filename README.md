@@ -186,7 +186,7 @@ If `-D sneaker_log_level=200` (default), only the logs on the level 200 or lower
 
 A `Tag` instance is something that is attached to identify any instance or entity.
 
-A quick way is to extend the `Tagged` class and create your own objects.
+A quick way is to extend the `Tagged` class (which has a `tag` field) and create your own objects.
 
 ```haxe
 class GameObject extends sneaker.tag.Tagged {
@@ -211,10 +211,13 @@ class Main {
 [ERROR]  Main::main line 12 | player character | Oh it's broken
 ```
 
-In addition to its `name`, a `Tag` also has `bits`.  
+- In addition to its `name`, a `Tag` also has `bits`.  
 This is a bit array (actually `Int`) which specifies to which category the tag belongs.
+- Both `name` and `bits` can be used for filtering log messages (see `LogType` class).
+- In the release build you can disable the physical implementation of the `tag` field  
+to avoid wasting memory (see "Compiler Flags" below).
+- You can also implement the `sneaker.tag.interfaces.Tagged` interface.
 
-Both `name` and `bits` can be used for filtering log messages.
 
 ### Customization
 
@@ -225,7 +228,7 @@ Each `LogType` instance has following contents (which can be changed individuall
 
 - `prefix`: String value for appending to log texts
 - `tagFilter`: Filtering predicate for `Tag`s
-- `positionFilter`: Filtering predicate for code position information (class, method, ...)
+- `positionFilter`: Filtering predicate for code position (class, method, ...)
 - `positionFormat`: Formatter function for position information
 - `logFormat`: Formatter function for the entire log text
 
@@ -374,7 +377,9 @@ And assign your custom values following the comments.
 
 ### Other small features
 
-- `sneaker.print` package (which also underlies `sneaker.log`) for printing
+Which also underlie the features above.
+
+- `sneaker.print` package for printing with buffering/disabling features
 - `sneaker.format` package for formatting system data (position, call stack etc.)
 - `sneaker.string_buffer` package for extended string buffer classes
 - `sneaker.common.Exception` for extending and making own exception objects
@@ -393,7 +398,7 @@ And assign your custom values following the comments.
 
 `SomethingTools` is
 
-- Other than above, but related to `Something`
+- Other than above, but related to `Something` class
 
 
 ---
