@@ -6,7 +6,6 @@ using sneaker.string_buffer.StringLanguageExtension;
 #end
 
 import haxe.macro.Expr;
-import sneaker.log.LogType;
 import sneaker.tag.Tag;
 
 private class Evaluation {
