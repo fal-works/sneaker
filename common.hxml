@@ -3,6 +3,7 @@
 -cp src
 -cp test
 -main Main
+-dce full
 --macro nullSafety("sneaker", Strict)
 -D sneaker_log_level=200
 # -D sneaker_assertion_print_success
