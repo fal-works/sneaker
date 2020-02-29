@@ -12,7 +12,7 @@ class EvaluationResult {
 		this.value = value;
 	}
 
-	public function toString() {
+	public function toString(): String {
 		return @:nullSafety(Off) '(${expressionString}) => ${value}';
 	}
 }
