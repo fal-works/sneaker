@@ -1,8 +1,10 @@
 package sneaker.unit_test;
 
+import haxe.CallStack;
 import sneaker.print.Printer;
 import sneaker.print.PrinterSettings;
 import sneaker.common.Exception;
+import sneaker.common.ExceptionSettings;
 
 /**
 	Class for each test case, internally used by `Tester` class.
@@ -40,9 +42,14 @@ class TestCaseUnit {
 			@:nullSafety(Off)
 			final value: Dynamic = if (caught != null) caught else "null";
 
-			if (TesterSettings.rethrowUnknownExceptions) throw value;
+			if (TesterSettings.rethrowUnknownExceptions)
+				throw value;
 
-			TesterSettings.exceptionLogType.print('Unknown exception caught: ${value}');
+			var message = 'Unknown exception caught: ${value}';
+			if (TesterSettings.showCallStack)
+					message += "\nCall Stack:\n" + ExceptionSettings.callStackFormat(CallStack.callStack());
+
+			TesterSettings.exceptionLogType.print(message);
 			exceptionCaught = true;
 		}
 

@@ -20,9 +20,7 @@ class TesterSettings {
 	public static var hidePassedResults = false;
 
 	/**
-		If `true`, any caught exception (extending `sneaker.common.Exception`) is displayed
-		with succeding call stack information.
-		May not be that useful for simple test cases.
+		If `true`, any caught exception is displayed with succeding call stack information.
 	**/
 	public static var showCallStack = false;
 
