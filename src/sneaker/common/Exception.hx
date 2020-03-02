@@ -56,7 +56,9 @@ class Exception {
 	public function toString(): String {
 		// nullSafety Off for JS target
 		final classObject: Null<Class<Exception>> = @:nullSafety(Off) Type.getClass(this);
-		final name = if (classObject != null) @:nullSafety(Off) Type.getClassName(classObject) else "sneaker.common.Exception";
+		final name = if (classObject != null)
+			@:nullSafety(Off) Type.getClassName(classObject)
+		else "sneaker.common.Exception";
 
 		return if (appendCallStack)
 			'${name}\n${content}\nCall Stack:\n${ExceptionSettings.callStackFormat(callStack)}';
