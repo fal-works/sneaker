@@ -103,9 +103,6 @@ class Printer {
 		Compilation flag:
 		- Disabled if `sneaker_print_disable` is set.
 	**/
-	#if !sneaker_print_generic_disable
-	@:generic
-	#end
 	public static inline function printlnDirect<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 		printlnForced(s);
@@ -116,9 +113,6 @@ class Printer {
 		Outputs `s` without a new line.
 		@see `printlnDirect()`.
 	**/
-	#if !sneaker_print_generic_disable
-	@:generic
-	#end
 	public static inline function printDirect<T>(s: Null<T>): Void {
 		#if !sneaker_print_disable
 		printForced(s);
@@ -129,9 +123,6 @@ class Printer {
 		Outputs `s` followed with a new line, ignoring the compilation flag `sneaker_print_disable`
 		and the variable `PrinterSettings.useBuffer`.
 	**/
-	#if !sneaker_print_generic_disable
-	@:generic
-	#end
 	public static inline function printlnForced<T>(s: Null<T>): Void {
 		#if !sneaker_print_last_disable
 		lastPrinted = s;
@@ -150,9 +141,6 @@ class Printer {
 		Outputs `s` without a new line, ignoring the compilation flag `sneaker_print_disable`
 		and the variable `PrinterSettings.useBuffer`.
 	**/
-	#if !sneaker_print_generic_disable
-	@:generic
-	#end
 	public static inline function printForced<T>(s: Null<T>): Void {
 		#if !sneaker_print_last_disable
 		lastPrinted = s;
@@ -170,9 +158,6 @@ class Printer {
 	/**
 		Prints `s` by `println()` and also returns it.
 	**/
-	#if !sneaker_print_generic_disable
-	@:generic
-	#end
 	public static inline function printlnReturn<T>(s: Null<T>): Null<T> {
 		println(s);
 		return s;
