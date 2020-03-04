@@ -42,13 +42,15 @@ class TesterSettings {
 		Function used in `Tester.describe()`.
 		Replaced this with any custom function to change the format.
 	**/
-	public static var describe = (text: String, ?pos: PosInfos) -> {
+	public static var describe = (?text: String, ?pos: PosInfos) -> {
 		println(StringTools.rpad(
 			'TestCase____${pos.formatClassMethodWithoutModule()}',
 			"_",
 			100
 		));
-		TesterSettings.descriptionLogType.print('Description: ${text}', null, pos);
+
+		if (text != null)
+			TesterSettings.descriptionLogType.print('Description: ${text}', null, pos);
 	}
 
 	/**

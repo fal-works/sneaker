@@ -8,11 +8,11 @@ import sneaker.print.Printer.println;
 **/
 class Tester {
 	/**
-		Prints a heading including position info, and the given description text on the next line.
+		Prints a heading including position info, and (if provided) the given description text on the next line.
 
 		Call this at first in each test case function.
 	**/
-	public static inline function describe(text: String, ?pos: PosInfos): Void {
+	public static inline function describe(?text: String, ?pos: PosInfos): Void {
 		TesterSettings.describe(text, pos);
 	}
 
