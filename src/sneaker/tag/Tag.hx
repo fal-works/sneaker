@@ -14,9 +14,9 @@ class Tag {
 
 	/**
 		@param name
-		@param bits Defaults to `0x00000000` (all bits not set).
+		@param bits Defaults to `0xFFFFFFFF` (all bits set).
 	**/
-	public function new(name: String, bits: Int = 0x00000000) {
+	public function new(name: String, bits: Int = 0xFFFFFFFF) {
 		this.name = name;
 		this.bits = bits;
 	}
