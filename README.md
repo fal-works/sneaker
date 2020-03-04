@@ -150,6 +150,16 @@ import sneaker.assertion.AsserterSettings;
 
 And assign your custom values following the comments.
 
+### Caution
+
+The expression to assert/unwrap should not have side effects.
+
+For instance, the below gives an odd result (raises exception even though `true`).
+
+```haxe
+final array = ["a", "b", "c"];
+assert(array.pop() == "c");
+```
 
 ## Usage > Logging
 
