@@ -12,10 +12,11 @@ class TaggedExtension {
 
 		No effect if compilation flag `sneaker_tagged_disable` is set.
 	 **/
-	public static inline function newTag(thisObj: Tagged, name: String, ?bits: Int) {
+	public static inline function newTag(thisObj: Tagged, name: String, ?bits: Int): Tagged {
 		#if !sneaker_tagged_disable
 		thisObj.tag = new Tag(name, bits);
 		#end
+		return thisObj;
 	}
 
 	/**
