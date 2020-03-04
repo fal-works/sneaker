@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"tags": ["utility", "macro"],
 	"description": "Assert, log and test. May or may not help you to debug your Haxe code.",
-	"version": "0.1.2",
+	"version": "0.2.0-alpha",
 	"classPath": "src/",
 	"releasenote": "Fixed bugs on JS target.",
 	"contributors": [
