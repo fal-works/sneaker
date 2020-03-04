@@ -4,13 +4,13 @@ package sneaker.tag;
 @:using(sneaker.tag.TagExtension)
 class Tag {
 	/** Name for inserting to log messages. **/
-	public final name: String;
+	@:isVar public var name(get, null): String;
 
 	/**
 		Bit array for specifying to which category this tag belongs.
 		Can be used when filtering tags using a bit mask.
 	**/
-	public final bits: Int;
+	@:isVar public var bits(get, null): Int;
 
 	/**
 		@param name
@@ -22,6 +22,14 @@ class Tag {
 	}
 
 	public inline function toString(): String {
-		return this.name;
+		return name;
+	}
+
+	inline function get_name() {
+		return name;
+	}
+
+	inline function get_bits() {
+		return bits;
 	}
 }
