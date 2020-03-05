@@ -161,6 +161,9 @@ final array = ["a", "b", "c"];
 assert(array.pop() == "c");
 ```
 
+There might also be other problems, expecially with complex expressions.
+
+
 ## Usage > Logging
 
 Just import:
