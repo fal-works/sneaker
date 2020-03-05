@@ -53,12 +53,14 @@ class AssertionTest {
 	// other
 	public static final complex = testCase(() -> {
 		describe('This gives an odd result!');
-		final array = ["a", "b", "c"];
+		final array = [
+			"a",
+			"b",
+			"c"
+		];
 		assert(array.pop() == "c");
 	}, Fail);
-	public static final otherTests = testCaseGroup([
-		complex
-	]);
+	public static final otherTests = testCaseGroup([complex]);
 
 	// all
 	public static final all = testCaseGroup([
