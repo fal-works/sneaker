@@ -6,9 +6,10 @@ import sneaker.log.LogTypes;
 
 class Logger {
 	/**
+		@deprecated
 		Prints log of any `logType`.
 	**/
-	public static inline function log(
+	@:deprecated public static inline function log(
 		logType: LogType,
 		message: String,
 		?tag: Tag,

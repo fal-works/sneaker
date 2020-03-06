@@ -37,7 +37,7 @@ class TaggedExtension {
 		Output `message` as a log of any `logType`.
 	 **/
 	public static inline function log(_this: Tagged, logType: LogType, message: String, ?pos: PosInfos) {
-		Logger.log(logType, message, _this.tag, pos);
+		logType.print(message, _this.tag, pos);
 	}
 
 	/**
