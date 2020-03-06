@@ -420,7 +420,7 @@ Which also underlie the features above.
 
 |flag|description|
 |---|---|
-|`sneaker_log_level`|`100` for FATAL, `200` for ERROR and so on. Defaults to `200`.|
+|`sneaker_log_level`|Threshold for filtering logs by levels. Defaults to `200`.|
 |`sneaker_assertion_disable`|Disables assertion.|
 |`sneaker_assertion_print_success`|Prints successful results.|
 |`sneaker_assertion_show_compilation`|Prints additional info during the compilation.|
@@ -430,3 +430,15 @@ Which also underlie the features above.
 |`sneaker_print_buffer_disable`|Disables using buffer in `Printer`.|
 |`sneaker_print_last_disable`|Disables saving last buffered/printed string.|
 |`sneaker_print_generic_disable`|Disables `@:generic` meta in the `Printer` class.|
+
+### Log Levels of built-in Log Types
+
+A log type is enabled only if its level is equal or less than the compiler flag `sneaker_log_level`.
+
+|Type  |Level|
+|------|-----|
+|FATAL |  100|
+|ERROR |  200|
+|WARN  |  300|
+|INFO  |  400|
+|DEBUG |  500|
