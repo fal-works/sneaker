@@ -4,6 +4,22 @@ import haxe.PosInfos;
 import sneaker.tag.Tag;
 import sneaker.log.LogTypes;
 
+/**
+	Set of functions for printing logs.
+
+	Each function respects the compiler flag `sneaker_log_level`;
+	Function that corresponds to a level greater than `sneaker_log_level` has no effect.
+
+	|Type  |Level|
+	|------|-----|
+	|FATAL |  100|
+	|ERROR |  200|
+	|WARN  |  300|
+	|INFO  |  400|
+	|DEBUG |  500|
+
+	For instance, if `-D sneaker_log_level=200` (default), only FATAL and ERROR are printed.
+**/
 class Logger {
 	/**
 		@deprecated
