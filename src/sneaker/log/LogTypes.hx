@@ -1,22 +1,37 @@
 package sneaker.log;
 
 /**
-	Collection of standard log types.
+	Collection of standard built-in log types.
 **/
 class LogTypes {
-	static final prefixes = {
-		fatal: "[FATAL] ",
-		error: "[ERROR] ",
-		warn: "[WARN]  ",
-		info: "[INFO]  ",
-		debug: "[DEBUG] "
+	static final constants: BuiltInConstants = {
+		fatal: {
+			prefix: "[FATAL] ",
+			level: 100
+		},
+		error: {
+			prefix: "[ERROR] ",
+			level: 200
+		},
+		warn: {
+			prefix: "[WARN]  ",
+			level: 300
+		},
+		info: {
+			prefix: "[INFO]  ",
+			level: 400
+		},
+		debug: {
+			prefix: "[DEBUG] ",
+			level: 500
+		}
 	};
 
-	public static var fatal = new LogType(prefixes.fatal);
-	public static var error = new LogType(prefixes.error);
-	public static var warn = new LogType(prefixes.warn);
-	public static var info = new LogType(prefixes.info);
-	public static var debug = new LogType(prefixes.debug);
+	public static var fatal = constants.fatal.build();
+	public static var error = constants.error.build();
+	public static var warn = constants.warn.build();
+	public static var info = constants.info.build();
+	public static var debug = constants.debug.build();
 
 	/**
 		Recreate all types in `LogTypes`.
@@ -24,10 +39,21 @@ class LogTypes {
 		This can be used e.g. for reflecting changes of static variables in `LogType`.
 	**/
 	public static function reset() {
-		fatal = new LogType(prefixes.fatal);
-		error = new LogType(prefixes.error);
-		warn = new LogType(prefixes.warn);
-		info = new LogType(prefixes.info);
-		debug = new LogType(prefixes.debug);
+		fatal = constants.fatal.build();
+		error = constants.error.build();
+		warn = constants.warn.build();
+		info = constants.info.build();
+		debug = constants.debug.build();
 	}
+}
+
+/**
+	Structure just for type inference.
+**/
+private typedef BuiltInConstants = {
+	final fatal: LogTypeBuilder;
+	final error: LogTypeBuilder;
+	final warn: LogTypeBuilder;
+	final info: LogTypeBuilder;
+	final debug: LogTypeBuilder;
 }

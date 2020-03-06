@@ -123,12 +123,22 @@ class LogTest {
 		directlyWarn
 	]);
 
+	public static final logLevel = testCase(() -> {
+		// -D sneaker_log_level=200
+		describe("This prints only one line: AAA");
+		final logTypeA = new LogType("[prefixA]", -9999);
+		logTypeA.print("AAA");
+		final logTypeB = new LogType("[prefixB]", 9999);
+		logTypeB.print("BBB");
+	}, Visual);
+
 	public static final all = testCaseGroup([
 		println,
 		logTypeTests,
 		logTypeChangeTests,
 		logTagged,
 		logTypeError,
-		logdirectTests
+		logdirectTests,
+		logLevel
 	]);
 }
