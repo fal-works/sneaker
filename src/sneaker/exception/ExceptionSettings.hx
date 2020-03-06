@@ -1,4 +1,4 @@
-package sneaker.common;
+package sneaker.exception;
 
 import sneaker.format.CallStackItemCallbacks;
 

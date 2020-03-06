@@ -395,7 +395,7 @@ Which also underlie the features above.
 - `sneaker.print` package for printing with buffering/disabling features
 - `sneaker.format` package for formatting system data (position, call stack etc.)
 - `sneaker.string_buffer` package for extended string buffer classes
-- `sneaker.common.Exception` for extending and making own exception objects
+- `sneaker.exception.Exception` for extending and making own exception objects
 
 ### Class naming principles
 

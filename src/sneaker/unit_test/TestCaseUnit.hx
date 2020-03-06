@@ -3,8 +3,8 @@ package sneaker.unit_test;
 import haxe.CallStack;
 import sneaker.print.Printer;
 import sneaker.print.PrinterSettings;
-import sneaker.common.Exception;
-import sneaker.common.ExceptionSettings;
+import sneaker.exception.Exception;
+import sneaker.exception.ExceptionSettings;
 
 /**
 	Class for each test case, internally used by `Tester` class.

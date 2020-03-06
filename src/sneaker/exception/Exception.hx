@@ -1,4 +1,4 @@
-package sneaker.common;
+package sneaker.exception;
 
 import haxe.CallStack;
 import haxe.CallStack.StackItem;
@@ -58,7 +58,7 @@ class Exception {
 		final classObject: Null<Class<Exception>> = @:nullSafety(Off) Type.getClass(this);
 		final name = if (classObject != null)
 			@:nullSafety(Off) Type.getClassName(classObject)
-		else "sneaker.common.Exception";
+		else "sneaker.exception.Exception";
 
 		return if (appendCallStack)
 			'${name}\n${content}\nCall Stack:\n${ExceptionSettings.callStackFormat(callStack)}';

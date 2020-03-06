@@ -25,8 +25,9 @@ class TesterSettings {
 	public static var showCallStack = false;
 
 	/**
-		If `true`, any value that is caught in the `try/catch` and does not extend `sneaker.common.Exception`
-		will be thrown again instead of printing it and moving on next test cases.
+		If `true`, any value that is caught in the `try/catch` and does not extend
+		`sneaker.exception.Exception` will be thrown again instead of printing it
+		and moving on next test cases.
 	**/
 	public static var rethrowUnknownExceptions = false;
 
