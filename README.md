@@ -161,7 +161,7 @@ final array = ["a", "b", "c"];
 assert(array.pop() == "c");
 ```
 
-There might also be other problems, expecially with complex expressions.
+There might also be other problems, especially with complex expressions.
 
 
 ## Usage > Logging
