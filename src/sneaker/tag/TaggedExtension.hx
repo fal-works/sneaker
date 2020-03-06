@@ -8,6 +8,19 @@ import sneaker.log.Logger;
 
 class TaggedExtension {
 	/**
+		Attaches a new `tag` to `this`.
+
+		No effect if compilation flag `sneaker_tagged_disable` is set.
+		@return `this`
+	 **/
+	 public static inline function setTag(_this: Tagged, tag: Tag): Tagged {
+		#if !sneaker_tagged_disable
+		_this.tag = tag;
+		#end
+		return _this;
+	}
+
+	/**
 		A shortcut for `this.tag = new Tag(name, bits)`.
 
 		No effect if compilation flag `sneaker_tagged_disable` is set.
