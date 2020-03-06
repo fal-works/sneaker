@@ -29,7 +29,7 @@ class AssertionTest {
 
 	// unwrap
 	public static final unwrapOk = testCase(() -> {
-		final obj = {val: 1};
+		final obj = { val: 1 };
 		describe('This prints "${obj}".');
 		println(unwrap(obj));
 	}, Visual);

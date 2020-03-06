@@ -47,7 +47,8 @@ class TestCaseUnit {
 
 			var message = 'Unknown exception caught: ${value}';
 			if (TesterSettings.showCallStack)
-				message += "\nCall Stack:\n" + ExceptionSettings.callStackFormat(CallStack.callStack());
+				message += "\nCall Stack:\n" +
+					ExceptionSettings.callStackFormat(CallStack.callStack());
 
 			TesterSettings.exceptionLogType.print(message);
 			exceptionCaught = true;

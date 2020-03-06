@@ -36,7 +36,8 @@ class TesterSettings {
 		Replace or edit this type for changing the format of descriptions.
 		The filters have no effect.
 	**/
-	public static var descriptionLogType = new LogType("[TEST]  ").setLogFormat(LogFormats.prefixMessage);
+	public static var descriptionLogType = new LogType("[TEST]  ")
+		.setLogFormat(LogFormats.prefixMessage);
 
 	/**
 		Function used in `Tester.describe()`.
@@ -64,5 +65,6 @@ class TesterSettings {
 		Replace or edit this type for changing the format of that exception log.
 		The filters have no effect.
 	**/
-	public static var exceptionLogType = new LogType("[TEST]  ").setLogFormat(LogFormats.prefixMessage);
+	public static var exceptionLogType = new LogType("[TEST]  ")
+		.setLogFormat(LogFormats.prefixMessage);
 }

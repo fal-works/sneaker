@@ -10,10 +10,38 @@
 		"elseIf": "keep",
 		"forBody": "keep",
 		"ifBody": "keep",
+		"ifElse": "keep",
 		"whileBody": "keep"
 	},
 	"whitespace": {
-		"typeHintColonPolicy": "onlyAfter"
+		"typeHintColonPolicy": "onlyAfter",
+		"bracesConfig": {
+			"anonTypeBraces": {
+				"openingPolicy": "around",
+				"closingPolicy": "around",
+				"removeInnerWhenEmpty": true
+			},
+			"blockBraces": {
+				"openingPolicy": "around",
+				"closingPolicy": "around",
+				"removeInnerWhenEmpty": true
+			},
+			"objectLiteralBraces": {
+				"openingPolicy": "around",
+				"closingPolicy": "around",
+				"removeInnerWhenEmpty": true
+			},
+			"typedefBraces": {
+				"openingPolicy": "around",
+				"closingPolicy": "around",
+				"removeInnerWhenEmpty": true
+			},
+			"unknownBraces": {
+				"openingPolicy": "around",
+				"closingPolicy": "around",
+				"removeInnerWhenEmpty": true
+			}
+		}
 	},
 	"wrapping": {
 		"arrayWrap": {
@@ -139,6 +167,31 @@
 				}
 			]
 		},
+		"implementsExtends": {
+			"defaultWrap": "noWrap",
+			"rules": [
+				{
+					"conditions": [
+						{
+							"cond": "lineLength >= n",
+							"value": 90
+						}
+					],
+					"type": "onePerLine",
+					"additionalIndent": 1
+				},
+				{
+					"conditions": [
+						{
+							"cond": "itemCount >= n",
+							"value": 4
+						}
+					],
+					"type": "onePerLine",
+					"additionalIndent": 1
+				}
+			]
+		},
 		"metadataCallParameter": {
 			"defaultWrap": "noWrap",
 			"rules": [
@@ -170,6 +223,7 @@
 					"type": "onePerLine"
 				}
 			]
-		}
+		},
+		"maxLineLength": 90
 	}
 }

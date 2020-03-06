@@ -31,6 +31,7 @@ class PosInfosFilterTools {
 		methodName: String,
 		passIfNull = false
 	): (?pos: PosInfos) -> Bool {
-		return (?pos) -> if (pos != null) pos.className == className && pos.methodName == methodName else passIfNull;
+		return (?pos) -> if (pos == null)
+			passIfNull else pos.className == className && pos.methodName == methodName;
 	}
 }
