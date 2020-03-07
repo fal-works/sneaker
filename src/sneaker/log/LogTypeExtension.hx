@@ -15,52 +15,52 @@ class LogTypeExtension {
 	//
 
 	/**
-		Creates log as a `String` value using `thisType.format`, `thisType.prefix`
+		Creates log as a `String` value using `this.format`, `this.prefix`
 		and the given values (`message`, `tag` and `pos`).
 	**/
 	public static inline function createLogString(
-		thisType: LogType,
+		_this: LogType,
 		message: String,
 		?tag: Tag,
 		?pos: PosInfos
 	): String {
-		return thisType.logFormat(thisType, message, tag.notNull(), pos);
+		return _this.logFormat(_this, message, tag.notNull(), pos);
 	}
 
 	/**
-		Prints log ignoring all filters, whether or not `thisType.print()` is disabled.
+		Prints log ignoring all filters, whether or not `this.print()` is disabled.
 	**/
 	public static inline function forcePrint(
-		thisType: LogType,
+		_this: LogType,
 		message: String,
 		?tag: Tag,
 		?pos: PosInfos
 	): Void {
-		Printer.println(createLogString(thisType, message, tag, pos));
+		Printer.println(createLogString(_this, message, tag, pos));
 	}
 
 	/**
-		Prints log if `tag` matches `thisType.tagFilter` and `pos` matches `thisType.positionFilter`.
+		Prints log if `tag` matches `this.tagFilter` and `pos` matches `this.positionFilter`.
 	**/
 	public static inline function printIfMatch(
-		thisType: LogType,
+		_this: LogType,
 		message: String,
 		?tag: Tag,
 		?pos: PosInfos
 	): Void {
 		final notNullTag = tag.notNull();
 
-		if (thisType.tagFilter(notNullTag) && thisType.positionFilter(pos)) {
-			Printer.println(thisType.logFormat(thisType, message, notNullTag, pos));
+		if (_this.tagFilter(notNullTag) && _this.positionFilter(pos)) {
+			Printer.println(_this.logFormat(_this, message, notNullTag, pos));
 		}
 	}
 
 	/**
-		Disables `thisType.print()` so that it has no effect.
+		Disables `this.print()` so that it has no effect.
 
-		For enabling again, you have to rebind any function and assign it to `thisType.print`.
+		For enabling again, you have to rebind any function and assign it to `this.print`.
 	**/
-	public static inline function disablePrint(thisType: LogType): Void {
-		thisType.print = doNotPrint;
+	public static inline function disablePrint(_this: LogType): Void {
+		_this.print = doNotPrint;
 	}
 }
