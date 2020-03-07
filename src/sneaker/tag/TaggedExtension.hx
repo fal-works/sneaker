@@ -3,6 +3,7 @@ package sneaker.tag;
 import haxe.PosInfos;
 import sneaker.log.LogType;
 import sneaker.log.Logger;
+import sneaker.tag.interfaces.Tagged;
 
 // @formatter:off
 
@@ -13,7 +14,7 @@ class TaggedExtension {
 		No effect if compilation flag `sneaker_tagged_disable` is set.
 		@return `this`
 	 **/
-	 public static inline function setTag(_this: Tagged, tag: Tag): Tagged {
+	 public static inline function setTag<T: Tagged>(_this: T, tag: Tag): T {
 		#if !sneaker_tagged_disable
 		_this.tag = tag;
 		#end
@@ -26,7 +27,7 @@ class TaggedExtension {
 		No effect if compilation flag `sneaker_tagged_disable` is set.
 		@return `this`
 	 **/
-	public static inline function newTag(_this: Tagged, name: String, ?bits: Int): Tagged {
+	public static inline function newTag<T: Tagged>(_this: T, name: String, ?bits: Int): T {
 		#if !sneaker_tagged_disable
 		_this.tag = new Tag(name, bits);
 		#end
