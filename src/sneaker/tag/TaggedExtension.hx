@@ -37,9 +37,8 @@ class TaggedExtension {
 	/**
 		Output `message` as a log of any `logType`.
 	 **/
-	public static inline function log(_this: Tagged, logType: LogType, message: String, ?pos: PosInfos) {
+	public static inline function log(_this: Tagged, logType: LogType, message: String, ?pos: PosInfos)
 		logType.print(message, _this.tag, pos);
-	}
 
 	/**
 		Prints FATAL log. Mainly for severe errors.
@@ -48,9 +47,8 @@ class TaggedExtension {
 
 		Default log types: [ FATAL ] - ERROR - WARN - INFO - DEBUG
 	 **/
-	public static inline function fatal(_this: Tagged, message: String, ?pos: PosInfos) {
+	public static inline function fatal(_this: Tagged, message: String, ?pos: PosInfos)
 		Logger.fatal(message, _this.tag, pos);
-	}
 
 	/**
 		Prints ERROR log. Mainly for general errors or unexpected conditions.
@@ -59,9 +57,8 @@ class TaggedExtension {
 
 		Default log types: FATAL - [ ERROR ]  - WARN - INFO - DEBUG
 	 **/
-	public static inline function error(_this: Tagged, message: String, ?pos: PosInfos) {
+	public static inline function error(_this: Tagged, message: String, ?pos: PosInfos)
 		Logger.error(message, _this.tag, pos);
-	}
 
 	/**
 		Prints WARN log.
@@ -71,9 +68,8 @@ class TaggedExtension {
 
 		Default log types: FATAL - ERROR - [ WARN ] - INFO - DEBUG
 	 **/
-	public static inline function warn(_this: Tagged, message: String, ?pos: PosInfos) {
+	public static inline function warn(_this: Tagged, message: String, ?pos: PosInfos)
 		Logger.warn(message, _this.tag, pos);
-	}
 
 	/**
 		Prints INFO log.
@@ -83,9 +79,8 @@ class TaggedExtension {
 
 		Default log types: FATAL - ERROR - WARN - [ INFO ] - DEBUG
 	 **/
-	public static inline function info(_this: Tagged, message: String, ?pos: PosInfos) {
+	public static inline function info(_this: Tagged, message: String, ?pos: PosInfos)
 		Logger.info(message, _this.tag, pos);
-	}
 
 	/**
 		Prints DEBUG log. Mainly for detailed information.
@@ -94,7 +89,6 @@ class TaggedExtension {
 
 		Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]a
 	 **/
-	public static inline function debug(_this: Tagged, message: String, ?pos: PosInfos) {
+	public static inline function debug(_this: Tagged, message: String, ?pos: PosInfos)
 		Logger.debug(message, _this.tag, pos);
-	}
 }
