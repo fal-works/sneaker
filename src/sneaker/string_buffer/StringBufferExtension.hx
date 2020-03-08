@@ -128,10 +128,7 @@ class StringBufferExtension {
 	/**
 		Adds padding until the total length of `buf` is at least `totalLength`.
 	**/
-	public static inline function addTabLike<T: StringBuffer, S>(
-		buf: T,
-		tabSize: Int
-	): T {
+	public static inline function addTabLike<T: StringBuffer, S>(buf: T, tabSize: Int): T {
 		var currentLength = buf.length;
 
 		final alignmentPosition = Math.ceil(currentLength / tabSize) * tabSize;

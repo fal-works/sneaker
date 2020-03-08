@@ -67,7 +67,10 @@ class LogTypeExtension {
 	/**
 		@return `this` with overwritten `tagFilter` and `positionFilter`.
 	**/
-	public static inline function copyFiltersFrom(_this: LogType, other: LogType): LogType {
+	public static inline function copyFiltersFrom(
+		_this: LogType,
+		other: LogType
+	): LogType {
 		_this.tagFilter = other.tagFilter;
 		_this.positionFilter = other.positionFilter;
 		return _this;
@@ -76,7 +79,10 @@ class LogTypeExtension {
 	/**
 		@return `this` with overwritten `positionFormat` and `logFormat`.
 	**/
-	public static inline function copyFormatsFrom(_this: LogType, other: LogType): LogType {
+	public static inline function copyFormatsFrom(
+		_this: LogType,
+		other: LogType
+	): LogType {
 		_this.positionFormat = other.positionFormat;
 		_this.logFormat = other.logFormat;
 		return _this;
