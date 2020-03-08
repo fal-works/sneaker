@@ -13,19 +13,19 @@ using sneaker.log.MacroLogger;
 **/
 class MacroLogger {
 	/**
-		@return Current file and character position, e.g. "src/Main.hx:42".
+		@return Current file path, e.g. "src/Main.hx".
 	**/
 	@:noUsing
-	public static inline function getFilePosition(): String {
+	public static inline function getFilePath(): String {
 		final position = Context.getPosInfos(Context.currentPos());
-		return '${position.file}:${position.min}';
+		return '${position.file}';
 	}
 
 	/**
-		Adds current file and character position, e.g. "src/Main.hx:42".
+		Adds current file path, e.g. "src/Main.hx".
 		@return `buffer`
 	**/
-	public static inline function addFilePosition<T: StringBuffer>(buffer: T): T {
+	public static inline function addFilePath<T: StringBuffer>(buffer: T): T {
 		final position = Context.getPosInfos(Context.currentPos());
 		buffer.add(position.file);
 		buffer.addChar(":".code);
@@ -35,15 +35,15 @@ class MacroLogger {
 	}
 
 	/**
-		Adds prefix and file position, e.g. `[PREFIX] src/Main.hx:42`.
+		Adds prefix and file path, e.g. `[PREFIX] src/Main.hx`.
 		@return `buffer`
 	**/
-	public static inline function addPrefixFilePosition<T: StringBuffer>(
+	public static inline function addPrefixFilePath<T: StringBuffer>(
 		buffer: T,
 		prefix: String
 	): T {
 		buffer.addRightPadded(prefix, " ".code, LogFormats.alignmentPosition);
-		buffer.addFilePosition();
+		buffer.addFilePath();
 
 		return buffer;
 	}
