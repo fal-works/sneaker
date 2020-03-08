@@ -27,4 +27,18 @@ class StringExtension {
 	public static inline function sliceAfterLastSlash(s: String): String {
 		return s.substr(s.lastIndexOf(slash) + 1);
 	}
+
+	/**
+		@return Sub-string before the last occurrence of dot (`.`).
+	**/
+	public static inline function sliceBeforeLastDot(s: String): String {
+		return s.substr(0, s.lastIndexOf(dot));
+	}
+
+	/**
+		@return Sub-string before the last occurrence of slash (`/`).
+	**/
+	public static inline function sliceBeforeLastSlash(s: String): String {
+		return s.substr(0, s.lastIndexOf(slash));
+	}
 }
