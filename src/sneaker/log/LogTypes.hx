@@ -6,23 +6,23 @@ package sneaker.log;
 class LogTypes {
 	static final constants: BuiltInConstants = {
 		fatal: {
-			prefix: "[FATAL] ",
+			prefix: "[FATAL]",
 			level: 100
 		},
 		error: {
-			prefix: "[ERROR] ",
+			prefix: "[ERROR]",
 			level: 200
 		},
 		warn: {
-			prefix: "[WARN]  ",
+			prefix: "[WARN]",
 			level: 300
 		},
 		info: {
-			prefix: "[INFO]  ",
+			prefix: "[INFO]",
 			level: 400
 		},
 		debug: {
-			prefix: "[DEBUG] ",
+			prefix: "[DEBUG]",
 			level: 500
 		}
 	};
