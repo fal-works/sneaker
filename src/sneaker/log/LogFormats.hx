@@ -47,12 +47,12 @@ class LogFormats {
 		simple: prefixMessage
 	};
 
-	static final space = " ";
+	// prefix formatter
 
 	/**
 		@return Right-padded string.
 	**/
-	static inline function padPrefixString(prefix: String): String {
+	public static inline function padPrefixString(prefix: String): String {
 		return if (prefix.length >= alignmentPosition) prefix + space;
 		else prefix.rpad(space, alignmentPosition);
 	}
@@ -60,6 +60,8 @@ class LogFormats {
 	/**
 		@return Right-padded string of `logType.prefix`.
 	**/
-	static inline function padPrefix(logType: LogType): String
+	public static inline function padPrefix(logType: LogType): String
 		return padPrefixString(logType.prefix);
+
+	static final space = " ";
 }
