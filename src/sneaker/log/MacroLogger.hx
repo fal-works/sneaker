@@ -28,8 +28,6 @@ class MacroLogger {
 	public static inline function addFilePath<T: StringBuffer>(buffer: T): T {
 		final position = Context.getPosInfos(Context.currentPos());
 		buffer.add(position.file);
-		buffer.addChar(":".code);
-		buffer.add(position.min);
 
 		return buffer;
 	}
