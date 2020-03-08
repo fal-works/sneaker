@@ -87,6 +87,60 @@ class StringBufferExtension {
 	}
 
 	/**
+		Adds `s` with right-padding.
+	**/
+	public static inline function addRightPadded<T: StringBuffer, S>(
+		buf: T,
+		s: Null<S>,
+		padCharacterCode: Int,
+		length: Int
+	): T {
+		@:nullSafety(Off) final str = Std.string(s);
+		var currentLength = str.length;
+		buf.add(str);
+
+		while (currentLength < length) {
+			buf.addChar(padCharacterCode);
+			currentLength += 1;
+		}
+
+		return buf;
+	}
+
+	/**
+		Adds padding until the total length of `buf` is at least `totalLength`.
+	**/
+	public static inline function padUntil<T: StringBuffer, S>(
+		buf: T,
+		padCharacterCode: Int,
+		totalLength: Int
+	): T {
+		var currentLength = buf.length;
+
+		while (currentLength < totalLength) {
+			buf.addChar(padCharacterCode);
+			currentLength += 1;
+		}
+
+		return buf;
+	}
+
+	/**
+		Adds padding until the total length of `buf` is at least `totalLength`.
+	**/
+	public static inline function addTabLike<T: StringBuffer, S>(
+		buf: T,
+		tabSize: Int
+	): T {
+		var currentLength = buf.length;
+
+		final alignmentPosition = Math.ceil(currentLength / tabSize) * tabSize;
+		padUntil(buf, " ".code, alignmentPosition);
+
+		return buf;
+	}
+
+	/**
 		Adds each of `lines` with a preceding Line Feed.
 		@return The given `StringBuf`.
 	**/
