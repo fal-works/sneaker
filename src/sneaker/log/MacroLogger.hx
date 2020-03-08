@@ -2,9 +2,11 @@ package sneaker.log;
 
 #if macro
 import haxe.macro.Context;
-import sneaker.print.Printer;
 import sneaker.log.LogFormats;
 import sneaker.string_buffer.StringBuffer;
+
+using sneaker.string_buffer.StringBufferExtension;
+using sneaker.log.MacroLogger;
 
 /**
 	Functions for logging in a macro context.
@@ -33,27 +35,17 @@ class MacroLogger {
 	}
 
 	/**
-		Creates a function that formats and prints a log message.
-
-		e.g. `[PREFIX] src/Main.hx:42 | Got error!`
+		Adds prefix and file position, e.g. `[PREFIX] src/Main.hx:42`.
+		@return `buffer`
 	**/
-	@:noUsing
-	public static function createLogFunction(
+	public static inline function addPrefixFilePosition<T: StringBuffer>(
+		buffer: T,
 		prefix: String
-	): (content: Null<Dynamic>) -> Void {
-		return function(content) {
-			final buffer = new StringBuffer();
+	): T {
+		buffer.addRightPadded(prefix, " ".code, LogFormats.alignmentPosition);
+		buffer.addFilePosition();
 
-			buffer.add(LogFormats.padPrefixString(prefix));
-			addFilePosition(buffer);
-			buffer.add(separator);
-			buffer.addNullable(content);
-
-			final logText = buffer.toString();
-			Printer.println(logText);
-		};
+		return buffer;
 	}
-
-	static final separator = " | ";
 }
 #end
