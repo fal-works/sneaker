@@ -6,14 +6,12 @@ import haxe.PosInfos;
 import haxe.macro.Compiler;
 import sneaker.tag.Tag;
 
-// @formatter:off
-
 /**
 	Type of log data, e.g. WARNING, INFO etc.
 
 	Each variable/function can be replaced by any custom value or
 	using methods that come from the `LogTypeSetterExtension` class.
- **/
+**/
 @:using(sneaker.log.LogTypeExtension, sneaker.log.LogTypeSetterExtension)
 class LogType {
 	/** Prefix for appending to the output text. **/
@@ -50,7 +48,7 @@ class LogType {
 		Prints log. At default it calls `this.printIfMatch()` internally.
 
 		`print()` can be disabled by `disablePrint()`, or even replaced with a custom function.
-	 **/
+	**/
 	public dynamic function print(
 		message: String,
 		?tag: Tag,
@@ -68,9 +66,7 @@ class LogType {
 		the compiler flag `sneaker_log_level`.
 	**/
 	function setLogLevel(level: Int) {
-		final define = Std.parseInt(Std.string(
-			Compiler.getDefine("sneaker_log_level")
-		));
+		final define = Std.parseInt(Std.string(Compiler.getDefine("sneaker_log_level")));
 
 		final logLevelThreshold = if (define != null)
 			define
