@@ -65,7 +65,14 @@ class AssertionResult {
 	public final positionInformations: Null<PosInfos>;
 
 	inline function get_wholeEvaluationResult() {
-		return evaluationResults[evaluationResults.length - 1];
+		final length = evaluationResults.length;
+		return if (length > 0)
+			evaluationResults[length - 1];
+		else
+			switch error {
+				case Some(_): EvaluationResult.falseLiteral;
+				case None: EvaluationResult.trueLiteral;
+			}
 	}
 
 	public function new(
