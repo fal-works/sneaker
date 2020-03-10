@@ -4,7 +4,7 @@ package sneaker.macro;
 /**
 	Functions for displaying compilation messages in a macro context.
 **/
-class MacroLogger {
+class CompilerMessage {
 	/**
 		Displays a compilation fatal error at the position where macro was called.
 	**/
