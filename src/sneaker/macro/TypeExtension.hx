@@ -1,5 +1,6 @@
 package sneaker.macro;
 
+#if macro
 import haxe.macro.Type;
 
 class TypeExtension {
@@ -12,3 +13,4 @@ class TypeExtension {
 		}
 	}
 }
+#end
