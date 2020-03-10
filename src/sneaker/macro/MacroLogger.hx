@@ -1,51 +1,10 @@
 package sneaker.macro;
 
 #if macro
-import haxe.macro.Context;
-import sneaker.log.LogFormats;
-import sneaker.string_buffer.StringBuffer;
-
-using sneaker.string_buffer.StringBufferExtension;
-using sneaker.macro.MacroLogger;
-
 /**
-	Functions for logging in a macro context.
+	Functions for displaying compilation messages in a macro context.
 **/
 class MacroLogger {
-	/**
-		@return Current file path, e.g. "src/Main.hx".
-	**/
-	@:noUsing
-	public static inline function getFilePath(): String {
-		final position = Context.getPosInfos(Context.currentPos());
-		return '${position.file}';
-	}
-
-	/**
-		Adds current file path, e.g. "src/Main.hx".
-		@return `buffer`
-	**/
-	public static inline function addFilePath<T: StringBuffer>(buffer: T): T {
-		final position = Context.getPosInfos(Context.currentPos());
-		buffer.add(position.file);
-
-		return buffer;
-	}
-
-	/**
-		Adds prefix and file path, e.g. `[PREFIX] src/Main.hx`.
-		@return `buffer`
-	**/
-	public static inline function addPrefixFilePath<T: StringBuffer>(
-		buffer: T,
-		prefix: String
-	): T {
-		buffer.addRightPadded(prefix, " ".code, LogFormats.alignmentPosition);
-		buffer.addFilePath();
-
-		return buffer;
-	}
-
 	/**
 		Displays a compilation fatal error at the position where macro was called.
 	**/
