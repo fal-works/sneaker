@@ -1,4 +1,4 @@
-package sneaker.log;
+package sneaker.macro;
 
 #if macro
 import haxe.macro.Context;
@@ -6,7 +6,7 @@ import sneaker.log.LogFormats;
 import sneaker.string_buffer.StringBuffer;
 
 using sneaker.string_buffer.StringBufferExtension;
-using sneaker.log.MacroLogger;
+using sneaker.macro.MacroLogger;
 
 /**
 	Functions for logging in a macro context.
