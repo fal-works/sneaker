@@ -53,12 +53,16 @@ class StringExtension {
 	/**
 		@return Sub-string before the last occurrence of dot (`.`).
 	**/
-	public static inline function sliceBeforeLastDot(s: String): String
-		return s.substr(0, lastIndexOfDot(s));
+	public static inline function sliceBeforeLastDot(s: String): String {
+		final length = lastIndexOfDot(s);
+		return if (length >= 0) s.substr(0, length); else s;
+	}
 
 	/**
 		@return Sub-string before the last occurrence of slash (`/`).
 	**/
-	public static inline function sliceBeforeLastSlash(s: String): String
-		return s.substr(0, lastIndexOfSlash(s));
+	public static inline function sliceBeforeLastSlash(s: String): String {
+		final length = lastIndexOfSlash(s);
+		return if (length >= 0) s.substr(0, length); else s;
+	}
 }
