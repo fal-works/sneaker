@@ -15,25 +15,25 @@ class StringExtension {
 	}
 
 	/**
-		@return The first index of dot (`.`).
+		@return The first index of dot (`.`). `-1` if not found.
 	**/
 	public static inline function indexOfDot(s: String, ?startIndex: Int): Int
 		return s.indexOf(dot, startIndex);
 
 	/**
-		@return The first index of slash (`/`).
+		@return The first index of slash (`/`). `-1` if not found.
 	**/
 	public static inline function indexOfSlash(s: String, ?startIndex: Int): Int
 		return s.indexOf(slash, startIndex);
 
 	/**
-		@return The last index of dot (`.`).
+		@return The last index of dot (`.`). `-1` if not found.
 	**/
 	public static inline function lastIndexOfDot(s: String, ?startIndex: Int): Int
 		return s.lastIndexOf(dot, startIndex);
 
 	/**
-		@return The last index of slash (`/`).
+		@return The last index of slash (`/`). `-1` if not found.
 	**/
 	public static inline function lastIndexOfSlash(s: String, ?startIndex: Int): Int
 		return s.lastIndexOf(slash, startIndex);
