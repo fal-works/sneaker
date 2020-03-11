@@ -5,7 +5,8 @@
 -main Main
 -dce full
 --macro nullSafety("sneaker", Strict)
--D sneaker_log_level=200
+--macro sneaker.Initialization.run()
+# -D sneaker_log_level=200
 # -D sneaker_assertion_print_success
 # -D sneaker_assertion_disable
 # -D sneaker_assertion_show_compilation

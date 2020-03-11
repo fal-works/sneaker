@@ -3,7 +3,6 @@ package sneaker.log;
 using sneaker.log.LogTypeExtension;
 
 import haxe.PosInfos;
-import haxe.macro.Compiler;
 import sneaker.tag.Tag;
 
 /**
@@ -30,7 +29,7 @@ class LogType {
 	public var logFormat: LogFormat;
 
 	/**
-		@param level Set value greater than the compiler flag `sneaker_log_level` for disabling.
+		@param logLevel Set value greater than the compiler flag `sneaker_log_level` for disabling `this`.
 		@see `sneaker.log.Logger` about the log levels.
 	**/
 	public function new(prefix: String, logLevel: Int = 0) {
@@ -41,7 +40,8 @@ class LogType {
 		this.positionFormat = LogTypeDefaults.positionFormat;
 		this.logFormat = LogTypeDefaults.logFormat;
 
-		setLogLevel(logLevel);
+		if (logLevel > Constants.logLevelThreshold)
+			this.disablePrint();
 	}
 
 	/**
@@ -57,22 +57,5 @@ class LogType {
 		#if !sneaker_print_disable
 		this.printIfMatch(message, tag, pos);
 		#end
-	}
-
-	/**
-		For internal use in `new()`.
-
-		Disables `this` type if `level` is greater than
-		the compiler flag `sneaker_log_level`.
-	**/
-	function setLogLevel(level: Int) {
-		final define = Std.parseInt(Std.string(Compiler.getDefine("sneaker_log_level")));
-
-		final logLevelThreshold = if (define != null)
-			define
-		else
-			Constants.defaultLogLevelThreshold;
-
-		if (level > logLevelThreshold) this.disablePrint();
 	}
 }
