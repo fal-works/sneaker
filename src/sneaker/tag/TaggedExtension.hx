@@ -87,7 +87,7 @@ class TaggedExtension {
 
 		Has effect only under the compilation condition `sneaker_log_level >= 500`.
 
-		Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]a
+		Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]
 	 **/
 	public static inline function debug(_this: Tagged, message: String, ?pos: PosInfos)
 		Logger.debug(message, _this.tag, pos);
