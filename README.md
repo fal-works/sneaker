@@ -1,6 +1,7 @@
 # sneaker
 
-May or may not help you to debug.
+Assert, log and test.  
+May or may not help you to debug your Haxe code.
 
 **Requires Haxe 4** (tested with v4.0.5).
 
