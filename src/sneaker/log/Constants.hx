@@ -10,7 +10,10 @@ class Constants {
 		The value of compiler flag `sneaker_log_level`.
 	**/
 	@:noPrivateAccess
-	public static var logLevelThreshold(get, null): Int = defaultLogLevelThreshold;
+	public static var logLevelThreshold(
+		get,
+		null
+	): Int = defaultLogLevelThreshold;
 
 	static inline final defaultLogLevelThreshold = 200;
 	static inline final logLevelDefineName = "sneaker_log_level";

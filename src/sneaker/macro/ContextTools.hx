@@ -20,8 +20,7 @@ class ContextTools {
 	public static function tryGetType(typePath: String): Null<MacroType> {
 		try {
 			return Context.getType(typePath);
-		}
-		catch(e: Dynamic) {
+		} catch (e:Dynamic) {
 			return null;
 		}
 	}
@@ -33,8 +32,7 @@ class ContextTools {
 	public static function tryGetModule(modulePath: String): Null<MacroModule> {
 		try {
 			return Context.getModule(modulePath);
-		}
-		catch(e: Dynamic) {
+		} catch (e:Dynamic) {
 			return null;
 		}
 	}
