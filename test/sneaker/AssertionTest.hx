@@ -30,9 +30,11 @@ class AssertionTest {
 	// unwrap
 	public static final unwrapOk = testCase(() -> {
 		final obj = { val: 1 };
-		describe('This prints "${obj}".');
-		println(unwrap(obj));
-	}, Visual);
+		describe('This goes without error.');
+		final str = Std.string(unwrap(obj));
+		if (Std.string(obj) != str) throw "Error";
+		println(str);
+	}, Ok);
 	public static final unwrapError = testCase(() -> {
 		describe('This raises an exception because (obj) is null.');
 		final obj: Null<Any> = null;

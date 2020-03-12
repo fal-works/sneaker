@@ -6,9 +6,14 @@ import sneaker.print.*;
 class LogTest {
 	// println
 	public static final println = testCase(() -> {
+		#if sneaker_print_last_disable
+		throw "Compiler flag sneaker_print_last_disable should not be set for these test cases.";
+		#end
+
 		describe("This prints \"AAA\".");
 		Printer.println("AAA");
-	}, Visual);
+		if (Printer.lastBuffered != "AAA") throw "Error";
+	}, Ok);
 
 	// logType
 	public static final logType = testCase(() -> {
@@ -20,8 +25,10 @@ class LogTest {
 		describe("This has no effect because the log type is disabled.");
 		final logType = new LogType("[log line prefix]");
 		logType.disablePrint();
+		final lastBuffered = Printer.lastBuffered;
 		logType.print("(This should not be printed)");
-	}, Visual);
+		if (Printer.lastBuffered != lastBuffered) throw "Error";
+	}, Ok);
 	public static final logTypeTests = testCaseGroup([
 		logType,
 		logTypeDisabled
@@ -48,8 +55,10 @@ class LogTest {
 			name: "(tag name)",
 			bits: 0x11110000
 		};
+		final lastBuffered = Printer.lastBuffered;
 		logType.print("(This should not be printed)", tag);
-	}, Visual);
+		if (Printer.lastBuffered != lastBuffered) throw "Error";
+	}, Ok);
 	public static final logTypeFilterPositionTrue = testCase(() -> {
 		describe("This prints a log message without a tag.");
 		final logType = new LogType("[log line prefix]");
@@ -60,8 +69,10 @@ class LogTest {
 		describe("This has no effect because the filter predicate does not match.");
 		final logType = new LogType("[log line prefix]");
 		logType.setMethodFilter("dummy method name");
+		final lastBuffered = Printer.lastBuffered;
 		logType.print("(This should not be printed)");
-	}, Visual);
+		if (Printer.lastBuffered != lastBuffered) throw "Error";
+	}, Ok);
 	public static final logTypePositionFormat = testCase(() -> {
 		describe("This prints a log message in another position format (file and line).");
 		final logType = new LogType("[log line prefix]");
@@ -115,8 +126,14 @@ class LogTest {
 	public static final directlyWarn = testCase(() -> {
 		// -D sneaker_log_level=200
 		describe("This has no effect if sneaker_log_level < 300.");
+		final lastBuffered = Printer.lastBuffered;
 		Logger.warn("(message)");
-	}, Visual);
+		#if (sneaker_log_level < 300)
+		if (Printer.lastBuffered != lastBuffered) throw "Error";
+		#else
+		if (Printer.lastBuffered == lastBuffered) throw "Error";
+		#end
+	}, Ok);
 	public static final logdirectTests = testCaseGroup([
 		directlyError,
 		directlyErrorTagged,
@@ -127,10 +144,14 @@ class LogTest {
 		// -D sneaker_log_level=200
 		describe("This prints only one line: AAA");
 		final logTypeA = new LogType("[prefixA]", -9999);
+		var lastBuffered = Printer.lastBuffered;
 		logTypeA.print("AAA");
+		if (Printer.lastBuffered == lastBuffered) throw "Error";
 		final logTypeB = new LogType("[prefixB]", 9999);
+		lastBuffered = Printer.lastBuffered;
 		logTypeB.print("BBB");
-	}, Visual);
+		if (Printer.lastBuffered != lastBuffered) throw "Error";
+	}, Ok);
 
 	public static final all = testCaseGroup([
 		println,
