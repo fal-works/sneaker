@@ -38,9 +38,9 @@ class MacroLogger {
 		Also displays a compilation fatal error.
 	**/
 	public static function fatal(content: Dynamic, ?pos: PosInfos) {
-		#if (!sneaker_print_disable && sneaker_macro_log_level >= 100)
-		printLogText(fatalPrefix, content, pos);
-		#end
+		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 100)
+			printLogText(fatalPrefix, content, pos);
+
 		CompilerMessage.fatal(content);
 	}
 
@@ -49,9 +49,9 @@ class MacroLogger {
 		Also displays a compilation error.
 	**/
 	public static function error(content: Dynamic, ?pos: PosInfos) {
-		#if (!sneaker_print_disable && sneaker_macro_log_level >= 200)
-		printLogText(errorPrefix, content, pos);
-		#end
+		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 200)
+			printLogText(errorPrefix, content, pos);
+
 		CompilerMessage.error(content);
 	}
 
@@ -60,9 +60,9 @@ class MacroLogger {
 		Also displays a compilation warning.
 	**/
 	public static function warn(content: Dynamic, ?pos: PosInfos) {
-		#if (!sneaker_print_disable && sneaker_macro_log_level >= 300)
-		printLogText(warnPrefix, content, pos);
-		#end
+		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 300)
+			printLogText(warnPrefix, content, pos);
+
 		CompilerMessage.warn(content);
 	}
 
@@ -71,9 +71,9 @@ class MacroLogger {
 		Also displays a compilation info.
 	**/
 	public static function info(content: Dynamic, ?pos: PosInfos) {
-		#if (!sneaker_print_disable && sneaker_macro_log_level >= 400)
-		printLogText(infoPrefix, content, pos);
-		#end
+		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 400)
+			printLogText(infoPrefix, content, pos);
+
 		CompilerMessage.info(content);
 	}
 
@@ -81,9 +81,8 @@ class MacroLogger {
 		Prints debug log in a macro context.
 	**/
 	public static function debug(content: Dynamic, ?pos: PosInfos) {
-		#if (!sneaker_print_disable && sneaker_macro_log_level >= 500)
-		printLogText(debugPrefix, content, pos);
-		#end
+		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 500)
+			printLogText(debugPrefix, content, pos);
 	}
 
 	#if !sneaker_print_disable

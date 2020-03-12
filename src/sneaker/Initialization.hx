@@ -2,10 +2,12 @@ package sneaker;
 
 #if macro
 class Initialization {
+	/**
+		Entry point of the initialization macro.
+	**/
 	static function run() {
 		sneaker.log.Constants.ensureLogLevelDefine();
-		sneaker.macro.Initialization.ensureLogLevelDefine();
-		sneaker.macro.Initialization.ensureMessageLevelDefine();
+		CompilerFlags.initialize();
 	}
 }
 #end
