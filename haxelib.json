@@ -4,9 +4,9 @@
 	"license": "MIT",
 	"tags": ["utility", "macro"],
 	"description": "Assert, log and test. May or may not help you to debug your Haxe code.",
-	"version": "0.3.1",
+	"version": "0.4.0",
 	"classPath": "src/",
-	"releasenote": "Bug fixes around some compiler flags.",
+	"releasenote": "Additional logging/utility features for macro context.",
 	"contributors": [
 		"fal-works"
 	],
