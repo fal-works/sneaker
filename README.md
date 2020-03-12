@@ -424,6 +424,7 @@ Which also underlie the features above.
 |---|---|
 |`sneaker_log_level`|Threshold for filtering logs by levels. Defaults to `200`.|
 |`sneaker_macro_log_level`|Threshold for filtering macro logs by levels. Defaults to `300`.|
+|`sneaker_macro_message_level`|Threshold for filtering messages to the completion server. Defaults to `300`.|
 |`sneaker_assertion_disable`|Disables assertion.|
 |`sneaker_assertion_print_success`|Prints successful results.|
 |`sneaker_assertion_show_compilation`|Prints additional info during the compilation.|
