@@ -38,7 +38,7 @@ class MacroLogger {
 		Also displays a compilation fatal error.
 	**/
 	public static function fatal(content: Dynamic, ?pos: PosInfos) {
-		#if (!sneaker_print_disable && sneaker_macro_log_level >= 200)
+		#if (!sneaker_print_disable && sneaker_macro_log_level >= 100)
 		printLogText(fatalPrefix, content, pos);
 		#end
 		CompilerMessage.fatal(content);
