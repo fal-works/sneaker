@@ -19,6 +19,16 @@ class CompilerFlags {
 	};
 
 	/**
+		`-D sneaker_log_level`
+	**/
+	public static final logLevel: CompilerFlag<Int> = {
+		name: "sneaker_log_level",
+		getDefine: () -> Compiler.getDefine("sneaker_log_level"),
+		validate: NullableDynamicCallbacks.dynamicToOptionalInt,
+		type: Mandatory(200)
+	};
+
+	/**
 		`-D sneaker_macro_log_level`
 	**/
 	public static final macroLogLevel: CompilerFlag<Int> = {
@@ -46,6 +56,7 @@ class CompilerFlags {
 	@:allow(sneaker.Initialization)
 	static function initialize() {
 		printDisable.set();
+		logLevel.set();
 		macroLogLevel.set();
 		macroMessageLevel.set();
 	}

@@ -4,6 +4,7 @@ using sneaker.log.LogTypeExtension;
 
 import haxe.PosInfos;
 import sneaker.tag.Tag;
+import sneaker.CompilerFlags;
 
 /**
 	Type of log data, e.g. WARNING, INFO etc.
@@ -40,7 +41,7 @@ class LogType {
 		this.positionFormat = LogTypeDefaults.positionFormat;
 		this.logFormat = LogTypeDefaults.logFormat;
 
-		if (logLevel > Constants.logLevelThreshold)
+		if (logLevel > CompilerFlags.logLevel.get())
 			this.disablePrint();
 	}
 
