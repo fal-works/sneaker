@@ -19,6 +19,18 @@ class StringBufferLogExtension {
 	}
 
 	/**
+		Add `prefix` right-padded according to `sneaker.log.LogFormats.alignmentPosition`.
+		@return `buffer`
+	**/
+	public static inline function addPrefix<T: StringBuffer>(
+		buffer: T,
+		prefix: String
+	): T {
+		buffer.addRightPadded(prefix, " ".code, LogFormats.alignmentPosition);
+		return buffer;
+	}
+
+	/**
 		Adds prefix and file path, e.g. `[PREFIX] src/Main.hx`.
 		The file path is left-aligned at `sneaker.log.LogFormats.alignmentPosition`.
 		@return `buffer`
@@ -27,7 +39,7 @@ class StringBufferLogExtension {
 		buffer: T,
 		prefix: String
 	): T {
-		buffer.addRightPadded(prefix, " ".code, LogFormats.alignmentPosition);
+		addPrefix(buffer, prefix);
 		addFilePath(buffer);
 
 		return buffer;
