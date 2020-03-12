@@ -68,4 +68,10 @@ class TesterSettings {
 	**/
 	public static var exceptionLogType = new LogType("[TEST]")
 		.setLogFormat(LogFormats.prefixMessage);
+
+	/**
+		Log type used for other messages from Tester.
+	**/
+	public static var messageLogType = new LogType("[TEST]")
+		.setLogFormat(LogFormats.prefixMessage);
 }

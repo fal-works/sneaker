@@ -44,6 +44,11 @@ class Tester {
 		@param testCaseRoot Any node created by `Tester.testCase()` or `Tester.testCaseGroup()`.
 	**/
 	public static function test(testCaseRoot: TestCaseNode): Void {
+		#if sneaker_print_buffer_disable
+		if (TesterSettings.hidePassedResults)
+			TesterSettings.messageLogType.print('Ignoring TesterSettings.hidePassedResults because the compiler flag sneaker_print_buffer_disable is set.\n');
+		#end
+
 		final result = testCaseRoot.run(new TestRecord());
 
 		println(result.toString());
