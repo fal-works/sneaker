@@ -1,5 +1,7 @@
 package sneaker.unit_test;
 
+using StringTools;
+
 import haxe.PosInfos;
 import sneaker.print.Printer.println;
 
@@ -51,6 +53,7 @@ class Tester {
 
 		final result = testCaseRoot.run(new TestRecord());
 
+		println("TestResult".rpad("_", 100));
 		println(result.toString());
 	}
 }
