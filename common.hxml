@@ -6,6 +6,7 @@
 -dce full
 --macro nullSafety("sneaker", Strict)
 --macro sneaker.Initialization.run()
+-D warn-var-shadowing
 # -D sneaker_log_level=200
 # -D sneaker_macro_log_level=300
 # -D sneaker_macro_message_level=300
