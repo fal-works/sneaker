@@ -9,7 +9,6 @@ class LogTest {
 		#if sneaker_print_last_disable
 		throw "Compiler flag sneaker_print_last_disable should not be set for these test cases.";
 		#end
-
 		describe("This prints \"AAA\".");
 		Printer.println("AAA");
 		if (Printer.lastBuffered != "AAA") throw "Error";

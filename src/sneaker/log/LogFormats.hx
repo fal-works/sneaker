@@ -18,7 +18,7 @@ class LogFormats {
 		The default, normal format.
 
 		Example: "[ERROR]  my_module.MyClass::myMethod line 1 | myTag | myMessage"
-	 **/
+	**/
 	public static final prefixPositionTagMessage: LogFormat = (logType, message, tag, ?pos) ->
 		'${padPrefix(logType)}${logType.positionFormat(pos)} ${separator} ${tag} ${separator} ${message}';
 

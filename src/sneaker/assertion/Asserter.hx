@@ -54,7 +54,6 @@ class Asserter {
 		}
 
 		function preparePartRecursive(inputExpression: Expr) {
-			// @formatter:off
 			return switch (inputExpression.expr) {
 				case EConst((CInt(_) | CFloat(_) | CString(_) | CRegexp(_) | CIdent("true" | "false" | "null"))):
 					inputExpression;
@@ -63,7 +62,6 @@ class Asserter {
 					final expression = inputExpression.map(preparePartRecursive); // call for each sub-expressions
 					macro $i{preparePart(expression, expressionString)};
 			}
-			// @formatter:on
 		}
 
 		preparePartRecursive(expressionToAssert);

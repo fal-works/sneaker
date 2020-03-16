@@ -6,11 +6,7 @@ import sneaker.print.Printer;
 
 class LogTypeExtension {
 	// @formatter:off
-	static final doNotPrint = (
-		message: String,
-		?tag: Tag,
-		?pos: PosInfos
-	) -> {};
+	static final doNotPrint = (message: String, ?tag: Tag, ?pos: PosInfos) -> {};
 	// @formatter:on
 	//
 
