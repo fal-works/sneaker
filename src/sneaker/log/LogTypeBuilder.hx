@@ -1,5 +1,9 @@
 package sneaker.log;
 
+/**
+	Builder class that enables to create `LogType` instances
+	multiple times from the same input values.
+**/
 @:structInit
 class LogTypeBuilder {
 	final prefix: String;
