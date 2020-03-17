@@ -28,10 +28,7 @@ class LogTest {
 		logType.print("(This should not be printed)");
 		if (Printer.lastBuffered != lastBuffered) throw "Error";
 	}, Ok);
-	public static final logTypeTests = testCaseGroup([
-		logType,
-		logTypeDisabled
-	]);
+	public static final logTypeTests = testCaseGroup([logType, logTypeDisabled]);
 
 	// logType change
 	public static final logTypeFilterTagTrue = testCase(() -> {

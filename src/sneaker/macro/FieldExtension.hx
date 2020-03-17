@@ -64,7 +64,11 @@ class FieldExtension {
 		@param preserve if `true`, concatenates old values instead of replacing them.
 		@return `this` field.
 	**/
-	public static function setAccess(_this: Field, access: Array<Access>, preserve = true): Field {
+	public static function setAccess(
+		_this: Field,
+		access: Array<Access>,
+		preserve = true
+	): Field {
 		_this.access = if (preserve) _this.access.concat(access) else access;
 		return _this;
 	}

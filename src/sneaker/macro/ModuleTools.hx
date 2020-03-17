@@ -10,7 +10,6 @@ import sneaker.macro.Types.ModuleInfo;
 import sneaker.macro.Types.DefinedType;
 
 class ModuleTools {
-
 	/**
 		Define new imports in the current module in which the macro was called.
 	**/
@@ -53,7 +52,9 @@ class ModuleTools {
 		Defines `typeDefinition` as a sub-type in the current module in which the macro was called.
 		@return `path`: TypePath of the type. `pathString`: Dot-separated path of the type.
 	**/
-	public static function defineSubTypes(typeDefinitions: Array<TypeDefinition>): Array<DefinedType> {
+	public static function defineSubTypes(
+		typeDefinitions: Array<TypeDefinition>
+	): Array<DefinedType> {
 		final localModule = getLocalModuleInfo();
 
 		Context.defineModule(
