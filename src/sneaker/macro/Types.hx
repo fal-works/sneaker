@@ -1,8 +1,10 @@
 package sneaker.macro;
 
-import haxe.macro.Expr;
-
 #if macro
+import haxe.macro.Expr;
+import haxe.macro.Type.AbstractType;
+import sneaker.types.Result;
+
 /**
 	An array of `Field`s.
 	The return type of a build macro function should be `Null<Fields>`.
@@ -19,7 +21,6 @@ typedef MacroType = haxe.macro.Type;
 	This is also the return type of `haxe.macro.Context.getModule()`.
 **/
 typedef MacroModule = Array<haxe.macro.Type>;
-#end
 
 /**
 	Information about a module.
@@ -31,7 +32,6 @@ typedef ModuleInfo = {
 	packages: Array<String>
 }
 
-#if macro
 /**
 	Information about a type defined in any module.
 **/
@@ -40,4 +40,28 @@ typedef DefinedType = {
 	pathString: String,
 	complex: ComplexType
 };
+
+/**
+	A kind of `Type.AbstractType` instance that hs `@:enum` metadata.
+**/
+@:forward
+abstract EnumAbstractType(AbstractType) to AbstractType {
+	/**
+		@param abstractType `Type.AbstractType`
+		@return `EnumAbstractType` value, or an error message if `:enum` metadata is missing.
+	**/
+	public static inline function fromAbstractType(
+		abstractType: AbstractType
+	): Result<EnumAbstractType, String> {
+		return if (abstractType.meta.has(":enum"))
+			Ok(new EnumAbstractType(abstractType))
+		else
+			failed;
+	}
+
+	static final failed: Result<EnumAbstractType, String> = Failed('Missing @:enum metadata');
+
+	inline function new(abstractType: AbstractType)
+		this = abstractType;
+}
 #end
