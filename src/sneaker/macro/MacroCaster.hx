@@ -10,10 +10,17 @@ import haxe.macro.Type;
 class MacroCaster {
 	/**
 		@param param `Type.TypeParameter`
+		@return `Expr.ComplexType`
+	**/
+	public static function typeParameterToComplexType(param: TypeParameter): ComplexType
+		return Context.toComplexType(param.t);
+
+	/**
+		@param param `Type.TypeParameter`
 		@return Enum `Expr.TypeParam` (instance `TPType`)
 	**/
 	public static function typeParameterToTypeParam(param: TypeParameter): TypeParam
-		return TPType(Context.toComplexType(param.t));
+		return TPType(typeParameterToComplexType(param));
 
 	/**
 		@param `Type.Ref<ClassType>`
