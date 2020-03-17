@@ -51,6 +51,15 @@ class FieldExtension {
 	}
 
 	/**
+		Overwrites `this.kind`.
+		@return `this` field.
+	**/
+	public static function setFieldType(_this: Field, fieldType: FieldType): Field {
+		_this.kind = fieldType;
+		return _this;
+	}
+
+	/**
 		Overwrites the `kind` of `this` field with a variable type of `type`.
 		@return `this` field.
 	**/
