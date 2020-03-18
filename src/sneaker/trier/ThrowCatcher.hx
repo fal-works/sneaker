@@ -1,17 +1,22 @@
 package sneaker.trier;
 
-import sneaker.trier.Trier;
-
+/**
+	A wrapper of any callback function that takes one argument and may throw exceptions.
+	Automatically catches and runs `onFail()` when you call `run()` and any exception is thrown.
+**/
 @:structInit
 class ThrowCatcher<T, R> implements Trier<T, R> {
-	public final callback: (input: T) -> R;
+	/** @inheritdoc **/
 	public final onFail: OnFailCallback;
+
+	public final callback: (input: T) -> R;
 
 	public function new(callback: (input: T) -> R, onFailType: OnFailType = None) {
 		this.callback = callback;
 		this.onFail = TrierCallbacks.getOnFail(onFailType);
 	}
 
+	/** @inheritdoc **/
 	public function run(
 		input: T,
 		?tag: Tag,

@@ -1,12 +1,17 @@
 package sneaker.trier;
 
-import sneaker.trier.Trier;
 import sneaker.types.Result;
 
+/**
+	A wrapper of any callback function that takes one argument and returns any `Result` instance.
+	Automatically runs `onFail()` when you call `run()` and the result is `Failed`.
+**/
 @:structInit
 class ResultCatcher<T, R> implements Trier<T, R> {
-	public final callback: (input: T) -> Result<R, String>;
+	/** @inheritdoc **/
 	public final onFail: OnFailCallback;
+
+	public final callback: (input: T) -> Result<R, String>;
 
 	public function new(
 		callback: (input: T) -> Result<R, String>,
@@ -16,6 +21,7 @@ class ResultCatcher<T, R> implements Trier<T, R> {
 		this.onFail = TrierCallbacks.getOnFail(onFailType);
 	}
 
+	/** @inheritdoc **/
 	public function run(
 		input: T,
 		?tag: Tag,

@@ -1,12 +1,16 @@
 package sneaker.trier;
 
-import sneaker.trier.Trier;
-
+/**
+	A wrapper of any callback function that takes one argument and may return `null`.
+	Automatically runs `onFail()` when you call `run()` and the result is `null`.
+**/
 @:structInit
 class NullCatcher<T, R> implements Trier<T, R> {
-	public final callback: (input: T) -> Null<R>;
+	/** @inheritdoc **/
 	public final onFail: OnFailCallback;
-	final failMessage: String;
+
+	public final callback: (input: T) -> Null<R>;
+	public final failMessage: String;
 
 	public function new(callback: (input: T) -> Null<R>, failMessage: String, onFailType: OnFailType = None) {
 		this.callback = callback;
@@ -14,6 +18,7 @@ class NullCatcher<T, R> implements Trier<T, R> {
 		this.onFail = TrierCallbacks.getOnFail(onFailType);
 	}
 
+	/** @inheritdoc **/
 	public function run(
 		input: T,
 		?tag: Tag,
