@@ -2,7 +2,6 @@ package sneaker.trier;
 
 import sneaker.trier.Trier;
 import sneaker.types.Result;
-import haxe.macro.Context;
 
 @:structInit
 class ResultCatcher<T, R> implements Trier<T, R> {
@@ -23,17 +22,11 @@ class ResultCatcher<T, R> implements Trier<T, R> {
 		?pos: PosInfos
 	): TrierResult<R> {
 		final result = callback(input);
-		var message = "";
-		var failed = false;
-		switch result {
-			case Failed(s):
-				failed = true;
-				message = s;
-			default:
-		}
 
-		if (failed) {
-			onFail(message, tag, pos);
+		switch result {
+			case Failed(message):
+				onFail(message, tag, pos);
+			default:
 		}
 
 		return TrierResultBuilder.build(result);
