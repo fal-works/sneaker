@@ -20,7 +20,8 @@ class TrierResultTools {
 		return {
 			result: result,
 			failed: failed,
-			unwrap: TrierResultTools.unwrap.bind(result, _, _)
+			unwrap: TrierResultTools.unwrap.bind(result, _, _),
+			unwrapFailure: TrierResultTools.unwrapFailure.bind(result, _, _)
 		};
 		#else
 		return new TrierResult(result, failed);
@@ -36,11 +37,27 @@ class TrierResultTools {
 				resultValue;
 			case Failed(message):
 				#if macro
-				// error() may or may not stop macro depending on `sneaker_macro_message_level`
 				throw new Error(message, PositionStack.peek());
 				#else
 				throw new Exception(message, null, null, pos);
 				#end
+		}
+	}
+
+	/**
+		@return The failure message. Throws error if the process did not fail.
+	**/
+	public static inline function unwrapFailure<R>(result: Result<R, String>, ?tag: Tag, ?pos: PosInfos): String {
+		return switch (result) {
+			case Ok(_):
+				final message = "Cannot unwrap failure message because the result is Ok.";
+				#if macro
+				throw new Error(message, PositionStack.peek());
+				#else
+				throw new Exception(message, null, null, pos);
+				#end
+			case Failed(message):
+				message;
 		}
 	}
 }

@@ -21,6 +21,11 @@ typedef TrierResult<R> = {
 		@return The actual value. Throws error if failed.
 	**/
 	public function unwrap(?tag: Tag, ?pos: PosInfos): R;
+
+	/**
+		@return The failure message. Throws error if the process did not fail.
+	**/
+	public function unwrapFailure(?tag: Tag, ?pos: PosInfos): String;
 }
 #else
 class TrierResult<R> {
@@ -47,5 +52,11 @@ class TrierResult<R> {
 	**/
 	public inline function unwrap(?tag: Tag, ?pos: PosInfos): R
 		return TrierResultTools.unwrap(this.result, tag, pos);
+
+	/**
+		@return The failure message. Throws error if the process did not fail.
+	**/
+	public inline function unwrapFailure(?tag: Tag, ?pos: PosInfos): String
+		return TrierResultTools.unwrapFailure(this.result, tag, pos);
 }
 #end
