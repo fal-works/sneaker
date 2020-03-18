@@ -19,11 +19,11 @@ class ThrowCatcher<T, R> implements Trier<T, R> {
 	): TrierResult<R> {
 		try {
 			final returned = callback(input);
-			return TrierResultBuilder.build(Ok(returned));
+			return TrierResultTools.build(Ok(returned), false);
 		} catch (error:Dynamic) {
 			final message = Std.string(error);
 			onFail(message, tag, pos);
-			return TrierResultBuilder.build(Failed(message));
+			return TrierResultTools.build(Failed(message), true);
 		}
 	}
 }

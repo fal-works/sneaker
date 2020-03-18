@@ -8,10 +8,17 @@ import sneaker.macro.PositionStack;
 import sneaker.exception.Exception;
 #end
 
+/**
+	Result returned from any class that implements `Trier` interface.
+**/
 #if eval
 typedef TrierResult<R> = {
 	public final result: Result<R, String>;
 	public final failed: Bool;
+
+	/**
+		@return The actual value. Throws error if failed.
+	**/
 	public function unwrap(?tag: Tag, ?pos: PosInfos): R;
 }
 #else
@@ -19,31 +26,38 @@ class TrierResult<R> {
 	public final result: Result<R, String>;
 	public final failed: Bool;
 
-	public function new(result: Result<R, String>) {
+	public function new(result: Result<R, String>, failed: Bool) {
 		this.result = result;
-		this.failed = result.isFailed();
+		this.failed = failed;
 	}
 
+	/**
+		@return The actual value. Throws error if failed.
+	**/
 	public inline function unwrap(?tag: Tag, ?pos: PosInfos): R
 		return TrierResultTools.unwrap(this.result, tag, pos);
 }
 #end
 
-class TrierResultBuilder {
-	public static function build<R>(result: Result<R, String>): TrierResult<R> {
+class TrierResultTools {
+	/**
+		@param failed Just to avoid doing `switch` check again.
+	**/
+	public static inline function build<R>(result: Result<R, String>, failed: Bool): TrierResult<R> {
 		#if eval
 		return {
 			result: result,
-			failed: result.isFailed(),
+			failed: failed,
 			unwrap: TrierResultTools.unwrap.bind(result, _, _)
 		};
 		#else
-		return new TrierResult(result);
+		return new TrierResult(result, failed);
 		#end
 	}
-}
 
-class TrierResultTools {
+	/**
+		@return The actual value. Throws error if failed.
+	**/
 	public static inline function unwrap<R>(result: Result<R, String>, ?tag: Tag, ?pos: PosInfos): R {
 		return switch (result) {
 			case Ok(resultValue):

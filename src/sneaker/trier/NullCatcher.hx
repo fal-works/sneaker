@@ -24,9 +24,9 @@ class NullCatcher<T, R> implements Trier<T, R> {
 
 		if (result == null) {
 			onFail(message, tag, pos);
-			return TrierResultBuilder.build(Failed(message));
+			return TrierResultTools.build(Failed(message), true);
 		}
 
-		return TrierResultBuilder.build(Ok(result));
+		return TrierResultTools.build(Ok(result), false);
 	}
 }

@@ -23,12 +23,14 @@ class ResultCatcher<T, R> implements Trier<T, R> {
 	): TrierResult<R> {
 		final result = callback(input);
 
-		switch result {
+		final failed = switch result {
 			case Failed(message):
 				onFail(message, tag, pos);
+				true;
 			default:
+				false;
 		}
 
-		return TrierResultBuilder.build(result);
+		return TrierResultTools.build(result, failed);
 	}
 }
