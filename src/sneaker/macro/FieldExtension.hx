@@ -18,6 +18,12 @@ class FieldExtension {
 	}
 
 	/**
+		@return `true` if `this.name == "new"`.
+	**/
+	public static function isNew(_this: Field): Bool
+		return _this.name == "new";
+
+	/**
 		@return Shallow copy of `this`.
 	**/
 	public static function clone(_this: Field): Field {
