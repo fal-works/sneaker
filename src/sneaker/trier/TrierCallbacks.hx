@@ -8,11 +8,11 @@ import sneaker.log.LogTypes;
 #end
 
 /**
-	Built-in callback functions for initializing `Trier.onFail()`.
+	Built-in callback functions for initializing `Trier::onFail()`.
 **/
 class TrierCallbacks {
 	/**
-		@return Function for initializing `Trier.onFail()`, either build-in or custom.
+		@return Function for initializing `Trier::onFail()`, either build-in or custom.
 	**/
 	public static function getOnFail(type: OnFailType): OnFailCallback {
 		return switch type {

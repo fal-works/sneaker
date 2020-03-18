@@ -3,7 +3,7 @@ package sneaker.trier;
 import sneaker.log.LogLevel;
 
 /**
-	Type alias for `Trier.onFail()`.
+	Type alias for `Trier::onFail()`.
 **/
 // @formatter:off
 typedef OnFailCallback = (message: String, ?tag: Tag, ?pos: PosInfos) -> Void;
@@ -11,7 +11,7 @@ typedef OnFailCallback = (message: String, ?tag: Tag, ?pos: PosInfos) -> Void;
 //
 
 /**
-	Option keys for initializing `Trier.onFail()`.
+	Option keys for initializing `Trier::onFail()`.
 **/
 enum OnFailType {
 	None;

@@ -7,6 +7,11 @@ package sneaker.trier;
 **/
 interface Trier<T, R> {
 	/**
+		Function that is run when `Trier::run()` fails.
+	**/
+	public final onFail: OnFailCallback;
+
+	/**
 		Runs the preset callback passing `input`.
 		@return A `TrierResult` instance, which you can either unwrap or check if the process failed.
 	**/
@@ -15,9 +20,4 @@ interface Trier<T, R> {
 		?tag: Tag,
 		?pos: PosInfos
 	): TrierResult<R>;
-
-	/**
-		Function that is run when `Trier.run()` fails.
-	**/
-	public final onFail: OnFailCallback;
 }
