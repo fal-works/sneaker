@@ -14,32 +14,40 @@ class CompilerMessage {
 		Displays a compilation fatal error at the position most recently saved in `PositionStack`.
 	**/
 	public static inline function fatal(message: String): Void {
+		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 100)
 			Context.fatalError(message, PositionStack.peek());
+		#end
 	}
 
 	/**
 		Displays a compilation error at the position most recently saved in `PositionStack`.
 	**/
 	public static inline function error(message: String): Void {
+		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 200)
 			Context.error(message, PositionStack.peek());
+		#end
 	}
 
 	/**
 		Displays a compilation warning at the position most recently saved in `PositionStack`.
 	**/
 	public static inline function warn(message: String): Void {
+		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 300)
 			Context.warning(message, PositionStack.peek());
+		#end
 	}
 
 	/**
 		Displays a compilation info at the position most recently saved in `PositionStack`.
 	**/
 	public static inline function info(message: String): Void {
+		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 400)
 			Context.info(message, PositionStack.peek());
+		#end
 	}
 }
 #end

@@ -30,7 +30,7 @@ class Asserter {
 		?tag: ExprOf<Null<Tag>>,
 		?message: Expr
 	): ExprOf<Void> {
-		#if sneaker_assertion_disable
+		#if (display || sneaker_assertion_disable)
 		return macro $b{[]};
 		#else
 		final evaluations = prepareEvaluations(boolExpression);
@@ -104,7 +104,7 @@ class Asserter {
 		?tag: ExprOf<Null<Tag>>,
 		?message: Expr
 	): ExprOf<T> {
-		#if sneaker_assertion_disable
+		#if (display || sneaker_assertion_disable)
 		return macro $object;
 		#else
 		final expressionString = object.toString();
