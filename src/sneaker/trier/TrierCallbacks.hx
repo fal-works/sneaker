@@ -29,11 +29,14 @@ class TrierCallbacks {
 		}
 	}
 
+	/**
+		Internally prepares logging function according to `level`.
+	**/
 	static function createOnFailLog(level: LogLevel): OnFailCallback {
 		#if !macro
 		final logType = LogTypes.get(level);
 		return function(message, ?tag, ?pos) {
-			logType.print(message, null, pos);
+			logType.print(message, tag, pos);
 		}
 		#else
 		final log = MacroLogger.getLogFunction(level);
