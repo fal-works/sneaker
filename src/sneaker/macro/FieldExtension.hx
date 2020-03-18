@@ -87,5 +87,14 @@ class FieldExtension {
 		_this.access = if (preserve) _this.access.concat(access) else access;
 		return _this;
 	}
+
+	/**
+		Overwrites `this.pos`.
+		@return `this` field.
+	**/
+	public static function setPosition(_this: Field, pos: Position): Field {
+		_this.pos = pos;
+		return _this;
+	}
 }
 #end
