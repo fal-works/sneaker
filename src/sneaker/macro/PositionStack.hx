@@ -10,20 +10,26 @@ import haxe.macro.Expr.Position;
 **/
 class PositionStack {
 	/**
-		The position at which the macro was called.
-	**/
-	public static final calledPosition = Context.currentPos();
-
-	/**
 		Stack of saved position information.
 	**/
-	static final stack: Array<Position> = [calledPosition];
+	static final stack: Array<Position> = [];
 
 	/**
-		@return Last saved position.
+		Refleshes the stack with `Context.currentPos()`.
 	**/
-	public static function peek(): Position
+	public static function reset(): Void {
+		stack.resize(1);
+		stack[0] = Context.currentPos();
+	}
+
+	/**
+		@return Last saved position, or `Context.currentPos()` if empty.
+	**/
+	public static function peek(): Position {
+		if (stack.length == 0) reset();
+
 		return stack[stack.length - 1];
+	}
 
 	/**
 		Saves `position`.
@@ -32,23 +38,12 @@ class PositionStack {
 		stack.push(position);
 
 	/**
-		Pops last saved position.
+		Pops last saved position, or `Context.currentPos()` if empty.
 	**/
 	public static function pop(): Position {
-		final position = stack.pop();
+		if (stack.length == 0) reset();
 
-		if (stack.length == 0)
-			throw new Error("Position stack is empty.", calledPosition);
-
-		return position;
-	}
-
-	/**
-		Sets `position` to `Context.currentPos()`.
-	**/
-	public static function reset(): Void {
-		stack.resize(1);
-		stack[0] = calledPosition;
+		return stack.pop();
 	}
 }
 #end
