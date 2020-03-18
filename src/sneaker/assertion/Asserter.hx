@@ -8,73 +8,10 @@ using sneaker.string_buffer.StringLanguageExtension;
 import haxe.macro.Expr;
 import sneaker.tag.Tag;
 
-private class Evaluation {
-	/** Used as callback in `evaluationArray.map()`. **/
-	public static final getExecutionExpression = (
-		evaluation: Evaluation
-	) -> evaluation.executionExpression;
-
-	/** String form of the expression to be evaluated. **/
-	public final expressionString: String;
-
-	/** Expression that assigns the evaluation result to a local variable. **/
-	public final executionExpression: Expr;
-
-	public function new(
-		expression: Expr,
-		expressionString: String,
-		variableName: String
-	) {
-		this.expressionString = expressionString;
-		this.executionExpression = macro final $variableName = $expression;
-	}
-}
-
 /**
 	Collection of assertion functions.
 **/
 class Asserter {
-	/**
-		Internal function used in `assert()`.
-	**/
-	static function prepareEvaluations(
-		expressionToAssert: ExprOf<Bool>
-	): Array<Evaluation> {
-		final evaluations: Array<Evaluation> = [];
-
-		function preparePart(subExpression: Expr, subExpressionString: String): String {
-			final variableName = partialEvaluationResultName(evaluations.length);
-			evaluations.push(new Evaluation(
-				subExpression,
-				subExpressionString,
-				variableName
-			));
-
-			return variableName;
-		}
-
-		function preparePartRecursive(inputExpression: Expr) {
-			return switch (inputExpression.expr) {
-				case EConst((CInt(_) | CFloat(_) | CString(_) | CRegexp(_) | CIdent("true" | "false" | "null"))):
-					inputExpression;
-				case _:
-					final expressionString = inputExpression.toString();
-					final expression = inputExpression.map(preparePartRecursive); // call for each sub-expressions
-					macro $i{preparePart(expression, expressionString)};
-			}
-		}
-
-		preparePartRecursive(expressionToAssert);
-
-		#if sneaker_assertion_show_compilation
-		final assertedString = expressionToAssert.toString();
-		inline function print(s: String) #if sys Sys.println #else trace #end (s);
-		print('[ASSERT] Found: ${assertedString}\t// ${"part".formatNounCountPluralS(evaluations.length)}');
-		#end
-
-		return evaluations;
-	}
-
 	/**
 		Throws error if `boolExpression` is `false`.
 
@@ -209,7 +146,70 @@ class Asserter {
 		#end
 	}
 
+	/**
+		Internal function used in `assert()`.
+	**/
+	static function prepareEvaluations(
+		expressionToAssert: ExprOf<Bool>
+	): Array<Evaluation> {
+		final evaluations: Array<Evaluation> = [];
+
+		function preparePart(subExpression: Expr, subExpressionString: String): String {
+			final variableName = partialEvaluationResultName(evaluations.length);
+			evaluations.push(new Evaluation(
+				subExpression,
+				subExpressionString,
+				variableName
+			));
+
+			return variableName;
+		}
+
+		function preparePartRecursive(inputExpression: Expr) {
+			return switch (inputExpression.expr) {
+				case EConst((CInt(_) | CFloat(_) | CString(_) | CRegexp(_) | CIdent("true" | "false" | "null"))):
+					inputExpression;
+				case _:
+					final expressionString = inputExpression.toString();
+					final expression = inputExpression.map(preparePartRecursive); // call for each sub-expressions
+					macro $i{preparePart(expression, expressionString)};
+			}
+		}
+
+		preparePartRecursive(expressionToAssert);
+
+		#if sneaker_assertion_show_compilation
+		final assertedString = expressionToAssert.toString();
+		inline function print(s: String) #if sys Sys.println #else trace #end (s);
+		print('[ASSERT] Found: ${assertedString}\t// ${"part".formatNounCountPluralS(evaluations.length)}');
+		#end
+
+		return evaluations;
+	}
+
 	static inline function partialEvaluationResultName(index: Int) {
 		return '__sneakerPartialEvaluationResult${index}';
+	}
+}
+
+private class Evaluation {
+	/** Used as callback in `evaluationArray.map()`. **/
+	public static final getExecutionExpression = (
+		evaluation: Evaluation
+	) -> evaluation.executionExpression;
+
+	/** String form of the expression to be evaluated. **/
+	public final expressionString: String;
+
+	/** Expression that assigns the evaluation result to a local variable. **/
+	public final executionExpression: Expr;
+
+	public function new(
+		expression: Expr,
+		expressionString: String,
+		variableName: String
+	) {
+		this.expressionString = expressionString;
+		this.executionExpression = macro final $variableName = $expression;
 	}
 }
