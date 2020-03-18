@@ -11,6 +11,22 @@ enum Result<T, E> {
 
 class ResultExtension {
 	/**
+		@return `true` if `this` is `Ok`.
+	**/
+	public static inline function isOk<T, E>(_this: Result<T, E>): Bool {
+		return switch _this {
+			case Ok(_): true;
+			case Failed(_): false;
+		}
+	}
+
+	/**
+		@return `true` if `this` is `Failed`.
+	**/
+	public static inline function isFailed<T, E>(_this: Result<T, E>): Bool
+		return !isOk(_this);
+
+	/**
 		@return The value if `Ok`. Throws value if `Failed`.
 	**/
 	public static inline function unwrap<T, E>(_this: Result<T, E>): T {
