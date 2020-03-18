@@ -45,6 +45,19 @@ class LogTypes {
 		info = constants.info.build();
 		debug = constants.debug.build();
 	}
+
+	/**
+		@return The corresponding built-in `LogType` instance according to `level`.
+	**/
+	public static inline function get(level: LogLevel): LogType {
+		return switch level {
+			case Fatal: fatal;
+			case Error: error;
+			case Warn: warn;
+			case Info: info;
+			case Debug: debug;
+		}
+	}
 }
 
 /**

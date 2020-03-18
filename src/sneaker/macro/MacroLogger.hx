@@ -4,6 +4,7 @@ package sneaker.macro;
 import haxe.PosInfos;
 import sneaker.print.Printer;
 import sneaker.macro.CompilerMessage;
+import sneaker.log.LogLevel;
 
 /**
 	Logging functions for use in macro.
@@ -83,6 +84,19 @@ class MacroLogger {
 	public static function debug(content: Dynamic, ?pos: PosInfos) {
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 500)
 			printLogText(debugPrefix, content, pos);
+	}
+
+	/**
+		@return The corresponding log function according to `level`.
+	**/
+	public static function getLogFunction(level: LogLevel) {
+		return switch level {
+			case Fatal: fatal;
+			case Error: error;
+			case Warn: warn;
+			case Info: info;
+			case Debug: debug;
+		}
 	}
 
 	#if !sneaker_print_disable
