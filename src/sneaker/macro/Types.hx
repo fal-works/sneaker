@@ -1,6 +1,7 @@
 package sneaker.macro;
 
 #if macro
+using haxe.macro.TypeTools;
 import haxe.macro.Expr;
 import haxe.macro.Type.AbstractType;
 import sneaker.types.Result;
@@ -58,6 +59,16 @@ abstract EnumAbstractType(AbstractType) to AbstractType {
 		else
 			failed;
 	}
+
+	/**
+		@return The underlying `AbstractType` value.
+	**/
+	@:to public inline function toAbstractType(): AbstractType return this;
+
+	/**
+		@return `ComplexType` value.
+	**/
+	@:to public inline function toComplexType(): ComplexType return this.type.toComplexType();
 
 	static final failed: Result<EnumAbstractType, String> = Failed('Missing @:enum metadata');
 
