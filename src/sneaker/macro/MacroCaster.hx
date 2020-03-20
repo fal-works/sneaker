@@ -50,14 +50,9 @@ class TypeCaster {
 			case TAbstract(_.get() => abstractType, _):
 				Ok(abstractType);
 			default:
-				notAbstract;
+				Failed('Not an abstract: ${type}');
 		}
 	}
-
-	/**
-		Value returned if `typeToAbstractType()` fails.
-	**/
-	static final notAbstract: Result<AbstractType, String> = Failed('Not an abstract');
 }
 
 class AbstractTypeCaster {
