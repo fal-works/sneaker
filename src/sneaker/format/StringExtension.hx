@@ -65,4 +65,26 @@ class StringExtension {
 		final length = lastIndexOfSlash(s);
 		return if (length >= 0) s.substr(0, length); else s;
 	}
+
+	/**
+		@return A string where the first character is changed to upper case.
+	**/
+	public static inline function camelToPascal(s: String): String {
+		return switch (s.length) {
+			case 0: s;
+			case 1: s.toUpperCase();
+			default: s.charAt(0).toUpperCase() + s.substr(1);
+		}
+	}
+
+	/**
+		@return A string where the first character is changed to lower case.
+	**/
+	public static inline function pascalToCamel(s: String): String {
+		return switch (s.length) {
+			case 0: s;
+			case 1: s.toLowerCase();
+			default: s.charAt(0).toLowerCase() + s.substr(1);
+		}
+	}
 }
