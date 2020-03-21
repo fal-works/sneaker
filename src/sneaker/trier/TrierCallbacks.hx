@@ -40,7 +40,7 @@ class TrierCallbacks {
 		}
 		#else
 		final log = MacroLogger.getLogFunction(level);
-		return function(message, ?tag, ?pos) log(message, pos);
+		return function(message, ?tag, ?pos) log(message, null, pos);
 		#end
 	}
 

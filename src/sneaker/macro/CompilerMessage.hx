@@ -1,6 +1,8 @@
 package sneaker.macro;
 
 #if macro
+import haxe.macro.Expr.Position;
+
 /**
 	Functions for displaying compilation messages in a macro context.
 
@@ -11,42 +13,42 @@ package sneaker.macro;
 **/
 class CompilerMessage {
 	/**
-		Displays a compilation fatal error at the position most recently saved in `PositionStack`.
+		Displays a compilation fatal error at `position`.
 	**/
-	public static inline function fatal(message: String): Void {
+	public static function fatal(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 100)
-			Context.fatalError(message, PositionStack.peek());
+			Context.fatalError(message, if (position != null) position else PositionStack.peek());
 		#end
 	}
 
 	/**
-		Displays a compilation error at the position most recently saved in `PositionStack`.
+		Displays a compilation error at `position`.
 	**/
-	public static inline function error(message: String): Void {
+	public static function error(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 200)
-			Context.error(message, PositionStack.peek());
+			Context.error(message, if (position != null) position else PositionStack.peek());
 		#end
 	}
 
 	/**
-		Displays a compilation warning at the position most recently saved in `PositionStack`.
+		Displays a compilation warning at `position`.
 	**/
-	public static inline function warn(message: String): Void {
+	public static function warn(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 300)
-			Context.warning(message, PositionStack.peek());
+			Context.warning(message, if (position != null) position else PositionStack.peek());
 		#end
 	}
 
 	/**
-		Displays a compilation info at the position most recently saved in `PositionStack`.
+		Displays a compilation info at `position`.
 	**/
-	public static inline function info(message: String): Void {
+	public static function info(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 400)
-			Context.info(message, PositionStack.peek());
+			Context.info(message, if (position != null) position else PositionStack.peek());
 		#end
 	}
 }

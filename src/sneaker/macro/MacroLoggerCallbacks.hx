@@ -17,7 +17,7 @@ class MacroLoggerCallbacks {
 	**/
 	public static var defaultLogFilter = function(
 			localClassPath: Null<String>,
-			?executingPosition: PosInfos
+			?macroPosition: PosInfos
 	): Bool return true;
 
 	/**
@@ -27,7 +27,7 @@ class MacroLoggerCallbacks {
 			prefix: String,
 			content: Dynamic,
 			localClassPath: Null<String>,
-			?executingPosition: PosInfos
+			?macroPosition: PosInfos
 	): String {
 		final buffer = new StringBuffer();
 		buffer.addPrefix(prefix);
@@ -40,7 +40,7 @@ class MacroLoggerCallbacks {
 		} else {
 			buffer.add(content);
 			buffer.add(openingParen);
-			buffer.add(executingPosition.formatClassMethod());
+			buffer.add(macroPosition.formatClassMethod());
 			buffer.add(closingParen);
 		}
 		return buffer.toString();

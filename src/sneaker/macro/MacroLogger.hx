@@ -2,6 +2,7 @@ package sneaker.macro;
 
 #if macro
 import haxe.PosInfos;
+import haxe.macro.Expr.Position;
 import sneaker.print.Printer;
 import sneaker.macro.CompilerMessage;
 import sneaker.log.LogLevel;
@@ -38,12 +39,12 @@ class MacroLogger {
 		Prints fatal error in a macro context.
 		Also displays a compilation fatal error.
 	**/
-	public static function fatal(content: Dynamic, ?pos: PosInfos) {
+	public static function fatal(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 100)
-			printLogText(fatalPrefix, content, pos);
+			printLogText(fatalPrefix, content, macroPosition);
 
-		CompilerMessage.fatal(content);
+		CompilerMessage.fatal(content, position);
 		#end
 	}
 
@@ -51,12 +52,12 @@ class MacroLogger {
 		Prints error in a macro context.
 		Also displays a compilation error.
 	**/
-	public static function error(content: Dynamic, ?pos: PosInfos) {
+	public static function error(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 200)
-			printLogText(errorPrefix, content, pos);
+			printLogText(errorPrefix, content, macroPosition);
 
-		CompilerMessage.error(content);
+		CompilerMessage.error(content, position);
 		#end
 	}
 
@@ -64,12 +65,12 @@ class MacroLogger {
 		Prints warning in a macro context.
 		Also displays a compilation warning.
 	**/
-	public static function warn(content: Dynamic, ?pos: PosInfos) {
+	public static function warn(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 300)
-			printLogText(warnPrefix, content, pos);
+			printLogText(warnPrefix, content, macroPosition);
 
-		CompilerMessage.warn(content);
+		CompilerMessage.warn(content, position);
 		#end
 	}
 
@@ -77,22 +78,22 @@ class MacroLogger {
 		Prints warning in a macro context.
 		Also displays a compilation info.
 	**/
-	public static function info(content: Dynamic, ?pos: PosInfos) {
+	public static function info(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 400)
-			printLogText(infoPrefix, content, pos);
+			printLogText(infoPrefix, content, macroPosition);
 
-		CompilerMessage.info(content);
+		CompilerMessage.info(content, position);
 		#end
 	}
 
 	/**
 		Prints debug log in a macro context.
 	**/
-	public static function debug(content: Dynamic, ?pos: PosInfos) {
+	public static function debug(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 500)
-			printLogText(debugPrefix, content, pos);
+			printLogText(debugPrefix, content, macroPosition);
 		#end
 	}
 
