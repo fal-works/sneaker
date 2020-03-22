@@ -5,7 +5,6 @@ using sneaker.format.StringExtension;
 
 import haxe.macro.Expr;
 import haxe.macro.Context;
-import sneaker.macro.MacroCaster;
 import sneaker.macro.Types.ModuleInfo;
 import sneaker.macro.Types.DefinedType;
 

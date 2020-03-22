@@ -1,7 +1,6 @@
 package sneaker.macro;
 
 #if macro
-import haxe.macro.Expr.Error;
 import haxe.macro.Expr.Position;
 
 /**
