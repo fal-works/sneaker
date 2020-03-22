@@ -11,7 +11,8 @@ import haxe.macro.Expr;
 **/
 class MacroComparator {
 	/**
-		Checks unification of two `Expr.ComplexType` instances.
+		Roughly checks unification of two `Expr.ComplexType` instances.
+		Might not work in some cases as this first converts each type to `haxe.macro.Type`.
 		@return `true` if `a` and `b` unify.
 	**/
 	public static function unifyComplex(a: ComplexType, b: ComplexType): Bool {

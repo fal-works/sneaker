@@ -6,6 +6,9 @@ using sneaker.string_buffer.StringBufferExtension;
 import sneaker.log.LogFormats;
 import sneaker.string_buffer.StringBuffer;
 
+/**
+	Functions for static extension internally used in `sneaker.macro` package.
+**/
 class StringBufferLogExtension {
 	/**
 		Adds current file path, e.g. "src/Main.hx".
