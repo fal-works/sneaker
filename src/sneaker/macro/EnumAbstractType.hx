@@ -3,14 +3,14 @@ package sneaker.macro;
 #if macro
 using haxe.macro.TypeTools;
 import haxe.macro.Expr;
-import haxe.macro.Type.AbstractType;
+import haxe.macro.Type;
 import sneaker.types.Result;
 
 /**
 	A kind of `Type.AbstractType` instance that hs `@:enum` metadata.
 **/
 @:forward
-@:using(sneaker.macro.extensions.EnumAbstractExtension)
+@:using(sneaker.macro.EnumAbstractType.EnumAbstractTypeExtension)
 abstract EnumAbstractType(AbstractType) to AbstractType {
 	/**
 		@param abstractType `Type.AbstractType`
@@ -45,5 +45,28 @@ abstract EnumAbstractType(AbstractType) to AbstractType {
 
 	inline function new(abstractType: AbstractType)
 		this = abstractType;
+}
+
+class EnumAbstractTypeExtension {
+	/**
+		@return Enum abstract instance fields of `type` as an array of `Type.ClassField`.
+	**/
+	public static function getInstances(type: EnumAbstractType): Array<ClassField> {
+		final implementation = type.impl;
+		if (implementation == null)
+			return null;
+
+		final staticFields = implementation.get().statics.get();
+
+		return staticFields.filter(isEnumAbstractInstance);
+	}
+
+	/**
+		Used internally in `getInstances()`.
+	**/
+	static function isEnumAbstractInstance(field: ClassField): Bool {
+		final meta = field.meta;
+		return meta.has(":enum") && meta.has(":impl");
+	}
 }
 #end
