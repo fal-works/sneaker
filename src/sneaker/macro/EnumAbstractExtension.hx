@@ -2,7 +2,6 @@ package sneaker.macro;
 
 #if macro
 import haxe.macro.Type;
-import sneaker.macro.Types.EnumAbstractType;
 
 class EnumAbstractExtension {
 	/**

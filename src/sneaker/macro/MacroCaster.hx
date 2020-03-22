@@ -6,7 +6,7 @@ using haxe.macro.TypeTools;
 import haxe.macro.Expr;
 import haxe.macro.Type;
 import sneaker.types.Result;
-import sneaker.macro.Types.EnumAbstractType;
+import sneaker.macro.EnumAbstractType;
 
 /**
 	Functions for converting macro-related types.
