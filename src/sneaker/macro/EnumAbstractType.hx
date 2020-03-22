@@ -10,7 +10,7 @@ import sneaker.types.Result;
 	A kind of `Type.AbstractType` instance that hs `@:enum` metadata.
 **/
 @:forward
-@:using(sneaker.macro.EnumAbstractExtension)
+@:using(sneaker.macro.extensions.EnumAbstractExtension)
 abstract EnumAbstractType(AbstractType) to AbstractType {
 	/**
 		@param abstractType `Type.AbstractType`

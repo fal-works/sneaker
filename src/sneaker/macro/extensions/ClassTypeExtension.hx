@@ -1,4 +1,4 @@
-package sneaker.macro;
+package sneaker.macro.extensions;
 
 #if macro
 import haxe.macro.Type.ClassType;

@@ -1,4 +1,4 @@
-package sneaker.macro;
+package sneaker.macro.extensions;
 
 #if macro
 using sneaker.string_buffer.StringBufferExtension;
