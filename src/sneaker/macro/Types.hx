@@ -66,9 +66,15 @@ abstract EnumAbstractType(AbstractType) to AbstractType {
 	@:to public inline function toAbstractType(): AbstractType return this;
 
 	/**
-		@return `ComplexType` value.
+		@return `ComplexType` value converted from the underlying `haxe.macro.Type`.
 	**/
-	@:to public inline function toComplexType(): ComplexType return this.type.toComplexType();
+	public inline function toComplexType(): ComplexType return this.type.toComplexType();
+
+	/**
+		@return `ComplexType` value converted using `TypeTools.toTypePath`.
+	**/
+	@:access(haxe.macro.TypeTools)
+	public inline function toComplexType2(): ComplexType return TPath(TypeTools.toTypePath(this, []));
 
 	static final failed: Result<EnumAbstractType, String> = Failed('Missing @:enum metadata');
 
