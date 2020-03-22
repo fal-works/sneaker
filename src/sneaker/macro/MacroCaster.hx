@@ -8,38 +8,6 @@ import haxe.macro.Type;
 import sneaker.types.Result;
 import sneaker.macro.EnumAbstractType;
 
-/**
-	Functions for converting macro-related types.
-**/
-class MacroCaster {
-	/**
-		@param param `Type.TypeParameter`
-		@return `Expr.ComplexType`
-	**/
-	public static function typeParameterToComplexType(param: TypeParameter): ComplexType
-		return Context.toComplexType(param.t);
-
-	/**
-		@param param `Type.TypeParameter`
-		@return Enum `Expr.TypeParam` (instance `TPType`)
-	**/
-	public static function typeParameterToTypeParam(param: TypeParameter): TypeParam
-		return TPType(typeParameterToComplexType(param));
-
-	/**
-		@param `Type.Ref<ClassType>`
-		@return `Expr.TypePath`
-	**/
-	public static function typeRefToTypePath(typeRef: Ref<ClassType>): TypePath {
-		final type = typeRef.get();
-		return {
-			pack: type.pack,
-			name: type.name,
-			params: type.params.map(typeParameterToTypeParam)
-		}
-	}
-}
-
 class TypeCaster {
 	/**
 		@param type `Type`
@@ -53,6 +21,43 @@ class TypeCaster {
 				Failed('Not an abstract: ${type}');
 		}
 	}
+}
+
+class TypeParameterCaster {
+	/**
+		@param param `Type.TypeParameter`
+		@return `Expr.ComplexType`
+	**/
+	public static function toComplexType(param: TypeParameter): ComplexType
+		return Context.toComplexType(param.t);
+
+	/**
+		@param param `Type.TypeParameter`
+		@return Enum `Expr.TypeParam` (instance `TPType`)
+	**/
+	public static function toTypeParam(param: TypeParameter): TypeParam
+		return TPType(toComplexType(param));
+}
+
+class ClassTypeCaster {
+	/**
+		@param `ClassType`
+		@return `Expr.TypePath`
+	**/
+	public static function toTypePath(classType: ClassType): TypePath {
+		return {
+			pack: classType.pack,
+			name: classType.name,
+			params: classType.params.map(TypeParameterCaster.toTypeParam)
+		}
+	}
+
+	/**
+		@param `Type.Ref<ClassType>`
+		@return `Expr.TypePath`
+	**/
+	public static function refToTypePath(classTypeRef: Ref<ClassType>): TypePath
+		return toTypePath(classTypeRef.get());
 }
 
 class AbstractTypeCaster {

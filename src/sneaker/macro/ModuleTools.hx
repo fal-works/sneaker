@@ -18,7 +18,7 @@ class ModuleTools {
 			Context.getLocalModule(),
 			[],
 			Context.getLocalImports().concat(importExpressions),
-			Context.getLocalUsing().map(MacroCaster.typeRefToTypePath)
+			Context.getLocalUsing().map(MacroCaster.ClassTypeCaster.refToTypePath)
 		);
 	}
 
@@ -61,7 +61,7 @@ class ModuleTools {
 			Context.getLocalModule(),
 			typeDefinitions,
 			Context.getLocalImports(),
-			Context.getLocalUsing().map(MacroCaster.typeRefToTypePath)
+			Context.getLocalUsing().map(MacroCaster.ClassTypeCaster.refToTypePath)
 		);
 
 		final definedTypes: Array<DefinedType> = [];
