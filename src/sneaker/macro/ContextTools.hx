@@ -10,6 +10,22 @@ class ContextTools {
 		`MacroResult` version of `Context.getLocalClass()`.
 		@return The current class in which the macro was called.
 	**/
+	public static function getLocalClassRef(): MacroResult<haxe.macro.Type.Ref<ClassType>> {
+		final localClassRef = Context.getLocalClass();
+
+		return if (localClassRef != null)
+			Ok(localClassRef);
+		else
+			Failed(
+				'Failed to get local class',
+				Context.currentPos()
+			);
+	}
+
+	/**
+		`MacroResult` version of `Context.getLocalClass()`.
+		@return The current class in which the macro was called.
+	**/
 	public static function getLocalClass(): MacroResult<ClassType> {
 		final localClassRef = Context.getLocalClass();
 
