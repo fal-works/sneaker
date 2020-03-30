@@ -8,6 +8,7 @@ import haxe.macro.Expr;
 import haxe.macro.Type;
 import sneaker.types.Result;
 import sneaker.macro.EnumAbstractType;
+import sneaker.types.Maybe;
 
 class TypeCaster {
 	/**
@@ -20,6 +21,32 @@ class TypeCaster {
 				Ok(abstractType);
 			default:
 				Failed('Not an abstract: ${type}');
+		}
+	}
+
+	/**
+		@param type `Type`
+		@return `Ref<ClassType>` in `Maybe` representation.
+	**/
+	public static function toClassTypeRef(type: Type): Maybe<Ref<ClassType>> {
+		return switch (type.follow()) {
+			case TInst(typeRef, params):
+				typeRef;
+			default:
+				Maybe.from(null);
+		}
+	}
+
+	/**
+		@param type `Type`
+		@return `ClassType` in `Maybe` representation.
+	**/
+	public static function toClassType(type: Type): Maybe<ClassType> {
+		return switch (type.follow()) {
+			case TInst(typeRef, params):
+				typeRef.get();
+			default:
+				Maybe.from(null);
 		}
 	}
 }
