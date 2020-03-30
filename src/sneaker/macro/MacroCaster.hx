@@ -3,6 +3,7 @@ package sneaker.macro;
 #if macro
 using haxe.macro.TypeTools;
 using haxe.macro.ExprTools;
+using sneaker.format.StringExtension;
 
 import haxe.macro.Expr;
 import haxe.macro.Type;
@@ -75,8 +76,9 @@ class ClassTypeCaster {
 	public static function toTypePath(classType: ClassType): TypePath {
 		return {
 			pack: classType.pack,
-			name: classType.name,
-			params: classType.params.map(TypeParameterCaster.toTypeParam)
+			name: classType.module.sliceAfterLastDot(),
+			params: classType.params.map(TypeParameterCaster.toTypeParam),
+			sub: classType.name
 		}
 	}
 
