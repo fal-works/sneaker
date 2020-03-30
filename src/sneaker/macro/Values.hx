@@ -4,9 +4,9 @@ package sneaker.macro;
 import haxe.macro.Expr;
 
 /**
-	Collection of common `ComplexType` instances.
+	Collection of values for common usage.
 **/
-class ComplexTypes {
+class Values {
 	/**
 		Same as `(macro:Void)`.
 	**/
