@@ -22,11 +22,10 @@ class ModuleTools {
 	}
 
 	/**
-		@return Information about the current module and package
-		in which the macro was called.
+		Formats `modulePath`.
+		@return `ModuleInfo` object.
 	**/
-	public static function getLocalModuleInfo(): ModuleInfo {
-		final modulePath = Context.getLocalModule();
+	public static function getModuleInfo(modulePath: String): ModuleInfo {
 		final modulePathLastDotIndex = modulePath.lastIndexOfDot();
 		final moduleName = modulePath.substr(modulePathLastDotIndex + 1);
 		var packagePath: String;
@@ -44,8 +43,15 @@ class ModuleTools {
 			name: moduleName,
 			packagePath: packagePath,
 			packages: packages
-		}
+		};
 	}
+
+	/**
+		@return Information about the current module and package
+		in which the macro was called.
+	**/
+	public static function getLocalModuleInfo(): ModuleInfo
+		return getModuleInfo(Context.getLocalModule());
 
 	/**
 		Defines `typeDefinition` as a sub-type in the current module in which the macro was called.
