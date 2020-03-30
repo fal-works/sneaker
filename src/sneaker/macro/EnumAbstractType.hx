@@ -2,6 +2,7 @@ package sneaker.macro;
 
 #if macro
 using haxe.macro.TypeTools;
+
 import haxe.macro.Expr;
 import haxe.macro.Type;
 import sneaker.types.Result;
@@ -28,18 +29,21 @@ abstract EnumAbstractType(AbstractType) to AbstractType {
 	/**
 		@return The underlying `AbstractType` value.
 	**/
-	@:to public inline function toAbstractType(): AbstractType return this;
+	@:to public inline function toAbstractType(): AbstractType
+		return this;
 
 	/**
 		@return `ComplexType` value converted from the underlying `haxe.macro.Type`.
 	**/
-	public inline function toComplexType(): ComplexType return this.type.toComplexType();
+	public inline function toComplexType(): ComplexType
+		return this.type.toComplexType();
 
 	/**
 		@return `ComplexType` value converted using `TypeTools.toTypePath`.
 	**/
 	@:access(haxe.macro.TypeTools)
-	public inline function toComplexType2(): ComplexType return TPath(TypeTools.toTypePath(this, []));
+	public inline function toComplexType2(): ComplexType
+		return TPath(TypeTools.toTypePath(this, []));
 
 	static final failed: Result<EnumAbstractType, String> = Failed('Missing @:enum metadata');
 

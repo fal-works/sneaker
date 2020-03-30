@@ -12,7 +12,11 @@ class NullCatcher<T, R> implements Trier<T, R> {
 	public final callback: (input: T) -> Null<R>;
 	public final failMessage: String;
 
-	public function new(callback: (input: T) -> Null<R>, failMessage: String, onFailType: OnFailType = None) {
+	public function new(
+		callback: (input: T) -> Null<R>,
+		failMessage: String,
+		onFailType: OnFailType = None
+	) {
 		this.callback = callback;
 		this.failMessage = failMessage;
 		this.onFail = TrierCallbacks.getOnFail(onFailType);

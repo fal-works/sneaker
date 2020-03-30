@@ -18,7 +18,10 @@ class CompilerMessage {
 	public static function fatal(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 100)
-			Context.fatalError(message, if (position != null) position else PositionStack.peek());
+			Context.fatalError(
+				message,
+				if (position != null) position else PositionStack.peek()
+			);
 		#end
 	}
 
@@ -28,7 +31,10 @@ class CompilerMessage {
 	public static function error(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 200)
-			Context.error(message, if (position != null) position else PositionStack.peek());
+			Context.error(
+				message,
+				if (position != null) position else PositionStack.peek()
+			);
 		#end
 	}
 
@@ -38,7 +44,10 @@ class CompilerMessage {
 	public static function warn(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 300)
-			Context.warning(message, if (position != null) position else PositionStack.peek());
+			Context.warning(
+				message,
+				if (position != null) position else PositionStack.peek()
+			);
 		#end
 	}
 
@@ -48,7 +57,10 @@ class CompilerMessage {
 	public static function info(message: String, ?position: Position): Void {
 		#if !display
 		if (CompilerFlags.macroMessageLevel.get() >= 400)
-			Context.info(message, if (position != null) position else PositionStack.peek());
+			Context.info(
+				message,
+				if (position != null) position else PositionStack.peek()
+			);
 		#end
 	}
 }

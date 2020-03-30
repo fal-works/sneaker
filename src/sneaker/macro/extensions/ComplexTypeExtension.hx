@@ -8,7 +8,9 @@ class ComplexTypeExtension {
 	/**
 		@return Return type of `complexType` if it is a function. otherwise `Failed`.
 	**/
-	public static function getReturnType(complexType: ComplexType): Result<ComplexType, String> {
+	public static function getReturnType(
+		complexType: ComplexType
+	): Result<ComplexType, String> {
 		return switch complexType {
 			case TFunction(_, returnType): Ok(returnType);
 			default: Failed('Not a function');

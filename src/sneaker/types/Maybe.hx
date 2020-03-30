@@ -16,7 +16,7 @@ abstract Maybe<T>(Null<T>) {
 	public static inline function from<T>(value: Null<T>): Maybe<T>
 		return new Maybe(value);
 
-  /**
+	/**
 		Casts any object to `Maybe<T>`.
 	**/
 	@:from public static inline function fromObject<T: {}>(object: T): Maybe<T>
@@ -61,13 +61,13 @@ abstract Maybe<T>(Null<T>) {
 	/**
 		Runs `callback` only if `this` is not null.
 	**/
-	public inline function may(callback: T -> Void): Void
+	public inline function may(callback: T->Void): Void
 		if (this != null) callback(this);
 
 	/**
 		Applies `callback` to `this` and returns another `Maybe` value.
 	**/
-	public inline function map<U>(callback: T -> U): Maybe<U>
+	public inline function map<U>(callback: T->U): Maybe<U>
 		return Maybe.from(if (this != null) callback(this) else null);
 
 	/**

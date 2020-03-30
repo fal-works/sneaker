@@ -111,7 +111,7 @@ class ExprCaster {
 		try {
 			final type = Context.typeof(expression);
 			return Ok(type);
-		} catch(_: Dynamic) {
+		} catch (_:Dynamic) {
 			return Failed('Type not found: ${expression.toString()}', expression.pos);
 		}
 	}

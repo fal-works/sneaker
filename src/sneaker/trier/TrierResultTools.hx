@@ -15,7 +15,10 @@ class TrierResultTools {
 	/**
 		@param failed Just to avoid doing `switch` check again.
 	**/
-	public static inline function build<R>(result: Result<R, String>, failed: Bool): TrierResult<R> {
+	public static inline function build<R>(
+		result: Result<R, String>,
+		failed: Bool
+	): TrierResult<R> {
 		#if eval
 		return {
 			result: result,
@@ -31,7 +34,11 @@ class TrierResultTools {
 	/**
 		@return The actual value. Throws error if failed.
 	**/
-	public static inline function unwrap<R>(result: Result<R, String>, ?tag: Tag, ?pos: PosInfos): R {
+	public static inline function unwrap<R>(
+		result: Result<R, String>,
+		?tag: Tag,
+		?pos: PosInfos
+	): R {
 		return switch (result) {
 			case Ok(resultValue):
 				resultValue;
@@ -47,7 +54,11 @@ class TrierResultTools {
 	/**
 		@return The failure message. Throws error if the process did not fail.
 	**/
-	public static inline function unwrapFailure<R>(result: Result<R, String>, ?tag: Tag, ?pos: PosInfos): String {
+	public static inline function unwrapFailure<R>(
+		result: Result<R, String>,
+		?tag: Tag,
+		?pos: PosInfos
+	): String {
 		return switch (result) {
 			case Ok(_):
 				final message = "Cannot unwrap failure message because the result is Ok.";

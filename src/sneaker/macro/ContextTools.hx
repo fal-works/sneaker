@@ -16,10 +16,7 @@ class ContextTools {
 		return if (localClassRef != null)
 			Ok(localClassRef);
 		else
-			Failed(
-				'Failed to get local class',
-				Context.currentPos()
-			);
+			Failed('Failed to get local class', Context.currentPos());
 	}
 
 	/**
@@ -32,10 +29,7 @@ class ContextTools {
 		return if (localClassRef != null)
 			Ok(localClassRef.get());
 		else
-			Failed(
-				'Failed to get local class',
-				Context.currentPos()
-			);
+			Failed('Failed to get local class', Context.currentPos());
 	}
 
 	/**
