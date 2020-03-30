@@ -43,4 +43,12 @@ class MacroComparator {
 		}
 	}
 }
+
+class ComplexTypeComparator {
+	/**
+		@return `true` if the given type is `null` or unifies `Void`.
+	**/
+	public static function isNullOrVoid(complexType: Null<ComplexType>): Bool
+		return complexType == null || complexType.toType().unify(Values.voidType);
+}
 #end
