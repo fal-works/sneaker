@@ -38,63 +38,98 @@ class MacroLogger {
 	/**
 		Prints fatal error in a macro context.
 		Also displays a compilation fatal error.
+		@return `content`
 	**/
-	public static function fatal(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
+	public static function fatal(
+		content: Dynamic,
+		?position: Position,
+		?macroPosition: PosInfos
+	): Dynamic {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 100)
 			printLogText(fatalPrefix, content, macroPosition);
 
 		CompilerMessage.fatal(content, position);
 		#end
+
+		return content;
 	}
 
 	/**
 		Prints error in a macro context.
 		Also displays a compilation error.
+		@return `content`
 	**/
-	public static function error(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
+	public static function error(
+		content: Dynamic,
+		?position: Position,
+		?macroPosition: PosInfos
+	): Dynamic {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 200)
 			printLogText(errorPrefix, content, macroPosition);
 
 		CompilerMessage.error(content, position);
 		#end
+
+		return content;
 	}
 
 	/**
 		Prints warning in a macro context.
 		Also displays a compilation warning.
+		@return `content`
 	**/
-	public static function warn(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
+	public static function warn(
+		content: Dynamic,
+		?position: Position,
+		?macroPosition: PosInfos
+	): Dynamic {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 300)
 			printLogText(warnPrefix, content, macroPosition);
 
 		CompilerMessage.warn(content, position);
 		#end
+
+		return content;
 	}
 
 	/**
 		Prints warning in a macro context.
 		Also displays a compilation info.
+		@return `content`
 	**/
-	public static function info(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
+	public static function info(
+		content: Dynamic,
+		?position: Position,
+		?macroPosition: PosInfos
+	): Dynamic {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 400)
 			printLogText(infoPrefix, content, macroPosition);
 
 		CompilerMessage.info(content, position);
 		#end
+
+		return content;
 	}
 
 	/**
 		Prints debug log in a macro context.
+		@return `content`
 	**/
-	public static function debug(content: Dynamic, ?position: Position, ?macroPosition: PosInfos) {
+	public static function debug(
+		content: Dynamic,
+		?position: Position,
+		?macroPosition: PosInfos
+	): Dynamic {
 		#if !display
 		if (!CompilerFlags.printDisable.get() && CompilerFlags.macroLogLevel.get() >= 500)
 			printLogText(debugPrefix, content, macroPosition);
 		#end
+
+		return content;
 	}
 
 	/**
