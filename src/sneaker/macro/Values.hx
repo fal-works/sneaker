@@ -33,12 +33,12 @@ class Values {
 	/**
 		`Type` value for `Int`.
 	**/
-	public static final intType: Type = voidComplexType.toType();
+	public static final intType: Type = intComplexType.toType();
 
 	/**
 		`Type` value for `Bool`.
 	**/
-	public static final boolType: Type = voidComplexType.toType();
+	public static final boolType: Type = boolComplexType.toType();
 
 	/**
 		Null object for `Expr.Field`.
