@@ -5,15 +5,6 @@ import haxe.macro.Expr;
 
 class FieldExtension {
 	/**
-		Null object for `Expr.Field`.
-	**/
-	public static final nullField: Field = {
-		name: "",
-		kind: FVar(null, null),
-		pos: Context.currentPos()
-	};
-
-	/**
 		@return `true` if `this` field has a metadata with `name`.
 	**/
 	public static function hasMetadata(_this: Field, name: String): Bool {
