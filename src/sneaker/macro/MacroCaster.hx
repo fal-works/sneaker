@@ -78,7 +78,7 @@ class ExprCaster {
 		@param expression `Expr`
 		@return `Type`, or error message if failed.
 	**/
-	public static function toType(expression: Expr): MacroResult<Type> {
+	public static function typeof(expression: Expr): MacroResult<Type> {
 		try {
 			final type = Context.typeof(expression);
 			return Ok(type);
