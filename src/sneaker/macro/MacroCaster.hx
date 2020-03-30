@@ -2,6 +2,7 @@ package sneaker.macro;
 
 #if macro
 using haxe.macro.TypeTools;
+using haxe.macro.ExprTools;
 
 import haxe.macro.Expr;
 import haxe.macro.Type;
@@ -69,6 +70,21 @@ class AbstractTypeCaster {
 		type: AbstractType
 	): Result<EnumAbstractType, String> {
 		return EnumAbstractType.fromAbstractType(type);
+	}
+}
+
+class ExprCaster {
+	/**
+		@param expression `Expr`
+		@return `Type`, or error message if failed.
+	**/
+	public static function toType(expression: Expr): MacroResult<Type> {
+		try {
+			final type = Context.typeof(expression);
+			return Ok(type);
+		} catch(_: Dynamic) {
+			return Failed('Type not found: ${expression.toString()}', expression.pos);
+		}
 	}
 }
 #end
