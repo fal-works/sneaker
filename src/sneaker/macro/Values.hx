@@ -48,5 +48,10 @@ class Values {
 		kind: FVar(null, null),
 		pos: Context.currentPos()
 	};
+
+	/**
+		Empty expression.
+	**/
+	public static final emptyExpression: Expr = macro $a{[]};
 }
 #end
