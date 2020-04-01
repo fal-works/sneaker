@@ -20,7 +20,10 @@ class ComplexTypeMapper {
 			case TPath(typePath):
 				TPath(typePath.mapTypes(convert));
 			case TFunction(argumentTypes, returnType):
-				TFunction(argumentTypes.mapTypes(convert), mapRecursive(returnType));
+				TFunction(
+					argumentTypes.mapTypes(convert),
+					convert(returnType).mapTypes(convert)
+				);
 			case TAnonymous(fields):
 				_this;
 			case TParent(complexType):
