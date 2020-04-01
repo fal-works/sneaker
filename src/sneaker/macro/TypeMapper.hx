@@ -22,23 +22,34 @@ class ComplexTypeMapper {
 			case TFunction(argumentTypes, returnType):
 				TFunction(
 					argumentTypes.mapTypes(convert),
-					convert(returnType).mapTypes(convert)
+					returnType.convertMapTypes(convert)
 				);
 			case TAnonymous(fields):
 				_this;
 			case TParent(complexType):
-				TParent(convert(complexType).mapTypes(convert));
+				TParent(complexType.convertMapTypes(convert));
 			case TExtend(typePaths, fields):
 				TExtend(typePaths.mapTypes(convert), fields);
 			case TOptional(complexType):
-				TOptional(convert(complexType).mapTypes(convert));
+				TOptional(complexType.convertMapTypes(convert));
 			case TNamed(n, complexType):
-				TNamed(n, convert(complexType).mapTypes(convert));
+				TNamed(n, complexType.convertMapTypes(convert));
 			case TIntersection(complexTypes):
 				TIntersection(complexTypes.mapTypes(convert));
 		};
 
 		return convert(mappedRecursive);
+	}
+
+	/**
+		First applies `convert` and then calls `mapTypes()`.
+	**/
+	@:allow(sneaker.macro.ComplexTypesMapper)
+	static function convertMapTypes(
+		_this: ComplexType,
+		convert: ComplexType->ComplexType
+	): ComplexType {
+		return convert(_this).mapTypes(convert);
 	}
 }
 
@@ -58,7 +69,7 @@ class ComplexTypesMapper {
 		newArray.resize(length);
 
 		for (i in 0...length)
-			newArray[i] = convert(_this[i]).mapTypes(convert);
+			newArray[i] = _this[i].convertMapTypes(convert);
 
 		return newArray;
 	}
