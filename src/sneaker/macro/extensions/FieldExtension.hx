@@ -96,5 +96,11 @@ class FieldExtension {
 		_this.pos = pos;
 		return _this;
 	}
+
+	/**
+		@return `true` if both fields have the same name.
+	**/
+	public static function hasSameName(_this: Field, other: Field): Bool
+		return _this.name == other.name;
 }
 #end
