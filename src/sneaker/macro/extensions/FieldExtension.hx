@@ -3,6 +3,8 @@ package sneaker.macro.extensions;
 #if macro
 import haxe.macro.Expr;
 
+using Lambda;
+
 class FieldExtension {
 	/**
 		@return `true` if `this` field has a metadata with `name`.
@@ -30,7 +32,7 @@ class FieldExtension {
 		final cloned: Field = {
 			name: _this.name,
 			doc: _this.doc,
-			access: _this.access.copy(),
+			access: if (_this.access != null) _this.access.copy() else null,
 			kind: _this.kind,
 			pos: Reflect.copy(_this.pos),
 			meta: if (_this.meta != null) _this.meta.map(Reflect.copy) else null
@@ -84,7 +86,15 @@ class FieldExtension {
 		access: Array<Access>,
 		preserve = true
 	): Field {
-		_this.access = if (preserve) _this.access.concat(access) else access;
+		if (preserve && _this.access != null) {
+			final thisAccess = _this.access.copy();
+			for (element in access) {
+				if (!thisAccess.has(element)) thisAccess.push(element);
+			}
+			_this.access = thisAccess;
+		} else {
+			_this.access = access;
+		}
 		return _this;
 	}
 
