@@ -14,6 +14,12 @@ import sneaker.assertion.Asserter.*;
 @:notNull
 abstract Maybe<T>(Null<T>) {
 	/**
+		@return `null` in `Maybe<T>` representation.
+	**/
+	public static inline function none<T>(): Maybe<T>
+		return new Maybe(null);
+
+	/**
 		Casts any nullable value to `Maybe<T>`.
 	**/
 	public static inline function from<T>(value: Null<T>): Maybe<T>
