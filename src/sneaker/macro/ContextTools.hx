@@ -3,7 +3,12 @@ package sneaker.macro;
 #if macro
 import sneaker.macro.Types.MacroType;
 import sneaker.macro.Types.MacroModule;
+import haxe.macro.Expr;
 import haxe.macro.Type.ClassType;
+
+using haxe.macro.ExprTools;
+using sneaker.macro.MacroCaster;
+using sneaker.macro.extensions.ClassTypeExtension;
 
 class ContextTools {
 	/**
@@ -62,6 +67,51 @@ class ContextTools {
 		} catch (e:Dynamic) {
 			return null;
 		}
+	}
+
+	/**
+		Resolves `typeExpression` as a class.
+		If `requiredInterfaceModulePath` is provided, also checks that the class implements that interface.
+		@return `Type` and `ClassType` representations, or error message if failed.
+	**/
+	public static function resolveClassType(
+		typeExpression: Expr,
+		?requiredInterfaceModulePath: String,
+		?requiredInterfaceName: String
+	): MacroResult<{type: MacroType, classType: ClassType }> {
+		final typeString = typeExpression.toString();
+		final position = typeExpression.pos;
+
+		final type = ContextTools.tryGetType(typeString);
+		if (type == null)
+			return Failed('Type not found: $typeString', position);
+
+		final maybeClassType = type.toClassType();
+		if (maybeClassType.isNone())
+			return Failed('Failed to resolve type as a class', position);
+		final classType = maybeClassType.unwrap();
+
+		if (requiredInterfaceModulePath != null) {
+			if (!classType.implementsInterface(
+				requiredInterfaceModulePath,
+				requiredInterfaceName
+			)) {
+				final name = if (requiredInterfaceName != null)
+					'$requiredInterfaceModulePath.$requiredInterfaceName'
+				else
+					requiredInterfaceModulePath;
+
+				return Failed(
+					'Required a class implementing `$name` interface',
+					position
+				);
+			}
+		}
+
+		return Ok({
+			type: type,
+			classType: classType
+		});
 	}
 }
 #end
