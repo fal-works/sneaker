@@ -1,6 +1,9 @@
 package sneaker.types;
 
 import haxe.Constraints.Function;
+#if !macro
+import sneaker.assertion.Asserter.*;
+#end
 
 /**
 	Wrapper of `Null<T>` for:
@@ -74,6 +77,9 @@ abstract Maybe<T>(Null<T>) {
 		Casts `this` to a non-null type.
 	**/
 	public inline function unwrap(): T {
+		#if !macro
+		assert(this != null);
+		#end
 		return this;
 	}
 
