@@ -10,11 +10,6 @@ import haxe.macro.Expr;
 typedef Fields = Array<haxe.macro.Expr.Field>;
 
 /**
-	Alias for `haxe.macro.Type`.
-**/
-typedef MacroType = haxe.macro.Type;
-
-/**
 	Array of `haxe.macro.Type`.
 	This is also the return type of `haxe.macro.Context.getModule()`.
 **/

@@ -1,10 +1,9 @@
 package sneaker.macro;
 
 #if macro
-import sneaker.macro.Types.MacroType;
-import sneaker.macro.Types.MacroModule;
+import haxe.macro.Type;
 import haxe.macro.Expr;
-import haxe.macro.Type.ClassType;
+import sneaker.macro.Types.MacroModule;
 
 using haxe.macro.ExprTools;
 using sneaker.macro.MacroCaster;
@@ -49,7 +48,7 @@ class ContextTools {
 		@return `haxe.macro.Type` instance.
 		If not found, `null` instead of throwing exception.
 	**/
-	public static function tryGetType(typePath: String): Null<MacroType> {
+	public static function tryGetType(typePath: String): Null<Type> {
 		try {
 			return Context.getType(typePath);
 		} catch (e:Dynamic) {
@@ -78,7 +77,7 @@ class ContextTools {
 		typeExpression: Expr,
 		?requiredInterfaceModulePath: String,
 		?requiredInterfaceName: String
-	): MacroResult<{type: MacroType, classType: ClassType }> {
+	): MacroResult<{type: Type, classType: ClassType }> {
 		final typeString = typeExpression.toString();
 		final position = typeExpression.pos;
 
