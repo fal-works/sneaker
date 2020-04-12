@@ -33,5 +33,14 @@ class ExprExtension {
 	public static function unify(_this: Expr, complexType: ComplexType): Bool {
 		return checkType(_this, complexType).isOk();
 	}
+
+	/**
+		@return `this` expression with `:privateAccess` metadata attached.
+	**/
+	public static function privateAccess(_this: Expr): Expr {
+		final expression = macro @:privateAccess $_this;
+		expression.pos = _this.pos;
+		return expression;
+	}
 }
 #end
