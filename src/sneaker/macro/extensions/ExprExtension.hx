@@ -28,10 +28,21 @@ class ExprExtension {
 	}
 
 	/**
+		@return `true` if `(thisExpr : complexType)` succeeds.
+	**/
+	public static function passesTypeCheck(_this: Expr, complexType: ComplexType): Bool {
+		return checkType(_this, complexType).isOk();
+	}
+
+	/**
 		@return `true` if the type of this expression unifies `complexType`.
 	**/
-	public static function unify(_this: Expr, complexType: ComplexType): Bool {
-		return checkType(_this, complexType).isOk();
+	public static function unify(_this: Expr, type: Type): Bool {
+		try {
+			return Context.unify(Context.typeof(_this), type);
+		} catch (e: Dynamic) {
+			return false;
+		}
 	}
 
 	/**
