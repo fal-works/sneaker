@@ -1,20 +1,10 @@
 package sneaker.macro.extensions;
 
-import haxe.macro.Expr;
 #if macro
-class ExprExtension {
-	/**
-		@return `true` if the type of this expression unifies `complexType`.
-	**/
-	public static function unify(_this: Expr, complexType: ComplexType): Bool {
-		try {
-			Context.typeof(as(_this, complexType));
-			return true;
-		} catch (e: Dynamic) {
-			return false;
-		}
-	}
+import haxe.macro.Expr;
+import haxe.macro.Type;
 
+class ExprExtension {
 	/**
 		@return `(expr: T)` expression.
 	**/
@@ -23,6 +13,25 @@ class ExprExtension {
 			expr: ECheckType(_this, complexType),
 			pos: _this.pos
 		};
+	}
+
+	/**
+		Types `(thisExpr : complexType)`.
+		@return `Type` representation, or an error message if failed.
+	**/
+	public static function checkType(_this: Expr, complexType: ComplexType): MacroResult<Type> {
+		try {
+			return Ok(Context.typeof(as(_this, complexType)));
+		} catch (e: Dynamic) {
+			return Failed("The expression does not unify the specified type", _this.pos);
+		}
+	}
+
+	/**
+		@return `true` if the type of this expression unifies `complexType`.
+	**/
+	public static function unify(_this: Expr, complexType: ComplexType): Bool {
+		return checkType(_this, complexType).isOk();
 	}
 }
 #end
