@@ -3,6 +3,7 @@ package sneaker.macro;
 #if macro
 import haxe.PosInfos;
 import haxe.macro.Expr.Position;
+import sneaker.types.Maybe;
 
 /**
 	Type that represents either success (`Ok`) or failure (`Failed`).
@@ -52,6 +53,17 @@ class MacroResultExtension {
 			case Failed(value, position):
 				MacroLogger.error(value, position, pos);
 				throw value;
+		}
+	}
+
+	/**
+		Casts `this` to `Maybe<T>`.
+		Failure information is dropped if `this` is `Failed`.
+	**/
+	public static function toMaybe<T>(_this: MacroResult<T>): Maybe<T> {
+		return switch _this {
+			case Ok(value): Maybe.from(value);
+			case Failed(_, _): Maybe.none();
 		}
 	}
 }
