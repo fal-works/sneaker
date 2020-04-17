@@ -5,6 +5,7 @@ import haxe.macro.Expr;
 import haxe.macro.Type;
 import haxe.macro.ExprTools;
 import sneaker.types.Maybe;
+import sneaker.macro.MacroResult;
 
 class ExprExtension {
 	/**
@@ -71,41 +72,41 @@ class ExprExtension {
 	/**
 		@return `Int` literal value that `this` represents.
 	**/
-	public static function getIntLiteralValue(_this: Expr): Maybe<Int> {
+	public static function getIntLiteralValue(_this: Expr): MacroResult<Int> {
 		return switch (_this.expr) {
-			case EConst(CInt(v)): Maybe.from(Std.parseInt(v));
-			default: Maybe.none();
+			case EConst(CInt(v)): Ok(Std.parseInt(v));
+			default: Failed("Int literal required", _this.pos);
 		}
 	}
 
 	/**
 		@return `Float` literal value that `this` represents.
 	**/
-	public static function getFloatLiteralValue(_this: Expr): Maybe<Float> {
+	public static function getFloatLiteralValue(_this: Expr): MacroResult<Float> {
 		return switch (_this.expr) {
-			case EConst(CFloat(v)): Maybe.from(Std.parseFloat(v));
-			default: Maybe.none();
+			case EConst(CFloat(v)): Ok(Std.parseFloat(v));
+			default: Failed("Float literal required", _this.pos);
 		}
 	}
 
 	/**
 		@return `String` literal value that `this` represents.
 	**/
-	public static function getStringLiteralValue(_this: Expr): Maybe<String> {
+	public static function getStringLiteralValue(_this: Expr): MacroResult<String> {
 		return switch (_this.expr) {
-			case EConst(CString(s)): s;
-			default: Maybe.none();
+			case EConst(CString(s)): Ok(s);
+			default: Failed("String literal required", _this.pos);
 		}
 	}
 
 	/**
 		@return `Bool` identifier value that `this` represents.
 	**/
-	public static function getBoolIdentifierValue(_this: Expr): Maybe<Bool> {
+	public static function getBoolIdentifierValue(_this: Expr): MacroResult<Bool> {
 		return switch (_this.expr) {
-			case EConst(CIdent("true")): Maybe.from(true);
-			case EConst(CIdent("false")): Maybe.from(false);
-			default: Maybe.none();
+			case EConst(CIdent("true")): Ok(true);
+			case EConst(CIdent("false")): Ok(false);
+			default: Failed("Bool identifier required", _this.pos);
 		}
 	}
 
