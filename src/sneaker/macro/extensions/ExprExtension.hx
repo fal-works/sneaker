@@ -84,7 +84,7 @@ class ExprExtension {
 	**/
 	public static function getFloatLiteralValue(_this: Expr): MacroResult<Float> {
 		return switch (_this.expr) {
-			case EConst(CFloat(v)): Ok(Std.parseFloat(v));
+			case EConst(CFloat(v)) | EConst(CInt(v)): Ok(Std.parseFloat(v));
 			default: Failed("Float literal required", _this.pos);
 		}
 	}
