@@ -33,7 +33,6 @@ May or may not help you to debug your Haxe code.
 - Disable assertion/logging by compiler flags
 - Almost zero runtime cost when disabled
 - Almost fully commented source code
-- Does not depend on any other library (except for `std`)
 
 
 ## Downsides
@@ -446,3 +445,9 @@ A log type is enabled only if its level is equal or less than the compiler flag 
 |WARN  |  300|
 |INFO  |  400|
 |DEBUG |  500|
+
+
+## Dependencies
+
+- [sinker](https://github.com/fal-works/sinker) (v0.1.0)
+- [prayer](https://github.com/fal-works/prayer) (v0.1.0)

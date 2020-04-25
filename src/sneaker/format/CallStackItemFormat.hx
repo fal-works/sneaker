@@ -1,7 +1,5 @@
 package sneaker.format;
 
-using sneaker.format.StringExtension;
-
 import haxe.CallStack.StackItem;
 import sneaker.format.CallStackItemExtension.format;
 

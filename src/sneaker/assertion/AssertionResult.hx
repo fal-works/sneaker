@@ -1,9 +1,6 @@
 package sneaker.assertion;
 
-using sneaker.format.StringExtension;
-
 import haxe.PosInfos;
-import haxe.ds.Option;
 import sneaker.tag.Tag;
 import sneaker.log.LogType;
 import sneaker.string_buffer.StringBuffer;
@@ -22,7 +19,7 @@ class AssertionResult {
 		return new AssertionResult(
 			type,
 			evaluationResults,
-			Some(message.toOptionalString()),
+			Some(Options.fromNullable(message)),
 			tag,
 			pos
 		);

@@ -2,7 +2,6 @@ package sneaker.macro;
 
 #if macro
 using sneaker.format.PosInfosExtension;
-using sneaker.format.StringExtension;
 using sneaker.macro.extensions.StringBufferLogExtension;
 
 import haxe.PosInfos;

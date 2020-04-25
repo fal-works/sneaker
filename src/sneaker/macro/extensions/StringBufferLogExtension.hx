@@ -3,6 +3,7 @@ package sneaker.macro.extensions;
 #if macro
 using sneaker.string_buffer.StringBufferExtension;
 
+import haxe.macro.Context;
 import sneaker.log.LogFormats;
 import sneaker.string_buffer.StringBuffer;
 

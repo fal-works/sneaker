@@ -6,6 +6,10 @@
 -dce full
 --macro nullSafety("sneaker", Strict)
 --macro sneaker.Initialization.run()
+
+-lib sinker
+-lib prayer
+
 -D warn-var-shadowing
 # -D sneaker_log_level=200
 # -D sneaker_macro_log_level=300

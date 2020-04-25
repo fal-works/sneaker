@@ -1,7 +1,5 @@
 package sneaker.trier;
 
-import sneaker.types.Result;
-
 /**
 	Result returned from any class that implements `Trier` interface.
 **/
@@ -10,7 +8,7 @@ typedef TrierResult<R> = {
 	/**
 		The returned value from the process in `Result` representation.
 	**/
-	public final result: Result<R, String>;
+	public final result: Result<R>;
 
 	/**
 		`true` if the process has failed.
@@ -32,7 +30,7 @@ class TrierResult<R> {
 	/**
 		The returned value from the process in `Result` representation.
 	**/
-	public final result: Result<R, String>;
+	public final result: Result<R>;
 
 	/**
 		`true` if the process has failed.
@@ -42,7 +40,7 @@ class TrierResult<R> {
 	/**
 		`true` if the process has failed.
 	**/
-	public function new(result: Result<R, String>, failed: Bool) {
+	public function new(result: Result<R>, failed: Bool) {
 		this.result = result;
 		this.failed = failed;
 	}

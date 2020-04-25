@@ -2,6 +2,7 @@ package sneaker.macro;
 
 #if macro
 import haxe.PosInfos;
+import haxe.macro.Context;
 import haxe.macro.Expr.Position;
 import sneaker.print.Printer;
 import sneaker.macro.CompilerMessage;

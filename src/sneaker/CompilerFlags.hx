@@ -1,8 +1,7 @@
 package sneaker;
 
 import haxe.macro.Compiler;
-import sneaker.macro.CompilerFlag;
-import sneaker.format.NullableDynamicCallbacks;
+import prayer.CompilerFlag;
 
 /**
 	Compiler flags for `sneaker` library that may be referred in runtime.
@@ -24,7 +23,7 @@ class CompilerFlags {
 	public static final logLevel: CompilerFlag<Int> = {
 		name: "sneaker_log_level",
 		getDefine: () -> Compiler.getDefine("sneaker_log_level"),
-		validate: NullableDynamicCallbacks.dynamicToOptionalInt,
+		validate: NullCallbacks.parseIntOptional,
 		type: Mandatory(200)
 	};
 
@@ -34,7 +33,7 @@ class CompilerFlags {
 	public static final macroLogLevel: CompilerFlag<Int> = {
 		name: "sneaker_macro_log_level",
 		getDefine: () -> Compiler.getDefine("sneaker_macro_log_level"),
-		validate: NullableDynamicCallbacks.dynamicToOptionalInt,
+		validate: NullCallbacks.parseIntOptional,
 		type: Mandatory(300)
 	};
 
@@ -44,7 +43,7 @@ class CompilerFlags {
 	public static final macroMessageLevel: CompilerFlag<Int> = {
 		name: "sneaker_macro_message_level",
 		getDefine: () -> Compiler.getDefine("sneaker_macro_message_level"),
-		validate: NullableDynamicCallbacks.dynamicToOptionalInt,
+		validate: NullCallbacks.parseIntOptional,
 		type: Mandatory(300)
 	};
 
