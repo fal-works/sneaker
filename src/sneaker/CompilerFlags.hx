@@ -24,7 +24,7 @@ class CompilerFlags {
 		name: "sneaker_log_level",
 		getDefine: () -> Compiler.getDefine("sneaker_log_level"),
 		validate: NullCallbacks.parseIntOptional,
-		type: Mandatory(200)
+		type: Mandatory(#if debug 500 #else 200 #end)
 	};
 
 	/**
@@ -34,7 +34,7 @@ class CompilerFlags {
 		name: "sneaker_macro_log_level",
 		getDefine: () -> Compiler.getDefine("sneaker_macro_log_level"),
 		validate: NullCallbacks.parseIntOptional,
-		type: Mandatory(300)
+		type: Mandatory(#if debug 500 #else 300 #end)
 	};
 
 	/**
@@ -44,7 +44,7 @@ class CompilerFlags {
 		name: "sneaker_macro_message_level",
 		getDefine: () -> Compiler.getDefine("sneaker_macro_message_level"),
 		validate: NullCallbacks.parseIntOptional,
-		type: Mandatory(300)
+		type: Mandatory(#if debug 500 #else 300 #end)
 	};
 
 	#if macro
