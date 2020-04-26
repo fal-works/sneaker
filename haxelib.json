@@ -4,11 +4,14 @@
 	"license": "MIT",
 	"tags": ["utility", "macro"],
 	"description": "Assert, log and test. May or may not help you to debug your Haxe code.",
-	"version": "0.8.1",
+	"version": "0.9.0",
 	"classPath": "src/",
-	"releasenote": "Small fixes/enhancements.",
+	"releasenote": "Move some features to other libraries (see: sinker, prayer).",
 	"contributors": [
 		"fal-works"
 	],
-	"dependencies": {}
+	"dependencies": {
+		"sinker": "0.1.0",
+		"prayer": "0.1.1"
+	}
 }
