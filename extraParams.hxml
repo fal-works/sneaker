@@ -1,3 +1,6 @@
 # Default parameters for haxelib
 
+-lib sinker
+-lib prayer
+
 --macro sneaker.Initialization.run()
