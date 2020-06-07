@@ -28,15 +28,12 @@ class Tag {
 		#end
 	}
 
-	public inline function toString(): String {
+	public inline function toString(): String
 		return name;
-	}
 
-	inline function get_name() {
+	extern inline function get_name(): String
 		return #if sneaker_tag_disable "-" #else internalName #end;
-	}
 
-	inline function get_bits() {
+	extern inline function get_bits(): Int
 		return #if sneaker_tag_disable 0x00000000 #else internalBits #end;
-	}
 }

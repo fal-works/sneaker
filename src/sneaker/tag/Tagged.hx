@@ -12,10 +12,10 @@ class Tagged implements sneaker.tag.interfaces.Tagged {
 	**/
 	public var tag(get, set): Tag;
 
-	inline function get_tag()
+	extern inline function get_tag()
 		return Tags.anonymous;
 
-	inline function set_tag(_tag)
+	extern inline function set_tag(_tag)
 		return Tags.anonymous;
 	#else
 
@@ -27,10 +27,10 @@ class Tagged implements sneaker.tag.interfaces.Tagged {
 	**/
 	@:isVar public var tag(get, set) = Tags.anonymous;
 
-	inline function get_tag()
+	extern inline function get_tag()
 		return tag;
 
-	inline function set_tag(newTag)
+	extern inline function set_tag(newTag)
 		return tag = newTag;
 	#end
 

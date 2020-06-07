@@ -10,7 +10,7 @@ class StringBufferExtension {
 		Adds `s`. Workaround for errors in `@:nullSafety` mode.
 		@return The given `StringBuf`.
 	**/
-	public static inline function addNullable<T>(buf: StringBuffer, s: Null<T>): Void {
+	public static extern inline function addNullable<T>(buf: StringBuffer, s: Null<T>): Void {
 		@:nullSafety(Off) buf.add(s);
 	}
 
@@ -18,7 +18,7 @@ class StringBufferExtension {
 		Adds Line Feed (i.e. "\n").
 		@return The given `StringBuf`.
 	**/
-	public static inline function lf(buf: StringBuffer): Void {
+	public static extern inline function lf(buf: StringBuffer): Void {
 		buf.addChar(lineFeedCode);
 	}
 
@@ -26,7 +26,7 @@ class StringBufferExtension {
 		Adds Line Feed and `s`.
 		@return The given `StringBuf`.
 	**/
-	public static inline function lfAdd<T>(buf: StringBuffer, s: Null<T>): Void {
+	public static extern inline function lfAdd<T>(buf: StringBuffer, s: Null<T>): Void {
 		#if sys
 		lf(buf);
 		addNullable(buf, s);
@@ -39,7 +39,7 @@ class StringBufferExtension {
 		Adds `s` and Line Feed.
 		@return The given `StringBuf`.
 	**/
-	public static inline function addLf<T>(buf: StringBuffer, s: Null<T>): Void {
+	public static extern inline function addLf<T>(buf: StringBuffer, s: Null<T>): Void {
 		#if sys
 		addNullable(buf, s);
 		lf(buf);
@@ -53,7 +53,7 @@ class StringBufferExtension {
 		@param indent Defaults to 2 spaces.
 		@return The given `StringBuf`.
 	**/
-	public static inline function indentAdd<T>(
+	public static extern inline function indentAdd<T>(
 		buf: StringBuffer,
 		s: Null<T>,
 		indent: String = twoSpaces
@@ -65,7 +65,7 @@ class StringBufferExtension {
 		Adds Line Feed, `indent` and `s`.
 		@return The given `StringBuf`.
 	**/
-	public static inline function lfIndentAdd<T>(
+	public static extern inline function lfIndentAdd<T>(
 		buf: StringBuffer,
 		s: Null<T>,
 		indent: String = twoSpaces
@@ -78,7 +78,7 @@ class StringBufferExtension {
 		@param indent Defaults to 2 spaces.
 		@return The given `StringBuf`.
 	**/
-	public static inline function indentAddLf<T>(
+	public static extern inline function indentAddLf<T>(
 		buf: StringBuffer,
 		s: Null<T>,
 		indent: String = twoSpaces
@@ -159,7 +159,7 @@ class StringBufferExtension {
 		Adds each of `lines` with a preceding Line Feed.
 		@return The given `StringBuf`.
 	**/
-	public static inline function lfAddLines<T>(
+	public static extern inline function lfAddLines<T>(
 		buf: StringBuffer,
 		lines: Array<Null<T>>
 	): Void {
@@ -170,7 +170,7 @@ class StringBufferExtension {
 		Adds each of `lines` with a succeeding Line Feed.
 		@return The given `StringBuf`.
 	**/
-	public static inline function addLfLines<T>(
+	public static extern inline function addLfLines<T>(
 		buf: StringBuffer,
 		lines: Array<Null<T>>
 	): Void {
@@ -182,7 +182,7 @@ class StringBufferExtension {
 		@param indent Defaults to 2 spaces.
 		@return The given `StringBuf`.
 	**/
-	public static inline function lfIndentAddLines<T>(
+	public static extern inline function lfIndentAddLines<T>(
 		buf: StringBuffer,
 		lines: Array<Null<T>>,
 		indent: String = twoSpaces
@@ -195,7 +195,7 @@ class StringBufferExtension {
 		@param indent Defaults to 2 spaces.
 		@return The given `StringBuf`.
 	**/
-	public static inline function indentLfAddLines<T>(
+	public static extern inline function indentLfAddLines<T>(
 		buf: StringBuffer,
 		lines: Array<Null<T>>,
 		indent: String = twoSpaces

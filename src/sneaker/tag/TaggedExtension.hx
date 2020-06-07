@@ -12,7 +12,7 @@ class TaggedExtension {
 		No effect if compilation flag `sneaker_tagged_disable` is set.
 		@return `this`
 	**/
-	public static inline function setTag<T: Tagged>(_this: T, tag: Tag): T {
+	public static extern inline function setTag<T: Tagged>(_this: T, tag: Tag): T {
 		#if !sneaker_tagged_disable
 		_this.tag = tag;
 		#end
@@ -25,7 +25,7 @@ class TaggedExtension {
 		No effect if compilation flag `sneaker_tagged_disable` is set.
 		@return `this`
 	**/
-	public static inline function newTag<T: Tagged>(
+	public static extern inline function newTag<T: Tagged>(
 		_this: T,
 		name: String,
 		?bits: Int
@@ -39,7 +39,7 @@ class TaggedExtension {
 	/**
 		Output `message` as a log of any `logType`.
 	**/
-	public static inline function log(
+	public static extern inline function log(
 		_this: Tagged,
 		logType: LogType,
 		message: String,
@@ -55,7 +55,7 @@ class TaggedExtension {
 
 		Default log types: [ FATAL ] - ERROR - WARN - INFO - DEBUG
 	**/
-	public static inline function fatal(
+	public static extern inline function fatal(
 		_this: Tagged,
 		message: String,
 		?pos: PosInfos
@@ -70,7 +70,7 @@ class TaggedExtension {
 
 		Default log types: FATAL - [ ERROR ]  - WARN - INFO - DEBUG
 	**/
-	public static inline function error(
+	public static extern inline function error(
 		_this: Tagged,
 		message: String,
 		?pos: PosInfos
@@ -86,7 +86,7 @@ class TaggedExtension {
 
 		Default log types: FATAL - ERROR - [ WARN ] - INFO - DEBUG
 	**/
-	public static inline function warn(
+	public static extern inline function warn(
 		_this: Tagged,
 		message: String,
 		?pos: PosInfos
@@ -102,7 +102,7 @@ class TaggedExtension {
 
 		Default log types: FATAL - ERROR - WARN - [ INFO ] - DEBUG
 	**/
-	public static inline function info(
+	public static extern inline function info(
 		_this: Tagged,
 		message: String,
 		?pos: PosInfos
@@ -117,7 +117,7 @@ class TaggedExtension {
 
 		Default log types: FATAL - ERROR - WARN - INFO - [ DEBUG ]
 	**/
-	public static inline function debug(
+	public static extern inline function debug(
 		_this: Tagged,
 		message: String,
 		?pos: PosInfos

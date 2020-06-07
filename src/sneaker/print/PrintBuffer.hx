@@ -14,7 +14,7 @@ import sneaker.string_buffer.StringBufferBox;
 **/
 @:forward(flush, clear)
 abstract PrintBuffer(StringBufferBox) to StringBufferBox {
-	public inline function new(?maxLength: Int, ?maxCount: Int) {
+	public extern inline function new(?maxLength: Int, ?maxCount: Int) {
 		this = new StringBufferBox(
 			PrinterCallbacks.printDirect,
 			maxLength,
@@ -30,6 +30,6 @@ abstract PrintBuffer(StringBufferBox) to StringBufferBox {
 	**/
 	public var current(get, never): CensoredStringBuffer;
 
-	inline function get_current()
+	extern inline function get_current()
 		return this.buffer;
 }
