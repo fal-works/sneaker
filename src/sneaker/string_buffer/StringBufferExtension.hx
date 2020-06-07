@@ -87,6 +87,24 @@ class StringBufferExtension {
 	}
 
 	/**
+		Adds `s` with left-padding.
+	**/
+	public static inline function addLeftPadded<T: StringBuffer, S>(
+		buf: T,
+		s: Null<S>,
+		padCharacterCode: Int,
+		length: Int
+	): T {
+		@:nullSafety(Off) final str = Std.string(s);
+		for (i in 0...length - str.length)
+			buf.addChar(padCharacterCode);
+
+		buf.add(str);
+
+		return buf;
+	}
+
+	/**
 		Adds `s` with right-padding.
 	**/
 	public static inline function addRightPadded<T: StringBuffer, S>(
