@@ -3,7 +3,7 @@ package sneaker.string_buffer;
 import sneaker.string_buffer.interfaces.StringBuffer;
 
 class StringBufferExtension {
-	static inline final lineFeedCode = 10;
+	static extern inline final lineFeedCode = "\n".code;
 	static inline final twoSpaces = "  ";
 
 	/**
