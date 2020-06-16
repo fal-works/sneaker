@@ -449,8 +449,8 @@ A log type is enabled only if its level is equal or less than the compiler flag 
 
 ## Dependencies
 
-- [sinker](https://github.com/fal-works/sinker) v0.2.0
-- [prayer](https://github.com/fal-works/prayer) v0.1.2
+- [sinker](https://github.com/fal-works/sinker) v0.3.0 or compatible
+- [prayer](https://github.com/fal-works/prayer) v0.1.3 or compatible
 
 See also:
 [FAL Haxe libraries](https://github.com/fal-works/fal-haxe-libraries)
