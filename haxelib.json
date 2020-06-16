@@ -4,14 +4,14 @@
 	"license": "MIT",
 	"tags": ["utility", "macro"],
 	"description": "Assert, log and test. May or may not help you to debug your Haxe code.",
-	"version": "0.10.0-alpha",
+	"version": "0.10.0",
 	"classPath": "src/",
-	"releasenote": "",
+	"releasenote": "Minor enhancement.",
 	"contributors": [
 		"fal-works"
 	],
 	"dependencies": {
-		"sinker": "0.2.0",
-		"prayer": "0.1.2"
+		"sinker": "",
+		"prayer": ""
 	}
 }
