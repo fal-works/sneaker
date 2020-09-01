@@ -1,6 +1,6 @@
 package sneaker.exception;
 
-import sneaker.format.CallStackItemCallbacks;
+import sneaker.format.CallStackItemExtension;
 
 class ExceptionSettings {
 	/**
@@ -12,5 +12,5 @@ class ExceptionSettings {
 		Formatting function used when casting an exception to `String`.
 		Can be replaced with any custom function.
 	**/
-	public static var callStackFormat = CallStackItemCallbacks.formatStackIndent.bind(_);
+	public static var callStackFormat = CallStackItemExtension.formatStackIndent.bind(_);
 }

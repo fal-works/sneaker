@@ -16,7 +16,7 @@ import sneaker.string_buffer.StringBufferBox;
 abstract PrintBuffer(StringBufferBox) to StringBufferBox {
 	public extern inline function new(?maxLength: Int, ?maxCount: Int) {
 		this = new StringBufferBox(
-			PrinterCallbacks.printDirect,
+			(s : String) -> Printer.printDirect(s),
 			maxLength,
 			maxCount
 		);

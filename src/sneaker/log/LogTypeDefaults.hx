@@ -2,7 +2,7 @@ package sneaker.log;
 
 import haxe.PosInfos;
 import sneaker.tag.Tag;
-import sneaker.format.PosInfosCallbacks;
+import sneaker.format.PosInfosExtension;
 
 /**
 	Values that will be assigned when creating a new `LogType` instance.
@@ -12,6 +12,6 @@ class LogTypeDefaults {
 	public static var tagFilter = (tag: Tag) -> true;
 	public static var positionFilter = (?pos: PosInfos) -> true;
 
-	public static var positionFormat = PosInfosCallbacks.formatClassMethodLine;
+	public static var positionFormat = PosInfosExtension.formatClassMethodLine;
 	public static var logFormat = LogFormats.prefixPositionTagMessage;
 }

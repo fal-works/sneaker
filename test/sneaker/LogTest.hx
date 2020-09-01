@@ -72,7 +72,7 @@ class LogTest {
 	public static final logTypePositionFormat = testCase(() -> {
 		describe("This prints a log message in another position format (file and line).");
 		final logType = new LogType("[log line prefix]");
-		logType.positionFormat = sneaker.format.PosInfosCallbacks.formatFileLineWithoutPath;
+		logType.positionFormat = sneaker.format.PosInfosExtension.formatFileLineWithoutPath;
 		logType.print("(log message)");
 	}, Visual);
 	public static final logTypeLogFormat = testCase(() -> {
