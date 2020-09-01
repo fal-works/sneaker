@@ -7,6 +7,10 @@ import prayer.CompilerFlag;
 	Compiler flags for `sneaker` library that may be referred in runtime.
 **/
 class CompilerFlags {
+	static final parseIntOptional = (s: Null<Dynamic>) -> {
+		return @:nullSafety(Off) Nulls.parseIntOptional(s);
+	};
+
 	/**
 		`-D sneaker_print_disable`
 	**/
@@ -23,7 +27,7 @@ class CompilerFlags {
 	public static final logLevel: CompilerFlag<Int> = {
 		name: "sneaker_log_level",
 		getDefine: () -> Compiler.getDefine("sneaker_log_level"),
-		validate: NullCallbacks.parseIntOptional,
+		validate: parseIntOptional,
 		type: Mandatory(#if debug 500 #else 200 #end)
 	};
 
@@ -33,7 +37,7 @@ class CompilerFlags {
 	public static final macroLogLevel: CompilerFlag<Int> = {
 		name: "sneaker_macro_log_level",
 		getDefine: () -> Compiler.getDefine("sneaker_macro_log_level"),
-		validate: NullCallbacks.parseIntOptional,
+		validate: parseIntOptional,
 		type: Mandatory(#if debug 500 #else 300 #end)
 	};
 
@@ -43,7 +47,7 @@ class CompilerFlags {
 	public static final macroMessageLevel: CompilerFlag<Int> = {
 		name: "sneaker_macro_message_level",
 		getDefine: () -> Compiler.getDefine("sneaker_macro_message_level"),
-		validate: NullCallbacks.parseIntOptional,
+		validate: parseIntOptional,
 		type: Mandatory(#if debug 500 #else 300 #end)
 	};
 

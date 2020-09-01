@@ -3,7 +3,7 @@
 Assert, log and test.  
 May or may not help you to debug your Haxe code.
 
-**Requires Haxe 4** (tested with v4.0.5).
+**Requires Haxe 4** (tested with v4.1.3).
 
 
 ## Features
@@ -449,7 +449,7 @@ A log type is enabled only if its level is equal or less than the compiler flag 
 
 ## Dependencies
 
-- [sinker](https://github.com/fal-works/sinker) v0.3.0 or compatible
+- [sinker](https://github.com/fal-works/sinker) v0.5.0 or compatible
 - [prayer](https://github.com/fal-works/prayer) v0.1.3 or compatible
 
 See also:
